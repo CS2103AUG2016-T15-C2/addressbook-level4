@@ -87,7 +87,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command and confirms that the result message is correct.
-     * Both the 'address book' and the 'last shown list' are expected to be empty.
+     * Both the 'scheduler' and the 'last shown list' are expected to be empty.
      * @see #assertCommandBehavior(String, String, ReadOnlyAddressBook, List)
      */
     private void assertCommandBehavior(String inputCommand, String expectedMessage) throws Exception {
@@ -97,7 +97,7 @@ public class LogicManagerTest {
     /**
      * Executes the command and confirms that the result message is correct and
      * also confirms that the following three parts of the LogicManager object's state are as expected:<br>
-     *      - the internal address book data are same as those in the {@code expectedAddressBook} <br>
+     *      - the internal scheduler data are same as those in the {@code expectedAddressBook} <br>
      *      - the backing list shown by UI matches the {@code shownList} <br>
      *      - {@code expectedAddressBook} was saved to the storage file. <br>
      */
@@ -197,7 +197,7 @@ public class LogicManagerTest {
         expectedAB.addPerson(toBeAdded);
 
         // setup starting state
-        model.addPerson(toBeAdded); // person already in internal address book
+        model.addPerson(toBeAdded); // person already in internal scheduler
 
         // execute command and verify result
         assertCommandBehavior(
@@ -216,7 +216,7 @@ public class LogicManagerTest {
         AddressBook expectedAB = helper.generateAddressBook(2);
         List<? extends ReadOnlyPerson> expectedList = expectedAB.getPersonList();
 
-        // prepare address book state
+        // prepare scheduler state
         helper.addToModel(model, 2);
 
         assertCommandBehavior("list",
