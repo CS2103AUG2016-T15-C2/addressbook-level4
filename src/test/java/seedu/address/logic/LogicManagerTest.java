@@ -154,21 +154,21 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add Valid Name 12345 e/valid@endDate.butNoStartDatePrefix a/valid, address", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name p/12345 valid@endDate.butNoPrefix a/valid, address", expectedMessage);
+                "add Valid Name sd/01-02-2015 valid@endDate.butNoPrefix a/valid, address", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name p/12345 e/valid@endDate.butNoAddressPrefix valid, address", expectedMessage);
+                "add Valid Name sd/01-02-2015 e/valid@endDate.butNoAddressPrefix valid, address", expectedMessage);
     }
 
     @Test
     public void execute_add_invalidPersonData() throws Exception {
         assertCommandBehavior(
-                "add []\\[;] p/12345 e/valid@e.mail a/valid, address", Name.MESSAGE_NAME_CONSTRAINTS);
+                "add []\\[;] sd/01-02-2015 e/valid@e.mail a/valid, address", Name.MESSAGE_NAME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name p/not_numbers e/valid@e.mail a/valid, address", StartDate.MESSAGE_PHONE_CONSTRAINTS);
+                "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, address", StartDate.MESSAGE_START_DATE_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name p/12345 e/notAnEndDate a/valid, address", EndDate.MESSAGE_ENDDATE_CONSTRAINTS);
+                "add Valid Name sd/01-02-2015 e/notAnEndDate a/valid, address", EndDate.MESSAGE_ENDDATE_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
+                "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, address t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
 
     }
 

@@ -8,8 +8,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class StartDate {
 
-    public static final String MESSAGE_PHONE_CONSTRAINTS = "Item's date should be in the format dd-mm-yyyy in numbers separated by a '-'";
-    public static final String PHONE_VALIDATION_REGEX = "(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((18|19|20|21)\\d\\d)";
+    public static final String MESSAGE_START_DATE_CONSTRAINTS = "Item's date should be in the format dd-mm-yyyy in numbers separated by a '-'";
+    public static final String START_DATE_VALIDATION_REGEX = "(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((18|19|20|21)\\d\\d)";
 
     public final String value;
 
@@ -22,7 +22,7 @@ public class StartDate {
         assert startDate != null;
         startDate = startDate.trim();
         if (!isValidStartDate(startDate)) {
-            throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_START_DATE_CONSTRAINTS);
         }
         this.value = startDate;
     }
@@ -31,7 +31,7 @@ public class StartDate {
      * Returns true if a given string is a valid person startDate number.
      */
     public static boolean isValidStartDate(String test) {
-        return test.matches(PHONE_VALIDATION_REGEX);
+        return test.matches(START_DATE_VALIDATION_REGEX);
     }
 
     @Override
