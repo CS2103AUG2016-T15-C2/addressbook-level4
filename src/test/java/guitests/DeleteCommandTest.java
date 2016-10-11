@@ -5,7 +5,7 @@ import seedu.address.testutil.TestEntry;
 import seedu.address.testutil.TestUtil;
 
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS;
+import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS;
 
 public class DeleteCommandTest extends SchedulerGuiTest {
 
@@ -48,7 +48,7 @@ public class DeleteCommandTest extends SchedulerGuiTest {
         assertTrue(entryListPanel.isListMatching(expectedRemainder));
 
         //confirm the result message is correct
-        assertResultMessage(String.format(MESSAGE_DELETE_PERSON_SUCCESS, entryToDelete));
+        assertResultMessage(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete));
     }
 
 }

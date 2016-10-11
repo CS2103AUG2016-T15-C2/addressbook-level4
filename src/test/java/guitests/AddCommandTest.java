@@ -26,7 +26,7 @@ public class AddCommandTest extends SchedulerGuiTest {
 
         //add duplicate entry
         commandBox.runCommand(td.hoon.getAddCommand());
-        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertResultMessage(AddCommand.MESSAGE_DUPLICATE_ENTRY);
         assertTrue(entryListPanel.isListMatching(currentList));
 
         //add to empty list

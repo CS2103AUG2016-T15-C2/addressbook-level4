@@ -21,7 +21,7 @@ public class AddCommand extends Command {
             + " John Wedding sd/23-10-2016 ed/24-10-2016 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This entry already exists in the scheduler";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the scheduler";
 
     private final Entry toAdd;
 
@@ -52,7 +52,7 @@ public class AddCommand extends Command {
             model.addEntry(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniqueEntryList.DuplicateEntryException e) {
-            return new CommandResult(MESSAGE_DUPLICATE_PERSON);
+            return new CommandResult(MESSAGE_DUPLICATE_ENTRY);
         }
 
     }

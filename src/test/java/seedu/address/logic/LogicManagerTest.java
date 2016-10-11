@@ -202,7 +202,7 @@ public class LogicManagerTest {
         // execute command and verify result
         assertCommandBehavior(
                 helper.generateAddCommand(toBeAdded),
-                AddCommand.MESSAGE_DUPLICATE_PERSON,
+                AddCommand.MESSAGE_DUPLICATE_ENTRY,
                 expectedAB,
                 expectedAB.getEntryList());
 
@@ -245,7 +245,7 @@ public class LogicManagerTest {
      * @param commandWord to test assuming it targets a single entry in the last shown list based on visible index.
      */
     private void assertIndexNotFoundBehaviorForCommand(String commandWord) throws Exception {
-        String expectedMessage = MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+        String expectedMessage = MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX;
         TestDataHelper helper = new TestDataHelper();
         List<Entry> entryList = helper.generateEntryList(2);
 
@@ -278,7 +278,7 @@ public class LogicManagerTest {
         helper.addToModel(model, threeEntrys);
 
         assertCommandBehavior("select 2",
-                String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS, 2),
+                String.format(SelectCommand.MESSAGE_SELECT_ENTRY_SUCCESS, 2),
                 expectedAB,
                 expectedAB.getEntryList());
         assertEquals(1, targetedJumpIndex);
@@ -307,7 +307,7 @@ public class LogicManagerTest {
         helper.addToModel(model, threeEntrys);
 
         assertCommandBehavior("delete 2",
-                String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, threeEntrys.get(1)),
+                String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, threeEntrys.get(1)),
                 expectedAB,
                 expectedAB.getEntryList());
     }

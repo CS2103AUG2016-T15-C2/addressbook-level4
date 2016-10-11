@@ -18,7 +18,7 @@ public abstract class Command {
      * @return summary message for entrys displayed
      */
     public static String getMessageForEntryListShownSummary(int displaySize) {
-        return String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, displaySize);
+        return String.format(Messages.MESSAGE_ENTRYS_LISTED_OVERVIEW, displaySize);
     }
 
     /**
