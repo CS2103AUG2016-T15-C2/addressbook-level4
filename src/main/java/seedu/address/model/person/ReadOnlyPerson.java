@@ -11,7 +11,7 @@ public interface ReadOnlyPerson {
     Name getName();
     StartTime getStartTime();
     EndTime getEndTime();
-    Address getAddress();
+    Date getDate();
 
     /**
      * The returned TagList is a deep copy of the internal TagList,
@@ -28,7 +28,7 @@ public interface ReadOnlyPerson {
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getStartTime().equals(this.getStartTime())
                 && other.getEndTime().equals(this.getEndTime())
-                && other.getAddress().equals(this.getAddress()));
+                && other.getDate().equals(this.getDate()));
     }
 
     /**
@@ -42,7 +42,7 @@ public interface ReadOnlyPerson {
                 .append(" End Time: ")
                 .append(getEndTime())
                 .append(" Date: ")
-                .append(getAddress())
+                .append(getDate())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

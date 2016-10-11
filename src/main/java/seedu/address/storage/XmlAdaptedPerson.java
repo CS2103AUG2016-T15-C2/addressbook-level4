@@ -41,7 +41,7 @@ public class XmlAdaptedPerson {
         name = source.getName().fullName;
         startTime = source.getStartTime().value;
         endTime = source.getEndTime().value;
-        address = source.getAddress().value;
+        address = source.getDate().value;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -61,7 +61,7 @@ public class XmlAdaptedPerson {
         final Name name = new Name(this.name);
         final StartTime startTime = new StartTime(this.startTime);
         final EndTime endTime = new EndTime(this.endTime);
-        final Address address = new Address(this.address);
+        final Date address = new Date(this.address);
         final UniqueTagList tags = new UniqueTagList(personTags);
         return new Person(name, startTime, endTime, address, tags);
     }

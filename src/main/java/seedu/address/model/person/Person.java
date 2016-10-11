@@ -14,14 +14,14 @@ public class Person implements ReadOnlyPerson {
     private Name name;
     private StartTime startTime;
     private EndTime endTime;
-    private Address address;
+    private Date address;
 
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, StartTime startTime, EndTime endTime, Address address, UniqueTagList tags) {
+    public Person(Name name, StartTime startTime, EndTime endTime, Date address, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(name, startTime, endTime, address, tags);
         this.name = name;
         this.startTime = startTime;
@@ -34,7 +34,7 @@ public class Person implements ReadOnlyPerson {
      * Copy constructor.
      */
     public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getStartTime(), source.getEndTime(), source.getAddress(), source.getTags());
+        this(source.getName(), source.getStartTime(), source.getEndTime(), source.getDate(), source.getTags());
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Person implements ReadOnlyPerson {
     }
 
     @Override
-    public Address getAddress() {
+    public Date getDate() {
         return address;
     }
 

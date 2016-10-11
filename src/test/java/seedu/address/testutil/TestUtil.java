@@ -65,15 +65,15 @@ public class TestUtil {
     private static Person[] getSamplePersonData() {
         try {
             return new Person[]{
-                    new Person(new Name("Ali Muster"), new StartTime("9482424"), new EndTime("hans@google.com"), new Address("4th street"), new UniqueTagList()),
-                    new Person(new Name("Boris Mueller"), new StartTime("87249245"), new EndTime("ruth@google.com"), new Address("81th street"), new UniqueTagList()),
-                    new Person(new Name("Carl Kurz"), new StartTime("95352563"), new EndTime("heinz@yahoo.com"), new Address("wall street"), new UniqueTagList()),
-                    new Person(new Name("Daniel Meier"), new StartTime("87652533"), new EndTime("cornelia@google.com"), new Address("10th street"), new UniqueTagList()),
-                    new Person(new Name("Elle Meyer"), new StartTime("9482224"), new EndTime("werner@gmail.com"), new Address("michegan ave"), new UniqueTagList()),
-                    new Person(new Name("Fiona Kunz"), new StartTime("9482427"), new EndTime("lydia@gmail.com"), new Address("little tokyo"), new UniqueTagList()),
-                    new Person(new Name("George Best"), new StartTime("9482442"), new EndTime("anna@google.com"), new Address("4th street"), new UniqueTagList()),
-                    new Person(new Name("Hoon Meier"), new StartTime("8482424"), new EndTime("stefan@mail.com"), new Address("little india"), new UniqueTagList()),
-                    new Person(new Name("Ida Mueller"), new StartTime("8482131"), new EndTime("hans@google.com"), new Address("chicago ave"), new UniqueTagList())
+                    new Person(new Name("Ali Muster"), new StartTime("9482424"), new EndTime("hans@google.com"), new Date("4th street"), new UniqueTagList()),
+                    new Person(new Name("Boris Mueller"), new StartTime("87249245"), new EndTime("ruth@google.com"), new Date("81th street"), new UniqueTagList()),
+                    new Person(new Name("Carl Kurz"), new StartTime("95352563"), new EndTime("heinz@yahoo.com"), new Date("wall street"), new UniqueTagList()),
+                    new Person(new Name("Daniel Meier"), new StartTime("87652533"), new EndTime("cornelia@google.com"), new Date("10th street"), new UniqueTagList()),
+                    new Person(new Name("Elle Meyer"), new StartTime("9482224"), new EndTime("werner@gmail.com"), new Date("michegan ave"), new UniqueTagList()),
+                    new Person(new Name("Fiona Kunz"), new StartTime("9482427"), new EndTime("lydia@gmail.com"), new Date("little tokyo"), new UniqueTagList()),
+                    new Person(new Name("George Best"), new StartTime("9482442"), new EndTime("anna@google.com"), new Date("4th street"), new UniqueTagList()),
+                    new Person(new Name("Hoon Meier"), new StartTime("8482424"), new EndTime("stefan@mail.com"), new Date("little india"), new UniqueTagList()),
+                    new Person(new Name("Ida Mueller"), new StartTime("8482131"), new EndTime("hans@google.com"), new Date("chicago ave"), new UniqueTagList())
             };
         } catch (IllegalValueException e) {
             assert false;

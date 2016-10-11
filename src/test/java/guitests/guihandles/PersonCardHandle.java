@@ -10,7 +10,7 @@ import seedu.address.model.person.ReadOnlyPerson;
  */
 public class PersonCardHandle extends GuiHandle {
     private static final String NAME_FIELD_ID = "#name";
-    private static final String ADDRESS_FIELD_ID = "#address";
+    private static final String DATE_FIELD_ID = "#address";
     private static final String PHONE_FIELD_ID = "#startTime";
     private static final String ENDTIME_FIELD_ID = "#endTime";
 
@@ -29,8 +29,8 @@ public class PersonCardHandle extends GuiHandle {
         return getTextFromLabel(NAME_FIELD_ID);
     }
 
-    public String getAddress() {
-        return getTextFromLabel(ADDRESS_FIELD_ID);
+    public String getDate() {
+        return getTextFromLabel(DATE_FIELD_ID);
     }
 
     public String getStartTime() {
@@ -43,7 +43,7 @@ public class PersonCardHandle extends GuiHandle {
 
     public boolean isSamePerson(ReadOnlyPerson person){
         return getFullName().equals(person.getName().fullName) && getStartTime().equals(person.getStartTime().value)
-                && getEndTime().equals(person.getEndTime().value) && getAddress().equals(person.getAddress().value);
+                && getEndTime().equals(person.getEndTime().value) && getDate().equals(person.getDate().value);
     }
 
     @Override
@@ -51,13 +51,13 @@ public class PersonCardHandle extends GuiHandle {
         if(obj instanceof PersonCardHandle) {
             PersonCardHandle handle = (PersonCardHandle) obj;
             return getFullName().equals(handle.getFullName())
-                    && getAddress().equals(handle.getAddress()); //TODO: compare the rest
+                    && getDate().equals(handle.getDate()); //TODO: compare the rest
         }
         return super.equals(obj);
     }
 
     @Override
     public String toString() {
-        return getFullName() + " " + getAddress();
+        return getFullName() + " " + getDate();
     }
 }

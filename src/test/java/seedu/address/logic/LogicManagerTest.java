@@ -156,7 +156,7 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add Valid Name sd/01-02-2015 valid@endTime.butNoPrefix a/valid, address", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 e/valid@endTime.butNoAddressPrefix valid, address", expectedMessage);
+                "add Valid Name sd/01-02-2015 e/valid@endTime.butNoDatePrefix valid, address", expectedMessage);
     }
 
     @Test
@@ -386,11 +386,11 @@ public class LogicManagerTest {
             Name name = new Name("Adam Brown");
             StartTime privateStartTime = new StartTime("111111");
             EndTime endTime = new EndTime("adam@gmail.com");
-            Address privateAddress = new Address("111, alpha street");
+            Date privateDate = new Date("111, alpha street");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Person(name, privateStartTime, endTime, privateAddress, tags);
+            return new Person(name, privateStartTime, endTime, privateDate, tags);
         }
 
         /**
@@ -405,7 +405,7 @@ public class LogicManagerTest {
                     new Name("Person " + seed),
                     new StartTime("" + Math.abs(seed)),
                     new EndTime(seed + "@endTime"),
-                    new Address("House of " + seed),
+                    new Date("House of " + seed),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
@@ -419,7 +419,7 @@ public class LogicManagerTest {
             cmd.append(p.getName().toString());
             cmd.append(" p/").append(p.getStartTime());
             cmd.append(" e/").append(p.getEndTime());
-            cmd.append(" a/").append(p.getAddress());
+            cmd.append(" a/").append(p.getDate());
 
             UniqueTagList tags = p.getTags();
             for(Tag t: tags){
@@ -504,7 +504,7 @@ public class LogicManagerTest {
                     new Name(name),
                     new StartTime("1"),
                     new EndTime("1@endTime"),
-                    new Address("House of 1"),
+                    new Date("House of 1"),
                     new UniqueTagList(new Tag("tag"))
             );
         }

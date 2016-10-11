@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-/**
+/** 
  * The main entry point to the application.
  */
 public class MainApp extends Application {
@@ -166,7 +166,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Date Book ] =============================");
         ui.stop();
         try {
             storage.saveUserPrefs(userPrefs);
