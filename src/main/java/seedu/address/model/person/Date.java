@@ -4,7 +4,7 @@ package seedu.address.model.person;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Person's address in the scheduler.
+ * Represents a Person's date in the scheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date {
@@ -15,16 +15,16 @@ public class Date {
     public final String value;
 
     /**
-     * Validates given address.
+     * Validates given date.
      *
-     * @throws IllegalValueException if given address string is invalid.
+     * @throws IllegalValueException if given date string is invalid.
      */
-    public Date(String address) throws IllegalValueException {
-        assert address != null;
-        if (!isValidDate(address)) {
+    public Date(String date) throws IllegalValueException {
+        assert date != null;
+        if (!isValidDate(date)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
         }
-        this.value = address;
+        this.value = date;
     }
 
     /**

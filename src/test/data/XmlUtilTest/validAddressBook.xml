@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <scheduler>
     <persons>
-        <name>Hans Muster</name>
-        <startTime isPrivate="false">9482424</startTime>
-        <endTime isPrivate="false">hans@google.com</endTime>
-        <address isPrivate="false">4th street</address>
+        <name>Hans Meeting</name>
+        <startTime isPrivate="false">11:00</startTime>
+        <endTime isPrivate="false">12:00</endTime>
+        <date isPrivate="false">15/11/2016</date>
     </persons>
     <persons>
-        <name>Ruth Mueller</name>
-        <startTime isPrivate="false">87249245</startTime>
-        <endTime isPrivate="false">ruth@google.com</endTime>
-        <address isPrivate="false">81th street</address>
+        <name>Golf Game</name>
+        <startTime isPrivate="false">07:00</startTime>
+        <endTime isPrivate="false">13:30</endTime>
+        <date isPrivate="false">20/12/2016</date>
     </persons>
     <persons>
-        <name>Heinz Kurz</name>
-        <startTime isPrivate="false">95352563</startTime>
-        <endTime isPrivate="false">heinz@yahoo.com</endTime>
-        <address isPrivate="false">wall street</address>
+        <name>Tennis</name>
+        <startTime isPrivate="false">09:00</startTime>
+        <endTime isPrivate="false">11:00</endTime>
+        <date isPrivate="false">25/11/2017</date>
     </persons>
     <persons>
         <name>Cornelia Meier</name>
         <startTime isPrivate="false">87652533</startTime>
         <endTime isPrivate="false">cornelia@google.com</endTime>
-        <address isPrivate="false">10th street</address>
+        <date isPrivate="false">10th street</date>
     </persons>
     <persons>
         <name>Werner Meyer</name>
         <startTime isPrivate="false">9482224</startTime>
         <endTime isPrivate="false">werner@gmail.com</endTime>
-        <address isPrivate="false">michegan ave</address>
+        <date isPrivate="false">michegan ave</date>
     </persons>
     <persons>
         <name>Lydia Kunz</name>
         <startTime isPrivate="false">9482427</startTime>
         <endTime isPrivate="false">lydia@gmail.com</endTime>
-        <address isPrivate="false">little tokyo</address>
+        <date isPrivate="false">little tokyo</date>
     </persons>
     <persons>
         <name>Anna Best</name>
         <startTime isPrivate="false">9482442</startTime>
         <endTime isPrivate="false">anna@google.com</endTime>
-        <address isPrivate="false">4th street</address>
+        <date isPrivate="false">4th street</date>
     </persons>
     <persons>
         <name>Stefan Meier</name>
         <startTime isPrivate="false">8482424</startTime>
         <endTime isPrivate="false">stefan@mail.com</endTime>
-        <address isPrivate="false">little india</address>
+        <date isPrivate="false">little india</date>
     </persons>
     <persons>
         <name>Martin Mueller</name>
         <startTime isPrivate="false">8482131</startTime>
         <endTime isPrivate="false">hans@google.com</endTime>
-        <address isPrivate="false">chicago ave</address>
+        <date isPrivate="false">chicago ave</date>
     </persons>
 </scheduler>

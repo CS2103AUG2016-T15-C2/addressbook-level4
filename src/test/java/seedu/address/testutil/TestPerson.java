@@ -9,7 +9,7 @@ import seedu.address.model.person.*;
 public class TestPerson implements ReadOnlyPerson {
 
     private Name name;
-    private Date address;
+    private Date date;
     private EndTime endTime;
     private StartTime startTime;
     private UniqueTagList tags;
@@ -22,8 +22,8 @@ public class TestPerson implements ReadOnlyPerson {
         this.name = name;
     }
 
-    public void setDate(Date address) {
-        this.address = address;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public void setEndTime(EndTime endTime) {
@@ -51,7 +51,7 @@ public class TestPerson implements ReadOnlyPerson {
 
     @Override
     public Date getDate() {
-        return address;
+        return date;
     }
 
     @Override

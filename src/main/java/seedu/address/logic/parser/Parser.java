@@ -30,7 +30,7 @@ public class Parser {
             Pattern.compile("(?<name>[^/]+)"
                     + " (?<isStartTimePrivate>p?)st/(?<startTime>[^/]+)"
                     + " (?<isEndTimePrivate>p?)et/(?<endTime>[^/]+)"
-                    + " (?<isDatePrivate>p?)d/(?<address>[^/]+)"
+                    + " (?<isDatePrivate>p?)d/(?<date>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     public Parser() {}
@@ -97,7 +97,7 @@ public class Parser {
                     matcher.group("name"),
                     matcher.group("startTime"),
                     matcher.group("endTime"),
-                    matcher.group("address"),
+                    matcher.group("date"),
                     getTagsFromArgs(matcher.group("tagArguments"))
             );
         } catch (IllegalValueException ive) {

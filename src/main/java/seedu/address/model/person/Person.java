@@ -14,19 +14,19 @@ public class Person implements ReadOnlyPerson {
     private Name name;
     private StartTime startTime;
     private EndTime endTime;
-    private Date address;
+    private Date date;
 
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, StartTime startTime, EndTime endTime, Date address, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(name, startTime, endTime, address, tags);
+    public Person(Name name, StartTime startTime, EndTime endTime, Date date, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(name, startTime, endTime, date, tags);
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.address = address;
+        this.date = date;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
@@ -54,7 +54,7 @@ public class Person implements ReadOnlyPerson {
 
     @Override
     public Date getDate() {
-        return address;
+        return date;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class Person implements ReadOnlyPerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, startTime, endTime, address, tags);
+        return Objects.hash(name, startTime, endTime, date, tags);
     }
 
     @Override

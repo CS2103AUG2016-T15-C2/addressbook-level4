@@ -152,23 +152,23 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add wrong args wrong args", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name 12345 e/valid@endTime.butNoStartTimePrefix a/valid, address", expectedMessage);
+                "add Valid Name 12345 e/valid@endTime.butNoStartTimePrefix a/valid, date", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 valid@endTime.butNoPrefix a/valid, address", expectedMessage);
+                "add Valid Name sd/01-02-2015 valid@endTime.butNoPrefix a/valid, date", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 e/valid@endTime.butNoDatePrefix valid, address", expectedMessage);
+                "add Valid Name sd/01-02-2015 e/valid@endTime.butNoDatePrefix valid, date", expectedMessage);
     }
 
     @Test
     public void execute_add_invalidPersonData() throws Exception {
         assertCommandBehavior(
-                "add []\\[;] sd/01-02-2015 e/valid@e.mail a/valid, address", Name.MESSAGE_NAME_CONSTRAINTS);
+                "add []\\[;] sd/01-02-2015 e/valid@e.mail a/valid, date", Name.MESSAGE_NAME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, address", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
+                "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, date", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 e/notAnEndTime a/valid, address", EndTime.MESSAGE_ENDTIME_CONSTRAINTS);
+                "add Valid Name sd/01-02-2015 e/notAnEndTime a/valid, date", EndTime.MESSAGE_ENDTIME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, address t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
+                "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, date t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
 
     }
 
