@@ -20,7 +20,7 @@
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
 5. Some example commands you can try:
    * **`list`** : lists all items
-   * **`add`**` `add Meeting st/ 19-02-12 13:00 et/19-02-12 14:00` : 
+   * **`add`**` `add Meeting st/13:00 et/17:00 d/19-02-16 [t/priority]` : 
      adds an item named `Meeting` to the scheduler.
    * **`delete`**` 3` : deletes the 3rd item shown in the scheduler
    * **`exit`** : exits the app
@@ -42,7 +42,7 @@ Format: `help`
  
 #### Adding an item: `add`
 Adds an event to the scheduler<br>
-Format: `add NAME st/START_DATE_TIME et/END_DATE_TIME` 
+Format: `add NAME st/START_TIME et/END_TIME d/DATE [t/TAG]` 
 
 Adds a task to the scheduler<br>
 Format: `add NAME d/DATE` 
@@ -51,8 +51,9 @@ Adds a floating task to the scheduler<br>
 Format: `add NAME` 
 
 Examples: 
-* `add Meeting st/20-03-12 13:00 et/20-03-12 14:00`
-* `add Do Homework1 d/19-02-12`
+* `add Meeting st/12:00 et/17:00 d/19-02-16 t/priority`
+* `add Gathering st/19:00 et/23:00 d/24-05-16 t/priority`
+* `add Do Homework1 d/19-02-16`
 * `add Do Homework2`
 
 #### Listing all items: `list`
@@ -64,7 +65,7 @@ Examples:
 
 #### Editing an item : `edit`
 Edits an event to the scheduler specified by the index <br>
-Format: `edit INDEX NAME st/START_DATE_TIME et/END_DATE_TIME` 
+Format: `edit INDEX NAME st/START_TIME et/END_TIME d/DATE` 
 
 Edits a task to the scheduler specified by the index <br>
 Format: `edit INDEX NAME d/DATE` 
@@ -73,9 +74,13 @@ Edits a floating task to the scheduler specified by the index <br>
 Format: `edit INDEX NAME` 
 
 Examples: 
-* `edit 1 Meeting st/20-03-12 13:00 et/20-03-12 14:00`
+* `edit 1 Meeting st/12:00 et/17:00 d/19-02-16 t/priority`
 * `edit 3 Do Homework1 d/19-02-12`
 * `edit 2 Do Homework2`
+
+#### Undo most recent action: `undo`
+Reverts scheduler back to the state before the most recent committed action.<br>
+Format: `undo`
 
 #### Deleting an item: `delete`
 Delete the item selected by the user.<br>
@@ -114,6 +119,10 @@ Format: `save FILE_SAVE`
 File path can be manually changed to a user-specified location.<br>
 Format: `path FILE_PATH`
 
+#### Clear scheduler of all entries: `clear`
+Deletes all entries in the scheduler.<br>
+Format: `clear`
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -124,14 +133,18 @@ Format: `path FILE_PATH`
 
 Command | Format  
 -------- | :-------- 
-Add | `add NAME st/START_DATE_TIME et/END_DATE_TIME`
-Add | `add NAME d/DATE`  
-Add | `add NAME`
-Delete | `delete INDEX`
-Find | `find KEYWORD [MORE_KEYWORDS]`
+Help | `help`
+Add | `add NAME st/START_TIME et/END_TIME d/DATE [t/TAG]`
+Add | `add NAME d/DATE [t/TAG]`  
+Add | `add NAME [t/TAG]`
+List | `list [by/SORT_CATEGORY]`
 Edit | `edit INDEX NAME st/START_DATE_TIME et/END_DATE_TIME`
 Edit | `edit INDEX NAME d/DATE` 
 Edit | `edit INDEX NAME` 
-List | `list [by/SORT_CATEGORY]`
+Undo | `undo` 
+Delete | `delete INDEX`
+Find | `find KEYWORD [MORE_KEYWORDS]`
+Exit | `exit`
+Save | `path FILE_SAVE`
 Path | `path FILE_PATH`
-Help | `help`
+Clear | `clear`
