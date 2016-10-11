@@ -138,7 +138,7 @@ Add | `add NAME st/START_TIME et/END_TIME d/DATE [t/TAG]`
 Add | `add NAME d/DATE [t/TAG]`  
 Add | `add NAME [t/TAG]`
 List | `list [by/SORT_CATEGORY]`
-Edit | `edit INDEX NAME st/START_DATE_TIME et/END_DATE_TIME`
+Edit | `edit INDEX NAME st/START TIME et/END_TIME d/DATE`
 Edit | `edit INDEX NAME d/DATE` 
 Edit | `edit INDEX NAME` 
 Undo | `undo` 
