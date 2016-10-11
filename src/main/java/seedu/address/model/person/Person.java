@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Person implements ReadOnlyPerson {
 
     private Name name;
-    private Phone phone;
+    private StartDate startDate;
     private Email email;
     private Address address;
 
@@ -21,10 +21,10 @@ public class Person implements ReadOnlyPerson {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(name, phone, email, address, tags);
+    public Person(Name name, StartDate startDate, Email email, Address address, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(name, startDate, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.startDate = startDate;
         this.email = email;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
@@ -34,7 +34,7 @@ public class Person implements ReadOnlyPerson {
      * Copy constructor.
      */
     public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+        this(source.getName(), source.getStartDate(), source.getEmail(), source.getAddress(), source.getTags());
     }
 
     @Override
@@ -43,8 +43,8 @@ public class Person implements ReadOnlyPerson {
     }
 
     @Override
-    public Phone getPhone() {
-        return phone;
+    public StartDate getStartDate() {
+        return startDate;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class Person implements ReadOnlyPerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, startDate, email, address, tags);
     }
 
     @Override
