@@ -2,56 +2,56 @@
 <addressbook>
     <persons>
         <name>Hans Muster</name>
-        <startDate isPrivate="false">9482424</startDate>
-        <endDate isPrivate="false">hans@google.com</endDate>
+        <startTime isPrivate="false">9482424</startTime>
+        <endTime isPrivate="false">hans@google.com</endTime>
         <address isPrivate="false">4th street</address>
     </persons>
     <persons>
         <name>Ruth Mueller</name>
-        <startDate isPrivate="false">87249245</startDate>
-        <endDate isPrivate="false">ruth@google.com</endDate>
+        <startTime isPrivate="false">87249245</startTime>
+        <endTime isPrivate="false">ruth@google.com</endTime>
         <address isPrivate="false">81th street</address>
     </persons>
     <persons>
         <name>Heinz Kurz</name>
-        <startDate isPrivate="false">95352563</startDate>
-        <endDate isPrivate="false">heinz@yahoo.com</endDate>
+        <startTime isPrivate="false">95352563</startTime>
+        <endTime isPrivate="false">heinz@yahoo.com</endTime>
         <address isPrivate="false">wall street</address>
     </persons>
     <persons>
         <name>Cornelia Meier</name>
-        <startDate isPrivate="false">87652533</startDate>
-        <endDate isPrivate="false">cornelia@google.com</endDate>
+        <startTime isPrivate="false">87652533</startTime>
+        <endTime isPrivate="false">cornelia@google.com</endTime>
         <address isPrivate="false">10th street</address>
     </persons>
     <persons>
         <name>Werner Meyer</name>
-        <startDate isPrivate="false">9482224</startDate>
-        <endDate isPrivate="false">werner@gmail.com</endDate>
+        <startTime isPrivate="false">9482224</startTime>
+        <endTime isPrivate="false">werner@gmail.com</endTime>
         <address isPrivate="false">michegan ave</address>
     </persons>
     <persons>
         <name>Lydia Kunz</name>
-        <startDate isPrivate="false">9482427</startDate>
-        <endDate isPrivate="false">lydia@gmail.com</endDate>
+        <startTime isPrivate="false">9482427</startTime>
+        <endTime isPrivate="false">lydia@gmail.com</endTime>
         <address isPrivate="false">little tokyo</address>
     </persons>
     <persons>
         <name>Anna Best</name>
-        <startDate isPrivate="false">9482442</startDate>
-        <endDate isPrivate="false">anna@google.com</endDate>
+        <startTime isPrivate="false">9482442</startTime>
+        <endTime isPrivate="false">anna@google.com</endTime>
         <address isPrivate="false">4th street</address>
     </persons>
     <persons>
         <name>Stefan Meier</name>
-        <startDate isPrivate="false">8482424</startDate>
-        <endDate isPrivate="false">stefan@mail.com</endDate>
+        <startTime isPrivate="false">8482424</startTime>
+        <endTime isPrivate="false">stefan@mail.com</endTime>
         <address isPrivate="false">little india</address>
     </persons>
     <persons>
         <name>Martin Mueller</name>
-        <startDate isPrivate="false">8482131</startDate>
-        <endDate isPrivate="false">hans@google.com</endDate>
+        <startTime isPrivate="false">8482131</startTime>
+        <endTime isPrivate="false">hans@google.com</endTime>
         <address isPrivate="false">chicago ave</address>
     </persons>
 </addressbook>

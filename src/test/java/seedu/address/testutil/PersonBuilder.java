@@ -32,13 +32,13 @@ public class PersonBuilder {
         return this;
     }
 
-    public PersonBuilder withStartDate(String startDate) throws IllegalValueException {
-        this.person.setStartDate(new StartDate(startDate));
+    public PersonBuilder withStartTime(String startTime) throws IllegalValueException {
+        this.person.setStartTime(new StartTime(startTime));
         return this;
     }
 
-    public PersonBuilder withEndDate(String endDate) throws IllegalValueException {
-        this.person.setEndDate(new EndDate(endDate));
+    public PersonBuilder withEndTime(String endTime) throws IllegalValueException {
+        this.person.setEndTime(new EndTime(endTime));
         return this;
     }
 

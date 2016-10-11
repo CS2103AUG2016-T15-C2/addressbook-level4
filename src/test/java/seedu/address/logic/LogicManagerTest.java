@@ -152,11 +152,11 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add wrong args wrong args", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name 12345 e/valid@endDate.butNoStartDatePrefix a/valid, address", expectedMessage);
+                "add Valid Name 12345 e/valid@endTime.butNoStartTimePrefix a/valid, address", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 valid@endDate.butNoPrefix a/valid, address", expectedMessage);
+                "add Valid Name sd/01-02-2015 valid@endTime.butNoPrefix a/valid, address", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 e/valid@endDate.butNoAddressPrefix valid, address", expectedMessage);
+                "add Valid Name sd/01-02-2015 e/valid@endTime.butNoAddressPrefix valid, address", expectedMessage);
     }
 
     @Test
@@ -164,9 +164,9 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add []\\[;] sd/01-02-2015 e/valid@e.mail a/valid, address", Name.MESSAGE_NAME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, address", StartDate.MESSAGE_START_DATE_CONSTRAINTS);
+                "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, address", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 e/notAnEndDate a/valid, address", EndDate.MESSAGE_ENDDATE_CONSTRAINTS);
+                "add Valid Name sd/01-02-2015 e/notAnEndTime a/valid, address", EndTime.MESSAGE_ENDTIME_CONSTRAINTS);
         assertCommandBehavior(
                 "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, address t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
 
@@ -384,13 +384,13 @@ public class LogicManagerTest {
 
         Person adam() throws Exception {
             Name name = new Name("Adam Brown");
-            StartDate privateStartDate = new StartDate("111111");
-            EndDate endDate = new EndDate("adam@gmail.com");
+            StartTime privateStartTime = new StartTime("111111");
+            EndTime endTime = new EndTime("adam@gmail.com");
             Address privateAddress = new Address("111, alpha street");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Person(name, privateStartDate, endDate, privateAddress, tags);
+            return new Person(name, privateStartTime, endTime, privateAddress, tags);
         }
 
         /**
@@ -403,8 +403,8 @@ public class LogicManagerTest {
         Person generatePerson(int seed) throws Exception {
             return new Person(
                     new Name("Person " + seed),
-                    new StartDate("" + Math.abs(seed)),
-                    new EndDate(seed + "@endDate"),
+                    new StartTime("" + Math.abs(seed)),
+                    new EndTime(seed + "@endTime"),
                     new Address("House of " + seed),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
@@ -417,8 +417,8 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getName().toString());
-            cmd.append(" p/").append(p.getStartDate());
-            cmd.append(" e/").append(p.getEndDate());
+            cmd.append(" p/").append(p.getStartTime());
+            cmd.append(" e/").append(p.getEndTime());
             cmd.append(" a/").append(p.getAddress());
 
             UniqueTagList tags = p.getTags();
@@ -502,8 +502,8 @@ public class LogicManagerTest {
         Person generatePersonWithName(String name) throws Exception {
             return new Person(
                     new Name(name),
-                    new StartDate("1"),
-                    new EndDate("1@endDate"),
+                    new StartTime("1"),
+                    new EndTime("1@endTime"),
                     new Address("House of 1"),
                     new UniqueTagList(new Tag("tag"))
             );

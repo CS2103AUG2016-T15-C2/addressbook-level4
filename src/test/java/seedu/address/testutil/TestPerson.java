@@ -10,8 +10,8 @@ public class TestPerson implements ReadOnlyPerson {
 
     private Name name;
     private Address address;
-    private EndDate endDate;
-    private StartDate startDate;
+    private EndTime endTime;
+    private StartTime startTime;
     private UniqueTagList tags;
 
     public TestPerson() {
@@ -26,12 +26,12 @@ public class TestPerson implements ReadOnlyPerson {
         this.address = address;
     }
 
-    public void setEndDate(EndDate endDate) {
-        this.endDate = endDate;
+    public void setEndTime(EndTime endTime) {
+        this.endTime = endTime;
     }
 
-    public void setStartDate(StartDate startDate) {
-        this.startDate = startDate;
+    public void setStartTime(StartTime startTime) {
+        this.startTime = startTime;
     }
 
     @Override
@@ -40,13 +40,13 @@ public class TestPerson implements ReadOnlyPerson {
     }
 
     @Override
-    public StartDate getStartDate() {
-        return startDate;
+    public StartTime getStartTime() {
+        return startTime;
     }
 
     @Override
-    public EndDate getEndDate() {
-        return endDate;
+    public EndTime getEndTime() {
+        return endTime;
     }
 
     @Override
@@ -67,8 +67,8 @@ public class TestPerson implements ReadOnlyPerson {
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
         sb.append("add " + this.getName().fullName + " ");
-        sb.append("p/" + this.getStartDate().value + " ");
-        sb.append("e/" + this.getEndDate().value + " ");
+        sb.append("p/" + this.getStartTime().value + " ");
+        sb.append("e/" + this.getEndTime().value + " ");
         sb.append("a/" + this.getAddress().value + " ");
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();

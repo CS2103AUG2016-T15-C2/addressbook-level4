@@ -12,8 +12,8 @@ import java.util.Objects;
 public class Person implements ReadOnlyPerson {
 
     private Name name;
-    private StartDate startDate;
-    private EndDate endDate;
+    private StartTime startTime;
+    private EndTime endTime;
     private Address address;
 
     private UniqueTagList tags;
@@ -21,11 +21,11 @@ public class Person implements ReadOnlyPerson {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, StartDate startDate, EndDate endDate, Address address, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(name, startDate, endDate, address, tags);
+    public Person(Name name, StartTime startTime, EndTime endTime, Address address, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(name, startTime, endTime, address, tags);
         this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.address = address;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
@@ -34,7 +34,7 @@ public class Person implements ReadOnlyPerson {
      * Copy constructor.
      */
     public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getStartDate(), source.getEndDate(), source.getAddress(), source.getTags());
+        this(source.getName(), source.getStartTime(), source.getEndTime(), source.getAddress(), source.getTags());
     }
 
     @Override
@@ -43,13 +43,13 @@ public class Person implements ReadOnlyPerson {
     }
 
     @Override
-    public StartDate getStartDate() {
-        return startDate;
+    public StartTime getStartTime() {
+        return startTime;
     }
 
     @Override
-    public EndDate getEndDate() {
-        return endDate;
+    public EndTime getEndTime() {
+        return endTime;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class Person implements ReadOnlyPerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, startDate, endDate, address, tags);
+        return Objects.hash(name, startTime, endTime, address, tags);
     }
 
     @Override

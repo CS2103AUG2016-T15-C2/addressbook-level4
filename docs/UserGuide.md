@@ -42,7 +42,7 @@ Format: `help`
  
 #### Adding an item: `add`
 Adds an event to the scheduler<br>
-Format: `add NAME st/START_DATE_TIME et/END_DATE_TIME` 
+Format: `add NAME st/START_TIME_TIME et/END_DATE_TIME` 
 
 Adds a task to the scheduler<br>
 Format: `add NAME d/DATE` 
@@ -64,7 +64,7 @@ Examples:
 
 #### Editing an item : `edit`
 Edits an event to the scheduler specified by the index <br>
-Format: `edit INDEX NAME st/START_DATE_TIME et/END_DATE_TIME` 
+Format: `edit INDEX NAME st/START_TIME_TIME et/END_DATE_TIME` 
 
 Edits a task to the scheduler specified by the index <br>
 Format: `edit INDEX NAME d/DATE` 
@@ -124,12 +124,12 @@ Format: `path FILE_PATH`
 
 Command | Format  
 -------- | :-------- 
-Add | `add NAME st/START_DATE_TIME et/END_DATE_TIME`
+Add | `add NAME st/START_TIME_TIME et/END_DATE_TIME`
 Add | `add NAME d/DATE`  
 Add | `add NAME`
 Delete | `delete INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
-Edit | `edit INDEX NAME st/START_DATE_TIME et/END_DATE_TIME`
+Edit | `edit INDEX NAME st/START_TIME_TIME et/END_DATE_TIME`
 Edit | `edit INDEX NAME d/DATE` 
 Edit | `edit INDEX NAME` 
 List | `list [by/SORT_CATEGORY]`

@@ -17,11 +17,11 @@ public class PersonCard extends UiPart{
     @FXML
     private Label id;
     @FXML
-    private Label startDate;
+    private Label startTime;
     @FXML
     private Label address;
     @FXML
-    private Label endDate;
+    private Label endTime;
     @FXML
     private Label tags;
 
@@ -43,9 +43,9 @@ public class PersonCard extends UiPart{
     public void initialize() {
         name.setText(person.getName().fullName);
         id.setText(displayedIndex + ". ");
-        startDate.setText(person.getStartDate().value);
+        startTime.setText(person.getStartTime().value);
         address.setText(person.getAddress().value);
-        endDate.setText(person.getEndDate().value);
+        endTime.setText(person.getEndTime().value);
         tags.setText(person.tagsString());
     }
 

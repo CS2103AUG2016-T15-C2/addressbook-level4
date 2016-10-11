@@ -9,8 +9,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
  */
 public class Address {
     
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Item's date should be in the format dd-mm-yyyy in numbers separated by a '-'";
+    public static final String ADDRESS_VALIDATION_REGEX = "(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((18|19|20|21)\\d\\d)"; 
 
     public final String value;
 
@@ -28,7 +28,7 @@ public class Address {
     }
 
     /**
-     * Returns true if a given string is a valid person endDate.
+     * Returns true if a given string is a valid person endTime.
      */
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
