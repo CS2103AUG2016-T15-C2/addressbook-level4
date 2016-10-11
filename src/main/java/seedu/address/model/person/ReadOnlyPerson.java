@@ -39,7 +39,7 @@ public interface ReadOnlyPerson {
         builder.append(getName())
                 .append(" Phone: ")
                 .append(getPhone())
-                .append(" EndDate: ")
+                .append(" End Date: ")
                 .append(getEndDate())
                 .append(" Address: ")
                 .append(getAddress())
