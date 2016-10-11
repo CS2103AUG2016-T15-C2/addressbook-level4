@@ -11,8 +11,8 @@ import seedu.address.model.person.ReadOnlyPerson;
 public class PersonCardHandle extends GuiHandle {
     private static final String NAME_FIELD_ID = "#name";
     private static final String ADDRESS_FIELD_ID = "#address";
-    private static final String PHONE_FIELD_ID = "#phone";
-    private static final String EMAIL_FIELD_ID = "#email";
+    private static final String PHONE_FIELD_ID = "#startDate";
+    private static final String ENDDATE_FIELD_ID = "#endDate";
 
     private Node node;
 
@@ -33,17 +33,17 @@ public class PersonCardHandle extends GuiHandle {
         return getTextFromLabel(ADDRESS_FIELD_ID);
     }
 
-    public String getPhone() {
+    public String getStartDate() {
         return getTextFromLabel(PHONE_FIELD_ID);
     }
 
-    public String getEmail() {
-        return getTextFromLabel(EMAIL_FIELD_ID);
+    public String getEndDate() {
+        return getTextFromLabel(ENDDATE_FIELD_ID);
     }
 
     public boolean isSamePerson(ReadOnlyPerson person){
-        return getFullName().equals(person.getName().fullName) && getPhone().equals(person.getPhone().value)
-                && getEmail().equals(person.getEmail().value) && getAddress().equals(person.getAddress().value);
+        return getFullName().equals(person.getName().fullName) && getStartDate().equals(person.getStartDate().value)
+                && getEndDate().equals(person.getEndDate().value) && getAddress().equals(person.getAddress().value);
     }
 
     @Override

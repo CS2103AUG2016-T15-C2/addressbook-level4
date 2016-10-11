@@ -7,7 +7,7 @@ import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
- * Selects a person identified using it's last displayed index from the address book.
+ * Selects a person identified using it's last displayed index from the scheduler.
  */
 public class SelectCommand extends Command {
 

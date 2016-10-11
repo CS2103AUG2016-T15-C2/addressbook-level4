@@ -32,13 +32,13 @@ public class PersonBuilder {
         return this;
     }
 
-    public PersonBuilder withPhone(String phone) throws IllegalValueException {
-        this.person.setPhone(new Phone(phone));
+    public PersonBuilder withStartDate(String startDate) throws IllegalValueException {
+        this.person.setStartDate(new StartDate(startDate));
         return this;
     }
 
-    public PersonBuilder withEmail(String email) throws IllegalValueException {
-        this.person.setEmail(new Email(email));
+    public PersonBuilder withEndDate(String endDate) throws IllegalValueException {
+        this.person.setEndDate(new EndDate(endDate));
         return this;
     }
 

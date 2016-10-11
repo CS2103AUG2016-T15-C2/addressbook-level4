@@ -87,7 +87,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command and confirms that the result message is correct.
-     * Both the 'address book' and the 'last shown list' are expected to be empty.
+     * Both the 'scheduler' and the 'last shown list' are expected to be empty.
      * @see #assertCommandBehavior(String, String, ReadOnlyAddressBook, List)
      */
     private void assertCommandBehavior(String inputCommand, String expectedMessage) throws Exception {
@@ -97,7 +97,7 @@ public class LogicManagerTest {
     /**
      * Executes the command and confirms that the result message is correct and
      * also confirms that the following three parts of the LogicManager object's state are as expected:<br>
-     *      - the internal address book data are same as those in the {@code expectedAddressBook} <br>
+     *      - the internal scheduler data are same as those in the {@code expectedAddressBook} <br>
      *      - the backing list shown by UI matches the {@code shownList} <br>
      *      - {@code expectedAddressBook} was saved to the storage file. <br>
      */
@@ -152,23 +152,23 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add wrong args wrong args", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address", expectedMessage);
+                "add Valid Name 12345 e/valid@endDate.butNoStartDatePrefix a/valid, address", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name p/12345 valid@email.butNoPrefix a/valid, address", expectedMessage);
+                "add Valid Name sd/01-02-2015 valid@endDate.butNoPrefix a/valid, address", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address", expectedMessage);
+                "add Valid Name sd/01-02-2015 e/valid@endDate.butNoAddressPrefix valid, address", expectedMessage);
     }
 
     @Test
     public void execute_add_invalidPersonData() throws Exception {
         assertCommandBehavior(
-                "add []\\[;] p/12345 e/valid@e.mail a/valid, address", Name.MESSAGE_NAME_CONSTRAINTS);
+                "add []\\[;] sd/01-02-2015 e/valid@e.mail a/valid, address", Name.MESSAGE_NAME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name p/not_numbers e/valid@e.mail a/valid, address", Phone.MESSAGE_PHONE_CONSTRAINTS);
+                "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, address", StartDate.MESSAGE_START_DATE_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name p/12345 e/notAnEmail a/valid, address", Email.MESSAGE_EMAIL_CONSTRAINTS);
+                "add Valid Name sd/01-02-2015 e/notAnEndDate a/valid, address", EndDate.MESSAGE_ENDDATE_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
+                "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, address t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
 
     }
 
@@ -197,7 +197,7 @@ public class LogicManagerTest {
         expectedAB.addPerson(toBeAdded);
 
         // setup starting state
-        model.addPerson(toBeAdded); // person already in internal address book
+        model.addPerson(toBeAdded); // person already in internal scheduler
 
         // execute command and verify result
         assertCommandBehavior(
@@ -216,7 +216,7 @@ public class LogicManagerTest {
         AddressBook expectedAB = helper.generateAddressBook(2);
         List<? extends ReadOnlyPerson> expectedList = expectedAB.getPersonList();
 
-        // prepare address book state
+        // prepare scheduler state
         helper.addToModel(model, 2);
 
         assertCommandBehavior("list",
@@ -384,13 +384,13 @@ public class LogicManagerTest {
 
         Person adam() throws Exception {
             Name name = new Name("Adam Brown");
-            Phone privatePhone = new Phone("111111");
-            Email email = new Email("adam@gmail.com");
+            StartDate privateStartDate = new StartDate("111111");
+            EndDate endDate = new EndDate("adam@gmail.com");
             Address privateAddress = new Address("111, alpha street");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Person(name, privatePhone, email, privateAddress, tags);
+            return new Person(name, privateStartDate, endDate, privateAddress, tags);
         }
 
         /**
@@ -403,8 +403,8 @@ public class LogicManagerTest {
         Person generatePerson(int seed) throws Exception {
             return new Person(
                     new Name("Person " + seed),
-                    new Phone("" + Math.abs(seed)),
-                    new Email(seed + "@email"),
+                    new StartDate("" + Math.abs(seed)),
+                    new EndDate(seed + "@endDate"),
                     new Address("House of " + seed),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
@@ -417,8 +417,8 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getName().toString());
-            cmd.append(" p/").append(p.getPhone());
-            cmd.append(" e/").append(p.getEmail());
+            cmd.append(" p/").append(p.getStartDate());
+            cmd.append(" e/").append(p.getEndDate());
             cmd.append(" a/").append(p.getAddress());
 
             UniqueTagList tags = p.getTags();
@@ -502,8 +502,8 @@ public class LogicManagerTest {
         Person generatePersonWithName(String name) throws Exception {
             return new Person(
                     new Name(name),
-                    new Phone("1"),
-                    new Email("1@email"),
+                    new StartDate("1"),
+                    new EndDate("1@endDate"),
                     new Address("House of 1"),
                     new UniqueTagList(new Tag("tag"))
             );
