@@ -3,7 +3,7 @@ package seedu.address.model.entry;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Entry's name in the scheduler.
+ * Represents an Entry's name in the scheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
