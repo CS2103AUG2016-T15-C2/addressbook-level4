@@ -9,7 +9,7 @@ import seedu.address.testutil.TestUtil;
 
 import static org.junit.Assert.assertTrue;
 
-public class AddCommandTest extends AddressBookGuiTest {
+public class AddCommandTest extends SchedulerGuiTest {
 
     @Test
     public void add() {

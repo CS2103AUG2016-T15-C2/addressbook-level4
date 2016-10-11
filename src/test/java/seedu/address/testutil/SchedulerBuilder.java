@@ -2,34 +2,34 @@ package seedu.address.testutil;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Scheduler;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Scheduler objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").withTag("Friend").build();}
+ *     {@code Scheduler ab = new SchedulerBuilder().withPerson("John", "Doe").withTag("Friend").build();}
  */
-public class AddressBookBuilder {
+public class SchedulerBuilder {
 
-    private AddressBook addressBook;
+    private Scheduler scheduler;
 
-    public AddressBookBuilder(AddressBook addressBook){
-        this.addressBook = addressBook;
+    public SchedulerBuilder(Scheduler scheduler){
+        this.scheduler = scheduler;
     }
 
-    public AddressBookBuilder withPerson(Person person) throws UniquePersonList.DuplicatePersonException {
-        addressBook.addPerson(person);
+    public SchedulerBuilder withPerson(Person person) throws UniquePersonList.DuplicatePersonException {
+        scheduler.addPerson(person);
         return this;
     }
 
-    public AddressBookBuilder withTag(String tagName) throws IllegalValueException {
-        addressBook.addTag(new Tag(tagName));
+    public SchedulerBuilder withTag(String tagName) throws IllegalValueException {
+        scheduler.addTag(new Tag(tagName));
         return this;
     }
 
-    public AddressBook build(){
-        return addressBook;
+    public Scheduler build(){
+        return scheduler;
     }
 }

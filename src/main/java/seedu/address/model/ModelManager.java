@@ -4,7 +4,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.commons.events.model.AddressBookChangedEvent;
+import seedu.address.commons.events.model.SchedulerChangedEvent;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -21,60 +21,60 @@ import java.util.logging.Logger;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Scheduler scheduler;
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given AddressBook
-     * AddressBook and its variables should not be null
+     * Initializes a ModelManager with the given Scheduler
+     * Scheduler and its variables should not be null
      */
-    public ModelManager(AddressBook src, UserPrefs userPrefs) {
+    public ModelManager(Scheduler src, UserPrefs userPrefs) {
         super();
         assert src != null;
         assert userPrefs != null;
 
         logger.fine("Initializing with scheduler: " + src + " and user prefs " + userPrefs);
 
-        addressBook = new AddressBook(src);
-        filteredPersons = new FilteredList<>(addressBook.getPersons());
+        scheduler = new Scheduler(src);
+        filteredPersons = new FilteredList<>(scheduler.getPersons());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Scheduler(), new UserPrefs());
     }
 
-    public ModelManager(ReadOnlyAddressBook initialData, UserPrefs userPrefs) {
-        addressBook = new AddressBook(initialData);
-        filteredPersons = new FilteredList<>(addressBook.getPersons());
-    }
-
-    @Override
-    public void resetData(ReadOnlyAddressBook newData) {
-        addressBook.resetData(newData);
-        indicateAddressBookChanged();
+    public ModelManager(ReadOnlyScheduler initialData, UserPrefs userPrefs) {
+        scheduler = new Scheduler(initialData);
+        filteredPersons = new FilteredList<>(scheduler.getPersons());
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void resetData(ReadOnlyScheduler newData) {
+        scheduler.resetData(newData);
+        indicateSchedulerChanged();
+    }
+
+    @Override
+    public ReadOnlyScheduler getScheduler() {
+        return scheduler;
     }
 
     /** Raises an event to indicate the model has changed */
-    private void indicateAddressBookChanged() {
-        raise(new AddressBookChangedEvent(addressBook));
+    private void indicateSchedulerChanged() {
+        raise(new SchedulerChangedEvent(scheduler));
     }
 
     @Override
     public synchronized void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException {
-        addressBook.removePerson(target);
-        indicateAddressBookChanged();
+        scheduler.removePerson(target);
+        indicateSchedulerChanged();
     }
 
     @Override
     public synchronized void addPerson(Person person) throws UniquePersonList.DuplicatePersonException {
-        addressBook.addPerson(person);
+        scheduler.addPerson(person);
         updateFilteredListToShowAll();
-        indicateAddressBookChanged();
+        indicateSchedulerChanged();
     }
 
     //=========== Filtered Person List Accessors ===============================================================

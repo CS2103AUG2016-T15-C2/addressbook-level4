@@ -3,7 +3,7 @@ package seedu.address.storage;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyScheduler;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,10 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * An Immutable AddressBook that is serializable to XML format
+ * An Immutable Scheduler that is serializable to XML format
  */
-@XmlRootElement(name = "addressbook")
-public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
+@XmlRootElement(name = "scheduler")
+public class XmlSerializableScheduler implements ReadOnlyScheduler {
 
     @XmlElement
     private List<XmlAdaptedPerson> persons;
@@ -33,12 +33,12 @@ public class XmlSerializableAddressBook implements ReadOnlyAddressBook {
     /**
      * Empty constructor required for marshalling
      */
-    public XmlSerializableAddressBook() {}
+    public XmlSerializableScheduler() {}
 
     /**
      * Conversion
      */
-    public XmlSerializableAddressBook(ReadOnlyAddressBook src) {
+    public XmlSerializableScheduler(ReadOnlyScheduler src) {
         persons.addAll(src.getPersonList().stream().map(XmlAdaptedPerson::new).collect(Collectors.toList()));
         tags = src.getTagList();
     }

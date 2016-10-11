@@ -1,44 +1,44 @@
 package seedu.address.storage;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyScheduler;
 
 import java.io.IOException;
 import java.util.Optional;
 
 /**
- * Represents a storage for {@link seedu.address.model.AddressBook}.
+ * Represents a storage for {@link seedu.address.model.Scheduler}.
  */
-public interface AddressBookStorage {
+public interface SchedulerStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    String getAddressBookFilePath();
+    String getSchedulerFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns Scheduler data as a {@link ReadOnlyScheduler}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyScheduler> readScheduler() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getSchedulerFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyScheduler> readScheduler(String filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
-     * @param addressBook cannot be null.
+     * Saves the given {@link ReadOnlyScheduler} to the storage.
+     * @param scheduler cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveScheduler(ReadOnlyScheduler scheduler) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyAddressBook)
+     * @see #saveScheduler(ReadOnlyScheduler)
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) throws IOException;
+    void saveScheduler(ReadOnlyScheduler scheduler, String filePath) throws IOException;
 
 }

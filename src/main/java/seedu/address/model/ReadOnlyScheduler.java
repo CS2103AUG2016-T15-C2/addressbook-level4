@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Unmodifiable view of an scheduler
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyScheduler {
 
     UniqueTagList getUniqueTagList();
 

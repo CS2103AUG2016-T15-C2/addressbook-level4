@@ -6,7 +6,7 @@ import seedu.address.testutil.TestPerson;
 
 import static org.junit.Assert.assertTrue;
 
-public class FindCommandTest extends AddressBookGuiTest {
+public class FindCommandTest extends SchedulerGuiTest {
 
     @Test
     public void find_nonEmptyList() {
