@@ -3,13 +3,13 @@ package seedu.address.testutil;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.Scheduler;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.UniqueEntryList;
 
 /**
  * A utility class to help with building Scheduler objects.
  * Example usage: <br>
- *     {@code Scheduler ab = new SchedulerBuilder().withPerson("John", "Doe").withTag("Friend").build();}
+ *     {@code Scheduler ab = new SchedulerBuilder().withEntry("John", "Doe").withTag("Friend").build();}
  */
 public class SchedulerBuilder {
 
@@ -19,8 +19,8 @@ public class SchedulerBuilder {
         this.scheduler = scheduler;
     }
 
-    public SchedulerBuilder withPerson(Person person) throws UniquePersonList.DuplicatePersonException {
-        scheduler.addPerson(person);
+    public SchedulerBuilder withEntry(Entry entry) throws UniqueEntryList.DuplicateEntryException {
+        scheduler.addEntry(entry);
         return this;
     }
 

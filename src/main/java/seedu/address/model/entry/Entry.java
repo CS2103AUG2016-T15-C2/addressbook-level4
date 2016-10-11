@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.entry;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.tag.UniqueTagList;
@@ -6,10 +6,10 @@ import seedu.address.model.tag.UniqueTagList;
 import java.util.Objects;
 
 /**
- * Represents a Person in the scheduler.
+ * Represents an Entry in the scheduler.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Person implements ReadOnlyPerson {
+public class Entry implements ReadOnlyEntry {
 
     private Name name;
     private StartTime startTime;
@@ -21,7 +21,7 @@ public class Person implements ReadOnlyPerson {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, StartTime startTime, EndTime endTime, Date date, UniqueTagList tags) {
+    public Entry(Name name, StartTime startTime, EndTime endTime, Date date, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(name, startTime, endTime, date, tags);
         this.name = name;
         this.startTime = startTime;
@@ -33,7 +33,7 @@ public class Person implements ReadOnlyPerson {
     /**
      * Copy constructor.
      */
-    public Person(ReadOnlyPerson source) {
+    public Entry(ReadOnlyEntry source) {
         this(source.getName(), source.getStartTime(), source.getEndTime(), source.getDate(), source.getTags());
     }
 
@@ -63,7 +63,7 @@ public class Person implements ReadOnlyPerson {
     }
 
     /**
-     * Replaces this person's tags with the tags in the argument tag list.
+     * Replaces this entry's tags with the tags in the argument tag list.
      */
     public void setTags(UniqueTagList replacement) {
         tags.setTags(replacement);
@@ -72,8 +72,8 @@ public class Person implements ReadOnlyPerson {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ReadOnlyPerson // instanceof handles nulls
-                && this.isSameStateAs((ReadOnlyPerson) other));
+                || (other instanceof ReadOnlyEntry // instanceof handles nulls
+                && this.isSameStateAs((ReadOnlyEntry) other));
     }
 
     @Override

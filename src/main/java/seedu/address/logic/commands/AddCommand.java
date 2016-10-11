@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.entry.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -9,21 +9,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Adds a person to the scheduler.
+ * Adds a entry to the scheduler.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the scheduler. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a entry to the scheduler. "
             + "Parameters: NAME sd/STARTTIME ed/ENDTIME a/DATE  [t/TAG]...\n"
             + "Example: " + COMMAND_WORD
             + " John Wedding sd/23-10-2016 ed/24-10-2016 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the scheduler";
+    public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This entry already exists in the scheduler";
 
-    private final Person toAdd;
+    private final Entry toAdd;
 
     /**
      * Convenience constructor using raw values.
@@ -36,7 +36,7 @@ public class AddCommand extends Command {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        this.toAdd = new Person(
+        this.toAdd = new Entry(
                 new Name(name),
                 new StartTime(startTime),
                 new EndTime(endTime),
@@ -49,9 +49,9 @@ public class AddCommand extends Command {
     public CommandResult execute() {
         assert model != null;
         try {
-            model.addPerson(toAdd);
+            model.addEntry(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (UniquePersonList.DuplicatePersonException e) {
+        } catch (UniqueEntryList.DuplicateEntryException e) {
             return new CommandResult(MESSAGE_DUPLICATE_PERSON);
         }
 

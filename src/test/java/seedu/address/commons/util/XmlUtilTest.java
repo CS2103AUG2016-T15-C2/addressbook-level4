@@ -52,7 +52,7 @@ public class XmlUtilTest {
     @Test
     public void getDataFromFile_validFile_validResult() throws Exception {
         XmlSerializableScheduler dataFromFile = XmlUtil.getDataFromFile(VALID_FILE, XmlSerializableScheduler.class);
-        assertEquals(9, dataFromFile.getPersonList().size());
+        assertEquals(9, dataFromFile.getEntryList().size());
         assertEquals(0, dataFromFile.getTagList().size());
     }
 
@@ -84,7 +84,7 @@ public class XmlUtilTest {
         //TODO: use equality instead of string comparisons
 
         SchedulerBuilder builder = new SchedulerBuilder(new Scheduler());
-        dataToWrite = new XmlSerializableScheduler(builder.withPerson(TestUtil.generateSamplePersonData().get(0)).withTag("Friends").build());
+        dataToWrite = new XmlSerializableScheduler(builder.withEntry(TestUtil.generateSampleEntryData().get(0)).withTag("Friends").build());
 
         XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
         dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableScheduler.class);

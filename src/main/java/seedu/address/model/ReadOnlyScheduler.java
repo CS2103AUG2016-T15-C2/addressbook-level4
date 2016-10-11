@@ -1,8 +1,8 @@
 package seedu.address.model;
 
 
-import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.entry.ReadOnlyEntry;
+import seedu.address.model.entry.UniqueEntryList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -15,12 +15,12 @@ public interface ReadOnlyScheduler {
 
     UniqueTagList getUniqueTagList();
 
-    UniquePersonList getUniquePersonList();
+    UniqueEntryList getUniqueEntryList();
 
     /**
-     * Returns an unmodifiable view of persons list
+     * Returns an unmodifiable view of entrys list
      */
-    List<ReadOnlyPerson> getPersonList();
+    List<ReadOnlyEntry> getEntryList();
 
     /**
      * Returns an unmodifiable view of tags list

@@ -10,25 +10,25 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.commons.events.ui.EntryPanelSelectionChangedEvent;
+import seedu.address.model.entry.ReadOnlyEntry;
 import seedu.address.commons.core.LogsCenter;
 
 import java.util.logging.Logger;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of entrys.
  */
-public class PersonListPanel extends UiPart {
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
-    private static final String FXML = "PersonListPanel.fxml";
+public class EntryListPanel extends UiPart {
+    private final Logger logger = LogsCenter.getLogger(EntryListPanel.class);
+    private static final String FXML = "EntryListPanel.fxml";
     private VBox panel;
     private AnchorPane placeHolderPane;
 
     @FXML
-    private ListView<ReadOnlyPerson> personListView;
+    private ListView<ReadOnlyEntry> entryListView;
 
-    public PersonListPanel() {
+    public EntryListPanel() {
         super();
     }
 
@@ -47,22 +47,22 @@ public class PersonListPanel extends UiPart {
         this.placeHolderPane = pane;
     }
 
-    public static PersonListPanel load(Stage primaryStage, AnchorPane personListPlaceholder,
-                                       ObservableList<ReadOnlyPerson> personList) {
-        PersonListPanel personListPanel =
-                UiPartLoader.loadUiPart(primaryStage, personListPlaceholder, new PersonListPanel());
-        personListPanel.configure(personList);
-        return personListPanel;
+    public static EntryListPanel load(Stage primaryStage, AnchorPane entryListPlaceholder,
+                                       ObservableList<ReadOnlyEntry> entryList) {
+        EntryListPanel entryListPanel =
+                UiPartLoader.loadUiPart(primaryStage, entryListPlaceholder, new EntryListPanel());
+        entryListPanel.configure(entryList);
+        return entryListPanel;
     }
 
-    private void configure(ObservableList<ReadOnlyPerson> personList) {
-        setConnections(personList);
+    private void configure(ObservableList<ReadOnlyEntry> entryList) {
+        setConnections(entryList);
         addToPlaceholder();
     }
 
-    private void setConnections(ObservableList<ReadOnlyPerson> personList) {
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+    private void setConnections(ObservableList<ReadOnlyEntry> entryList) {
+        entryListView.setItems(entryList);
+        entryListView.setCellFactory(listView -> new EntryListViewCell());
         setEventHandlerForSelectionChangeEvent();
     }
 
@@ -72,35 +72,35 @@ public class PersonListPanel extends UiPart {
     }
 
     private void setEventHandlerForSelectionChangeEvent() {
-        personListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        entryListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                logger.fine("Selection in person list panel changed to : '" + newValue + "'");
-                raise(new PersonPanelSelectionChangedEvent(newValue));
+                logger.fine("Selection in entry list panel changed to : '" + newValue + "'");
+                raise(new EntryPanelSelectionChangedEvent(newValue));
             }
         });
     }
 
     public void scrollTo(int index) {
         Platform.runLater(() -> {
-            personListView.scrollTo(index);
-            personListView.getSelectionModel().clearAndSelect(index);
+            entryListView.scrollTo(index);
+            entryListView.getSelectionModel().clearAndSelect(index);
         });
     }
 
-    class PersonListViewCell extends ListCell<ReadOnlyPerson> {
+    class EntryListViewCell extends ListCell<ReadOnlyEntry> {
 
-        public PersonListViewCell() {
+        public EntryListViewCell() {
         }
 
         @Override
-        protected void updateItem(ReadOnlyPerson person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(ReadOnlyEntry entry, boolean empty) {
+            super.updateItem(entry, empty);
 
-            if (empty || person == null) {
+            if (empty || entry == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(PersonCard.load(person, getIndex() + 1).getLayout());
+                setGraphic(EntryCard.load(entry, getIndex() + 1).getLayout());
             }
         }
     }

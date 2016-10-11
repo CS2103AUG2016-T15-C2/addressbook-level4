@@ -3,12 +3,12 @@ package guitests.guihandles;
 import guitests.GuiRobot;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.entry.ReadOnlyEntry;
 
 /**
- * Provides a handle to a person card in the person list panel.
+ * Provides a handle to a entry card in the entry list panel.
  */
-public class PersonCardHandle extends GuiHandle {
+public class EntryCardHandle extends GuiHandle {
     private static final String NAME_FIELD_ID = "#name";
     private static final String DATE_FIELD_ID = "#address";
     private static final String PHONE_FIELD_ID = "#startTime";
@@ -16,7 +16,7 @@ public class PersonCardHandle extends GuiHandle {
 
     private Node node;
 
-    public PersonCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node){
+    public EntryCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node){
         super(guiRobot, primaryStage, null);
         this.node = node;
     }
@@ -41,15 +41,15 @@ public class PersonCardHandle extends GuiHandle {
         return getTextFromLabel(ENDTIME_FIELD_ID);
     }
 
-    public boolean isSamePerson(ReadOnlyPerson person){
-        return getFullName().equals(person.getName().fullName) && getStartTime().equals(person.getStartTime().value)
-                && getEndTime().equals(person.getEndTime().value) && getDate().equals(person.getDate().value);
+    public boolean isSameEntry(ReadOnlyEntry entry){
+        return getFullName().equals(entry.getName().fullName) && getStartTime().equals(entry.getStartTime().value)
+                && getEndTime().equals(entry.getEndTime().value) && getDate().equals(entry.getDate().value);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof PersonCardHandle) {
-            PersonCardHandle handle = (PersonCardHandle) obj;
+        if(obj instanceof EntryCardHandle) {
+            EntryCardHandle handle = (EntryCardHandle) obj;
             return getFullName().equals(handle.getFullName())
                     && getDate().equals(handle.getDate()); //TODO: compare the rest
         }

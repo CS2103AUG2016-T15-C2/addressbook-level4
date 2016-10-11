@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.entry.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * JAXB-friendly version of the Person.
+ * JAXB-friendly version of the Entry.
  */
-public class XmlAdaptedPerson {
+public class XmlAdaptedEntry {
 
     @XmlElement(required = true)
     private String name;
@@ -29,15 +29,15 @@ public class XmlAdaptedPerson {
     /**
      * No-arg constructor for JAXB use.
      */
-    public XmlAdaptedPerson() {}
+    public XmlAdaptedEntry() {}
 
 
     /**
-     * Converts a given Person into this class for JAXB use.
+     * Converts a given Entry into this class for JAXB use.
      *
-     * @param source future changes to this will not affect the created XmlAdaptedPerson
+     * @param source future changes to this will not affect the created XmlAdaptedEntry
      */
-    public XmlAdaptedPerson(ReadOnlyPerson source) {
+    public XmlAdaptedEntry(ReadOnlyEntry source) {
         name = source.getName().fullName;
         startTime = source.getStartTime().value;
         endTime = source.getEndTime().value;
@@ -49,20 +49,20 @@ public class XmlAdaptedPerson {
     }
 
     /**
-     * Converts this jaxb-friendly adapted person object into the model's Person object.
+     * Converts this jaxb-friendly adapted entry object into the model's Entry object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person
+     * @throws IllegalValueException if there were any data constraints violated in the adapted entry
      */
-    public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+    public Entry toModelType() throws IllegalValueException {
+        final List<Tag> entryTags = new ArrayList<>();
         for (XmlAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            entryTags.add(tag.toModelType());
         }
         final Name name = new Name(this.name);
         final StartTime startTime = new StartTime(this.startTime);
         final EndTime endTime = new EndTime(this.endTime);
         final Date date = new Date(this.date);
-        final UniqueTagList tags = new UniqueTagList(personTags);
-        return new Person(name, startTime, endTime, date, tags);
+        final UniqueTagList tags = new UniqueTagList(entryTags);
+        return new Entry(name, startTime, endTime, date, tags);
     }
 }

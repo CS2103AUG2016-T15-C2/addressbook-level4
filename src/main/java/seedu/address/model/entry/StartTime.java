@@ -1,9 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.entry;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Person's startTime number in the scheduler.
+ * Represents a Entry's startTime number in the scheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidStartTime(String)}
  */
 public class StartTime {
@@ -28,7 +28,7 @@ public class StartTime {
     }
 
     /**
-     * Returns true if a given string is a valid person startTime number.
+     * Returns true if a given string is a valid entry startTime number.
      */
     public static boolean isValidStartTime(String test) {
         return test.matches(START_TIME_VALIDATION_REGEX);

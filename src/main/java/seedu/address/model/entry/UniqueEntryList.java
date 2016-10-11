@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.entry;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,87 +8,87 @@ import seedu.address.commons.exceptions.DuplicateDataException;
 import java.util.*;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A list of entrys that enforces uniqueness between its elements and does not allow nulls.
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#equals(Object)
+ * @see Entry#equals(Object)
  * @see CollectionUtil#elementsAreUnique(Collection)
  */
-public class UniquePersonList implements Iterable<Person> {
+public class UniqueEntryList implements Iterable<Entry> {
 
     /**
      * Signals that an operation would have violated the 'no duplicates' property of the list.
      */
-    public static class DuplicatePersonException extends DuplicateDataException {
-        protected DuplicatePersonException() {
-            super("Operation would result in duplicate persons");
+    public static class DuplicateEntryException extends DuplicateDataException {
+        protected DuplicateEntryException() {
+            super("Operation would result in duplicate entrys");
         }
     }
 
     /**
-     * Signals that an operation targeting a specified person in the list would fail because
-     * there is no such matching person in the list.
+     * Signals that an operation targeting a specified entry in the list would fail because
+     * there is no such matching entry in the list.
      */
-    public static class PersonNotFoundException extends Exception {}
+    public static class EntryNotFoundException extends Exception {}
 
-    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
-
-    /**
-     * Constructs empty PersonList.
-     */
-    public UniquePersonList() {}
+    private final ObservableList<Entry> internalList = FXCollections.observableArrayList();
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Constructs empty EntryList.
      */
-    public boolean contains(ReadOnlyPerson toCheck) {
+    public UniqueEntryList() {}
+
+    /**
+     * Returns true if the list contains an equivalent entry as the given argument.
+     */
+    public boolean contains(ReadOnlyEntry toCheck) {
         assert toCheck != null;
         return internalList.contains(toCheck);
     }
 
     /**
-     * Adds a person to the list.
+     * Adds a entry to the list.
      *
-     * @throws DuplicatePersonException if the person to add is a duplicate of an existing person in the list.
+     * @throws DuplicateEntryException if the entry to add is a duplicate of an existing entry in the list.
      */
-    public void add(Person toAdd) throws DuplicatePersonException {
+    public void add(Entry toAdd) throws DuplicateEntryException {
         assert toAdd != null;
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateEntryException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Removes the equivalent person from the list.
+     * Removes the equivalent entry from the list.
      *
-     * @throws PersonNotFoundException if no such person could be found in the list.
+     * @throws EntryNotFoundException if no such entry could be found in the list.
      */
-    public boolean remove(ReadOnlyPerson toRemove) throws PersonNotFoundException {
+    public boolean remove(ReadOnlyEntry toRemove) throws EntryNotFoundException {
         assert toRemove != null;
-        final boolean personFoundAndDeleted = internalList.remove(toRemove);
-        if (!personFoundAndDeleted) {
-            throw new PersonNotFoundException();
+        final boolean entryFoundAndDeleted = internalList.remove(toRemove);
+        if (!entryFoundAndDeleted) {
+            throw new EntryNotFoundException();
         }
-        return personFoundAndDeleted;
+        return entryFoundAndDeleted;
     }
 
-    public ObservableList<Person> getInternalList() {
+    public ObservableList<Entry> getInternalList() {
         return internalList;
     }
 
     @Override
-    public Iterator<Person> iterator() {
+    public Iterator<Entry> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
+                || (other instanceof UniqueEntryList // instanceof handles nulls
                 && this.internalList.equals(
-                ((UniquePersonList) other).internalList));
+                ((UniqueEntryList) other).internalList));
     }
 
     @Override

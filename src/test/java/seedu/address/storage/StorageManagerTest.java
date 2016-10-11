@@ -10,7 +10,7 @@ import seedu.address.commons.events.storage.DataSavingExceptionEvent;
 import seedu.address.model.Scheduler;
 import seedu.address.model.ReadOnlyScheduler;
 import seedu.address.model.UserPrefs;
-import seedu.address.testutil.TypicalTestPersons;
+import seedu.address.testutil.TypicalTestEntrys;
 import seedu.address.testutil.EventsCollector;
 
 import java.io.IOException;
@@ -55,7 +55,7 @@ public class StorageManagerTest {
 
     @Test
     public void schedulerReadSave() throws Exception {
-        Scheduler original = new TypicalTestPersons().getTypicalScheduler();
+        Scheduler original = new TypicalTestEntrys().getTypicalScheduler();
         storageManager.saveScheduler(original);
         ReadOnlyScheduler retrieved = storageManager.readScheduler().get();
         assertEquals(original, new Scheduler(retrieved));

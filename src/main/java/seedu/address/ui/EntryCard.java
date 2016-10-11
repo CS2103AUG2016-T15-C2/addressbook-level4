@@ -4,11 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.entry.ReadOnlyEntry;
 
-public class PersonCard extends UiPart{
+public class EntryCard extends UiPart{
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "EntryListCard.fxml";
 
     @FXML
     private HBox cardPane;
@@ -25,28 +25,28 @@ public class PersonCard extends UiPart{
     @FXML
     private Label tags;
 
-    private ReadOnlyPerson person;
+    private ReadOnlyEntry entry;
     private int displayedIndex;
 
-    public PersonCard(){
+    public EntryCard(){
 
     }
 
-    public static PersonCard load(ReadOnlyPerson person, int displayedIndex){
-        PersonCard card = new PersonCard();
-        card.person = person;
+    public static EntryCard load(ReadOnlyEntry entry, int displayedIndex){
+        EntryCard card = new EntryCard();
+        card.entry = entry;
         card.displayedIndex = displayedIndex;
         return UiPartLoader.loadUiPart(card);
     }
 
     @FXML
     public void initialize() {
-        name.setText(person.getName().fullName);
+        name.setText(entry.getName().fullName);
         id.setText(displayedIndex + ". ");
-        startTime.setText(person.getStartTime().value);
-        date.setText(person.getDate().value);
-        endTime.setText(person.getEndTime().value);
-        tags.setText(person.tagsString());
+        startTime.setText(entry.getStartTime().value);
+        date.setText(entry.getDate().value);
+        endTime.setText(entry.getEndTime().value);
+        tags.setText(entry.tagsString());
     }
 
     public HBox getLayout() {

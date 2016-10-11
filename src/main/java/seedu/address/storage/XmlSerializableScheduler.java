@@ -4,8 +4,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.ReadOnlyScheduler;
-import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.entry.ReadOnlyEntry;
+import seedu.address.model.entry.UniqueEntryList;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,12 +21,12 @@ import java.util.stream.Collectors;
 public class XmlSerializableScheduler implements ReadOnlyScheduler {
 
     @XmlElement
-    private List<XmlAdaptedPerson> persons;
+    private List<XmlAdaptedEntry> entrys;
     @XmlElement
     private List<Tag> tags;
 
     {
-        persons = new ArrayList<>();
+        entrys = new ArrayList<>();
         tags = new ArrayList<>();
     }
 
@@ -39,7 +39,7 @@ public class XmlSerializableScheduler implements ReadOnlyScheduler {
      * Conversion
      */
     public XmlSerializableScheduler(ReadOnlyScheduler src) {
-        persons.addAll(src.getPersonList().stream().map(XmlAdaptedPerson::new).collect(Collectors.toList()));
+        entrys.addAll(src.getEntryList().stream().map(XmlAdaptedEntry::new).collect(Collectors.toList()));
         tags = src.getTagList();
     }
 
@@ -55,9 +55,9 @@ public class XmlSerializableScheduler implements ReadOnlyScheduler {
     }
 
     @Override
-    public UniquePersonList getUniquePersonList() {
-        UniquePersonList lists = new UniquePersonList();
-        for (XmlAdaptedPerson p : persons) {
+    public UniqueEntryList getUniqueEntryList() {
+        UniqueEntryList lists = new UniqueEntryList();
+        for (XmlAdaptedEntry p : entrys) {
             try {
                 lists.add(p.toModelType());
             } catch (IllegalValueException e) {
@@ -68,8 +68,8 @@ public class XmlSerializableScheduler implements ReadOnlyScheduler {
     }
 
     @Override
-    public List<ReadOnlyPerson> getPersonList() {
-        return persons.stream().map(p -> {
+    public List<ReadOnlyEntry> getEntryList() {
+        return entrys.stream().map(p -> {
             try {
                 return p.toModelType();
             } catch (IllegalValueException e) {

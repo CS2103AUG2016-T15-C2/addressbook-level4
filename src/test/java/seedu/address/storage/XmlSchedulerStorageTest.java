@@ -9,8 +9,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.model.Scheduler;
 import seedu.address.model.ReadOnlyScheduler;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.TypicalTestPersons;
+import seedu.address.model.entry.Entry;
+import seedu.address.testutil.TypicalTestEntrys;
 
 import java.io.IOException;
 
@@ -61,7 +61,7 @@ public class XmlSchedulerStorageTest {
     @Test
     public void readAndSaveScheduler_allInOrder_success() throws Exception {
         String filePath = testFolder.getRoot().getPath() + "TempScheduler.xml";
-        TypicalTestPersons td = new TypicalTestPersons();
+        TypicalTestEntrys td = new TypicalTestEntrys();
         Scheduler original = td.getTypicalScheduler();
         XmlSchedulerStorage xmlSchedulerStorage = new XmlSchedulerStorage(filePath);
 
@@ -71,14 +71,14 @@ public class XmlSchedulerStorageTest {
         assertEquals(original, new Scheduler(readBack));
 
         //Modify data, overwrite exiting file, and read back
-        original.addPerson(new Person(TypicalTestPersons.hoon));
-        original.removePerson(new Person(TypicalTestPersons.alice));
+        original.addEntry(new Entry(TypicalTestEntrys.hoon));
+        original.removeEntry(new Entry(TypicalTestEntrys.alice));
         xmlSchedulerStorage.saveScheduler(original, filePath);
         readBack = xmlSchedulerStorage.readScheduler(filePath).get();
         assertEquals(original, new Scheduler(readBack));
 
         //Save and read without specifying file path
-        original.addPerson(new Person(TypicalTestPersons.ida));
+        original.addEntry(new Entry(TypicalTestEntrys.ida));
         xmlSchedulerStorage.saveScheduler(original); //file path not specified
         readBack = xmlSchedulerStorage.readScheduler().get(); //file path not specified
         assertEquals(original, new Scheduler(readBack));

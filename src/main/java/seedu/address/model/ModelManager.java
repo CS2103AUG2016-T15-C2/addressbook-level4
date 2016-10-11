@@ -6,10 +6,10 @@ import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.events.model.SchedulerChangedEvent;
 import seedu.address.commons.core.ComponentManager;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.UniquePersonList.PersonNotFoundException;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.ReadOnlyEntry;
+import seedu.address.model.entry.UniqueEntryList;
+import seedu.address.model.entry.UniqueEntryList.EntryNotFoundException;
 
 import java.util.Set;
 import java.util.logging.Logger;
@@ -22,7 +22,7 @@ public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Scheduler scheduler;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Entry> filteredEntrys;
 
     /**
      * Initializes a ModelManager with the given Scheduler
@@ -36,7 +36,7 @@ public class ModelManager extends ComponentManager implements Model {
         logger.fine("Initializing with scheduler: " + src + " and user prefs " + userPrefs);
 
         scheduler = new Scheduler(src);
-        filteredPersons = new FilteredList<>(scheduler.getPersons());
+        filteredEntrys = new FilteredList<>(scheduler.getEntrys());
     }
 
     public ModelManager() {
@@ -45,7 +45,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     public ModelManager(ReadOnlyScheduler initialData, UserPrefs userPrefs) {
         scheduler = new Scheduler(initialData);
-        filteredPersons = new FilteredList<>(scheduler.getPersons());
+        filteredEntrys = new FilteredList<>(scheduler.getEntrys());
     }
 
     @Override
@@ -65,43 +65,43 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException {
-        scheduler.removePerson(target);
+    public synchronized void deleteEntry(ReadOnlyEntry target) throws EntryNotFoundException {
+        scheduler.removeEntry(target);
         indicateSchedulerChanged();
     }
 
     @Override
-    public synchronized void addPerson(Person person) throws UniquePersonList.DuplicatePersonException {
-        scheduler.addPerson(person);
+    public synchronized void addEntry(Entry entry) throws UniqueEntryList.DuplicateEntryException {
+        scheduler.addEntry(entry);
         updateFilteredListToShowAll();
         indicateSchedulerChanged();
     }
 
-    //=========== Filtered Person List Accessors ===============================================================
+    //=========== Filtered Entry List Accessors ===============================================================
 
     @Override
-    public UnmodifiableObservableList<ReadOnlyPerson> getFilteredPersonList() {
-        return new UnmodifiableObservableList<>(filteredPersons);
+    public UnmodifiableObservableList<ReadOnlyEntry> getFilteredEntryList() {
+        return new UnmodifiableObservableList<>(filteredEntrys);
     }
 
     @Override
     public void updateFilteredListToShowAll() {
-        filteredPersons.setPredicate(null);
+        filteredEntrys.setPredicate(null);
     }
 
     @Override
-    public void updateFilteredPersonList(Set<String> keywords){
-        updateFilteredPersonList(new PredicateExpression(new NameQualifier(keywords)));
+    public void updateFilteredEntryList(Set<String> keywords){
+        updateFilteredEntryList(new PredicateExpression(new NameQualifier(keywords)));
     }
 
-    private void updateFilteredPersonList(Expression expression) {
-        filteredPersons.setPredicate(expression::satisfies);
+    private void updateFilteredEntryList(Expression expression) {
+        filteredEntrys.setPredicate(expression::satisfies);
     }
 
     //========== Inner classes/interfaces used for filtering ==================================================
 
     interface Expression {
-        boolean satisfies(ReadOnlyPerson person);
+        boolean satisfies(ReadOnlyEntry entry);
         String toString();
     }
 
@@ -114,8 +114,8 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
-        public boolean satisfies(ReadOnlyPerson person) {
-            return qualifier.run(person);
+        public boolean satisfies(ReadOnlyEntry entry) {
+            return qualifier.run(entry);
         }
 
         @Override
@@ -125,7 +125,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     interface Qualifier {
-        boolean run(ReadOnlyPerson person);
+        boolean run(ReadOnlyEntry entry);
         String toString();
     }
 
@@ -137,9 +137,9 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
         @Override
-        public boolean run(ReadOnlyPerson person) {
+        public boolean run(ReadOnlyEntry entry) {
             return nameKeyWords.stream()
-                    .filter(keyword -> StringUtil.containsIgnoreCase(person.getName().fullName, keyword))
+                    .filter(keyword -> StringUtil.containsIgnoreCase(entry.getName().fullName, keyword))
                     .findAny()
                     .isPresent();
         }

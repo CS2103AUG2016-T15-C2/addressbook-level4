@@ -1,10 +1,10 @@
-package seedu.address.model.person;
+package seedu.address.model.entry;
 
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Person's date in the scheduler.
+ * Represents a Entry's date in the scheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date {
@@ -28,7 +28,7 @@ public class Date {
     }
 
     /**
-     * Returns true if a given string is a valid person endTime.
+     * Returns true if a given string is a valid entry endTime.
      */
     public static boolean isValidDate(String test) {
         return test.matches(DATE_VALIDATION_REGEX);

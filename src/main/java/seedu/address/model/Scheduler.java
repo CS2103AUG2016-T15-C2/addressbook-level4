@@ -1,9 +1,9 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.ReadOnlyEntry;
+import seedu.address.model.entry.UniqueEntryList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -16,28 +16,28 @@ import java.util.stream.Collectors;
  */
 public class Scheduler implements ReadOnlyScheduler {
 
-    private final UniquePersonList persons;
+    private final UniqueEntryList entrys;
     private final UniqueTagList tags;
 
     {
-        persons = new UniquePersonList();
+        entrys = new UniqueEntryList();
         tags = new UniqueTagList();
     }
 
     public Scheduler() {}
 
     /**
-     * Persons and Tags are copied into this scheduler
+     * Entrys and Tags are copied into this scheduler
      */
     public Scheduler(ReadOnlyScheduler toBeCopied) {
-        this(toBeCopied.getUniquePersonList(), toBeCopied.getUniqueTagList());
+        this(toBeCopied.getUniqueEntryList(), toBeCopied.getUniqueTagList());
     }
 
     /**
-     * Persons and Tags are copied into this scheduler
+     * Entrys and Tags are copied into this scheduler
      */
-    public Scheduler(UniquePersonList persons, UniqueTagList tags) {
-        resetData(persons.getInternalList(), tags.getInternalList());
+    public Scheduler(UniqueEntryList entrys, UniqueTagList tags) {
+        resetData(entrys.getInternalList(), tags.getInternalList());
     }
 
     public static ReadOnlyScheduler getEmptyScheduler() {
@@ -46,49 +46,49 @@ public class Scheduler implements ReadOnlyScheduler {
 
 //// list overwrite operations
 
-    public ObservableList<Person> getPersons() {
-        return persons.getInternalList();
+    public ObservableList<Entry> getEntrys() {
+        return entrys.getInternalList();
     }
 
-    public void setPersons(List<Person> persons) {
-        this.persons.getInternalList().setAll(persons);
+    public void setEntrys(List<Entry> entrys) {
+        this.entrys.getInternalList().setAll(entrys);
     }
 
     public void setTags(Collection<Tag> tags) {
         this.tags.getInternalList().setAll(tags);
     }
 
-    public void resetData(Collection<? extends ReadOnlyPerson> newPersons, Collection<Tag> newTags) {
-        setPersons(newPersons.stream().map(Person::new).collect(Collectors.toList()));
+    public void resetData(Collection<? extends ReadOnlyEntry> newEntrys, Collection<Tag> newTags) {
+        setEntrys(newEntrys.stream().map(Entry::new).collect(Collectors.toList()));
         setTags(newTags);
     }
 
     public void resetData(ReadOnlyScheduler newData) {
-        resetData(newData.getPersonList(), newData.getTagList());
+        resetData(newData.getEntryList(), newData.getTagList());
     }
 
-//// person-level operations
+//// entry-level operations
 
     /**
-     * Adds a person to the scheduler.
-     * Also checks the new person's tags and updates {@link #tags} with any new tags found,
-     * and updates the Tag objects in the person to point to those in {@link #tags}.
+     * Adds a entry to the scheduler.
+     * Also checks the new entry's tags and updates {@link #tags} with any new tags found,
+     * and updates the Tag objects in the entry to point to those in {@link #tags}.
      *
-     * @throws UniquePersonList.DuplicatePersonException if an equivalent person already exists.
+     * @throws UniqueEntryList.DuplicateEntryException if an equivalent entry already exists.
      */
-    public void addPerson(Person p) throws UniquePersonList.DuplicatePersonException {
+    public void addEntry(Entry p) throws UniqueEntryList.DuplicateEntryException {
         syncTagsWithMasterList(p);
-        persons.add(p);
+        entrys.add(p);
     }
 
     /**
-     * Ensures that every tag in this person:
+     * Ensures that every tag in this entry:
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
      */
-    private void syncTagsWithMasterList(Person person) {
-        final UniqueTagList personTags = person.getTags();
-        tags.mergeFrom(personTags);
+    private void syncTagsWithMasterList(Entry entry) {
+        final UniqueTagList entryTags = entry.getTags();
+        tags.mergeFrom(entryTags);
 
         // Create map with values = tag object references in the master list
         final Map<Tag, Tag> masterTagObjects = new HashMap<>();
@@ -96,19 +96,19 @@ public class Scheduler implements ReadOnlyScheduler {
             masterTagObjects.put(tag, tag);
         }
 
-        // Rebuild the list of person tags using references from the master list
+        // Rebuild the list of entry tags using references from the master list
         final Set<Tag> commonTagReferences = new HashSet<>();
-        for (Tag tag : personTags) {
+        for (Tag tag : entryTags) {
             commonTagReferences.add(masterTagObjects.get(tag));
         }
-        person.setTags(new UniqueTagList(commonTagReferences));
+        entry.setTags(new UniqueTagList(commonTagReferences));
     }
 
-    public boolean removePerson(ReadOnlyPerson key) throws UniquePersonList.PersonNotFoundException {
-        if (persons.remove(key)) {
+    public boolean removeEntry(ReadOnlyEntry key) throws UniqueEntryList.EntryNotFoundException {
+        if (entrys.remove(key)) {
             return true;
         } else {
-            throw new UniquePersonList.PersonNotFoundException();
+            throw new UniqueEntryList.EntryNotFoundException();
         }
     }
 
@@ -122,13 +122,13 @@ public class Scheduler implements ReadOnlyScheduler {
 
     @Override
     public String toString() {
-        return persons.getInternalList().size() + " persons, " + tags.getInternalList().size() +  " tags";
+        return entrys.getInternalList().size() + " entrys, " + tags.getInternalList().size() +  " tags";
         // TODO: refine later
     }
 
     @Override
-    public List<ReadOnlyPerson> getPersonList() {
-        return Collections.unmodifiableList(persons.getInternalList());
+    public List<ReadOnlyEntry> getEntryList() {
+        return Collections.unmodifiableList(entrys.getInternalList());
     }
 
     @Override
@@ -137,8 +137,8 @@ public class Scheduler implements ReadOnlyScheduler {
     }
 
     @Override
-    public UniquePersonList getUniquePersonList() {
-        return this.persons;
+    public UniqueEntryList getUniqueEntryList() {
+        return this.entrys;
     }
 
     @Override
@@ -151,13 +151,13 @@ public class Scheduler implements ReadOnlyScheduler {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Scheduler // instanceof handles nulls
-                && this.persons.equals(((Scheduler) other).persons)
+                && this.entrys.equals(((Scheduler) other).entrys)
                 && this.tags.equals(((Scheduler) other).tags));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(persons, tags);
+        return Objects.hash(entrys, tags);
     }
 }

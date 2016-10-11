@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.entry;
 
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -30,7 +30,7 @@ public class EndTime {
     }
 
     /**
-     * Returns if a given string is a valid person endTime.
+     * Returns if a given string is a valid entry endTime.
      */
     public static boolean isValidEndTime(String test) {
         return test.matches(ENDTIME_VALIDATION_REGEX);

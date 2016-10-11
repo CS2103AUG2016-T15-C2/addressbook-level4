@@ -10,7 +10,7 @@ public class HelpWindowTest extends SchedulerGuiTest {
     @Test
     public void openHelpWindow() {
 
-        personListPanel.clickOnListView();
+        entryListPanel.clickOnListView();
 
         assertHelpWindowOpen(mainMenu.openHelpWindowUsingAccelerator());
 
