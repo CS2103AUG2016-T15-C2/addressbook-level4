@@ -152,11 +152,11 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add wrong args wrong args", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name 12345 e/valid@email.butNoPhonePrefix a/valid, address", expectedMessage);
+                "add Valid Name 12345 e/valid@endDate.butNoPhonePrefix a/valid, address", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name p/12345 valid@email.butNoPrefix a/valid, address", expectedMessage);
+                "add Valid Name p/12345 valid@endDate.butNoPrefix a/valid, address", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name p/12345 e/valid@email.butNoAddressPrefix valid, address", expectedMessage);
+                "add Valid Name p/12345 e/valid@endDate.butNoAddressPrefix valid, address", expectedMessage);
     }
 
     @Test
@@ -166,7 +166,7 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add Valid Name p/not_numbers e/valid@e.mail a/valid, address", Phone.MESSAGE_PHONE_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name p/12345 e/notAnEmail a/valid, address", Email.MESSAGE_EMAIL_CONSTRAINTS);
+                "add Valid Name p/12345 e/notAnEndDate a/valid, address", EndDate.MESSAGE_ENDDATE_CONSTRAINTS);
         assertCommandBehavior(
                 "add Valid Name p/12345 e/valid@e.mail a/valid, address t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
 
@@ -385,12 +385,12 @@ public class LogicManagerTest {
         Person adam() throws Exception {
             Name name = new Name("Adam Brown");
             Phone privatePhone = new Phone("111111");
-            Email email = new Email("adam@gmail.com");
+            EndDate endDate = new EndDate("adam@gmail.com");
             Address privateAddress = new Address("111, alpha street");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Person(name, privatePhone, email, privateAddress, tags);
+            return new Person(name, privatePhone, endDate, privateAddress, tags);
         }
 
         /**
@@ -404,7 +404,7 @@ public class LogicManagerTest {
             return new Person(
                     new Name("Person " + seed),
                     new Phone("" + Math.abs(seed)),
-                    new Email(seed + "@email"),
+                    new EndDate(seed + "@endDate"),
                     new Address("House of " + seed),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
@@ -418,7 +418,7 @@ public class LogicManagerTest {
 
             cmd.append(p.getName().toString());
             cmd.append(" p/").append(p.getPhone());
-            cmd.append(" e/").append(p.getEmail());
+            cmd.append(" e/").append(p.getEndDate());
             cmd.append(" a/").append(p.getAddress());
 
             UniqueTagList tags = p.getTags();
@@ -503,7 +503,7 @@ public class LogicManagerTest {
             return new Person(
                     new Name(name),
                     new Phone("1"),
-                    new Email("1@email"),
+                    new EndDate("1@endDate"),
                     new Address("House of 1"),
                     new UniqueTagList(new Tag("tag"))
             );
