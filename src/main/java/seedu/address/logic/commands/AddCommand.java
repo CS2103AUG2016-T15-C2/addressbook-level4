@@ -18,7 +18,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the scheduler. "
             + "Parameters: NAME sd/STARTDATE ed/ENDDATE a/ADDRESS  [t/TAG]...\n"
             + "Example: " + COMMAND_WORD
-            + " John Doe sd/23-10-2016 ed/24-10-2016 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
+            + " John Wedding sd/23-10-2016 ed/24-10-2016 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the scheduler";
