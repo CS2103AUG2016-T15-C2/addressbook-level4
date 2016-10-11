@@ -15,10 +15,10 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a entry to the scheduler. "
-            + "Parameters: NAME sd/STARTTIME ed/ENDTIME a/DATE  [t/TAG]...\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry to the scheduler. "
+            + "Parameters: NAME sd/START_TIME ed/END_TIME a/DATE  [t/TAG]...\n"
             + "Example: " + COMMAND_WORD
-            + " John Wedding sd/23-10-2016 ed/24-10-2016 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
+            + " John Wedding st/14:00 et/21:00 d/12-10-2016 t/done or t/undone";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the scheduler";
