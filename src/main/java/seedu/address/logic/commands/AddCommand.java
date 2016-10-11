@@ -18,7 +18,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: NAME p/PHONE e/EMAIL a/ADDRESS  [t/TAG]...\n"
             + "Example: " + COMMAND_WORD
-            + " meet group s/05-03-2010 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
+            + " meet group sd/05-03-2010 e/johnd@gmail.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
