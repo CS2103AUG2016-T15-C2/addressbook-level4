@@ -37,7 +37,7 @@ public interface ReadOnlyPerson {
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" StartDate: ")
+                .append(" Start Date: ")
                 .append(getStartDate())
                 .append(" End Date: ")
                 .append(getEndDate())
