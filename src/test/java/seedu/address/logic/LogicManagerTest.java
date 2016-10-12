@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -401,11 +402,15 @@ public class LogicManagerTest {
          * @param seed used to generate the entry data field values
          */
         Entry generateEntry(int seed) throws Exception {
+            Random random = new Random();
+            String[] num ={"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", 
+                    "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
+                    "20", "21", "22", "23", "24", "25", "26", "27", "28"};
             return new Entry(
                     new Name("Entry " + seed),
-                    new StartTime(Math.abs(seed) + ":" + Math.abs(seed)),
-                    new EndTime(Math.abs(seed) + ":" + Math.abs(seed)),
-                    new Date(Math.abs(seed) + "-" + Math.abs(seed) + "-" + Math.abs(seed)),
+                    new StartTime(num[random.nextInt(25)] + ":00"),
+                    new EndTime(num[random.nextInt(25)] + ":00"),
+                    new Date(num[random.nextInt(29)+1] + "-" + num[random.nextInt(13)+1] + "-2016"),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
