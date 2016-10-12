@@ -9,7 +9,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class StartTime {
 
     public static final String MESSAGE_START_TIME_CONSTRAINTS = "Item's start time should be in the 24-Hr format hh-mm in numbers separated by a ':'";
-    public static final String START_TIME_VALIDATION_REGEX = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+    public static final String START_TIME_VALIDATION_REGEX = "(([01]?[0-9]|2[0-3]):[0-5][0-9]|empty)";
 
     public final String value;
 
@@ -20,6 +20,9 @@ public class StartTime {
      */
     public StartTime(String startTime) throws IllegalValueException {
         assert startTime != null;
+        if (startTime==null) {
+            startTime = "empty";
+        }
         startTime = startTime.trim();
         if (!isValidStartTime(startTime)) {
             throw new IllegalValueException(MESSAGE_START_TIME_CONSTRAINTS);

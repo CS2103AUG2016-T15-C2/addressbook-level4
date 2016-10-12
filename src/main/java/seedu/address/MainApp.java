@@ -30,7 +30,6 @@ import java.util.logging.Logger;
  * The main entry point to the application.
  */
 public class MainApp extends Application {
-    //changes
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     public static final Version VERSION = new Version(1, 0, 0, true);
