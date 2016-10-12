@@ -151,23 +151,21 @@ public class LogicManagerTest {
     public void execute_add_invalidArgsFormat() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         assertCommandBehavior(
-                "add wrong args wrong args", expectedMessage);
+                "add wrong", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name 12345 et/01:02 d/01-02-2015, tag", expectedMessage);
-        assertCommandBehavior(
-                "add Valid Name st/01:02 01:02 d/01-02-2015, tag", expectedMessage);
-        assertCommandBehavior(
-                "add Valid Name st/01:02 et/01:02 01-02-2015, tag", expectedMessage);
+                "add Valid Name 01:02, 01:02, 01-02-2015, tag", expectedMessage);
     }
 
     @Test
     public void execute_add_invalidEntryData() throws Exception {
         assertCommandBehavior(
-                "add []\\[;] st/01:02 et/01:02 d/01-02-2015, tag", Name.MESSAGE_NAME_CONSTRAINTS);
+                "add []\\[;] st/01:02, et/01:02, d/01-02-2015, tag", Name.MESSAGE_NAME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name st/01-02 et/01:02 d/01-02-2015, tag", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
+                "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name st/01:02 et/01-02 d/01-02-2015, tag", EndTime.MESSAGE_ENDTIME_CONSTRAINTS);
+                "add Valid Name st/01:02 et/01:02 d/01-02-2015, tag", EndTime.MESSAGE_ENDTIME_CONSTRAINTS);
+        assertCommandBehavior(
+                "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag", Date.MESSAGE_DATE_CONSTRAINTS);
         assertCommandBehavior(
                 "add Valid Name st/01:02 et/01:02 d/01-02-2015, tag t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
 
