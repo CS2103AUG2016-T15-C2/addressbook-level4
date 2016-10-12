@@ -14,8 +14,8 @@ public class ClearCommandTest extends SchedulerGuiTest {
         assertClearCommandSuccess();
 
         //verify other commands can work after a clear command
-        commandBox.runCommand(td.hoon.getAddCommand());
-        assertTrue(entryListPanel.isListMatching(td.hoon));
+        commandBox.runCommand(td.meeting.getAddCommand());
+        assertTrue(entryListPanel.isListMatching(td.meeting));
         commandBox.runCommand("delete 1");
         assertListSize(0);
 

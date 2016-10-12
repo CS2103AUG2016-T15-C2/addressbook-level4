@@ -71,14 +71,14 @@ public class XmlSchedulerStorageTest {
         assertEquals(original, new Scheduler(readBack));
 
         //Modify data, overwrite exiting file, and read back
-        original.addEntry(new Entry(TypicalTestEntrys.hoon));
-        original.removeEntry(new Entry(TypicalTestEntrys.alice));
+        original.addEntry(new Entry(TypicalTestEntrys.meeting));
+        original.removeEntry(new Entry(TypicalTestEntrys.chem));
         xmlSchedulerStorage.saveScheduler(original, filePath);
         readBack = xmlSchedulerStorage.readScheduler(filePath).get();
         assertEquals(original, new Scheduler(readBack));
 
         //Save and read without specifying file path
-        original.addEntry(new Entry(TypicalTestEntrys.ida));
+        original.addEntry(new Entry(TypicalTestEntrys.pickup));
         xmlSchedulerStorage.saveScheduler(original); //file path not specified
         readBack = xmlSchedulerStorage.readScheduler().get(); //file path not specified
         assertEquals(original, new Scheduler(readBack));

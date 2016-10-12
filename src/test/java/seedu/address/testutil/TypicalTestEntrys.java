@@ -9,25 +9,25 @@ import seedu.address.model.entry.*;
  */
 public class TypicalTestEntrys {
 
-    public static TestEntry alice, benson, carl, daniel, elle, fiona, george, hoon, ida;
+    public static TestEntry chem, bio, dinner, date, groceries, concert, hike, meeting, pickup;
 
     public TypicalTestEntrys() {
         try {
-            alice =  new EntryBuilder().withName("Alice Pauline").withDate("123, Jurong West Ave 6, #08-111")
-                    .withEndTime("alice@gmail.com").withStartTime("85355255")
-                    .withTags("friends").build();
-            benson = new EntryBuilder().withName("Benson Meier").withDate("311, Clementi Ave 2, #02-25")
-                    .withEndTime("johnd@gmail.com").withStartTime("98765432")
-                    .withTags("owesMoney", "friends").build();
-            carl = new EntryBuilder().withName("Carl Kurz").withStartTime("95352563").withEndTime("heinz@yahoo.com").withDate("wall street").build();
-            daniel = new EntryBuilder().withName("Daniel Meier").withStartTime("87652533").withEndTime("cornelia@google.com").withDate("10th street").build();
-            elle = new EntryBuilder().withName("Elle Meyer").withStartTime("9482224").withEndTime("werner@gmail.com").withDate("michegan ave").build();
-            fiona = new EntryBuilder().withName("Fiona Kunz").withStartTime("9482427").withEndTime("lydia@gmail.com").withDate("little tokyo").build();
-            george = new EntryBuilder().withName("George Best").withStartTime("9482442").withEndTime("anna@google.com").withDate("4th street").build();
+            chem =  new EntryBuilder().withName("Chemistry Test").withDate("01-10-2016")
+                    .withEndTime("12:00").withStartTime("10:30")
+                    .withTags("chem","test").build();
+            bio = new EntryBuilder().withName("Biology Test").withDate("01-10-2016")
+                    .withEndTime("16:00").withStartTime("14:00")
+                    .withTags("bio", "test").build();
+            dinner = new EntryBuilder().withName("Dinner with friends").withStartTime("18:00").withEndTime("20:00").withDate("01-10-2016").build();
+            date = new EntryBuilder().withName("Date").withStartTime("13:00").withEndTime("21:00").withDate("02-10-2016").build();
+            groceries = new EntryBuilder().withName("Weekly groceries").withStartTime("14:00").withEndTime("16:00").withDate("03-10-2016").build();
+            concert = new EntryBuilder().withName("Concert").withStartTime("19:00").withEndTime("22:00").withDate("04-10-2016").build();
+            hike = new EntryBuilder().withName("Morning Hike").withStartTime("07:00").withEndTime("10:00").withDate("04-10-2016").build();
 
             //Manually added
-            hoon = new EntryBuilder().withName("Hoon Meier").withStartTime("8482424").withEndTime("stefan@mail.com").withDate("little india").build();
-            ida = new EntryBuilder().withName("Ida Mueller").withStartTime("8482131").withEndTime("hans@google.com").withDate("chicago ave").build();
+            meeting = new EntryBuilder().withName("Project meeting").withStartTime("14:00").withEndTime("16:00").withDate("10-10-2016").build();
+            pickup = new EntryBuilder().withName("Pickup parents from airport").withStartTime("15:00").withEndTime("16:00").withDate("11-10-2016").build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";
@@ -37,20 +37,20 @@ public class TypicalTestEntrys {
     public static void loadSchedulerWithSampleData(Scheduler ab) {
 
         try {
-            ab.addEntry(new Entry(alice));
-            ab.addEntry(new Entry(benson));
-            ab.addEntry(new Entry(carl));
-            ab.addEntry(new Entry(daniel));
-            ab.addEntry(new Entry(elle));
-            ab.addEntry(new Entry(fiona));
-            ab.addEntry(new Entry(george));
+            ab.addEntry(new Entry(chem));
+            ab.addEntry(new Entry(bio));
+            ab.addEntry(new Entry(dinner));
+            ab.addEntry(new Entry(date));
+            ab.addEntry(new Entry(groceries));
+            ab.addEntry(new Entry(concert));
+            ab.addEntry(new Entry(hike));
         } catch (UniqueEntryList.DuplicateEntryException e) {
             assert false : "not possible";
         }
     }
 
     public TestEntry[] getTypicalEntrys() {
-        return new TestEntry[]{alice, benson, carl, daniel, elle, fiona, george};
+        return new TestEntry[]{chem, bio, dinner, date, groceries, concert, hike};
     }
 
     public Scheduler getTypicalScheduler(){
