@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addressbook>
-    <persons>
-        <name>Hans Muster</name>
-        <phone isPrivate="false">9482424</phone>
-        <email isPrivate="false">hans@google.com</email>
-        <address isPrivate="false">4th street</address>
-    </persons>
-    <persons>
-        <name>Ruth Mueller</name>
-        <phone isPrivate="false">87249245</phone>
-        <email isPrivate="false">ruth@google.com</email>
-        <address isPrivate="false">81th street</address>
-    </persons>
-    <persons>
-        <name>Heinz Kurz</name>
-        <phone isPrivate="false">95352563</phone>
-        <email isPrivate="false">heinz@yahoo.com</email>
-        <address isPrivate="false">wall street</address>
-    </persons>
-    <persons>
+<scheduler>
+    <entrys>
+        <name>Hans Meeting</name>
+        <startTime isPrivate="false">11:00</startTime>
+        <endTime isPrivate="false">12:00</endTime>
+        <date isPrivate="false">15/11/2016</date>
+    </entrys>
+    <entrys>
+        <name>Golf Game</name>
+        <startTime isPrivate="false">07:00</startTime>
+        <endTime isPrivate="false">13:30</endTime>
+        <date isPrivate="false">20/12/2016</date>
+    </entrys>
+    <entrys>
+        <name>Tennis</name>
+        <startTime isPrivate="false">09:00</startTime>
+        <endTime isPrivate="false">11:00</endTime>
+        <date isPrivate="false">25/11/2017</date>
+    </entrys>
+    <entrys>
         <name>Cornelia Meier</name>
-        <phone isPrivate="false">87652533</phone>
-        <email isPrivate="false">cornelia@google.com</email>
-        <address isPrivate="false">10th street</address>
-    </persons>
-    <persons>
+        <startTime isPrivate="false">87652533</startTime>
+        <endTime isPrivate="false">cornelia@google.com</endTime>
+        <date isPrivate="false">10th street</date>
+    </entrys>
+    <entrys>
         <name>Werner Meyer</name>
-        <phone isPrivate="false">9482224</phone>
-        <email isPrivate="false">werner@gmail.com</email>
-        <address isPrivate="false">michegan ave</address>
-    </persons>
-    <persons>
+        <startTime isPrivate="false">9482224</startTime>
+        <endTime isPrivate="false">werner@gmail.com</endTime>
+        <date isPrivate="false">michegan ave</date>
+    </entrys>
+    <entrys>
         <name>Lydia Kunz</name>
-        <phone isPrivate="false">9482427</phone>
-        <email isPrivate="false">lydia@gmail.com</email>
-        <address isPrivate="false">little tokyo</address>
-    </persons>
-    <persons>
+        <startTime isPrivate="false">9482427</startTime>
+        <endTime isPrivate="false">lydia@gmail.com</endTime>
+        <date isPrivate="false">little tokyo</date>
+    </entrys>
+    <entrys>
         <name>Anna Best</name>
-        <phone isPrivate="false">9482442</phone>
-        <email isPrivate="false">anna@google.com</email>
-        <address isPrivate="false">4th street</address>
-    </persons>
-    <persons>
+        <startTime isPrivate="false">9482442</startTime>
+        <endTime isPrivate="false">anna@google.com</endTime>
+        <date isPrivate="false">4th street</date>
+    </entrys>
+    <entrys>
         <name>Stefan Meier</name>
-        <phone isPrivate="false">8482424</phone>
-        <email isPrivate="false">stefan@mail.com</email>
-        <address isPrivate="false">little india</address>
-    </persons>
-    <persons>
+        <startTime isPrivate="false">8482424</startTime>
+        <endTime isPrivate="false">stefan@mail.com</endTime>
+        <date isPrivate="false">little india</date>
+    </entrys>
+    <entrys>
         <name>Martin Mueller</name>
-        <phone isPrivate="false">8482131</phone>
-        <email isPrivate="false">hans@google.com</email>
-        <address isPrivate="false">chicago ave</address>
-    </persons>
-</addressbook>
+        <startTime isPrivate="false">8482131</startTime>
+        <endTime isPrivate="false">hans@google.com</endTime>
+        <date isPrivate="false">chicago ave</date>
+    </entrys>
+</scheduler>

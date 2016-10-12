@@ -10,10 +10,10 @@ import org.junit.rules.TestName;
 import org.testfx.api.FxToolkit;
 import seedu.address.TestApp;
 import seedu.address.commons.core.EventsCenter;
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.Scheduler;
+import seedu.address.model.entry.ReadOnlyEntry;
 import seedu.address.testutil.TestUtil;
-import seedu.address.testutil.TypicalTestPersons;
+import seedu.address.testutil.TypicalTestEntrys;
 
 import java.util.concurrent.TimeoutException;
 
@@ -21,9 +21,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * A GUI Test class for AddressBook.
+ * A GUI Test class for Scheduler.
  */
-public abstract class AddressBookGuiTest {
+public abstract class SchedulerGuiTest {
 
     /* The TestName Rule makes the current test name available inside test methods */
     @Rule
@@ -31,7 +31,7 @@ public abstract class AddressBookGuiTest {
 
     TestApp testApp;
 
-    protected TypicalTestPersons td = new TypicalTestPersons();
+    protected TypicalTestEntrys td = new TypicalTestEntrys();
 
     /*
      *   Handles to GUI elements present at the start up are created in advance
@@ -39,7 +39,7 @@ public abstract class AddressBookGuiTest {
      */
     protected MainGuiHandle mainGui;
     protected MainMenuHandle mainMenu;
-    protected PersonListPanelHandle personListPanel;
+    protected EntryListPanelHandle entryListPanel;
     protected ResultDisplayHandle resultDisplay;
     protected CommandBoxHandle commandBox;
     private Stage stage;
@@ -59,7 +59,7 @@ public abstract class AddressBookGuiTest {
         FxToolkit.setupStage((stage) -> {
             mainGui = new MainGuiHandle(new GuiRobot(), stage);
             mainMenu = mainGui.getMainMenu();
-            personListPanel = mainGui.getPersonListPanel();
+            entryListPanel = mainGui.getEntryListPanel();
             resultDisplay = mainGui.getResultDisplay();
             commandBox = mainGui.getCommandBox();
             this.stage = stage;
@@ -75,9 +75,9 @@ public abstract class AddressBookGuiTest {
      * Override this in child classes to set the initial local data.
      * Return null to use the data in the file specified in {@link #getDataFileLocation()}
      */
-    protected AddressBook getInitialData() {
-        AddressBook ab = TestUtil.generateEmptyAddressBook();
-        TypicalTestPersons.loadAddressBookWithSampleData(ab);
+    protected Scheduler getInitialData() {
+        Scheduler ab = TestUtil.generateEmptyScheduler();
+        TypicalTestEntrys.loadSchedulerWithSampleData(ab);
         return ab;
     }
 
@@ -94,17 +94,17 @@ public abstract class AddressBookGuiTest {
     }
 
     /**
-     * Asserts the person shown in the card is same as the given person
+     * Asserts the entry shown in the card is same as the given entry
      */
-    public void assertMatching(ReadOnlyPerson person, PersonCardHandle card) {
-        assertTrue(TestUtil.compareCardAndPerson(card, person));
+    public void assertMatching(ReadOnlyEntry entry, EntryCardHandle card) {
+        assertTrue(TestUtil.compareCardAndEntry(card, entry));
     }
 
     /**
-     * Asserts the size of the person list is equal to the given number.
+     * Asserts the size of the entry list is equal to the given number.
      */
     protected void assertListSize(int size) {
-        int numberOfPeople = personListPanel.getNumberOfPeople();
+        int numberOfPeople = entryListPanel.getNumberOfPeople();
         assertEquals(size, numberOfPeople);
     }
 

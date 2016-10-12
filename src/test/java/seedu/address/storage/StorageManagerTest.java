@@ -5,12 +5,12 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import seedu.address.commons.events.model.AddressBookChangedEvent;
+import seedu.address.commons.events.model.SchedulerChangedEvent;
 import seedu.address.commons.events.storage.DataSavingExceptionEvent;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Scheduler;
+import seedu.address.model.ReadOnlyScheduler;
 import seedu.address.model.UserPrefs;
-import seedu.address.testutil.TypicalTestPersons;
+import seedu.address.testutil.TypicalTestEntrys;
 import seedu.address.testutil.EventsCollector;
 
 import java.io.IOException;
@@ -54,25 +54,25 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
-        AddressBook original = new TypicalTestPersons().getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
-        //More extensive testing of AddressBook saving/reading is done in XmlAddressBookStorageTest
+    public void schedulerReadSave() throws Exception {
+        Scheduler original = new TypicalTestEntrys().getTypicalScheduler();
+        storageManager.saveScheduler(original);
+        ReadOnlyScheduler retrieved = storageManager.readScheduler().get();
+        assertEquals(original, new Scheduler(retrieved));
+        //More extensive testing of Scheduler saving/reading is done in XmlSchedulerStorageTest
     }
 
     @Test
-    public void getAddressBookFilePath(){
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getSchedulerFilePath(){
+        assertNotNull(storageManager.getSchedulerFilePath());
     }
 
     @Test
-    public void handleAddressBookChangedEvent_exceptionThrown_eventRaised() throws IOException {
+    public void handleSchedulerChangedEvent_exceptionThrown_eventRaised() throws IOException {
         //Create a StorageManager while injecting a stub that throws an exception when the save method is called
-        Storage storage = new StorageManager(new XmlAddressBookStorageExceptionThrowingStub("dummy"), new JsonUserPrefsStorage("dummy"));
+        Storage storage = new StorageManager(new XmlSchedulerStorageExceptionThrowingStub("dummy"), new JsonUserPrefsStorage("dummy"));
         EventsCollector eventCollector = new EventsCollector();
-        storage.handleAddressBookChangedEvent(new AddressBookChangedEvent(new AddressBook()));
+        storage.handleSchedulerChangedEvent(new SchedulerChangedEvent(new Scheduler()));
         assertTrue(eventCollector.get(0) instanceof DataSavingExceptionEvent);
     }
 
@@ -80,14 +80,14 @@ public class StorageManagerTest {
     /**
      * A Stub class to throw an exception when the save method is called
      */
-    class XmlAddressBookStorageExceptionThrowingStub extends XmlAddressBookStorage{
+    class XmlSchedulerStorageExceptionThrowingStub extends XmlSchedulerStorage{
 
-        public XmlAddressBookStorageExceptionThrowingStub(String filePath) {
+        public XmlSchedulerStorageExceptionThrowingStub(String filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) throws IOException {
+        public void saveScheduler(ReadOnlyScheduler scheduler, String filePath) throws IOException {
             throw new IOException("dummy exception");
         }
     }

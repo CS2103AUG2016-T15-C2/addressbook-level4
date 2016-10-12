@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import com.google.common.io.Files;
-import guitests.guihandles.PersonCardHandle;
+import guitests.guihandles.EntryCardHandle;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -16,11 +16,11 @@ import seedu.address.TestApp;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.XmlUtil;
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.*;
+import seedu.address.model.Scheduler;
+import seedu.address.model.entry.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
-import seedu.address.storage.XmlSerializableAddressBook;
+import seedu.address.storage.XmlSerializableScheduler;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,20 +60,20 @@ public class TestUtil {
      */
     public static String SANDBOX_FOLDER = FileUtil.getPath("./src/test/data/sandbox/");
 
-    public static final Person[] samplePersonData = getSamplePersonData();
+    public static final Entry[] sampleEntryData = getSampleEntryData();
 
-    private static Person[] getSamplePersonData() {
+    private static Entry[] getSampleEntryData() {
         try {
-            return new Person[]{
-                    new Person(new Name("Ali Muster"), new Phone("9482424"), new Email("hans@google.com"), new Address("4th street"), new UniqueTagList()),
-                    new Person(new Name("Boris Mueller"), new Phone("87249245"), new Email("ruth@google.com"), new Address("81th street"), new UniqueTagList()),
-                    new Person(new Name("Carl Kurz"), new Phone("95352563"), new Email("heinz@yahoo.com"), new Address("wall street"), new UniqueTagList()),
-                    new Person(new Name("Daniel Meier"), new Phone("87652533"), new Email("cornelia@google.com"), new Address("10th street"), new UniqueTagList()),
-                    new Person(new Name("Elle Meyer"), new Phone("9482224"), new Email("werner@gmail.com"), new Address("michegan ave"), new UniqueTagList()),
-                    new Person(new Name("Fiona Kunz"), new Phone("9482427"), new Email("lydia@gmail.com"), new Address("little tokyo"), new UniqueTagList()),
-                    new Person(new Name("George Best"), new Phone("9482442"), new Email("anna@google.com"), new Address("4th street"), new UniqueTagList()),
-                    new Person(new Name("Hoon Meier"), new Phone("8482424"), new Email("stefan@mail.com"), new Address("little india"), new UniqueTagList()),
-                    new Person(new Name("Ida Mueller"), new Phone("8482131"), new Email("hans@google.com"), new Address("chicago ave"), new UniqueTagList())
+            return new Entry[]{
+                    new Entry(new Name("Ali Muster"), new StartTime("9482424"), new EndTime("hans@google.com"), new Date("4th street"), new UniqueTagList()),
+                    new Entry(new Name("Boris Mueller"), new StartTime("87249245"), new EndTime("ruth@google.com"), new Date("81th street"), new UniqueTagList()),
+                    new Entry(new Name("Carl Kurz"), new StartTime("95352563"), new EndTime("heinz@yahoo.com"), new Date("wall street"), new UniqueTagList()),
+                    new Entry(new Name("Daniel Meier"), new StartTime("87652533"), new EndTime("cornelia@google.com"), new Date("10th street"), new UniqueTagList()),
+                    new Entry(new Name("Elle Meyer"), new StartTime("9482224"), new EndTime("werner@gmail.com"), new Date("michegan ave"), new UniqueTagList()),
+                    new Entry(new Name("Fiona Kunz"), new StartTime("9482427"), new EndTime("lydia@gmail.com"), new Date("little tokyo"), new UniqueTagList()),
+                    new Entry(new Name("George Best"), new StartTime("9482442"), new EndTime("anna@google.com"), new Date("4th street"), new UniqueTagList()),
+                    new Entry(new Name("Hoon Meier"), new StartTime("8482424"), new EndTime("stefan@mail.com"), new Date("little india"), new UniqueTagList()),
+                    new Entry(new Name("Ida Mueller"), new StartTime("8482131"), new EndTime("hans@google.com"), new Date("chicago ave"), new UniqueTagList())
             };
         } catch (IllegalValueException e) {
             assert false;
@@ -97,8 +97,8 @@ public class TestUtil {
         }
     }
 
-    public static List<Person> generateSamplePersonData() {
-        return Arrays.asList(samplePersonData);
+    public static List<Entry> generateSampleEntryData() {
+        return Arrays.asList(sampleEntryData);
     }
 
     /**
@@ -117,7 +117,7 @@ public class TestUtil {
     }
 
     public static void createDataFileWithSampleData(String filePath) {
-        createDataFileWithData(generateSampleStorageAddressBook(), filePath);
+        createDataFileWithData(generateSampleStorageScheduler(), filePath);
     }
 
     public static <T> void createDataFileWithData(T data, String filePath) {
@@ -134,12 +134,12 @@ public class TestUtil {
         createDataFileWithSampleData(TestApp.SAVE_LOCATION_FOR_TESTING);
     }
 
-    public static AddressBook generateEmptyAddressBook() {
-        return new AddressBook(new UniquePersonList(), new UniqueTagList());
+    public static Scheduler generateEmptyScheduler() {
+        return new Scheduler(new UniqueEntryList(), new UniqueTagList());
     }
 
-    public static XmlSerializableAddressBook generateSampleStorageAddressBook() {
-        return new XmlSerializableAddressBook(generateEmptyAddressBook());
+    public static XmlSerializableScheduler generateSampleStorageScheduler() {
+        return new XmlSerializableScheduler(generateEmptyScheduler());
     }
 
     /**
@@ -273,49 +273,49 @@ public class TestUtil {
     }
 
     /**
-     * Removes a subset from the list of persons.
-     * @param persons The list of persons
-     * @param personsToRemove The subset of persons.
-     * @return The modified persons after removal of the subset from persons.
+     * Removes a subset from the list of entrys.
+     * @param entrys The list of entrys
+     * @param entrysToRemove The subset of entrys.
+     * @return The modified entrys after removal of the subset from entrys.
      */
-    public static TestPerson[] removePersonsFromList(final TestPerson[] persons, TestPerson... personsToRemove) {
-        List<TestPerson> listOfPersons = asList(persons);
-        listOfPersons.removeAll(asList(personsToRemove));
-        return listOfPersons.toArray(new TestPerson[listOfPersons.size()]);
+    public static TestEntry[] removeEntrysFromList(final TestEntry[] entrys, TestEntry... entrysToRemove) {
+        List<TestEntry> listOfEntrys = asList(entrys);
+        listOfEntrys.removeAll(asList(entrysToRemove));
+        return listOfEntrys.toArray(new TestEntry[listOfEntrys.size()]);
     }
 
 
     /**
-     * Returns a copy of the list with the person at specified index removed.
+     * Returns a copy of the list with the entry at specified index removed.
      * @param list original list to copy from
      * @param targetIndexInOneIndexedFormat e.g. if the first element to be removed, 1 should be given as index.
      */
-    public static TestPerson[] removePersonFromList(final TestPerson[] list, int targetIndexInOneIndexedFormat) {
-        return removePersonsFromList(list, list[targetIndexInOneIndexedFormat-1]);
+    public static TestEntry[] removeEntryFromList(final TestEntry[] list, int targetIndexInOneIndexedFormat) {
+        return removeEntrysFromList(list, list[targetIndexInOneIndexedFormat-1]);
     }
 
     /**
-     * Replaces persons[i] with a person.
-     * @param persons The array of persons.
-     * @param person The replacement person
-     * @param index The index of the person to be replaced.
+     * Replaces entrys[i] with a entry.
+     * @param entrys The array of entrys.
+     * @param entry The replacement entry
+     * @param index The index of the entry to be replaced.
      * @return
      */
-    public static TestPerson[] replacePersonFromList(TestPerson[] persons, TestPerson person, int index) {
-        persons[index] = person;
-        return persons;
+    public static TestEntry[] replaceEntryFromList(TestEntry[] entrys, TestEntry entry, int index) {
+        entrys[index] = entry;
+        return entrys;
     }
 
     /**
-     * Appends persons to the array of persons.
-     * @param persons A array of persons.
-     * @param personsToAdd The persons that are to be appended behind the original array.
-     * @return The modified array of persons.
+     * Appends entrys to the array of entrys.
+     * @param entrys A array of entrys.
+     * @param entrysToAdd The entrys that are to be appended behind the original array.
+     * @return The modified array of entrys.
      */
-    public static TestPerson[] addPersonsToList(final TestPerson[] persons, TestPerson... personsToAdd) {
-        List<TestPerson> listOfPersons = asList(persons);
-        listOfPersons.addAll(asList(personsToAdd));
-        return listOfPersons.toArray(new TestPerson[listOfPersons.size()]);
+    public static TestEntry[] addEntrysToList(final TestEntry[] entrys, TestEntry... entrysToAdd) {
+        List<TestEntry> listOfEntrys = asList(entrys);
+        listOfEntrys.addAll(asList(entrysToAdd));
+        return listOfEntrys.toArray(new TestEntry[listOfEntrys.size()]);
     }
 
     private static <T> List<T> asList(T[] objs) {
@@ -326,8 +326,8 @@ public class TestUtil {
         return list;
     }
 
-    public static boolean compareCardAndPerson(PersonCardHandle card, ReadOnlyPerson person) {
-        return card.isSamePerson(person);
+    public static boolean compareCardAndEntry(EntryCardHandle card, ReadOnlyEntry entry) {
+        return card.isSameEntry(entry);
     }
 
     public static Tag[] getTagList(String tags) {

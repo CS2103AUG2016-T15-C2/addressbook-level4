@@ -1,33 +1,33 @@
 package guitests;
 
 import org.junit.Test;
-import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.entry.ReadOnlyEntry;
 
 import static org.junit.Assert.assertEquals;
 
-public class SelectCommandTest extends AddressBookGuiTest {
+public class SelectCommandTest extends SchedulerGuiTest {
 
 
     @Test
-    public void selectPerson_nonEmptyList() {
+    public void selectEntry_nonEmptyList() {
 
         assertSelectionInvalid(10); //invalid index
-        assertNoPersonSelected();
+        assertNoEntrySelected();
 
-        assertSelectionSuccess(1); //first person in the list
-        int personCount = td.getTypicalPersons().length;
-        assertSelectionSuccess(personCount); //last person in the list
-        int middleIndex = personCount / 2;
-        assertSelectionSuccess(middleIndex); //a person in the middle of the list
+        assertSelectionSuccess(1); //first entry in the list
+        int entryCount = td.getTypicalEntrys().length;
+        assertSelectionSuccess(entryCount); //last entry in the list
+        int middleIndex = entryCount / 2;
+        assertSelectionSuccess(middleIndex); //a entry in the middle of the list
 
-        assertSelectionInvalid(personCount + 1); //invalid index
-        assertPersonSelected(middleIndex); //assert previous selection remains
+        assertSelectionInvalid(entryCount + 1); //invalid index
+        assertEntrySelected(middleIndex); //assert previous selection remains
 
         /* Testing other invalid indexes such as -1 should be done when testing the SelectCommand */
     }
 
     @Test
-    public void selectPerson_emptyList(){
+    public void selectEntry_emptyList(){
         commandBox.runCommand("clear");
         assertListSize(0);
         assertSelectionInvalid(1); //invalid index
@@ -35,24 +35,24 @@ public class SelectCommandTest extends AddressBookGuiTest {
 
     private void assertSelectionInvalid(int index) {
         commandBox.runCommand("select " + index);
-        assertResultMessage("The person index provided is invalid");
+        assertResultMessage("The entry index provided is invalid");
     }
 
     private void assertSelectionSuccess(int index) {
         commandBox.runCommand("select " + index);
-        assertResultMessage("Selected Person: "+index);
-        assertPersonSelected(index);
+        assertResultMessage("Selected Entry: "+index);
+        assertEntrySelected(index);
     }
 
-    private void assertPersonSelected(int index) {
-        assertEquals(personListPanel.getSelectedPersons().size(), 1);
-        ReadOnlyPerson selectedPerson = personListPanel.getSelectedPersons().get(0);
-        assertEquals(personListPanel.getPerson(index-1), selectedPerson);
+    private void assertEntrySelected(int index) {
+        assertEquals(entryListPanel.getSelectedEntrys().size(), 1);
+        ReadOnlyEntry selectedEntry = entryListPanel.getSelectedEntrys().get(0);
+        assertEquals(entryListPanel.getEntry(index-1), selectedEntry);
         //TODO: confirm the correct page is loaded in the Browser Panel
     }
 
-    private void assertNoPersonSelected() {
-        assertEquals(personListPanel.getSelectedPersons().size(), 0);
+    private void assertNoEntrySelected() {
+        assertEquals(entryListPanel.getSelectedEntrys().size(), 0);
     }
 
 }

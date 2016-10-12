@@ -1,9 +1,9 @@
 package seedu.address.model;
 
 import seedu.address.commons.core.UnmodifiableObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.ReadOnlyEntry;
+import seedu.address.model.entry.UniqueEntryList;
 
 import java.util.Set;
 
@@ -12,24 +12,24 @@ import java.util.Set;
  */
 public interface Model {
     /** Clears existing backing model and replaces with the provided new data. */
-    void resetData(ReadOnlyAddressBook newData);
+    void resetData(ReadOnlyScheduler newData);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the Scheduler */
+    ReadOnlyScheduler getScheduler();
 
-    /** Deletes the given person. */
-    void deletePerson(ReadOnlyPerson target) throws UniquePersonList.PersonNotFoundException;
+    /** Deletes the given entry. */
+    void deleteEntry(ReadOnlyEntry target) throws UniqueEntryList.EntryNotFoundException;
 
-    /** Adds the given person */
-    void addPerson(Person person) throws UniquePersonList.DuplicatePersonException;
+    /** Adds the given entry */
+    void addEntry(Entry entry) throws UniqueEntryList.DuplicateEntryException;
 
-    /** Returns the filtered person list as an {@code UnmodifiableObservableList<ReadOnlyPerson>} */
-    UnmodifiableObservableList<ReadOnlyPerson> getFilteredPersonList();
+    /** Returns the filtered entry list as an {@code UnmodifiableObservableList<ReadOnlyEntry>} */
+    UnmodifiableObservableList<ReadOnlyEntry> getFilteredEntryList();
 
-    /** Updates the filter of the filtered person list to show all persons */
+    /** Updates the filter of the filtered entry list to show all entrys */
     void updateFilteredListToShowAll();
 
-    /** Updates the filter of the filtered person list to filter by the given keywords*/
-    void updateFilteredPersonList(Set<String> keywords);
+    /** Updates the filter of the filtered entry list to filter by the given keywords*/
+    void updateFilteredEntryList(Set<String> keywords);
 
 }
