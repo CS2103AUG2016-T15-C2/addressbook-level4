@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -152,23 +153,23 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add wrong args wrong args", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name 12345 e/valid@endTime.butNoStartTimePrefix a/valid, date", expectedMessage);
+                "add Valid Name 12345 et/01:02 d/01-02-2015, tag", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 valid@endTime.butNoPrefix a/valid, date", expectedMessage);
+                "add Valid Name st/01:02 01:02 d/01-02-2015, tag", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 e/valid@endTime.butNoDatePrefix valid, date", expectedMessage);
+                "add Valid Name st/01:02 et/01:02 01-02-2015, tag", expectedMessage);
     }
 
     @Test
     public void execute_add_invalidEntryData() throws Exception {
         assertCommandBehavior(
-                "add []\\[;] sd/01-02-2015 e/valid@e.mail a/valid, date", Name.MESSAGE_NAME_CONSTRAINTS);
+                "add []\\[;] st/01:02 et/01:02 d/01-02-2015, tag", Name.MESSAGE_NAME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, date", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
+                "add Valid Name st/01-02 et/01:02 d/01-02-2015, tag", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 e/notAnEndTime a/valid, date", EndTime.MESSAGE_ENDTIME_CONSTRAINTS);
+                "add Valid Name st/01:02 et/01-02 d/01-02-2015, tag", EndTime.MESSAGE_ENDTIME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Name sd/01-02-2015 e/valid@e.mail a/valid, date t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
+                "add Valid Name st/01:02 et/01:02 d/01-02-2015, tag t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
 
     }
 
@@ -384,9 +385,9 @@ public class LogicManagerTest {
 
         Entry adam() throws Exception {
             Name name = new Name("Adam Brown");
-            StartTime privateStartTime = new StartTime("111111");
-            EndTime endTime = new EndTime("adam@gmail.com");
-            Date privateDate = new Date("111, alpha street");
+            StartTime privateStartTime = new StartTime("11:11");
+            EndTime endTime = new EndTime("11:11");
+            Date privateDate = new Date("01-02-2034");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
@@ -401,11 +402,15 @@ public class LogicManagerTest {
          * @param seed used to generate the entry data field values
          */
         Entry generateEntry(int seed) throws Exception {
+            Random random = new Random();
+            String[] num ={"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", 
+                    "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
+                    "20", "21", "22", "23", "24", "25", "26", "27", "28"};
             return new Entry(
                     new Name("Entry " + seed),
-                    new StartTime("" + Math.abs(seed)),
-                    new EndTime(seed + "@endTime"),
-                    new Date("House of " + seed),
+                    new StartTime(num[random.nextInt(24)] + ":00"),
+                    new EndTime(num[random.nextInt(24)] + ":00"),
+                    new Date(num[random.nextInt(28)+1] + "-" + num[random.nextInt(12)+1] + "-2016"),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
@@ -417,9 +422,9 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getName().toString());
-            cmd.append(" p/").append(p.getStartTime());
-            cmd.append(" e/").append(p.getEndTime());
-            cmd.append(" a/").append(p.getDate());
+            cmd.append(" st/").append(p.getStartTime());
+            cmd.append(" et/").append(p.getEndTime());
+            cmd.append(" d/").append(p.getDate());
 
             UniqueTagList tags = p.getTags();
             for(Tag t: tags){
@@ -502,9 +507,9 @@ public class LogicManagerTest {
         Entry generateEntryWithName(String name) throws Exception {
             return new Entry(
                     new Name(name),
-                    new StartTime("1"),
-                    new EndTime("1@endTime"),
-                    new Date("House of 1"),
+                    new StartTime("11:11"),
+                    new EndTime("11:11"),
+                    new Date("01-02-2034"),
                     new UniqueTagList(new Tag("tag"))
             );
         }

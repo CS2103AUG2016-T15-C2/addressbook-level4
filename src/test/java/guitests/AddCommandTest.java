@@ -15,23 +15,23 @@ public class AddCommandTest extends SchedulerGuiTest {
     public void add() {
         //add one entry
         TestEntry[] currentList = td.getTypicalEntrys();
-        TestEntry entryToAdd = td.hoon;
+        TestEntry entryToAdd = td.meeting;
         assertAddSuccess(entryToAdd, currentList);
         currentList = TestUtil.addEntrysToList(currentList, entryToAdd);
 
         //add another entry
-        entryToAdd = td.ida;
+        entryToAdd = td.pickup;
         assertAddSuccess(entryToAdd, currentList);
         currentList = TestUtil.addEntrysToList(currentList, entryToAdd);
 
         //add duplicate entry
-        commandBox.runCommand(td.hoon.getAddCommand());
+        commandBox.runCommand(td.meeting.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_ENTRY);
         assertTrue(entryListPanel.isListMatching(currentList));
 
         //add to empty list
         commandBox.runCommand("clear");
-        assertAddSuccess(td.alice);
+        assertAddSuccess(td.chem);
 
         //invalid command
         commandBox.runCommand("adds Johnny");
