@@ -403,9 +403,9 @@ public class LogicManagerTest {
         Entry generateEntry(int seed) throws Exception {
             return new Entry(
                     new Name("Entry " + seed),
-                    new StartTime("" + Math.abs(seed)),
-                    new EndTime(seed + "@endTime"),
-                    new Date("House of " + seed),
+                    new StartTime(Math.abs(seed) + ":" + Math.abs(seed)),
+                    new EndTime(Math.abs(seed) + ":" + Math.abs(seed)),
+                    new Date(Math.abs(seed) + "-" + Math.abs(seed) + "-" + Math.abs(seed)),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
