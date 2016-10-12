@@ -65,15 +65,15 @@ public class TestUtil {
     private static Entry[] getSampleEntryData() {
         try {
             return new Entry[]{
-                    new Entry(new Name("Ali Muster"), new StartTime("9482424"), new EndTime("hans@google.com"), new Date("4th street"), new UniqueTagList()),
-                    new Entry(new Name("Boris Mueller"), new StartTime("87249245"), new EndTime("ruth@google.com"), new Date("81th street"), new UniqueTagList()),
-                    new Entry(new Name("Carl Kurz"), new StartTime("95352563"), new EndTime("heinz@yahoo.com"), new Date("wall street"), new UniqueTagList()),
-                    new Entry(new Name("Daniel Meier"), new StartTime("87652533"), new EndTime("cornelia@google.com"), new Date("10th street"), new UniqueTagList()),
-                    new Entry(new Name("Elle Meyer"), new StartTime("9482224"), new EndTime("werner@gmail.com"), new Date("michegan ave"), new UniqueTagList()),
-                    new Entry(new Name("Fiona Kunz"), new StartTime("9482427"), new EndTime("lydia@gmail.com"), new Date("little tokyo"), new UniqueTagList()),
-                    new Entry(new Name("George Best"), new StartTime("9482442"), new EndTime("anna@google.com"), new Date("4th street"), new UniqueTagList()),
-                    new Entry(new Name("Hoon Meier"), new StartTime("8482424"), new EndTime("stefan@mail.com"), new Date("little india"), new UniqueTagList()),
-                    new Entry(new Name("Ida Mueller"), new StartTime("8482131"), new EndTime("hans@google.com"), new Date("chicago ave"), new UniqueTagList())
+                    new Entry(new Name("Lunch"), new StartTime("12:00"), new EndTime("13:30"), new Date("10-10-2016"), new UniqueTagList()),
+                    new Entry(new Name("Study Group"), new StartTime("13:00"), new EndTime("15:00"), new Date("11-10-2016"), new UniqueTagList()),
+                    new Entry(new Name("Football"), new StartTime("14:00"), new EndTime("16:00"), new Date("12-10-2016"), new UniqueTagList()),
+                    new Entry(new Name("Test"), new StartTime("15:00"), new EndTime("16:30"), new Date("13-10-2016"), new UniqueTagList()),
+                    new Entry(new Name("Basketball"), new StartTime("16:00"), new EndTime("18:00"), new Date("14-10-2016"), new UniqueTagList()),
+                    new Entry(new Name("Meeting"), new StartTime("17:00"), new EndTime("18:00"), new Date("15-10-2016"), new UniqueTagList()),
+                    new Entry(new Name("Dinner"), new StartTime("18:00"), new EndTime("19:00"), new Date("16-10-2016"), new UniqueTagList()),
+                    new Entry(new Name("Buy Cake"), new StartTime("19:00"), new EndTime("20:00"), new Date("17-10-2016"), new UniqueTagList()),
+                    new Entry(new Name("Watch Football"), new StartTime("20:00"), new EndTime("22:00"), new Date("18-10-2016"), new UniqueTagList())
             };
         } catch (IllegalValueException e) {
             assert false;
