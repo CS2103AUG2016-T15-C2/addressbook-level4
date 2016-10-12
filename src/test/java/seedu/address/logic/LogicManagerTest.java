@@ -408,9 +408,9 @@ public class LogicManagerTest {
                     "20", "21", "22", "23", "24", "25", "26", "27", "28"};
             return new Entry(
                     new Name("Entry " + seed),
-                    new StartTime(num[random.nextInt(25)] + ":00"),
-                    new EndTime(num[random.nextInt(25)] + ":00"),
-                    new Date(num[random.nextInt(29)+1] + "-" + num[random.nextInt(13)+1] + "-2016"),
+                    new StartTime(num[random.nextInt(24)] + ":00"),
+                    new EndTime(num[random.nextInt(24)] + ":00"),
+                    new Date(num[random.nextInt(28)+1] + "-" + num[random.nextInt(12)+1] + "-2016"),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
