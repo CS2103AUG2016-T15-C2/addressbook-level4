@@ -36,9 +36,9 @@ public class Parser {
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+)"
                     + " (?<name>[^/]+)"
-                    + " (?<isStartTimePrivate>p?)st/(?<startTime>[^/]+)"
-                    + " (?<isEndTimePrivate>p?)et/(?<endTime>[^/]+)"
-                    + " (?<isDatePrivate>p?)d/(?<date>[^/]+)"
+                    + " (?<isStartTimePrivate>p?)(?:st/(?<startTime>[^/]+))?"
+                    + " (?<isEndTimePrivate>p?)(?:et/(?<endTime>[^/]+))?"
+                    + " (?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     public Parser() {}
