@@ -152,11 +152,11 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add wrong args wrong args", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name 12345 et/01:02 d/01-02-2015, date", expectedMessage);
+                "add Valid Name 12345 et/01:02 d/01-02-2015, tag", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name st/01:02 valid@endTime.butNoPrefix d/01-02-2015, date", expectedMessage);
+                "add Valid Name st/01:02 01:02 d/01-02-2015, tag", expectedMessage);
         assertCommandBehavior(
-                "add Valid Name st/01:02 et/01:02 01-02-2015, date", expectedMessage);
+                "add Valid Name st/01:02 et/01:02 01-02-2015, tag", expectedMessage);
     }
 
     @Test
