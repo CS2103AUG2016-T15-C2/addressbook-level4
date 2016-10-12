@@ -33,6 +33,14 @@ public class Parser {
                     + "(?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
+    private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
+            Pattern.compile("(?<targetIndex>\\d+)"
+                    + " (?<name>[^/]+)"
+                    + " (?<isStartTimePrivate>p?)st/(?<startTime>[^/]+)"
+                    + " (?<isEndTimePrivate>p?)et/(?<endTime>[^/]+)"
+                    + " (?<isDatePrivate>p?)d/(?<date>[^/]+)"
+                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+    
     public Parser() {}
 
     /**
@@ -60,6 +68,9 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
 
+        case EditCommand.COMMAND_WORD:
+            return prepareEdit(arguments);
+            
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -136,6 +147,29 @@ public class Parser {
         return new DeleteCommand(index.get());
     }
 
+    private Command prepareEdit(String args) {
+        final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
+        // Validate arg string format
+        if(!matcher.matches()){
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));    
+        }
+        
+        try {
+            return new EditCommand(
+                    Integer.parseInt(matcher.group("targetIndex")),
+                    matcher.group("name"),
+                    matcher.group("startTime"),
+                    matcher.group("endTime"),
+                    matcher.group("date"),
+                    getTagsFromArgs(matcher.group("tagArguments"))
+            );
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
+        }
+        
+    }
+    
     /**
      * Parses arguments in the context of the select entry command.
      *
