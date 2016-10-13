@@ -11,11 +11,11 @@ public class FindCommandTest extends SchedulerGuiTest {
     @Test
     public void find_nonEmptyList() {
         assertFindResult("find Mark"); //no results
-        assertFindResult("find test", td.bio, td.chem); //multiple results
+        assertFindResult("find Test", td.chem, td.bio); //multiple results
 
         //find after deleting one result
         commandBox.runCommand("delete 1");
-        assertFindResult("find test",td.chem);
+        assertFindResult("find Test",td.bio);
     }
 
     @Test
