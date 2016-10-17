@@ -2,13 +2,14 @@ package seedu.address.logic.commands;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.UnmodifiableObservableList;
-import seedu.address.model.entry.ReadOnlyEntry;
+import seedu.address.model.entry.*;
+import seedu.address.model.entry.UniqueEntryList.DuplicateEntryException;
 import seedu.address.model.entry.UniqueEntryList.EntryNotFoundException;
 
 /**
  * Deletes a entry identified using it's last displayed index from the scheduler.
  */
-public class DeleteCommand extends Command {
+public class DeleteCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -20,6 +21,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
 
     public final int targetIndex;
+    public Entry prevEntry;
 
     public DeleteCommand(int targetIndex) {
         this.targetIndex = targetIndex;
@@ -43,8 +45,14 @@ public class DeleteCommand extends Command {
         } catch (EntryNotFoundException pnfe) {
             assert false : "The target entry cannot be missing";
         }
-
+        prevEntry = (Entry) entryToDelete;
         return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete));
+    }
+
+
+    @Override
+    public void undo() throws DuplicateEntryException {
+        model.addEntry(prevEntry);
     }
 
 }

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.entry.*;
+import seedu.address.model.entry.UniqueEntryList.EntryNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 /**
  * Adds a entry to the scheduler.
  */
-public class AddCommand extends Command {
+public class AddCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "add";
 
@@ -23,7 +24,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the scheduler";
 
-    private final Entry toAdd;
+    private Entry toAdd;
+    private Entry prevEntry;
 
     /**
      * Convenience constructor using raw values.
@@ -43,6 +45,7 @@ public class AddCommand extends Command {
                 new Date(date),
                 new UniqueTagList(tagSet)
         );
+        prevEntry = this.toAdd;
     }
 
     @Override
@@ -55,6 +58,11 @@ public class AddCommand extends Command {
             return new CommandResult(MESSAGE_DUPLICATE_ENTRY);
         }
 
+    }
+
+    @Override
+    public void undo() throws EntryNotFoundException {
+        model.deleteEntry(prevEntry);
     }
 
 }
