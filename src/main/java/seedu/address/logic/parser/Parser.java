@@ -71,6 +71,9 @@ public class Parser {
         case EditCommand.COMMAND_WORD:
             return prepareEdit(arguments);
             
+        case CompletedCommand.COMMAND_WORD:
+            return prepareCompleted(arguments);
+            
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -157,6 +160,35 @@ public class Parser {
         
         try {
             return new EditCommand(
+                    Integer.parseInt(matcher.group("targetIndex")),
+                    matcher.group("name"),
+                    matcher.group("startTime"),
+                    matcher.group("endTime"),
+                    matcher.group("date"),
+                    getTagsFromArgs(matcher.group("tagArguments"))
+            );
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
+        }
+        
+    }
+    
+    /**
+     * Parses arguments in the context of the completed entry command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareCompleted(String args) {
+        final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
+        // Validate arg string format
+        if(!matcher.matches()){
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));    
+        }
+        
+        try {
+            return new CompletedCommand(
                     Integer.parseInt(matcher.group("targetIndex")),
                     matcher.group("name"),
                     matcher.group("startTime"),
