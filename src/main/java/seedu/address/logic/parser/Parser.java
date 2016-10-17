@@ -41,6 +41,8 @@ public class Parser {
                     + " (?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
+    private CommandManager commandManager = new CommandManager();
+    
     public Parser() {}
 
     /**
@@ -48,8 +50,9 @@ public class Parser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
+     * @throws Exception 
      */
-    public Command parseCommand(String userInput) {
+    public Command parseCommand(String userInput) throws Exception {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -60,22 +63,25 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return prepareAdd(arguments);
+            return commandManager.ExecuteCommand(prepareAdd(arguments));
 
         case SelectCommand.COMMAND_WORD:
-            return prepareSelect(arguments);
+            return commandManager.ExecuteCommand(prepareSelect(arguments));
 
         case DeleteCommand.COMMAND_WORD:
-            return prepareDelete(arguments);
+            return commandManager.ExecuteCommand(prepareDelete(arguments));
 
         case EditCommand.COMMAND_WORD:
-            return prepareEdit(arguments);
+            return commandManager.ExecuteCommand(prepareEdit(arguments));
+            
+        case "undo":
+            return commandManager.Undo();
             
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return prepareFind(arguments);
+            return commandManager.ExecuteCommand(prepareFind(arguments));
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -146,7 +152,13 @@ public class Parser {
 
         return new DeleteCommand(index.get());
     }
-
+    
+    /**
+     * Parses arguments into the context of the edit entry command.
+     * 
+     * @param args full command args string
+     * @return the newly prepared command
+     */
     private Command prepareEdit(String args) {
         final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
