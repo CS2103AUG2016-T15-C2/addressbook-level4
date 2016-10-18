@@ -28,9 +28,9 @@ public class Parser {
 
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
-                    + "(?<isStartTimePrivate>p?)(?:st/(?<startTime>[^/]+))?"
-                    + "(?<isEndTimePrivate>p?)(?:et/(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
+                    + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
+                    + "(?<isEndTimePrivate>p?)(?:(to/|et/|by/)(?<endTime>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
