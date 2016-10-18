@@ -11,7 +11,7 @@
    > Having any Java 8 version is not enough. <br>
    This app will not work with earlier versions of Java 8.
    
-1. Download the latest `addressbook.jar` from the [releases](../../../releases) tab.
+1. Download the latest `scheduler.jar` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your Scheduler.
 3. Double-click the file to start the app. The GUI should appear in a few seconds. 
    > <img src="images/Ui.png" width="600">
@@ -20,7 +20,7 @@
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
 5. Some example commands you can try:
    * **`list`** : lists all items
-   * **`add`**` `add Meeting st/13:00 et/17:00 d/19-02-16 [t/priority]` : 
+   * **`add`**` `add Meeting from/13:00 to/17:00 d/19-02-16 [t/priority]` : 
      adds an item named `Meeting` to the scheduler.
    * **`delete`**` 3` : deletes the 3rd item shown in the scheduler
    * **`exit`** : exits the app
@@ -34,66 +34,79 @@
 > * Items in `SQUARE_BRACKETS` are optional.
 > * Items with `...` after them can have multiple instances.
 > * The order of parameters is fixed.
-
+> * parameter marker `st/` is interchangeable with: `from/` `f/`
+> * paramter marker  `et/` is interchangeable with: `to/`
+> * paramter marker `d/` is interchangeable with: `date/`<br>
 #### Viewing help : `help`
 Format: `help`
 
 > Help is also shown if you enter an incorrect command e.g. `abcd`
  
 #### Adding an item: `add`
-Adds an event to the scheduler<br>
+Adds an event to the scheduler. Advanced users can type `a` instead.<br>
 Format: `add NAME st/START_TIME et/END_TIME d/DATE [t/TAG]` 
+Format: `a NAME st/START_TIME et/END_TIME d/DATE [t/TAG]` 
 
 Adds a task to the scheduler<br>
 Format: `add NAME d/DATE` 
+Format: `a NAME d/DATE` 
 
 Adds a floating task to the scheduler<br>
 Format: `add NAME` 
+Format: `a NAME` 
 
 Examples: 
 * `add Meeting st/12:00 et/17:00 d/19-02-16 t/priority`
-* `add Gathering st/19:00 et/23:00 d/24-05-16 t/priority`
-* `add Do Homework1 d/19-02-16`
-* `add Do Homework2`
+* `add Gathering from/19:00 to/23:00 d/24-05-16 t/priority`
+* `add Do Homework1 date/19-02-16`
+* `a Do Homework2 by/13:00`
 
 #### Listing all items: `list`
-Shows a list of all items in the scheduler.<br>
+Shows a list of all items in the scheduler. User can also type `l` instead of `list`<br>
 Format: `list [by/SORT_CATEGORY]`
+Format: `l [by/SORT_CATEGORY]`
 Examples: 
 * `list`
 * `list by/date`
+* `l by/date`
 
 #### Editing an item : `edit`
-Edits an event to the scheduler specified by the index <br>
+Edits an event to the scheduler specified by the index. User can also type `e` instead of `edit` <br>
 Format: `edit INDEX NAME st/START_TIME et/END_TIME d/DATE` 
+Format: `e INDEX NAME st/START_TIME et/END_TIME d/DATE` 
 
 Edits a task to the scheduler specified by the index <br>
 Format: `edit INDEX NAME d/DATE` 
+Format: `e INDEX NAME d/DATE` 
 
 Edits a floating task to the scheduler specified by the index <br>
 Format: `edit INDEX NAME` 
+Format: `e INDEX NAME` 
 
 Examples: 
 * `edit 1 Meeting st/12:00 et/17:00 d/19-02-16 t/priority`
 * `edit 3 Do Homework1 d/19-02-12`
-* `edit 2 Do Homework2`
+* `e 2 Do Homework2`
 
 #### Undo most recent action: `undo`
 Reverts scheduler back to the state before the most recent committed action.<br>
 Format: `undo`
 
 #### Deleting an item: `delete`
-Delete the item selected by the user.<br>
+Delete the item selected by the user. User can also type `d` instead of `delete`<br>
 Format: `delete INDEX`
+Format: `d INDEX`
 
 > * The user needs to view Scheduler in a list to find index of item
 
 Examples: 
 * `delete 23`
+* `d 3`
 
 #### Finding all items containing any keyword in their name: `find`
-Finds items where their item names contain any of the given keywords.<br>
+Finds items where their item names contain any of the given keywords. User can also type `f` instead of `find`<br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `f KEYWORD [MORE_KEYWORDS]`
 
 > * The search is non-case sensitive. e.g `homework` will match `Homework`
 > * Only the name is searched.
@@ -104,12 +117,14 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples: 
 * `find Tutorial`<br>
   Returns `CS2103 Tutorial` and words related to `tutorial`
-* `find CS Assignment Errand`<br>
+* `f CS Assignment Errand`<br>
   Returns Any item having names `CS`, `Assignment`, or `Errand`
 
 #### Exiting the program : `exit`
-Exits the program.<br>
-Format: `exit`  
+Exits the program. User can also type `ex` instead of `exit`<br>
+Format: `exit`
+Format: `ex`
+
 
 #### Saving the data: `save`
 Scheduler data are saved in the hard disk automatically after any command that changes the data. Data is saved at path previously assigned by the user.<br>
@@ -120,8 +135,9 @@ File path can be manually changed to a user-specified location.<br>
 Format: `path FILE_PATH`
 
 #### Clear scheduler of all entries: `clear`
-Deletes all entries in the scheduler.<br>
+Deletes all entries in the scheduler. User can also type `c` instead of `clear`<br>
 Format: `clear`
+Format: `c`
 
 ## FAQ
 
@@ -129,6 +145,7 @@ Format: `clear`
 **A**: Install the app in the other computer and overwrite the empty data file it creates with 
        the file that contains the data of your previous Scheduler folder.
        
+
 ## Command Summary
 
 Command | Format  
