@@ -7,6 +7,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.UnmodifiableObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.entry.*;
+import seedu.address.model.entry.UniqueEntryList.DuplicateEntryException;
 import seedu.address.model.entry.UniqueEntryList.EntryNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
@@ -14,9 +15,10 @@ import seedu.address.model.tag.UniqueTagList;
 /**
  * Edits an entry in the scheduler
  */
-public class EditCommand extends Command {
+public class EditCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD2 = "e";
     
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an entry in the scheduler. "
             + "Parameters: INDEX NAME st/START_TIME et/END_TIME d/DATE [t/TAG]...\n"
@@ -28,6 +30,8 @@ public class EditCommand extends Command {
     
     public final int targetIndex;
     public final Entry toAdd;
+    public Entry prevEntry;
+    public Entry currEntry;
     
     public EditCommand(int targetIndex, String name, String startTime, String endTime, String date, Set<String> tags)
             throws IllegalValueException {
@@ -61,7 +65,8 @@ public class EditCommand extends Command {
         } catch (EntryNotFoundException pnfe) {
             assert false : "The target entry cannot be missing";
         }
-        
+        prevEntry = (Entry) entryToDelete;
+        currEntry = toAdd;
         try {
             model.addEntry(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
@@ -70,6 +75,12 @@ public class EditCommand extends Command {
         }
         
 
+    }
+
+    @Override
+    public void undo() throws EntryNotFoundException, DuplicateEntryException {
+        model.deleteEntry(currEntry);
+        model.addEntry(prevEntry);
     }
 
 }

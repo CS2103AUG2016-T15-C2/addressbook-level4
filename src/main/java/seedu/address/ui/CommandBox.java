@@ -68,7 +68,7 @@ public class CommandBox extends UiPart {
 
 
     @FXML
-    private void handleCommandInputChanged() {
+    private void handleCommandInputChanged() throws Exception {
         //Take a copy of the command text
         previousCommandTest = commandTextField.getText();
 
