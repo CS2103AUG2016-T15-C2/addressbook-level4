@@ -106,6 +106,12 @@ public class Parser {
             
         case ListCommand.COMMAND_WORD2:
             return new ListCommand();
+            
+        case PathCommand.COMMAND_WORD:
+        	return commandManager.ExecuteCommand(preparePath(arguments));
+        	
+        case PathCommand.COMMAND_WORD2:
+        	return commandManager.ExecuteCommand(preparePath(arguments));
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -262,4 +268,19 @@ public class Parser {
         return new FindCommand(keywordSet);
     }
 
+    /**
+     * Parses arguments in the context of the file path command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command preparePath(String args) {
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindCommand.MESSAGE_USAGE));
+        }
+        String filePath = args;					//store input to filePath
+		return new PathCommand(filePath);		//push input to PathCommand
+    }
 }
