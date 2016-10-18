@@ -36,15 +36,9 @@ public class Parser {
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+)"
                     + " (?<name>[^/]+)"
-<<<<<<< HEAD
                     + " (?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + " (?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
                     + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
-=======
-                    + "(?<isStartTimePrivate>p?)(?:st/(?<startTime>[^/]+))?"
-                    + "(?<isEndTimePrivate>p?)(?:et/(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
->>>>>>> b0109efe3387602b6d952f78addd03db8f760a74
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     private CommandManager commandManager = new CommandManager();
@@ -69,29 +63,22 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-<<<<<<< HEAD
-            return prepareAdd(arguments);
+            return commandManager.ExecuteCommand(prepareAdd(arguments));
         
         case AddCommand.COMMAND_WORD2:
-            return prepareAdd(arguments);
-
-        case SelectCommand.COMMAND_WORD:
-            return prepareSelect(arguments);
-        
-        case SelectCommand.COMMAND_WORD2:
-            return prepareSelect(arguments);
-=======
             return commandManager.ExecuteCommand(prepareAdd(arguments));
 
         case SelectCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareSelect(arguments));
->>>>>>> b0109efe3387602b6d952f78addd03db8f760a74
+        
+        case SelectCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareSelect(arguments));
 
         case DeleteCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareDelete(arguments));
 
         case DeleteCommand.COMMAND_WORD2:
-            return prepareDelete(arguments);
+            return commandManager.ExecuteCommand(prepareDelete(arguments));
 
         case EditCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareEdit(arguments));
@@ -100,7 +87,7 @@ public class Parser {
             return commandManager.Undo();
             
         case EditCommand.COMMAND_WORD2:
-            return prepareEdit(arguments);
+            return commandManager.ExecuteCommand(prepareEdit(arguments));
             
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -109,14 +96,10 @@ public class Parser {
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-<<<<<<< HEAD
-            return prepareFind(arguments);
+            return commandManager.ExecuteCommand(prepareFind(arguments));
             
         case FindCommand.COMMAND_WORD2:
-            return prepareFind(arguments);
-=======
             return commandManager.ExecuteCommand(prepareFind(arguments));
->>>>>>> b0109efe3387602b6d952f78addd03db8f760a74
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
