@@ -36,10 +36,18 @@ public class Parser {
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+)"
                     + " (?<name>[^/]+)"
+<<<<<<< HEAD
                     + " (?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + " (?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
                     + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
+=======
+                    + "(?<isStartTimePrivate>p?)(?:st/(?<startTime>[^/]+))?"
+                    + "(?<isEndTimePrivate>p?)(?:et/(?<endTime>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
+>>>>>>> b0109efe3387602b6d952f78addd03db8f760a74
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+    
+    private CommandManager commandManager = new CommandManager();
     
     public Parser() {}
 
@@ -48,8 +56,9 @@ public class Parser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
+     * @throws Exception 
      */
-    public Command parseCommand(String userInput) {
+    public Command parseCommand(String userInput) throws Exception {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -60,6 +69,7 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
+<<<<<<< HEAD
             return prepareAdd(arguments);
         
         case AddCommand.COMMAND_WORD2:
@@ -70,15 +80,24 @@ public class Parser {
         
         case SelectCommand.COMMAND_WORD2:
             return prepareSelect(arguments);
+=======
+            return commandManager.ExecuteCommand(prepareAdd(arguments));
+
+        case SelectCommand.COMMAND_WORD:
+            return commandManager.ExecuteCommand(prepareSelect(arguments));
+>>>>>>> b0109efe3387602b6d952f78addd03db8f760a74
 
         case DeleteCommand.COMMAND_WORD:
-            return prepareDelete(arguments);
+            return commandManager.ExecuteCommand(prepareDelete(arguments));
 
         case DeleteCommand.COMMAND_WORD2:
             return prepareDelete(arguments);
 
         case EditCommand.COMMAND_WORD:
-            return prepareEdit(arguments);
+            return commandManager.ExecuteCommand(prepareEdit(arguments));
+            
+        case "undo":
+            return commandManager.Undo();
             
         case EditCommand.COMMAND_WORD2:
             return prepareEdit(arguments);
@@ -90,10 +109,14 @@ public class Parser {
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
+<<<<<<< HEAD
             return prepareFind(arguments);
             
         case FindCommand.COMMAND_WORD2:
             return prepareFind(arguments);
+=======
+            return commandManager.ExecuteCommand(prepareFind(arguments));
+>>>>>>> b0109efe3387602b6d952f78addd03db8f760a74
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -173,7 +196,13 @@ public class Parser {
 
         return new DeleteCommand(index.get());
     }
-
+    
+    /**
+     * Parses arguments into the context of the edit entry command.
+     * 
+     * @param args full command args string
+     * @return the newly prepared command
+     */
     private Command prepareEdit(String args) {
         final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
