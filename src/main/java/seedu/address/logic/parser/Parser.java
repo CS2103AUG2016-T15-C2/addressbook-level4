@@ -28,17 +28,17 @@ public class Parser {
 
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
-                    + "(?<isStartTimePrivate>p?)(?:st/(?<startTime>[^/]+))?"
-                    + "(?<isEndTimePrivate>p?)(?:et/(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
+                    + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
+                    + "(?<isEndTimePrivate>p?)(?:(to/|et/|by/)(?<endTime>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+)"
                     + " (?<name>[^/]+)"
-                    + "(?<isStartTimePrivate>p?)(?:st/(?<startTime>[^/]+))?"
-                    + "(?<isEndTimePrivate>p?)(?:et/(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
+                    + " (?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
+                    + " (?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
+                    + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     private CommandManager commandManager = new CommandManager();
@@ -64,11 +64,20 @@ public class Parser {
 
         case AddCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareAdd(arguments));
+        
+        case AddCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareAdd(arguments));
 
         case SelectCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareSelect(arguments));
+        
+        case SelectCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareSelect(arguments));
 
         case DeleteCommand.COMMAND_WORD:
+            return commandManager.ExecuteCommand(prepareDelete(arguments));
+
+        case DeleteCommand.COMMAND_WORD2:
             return commandManager.ExecuteCommand(prepareDelete(arguments));
 
         case EditCommand.COMMAND_WORD:
@@ -77,19 +86,37 @@ public class Parser {
         case "undo":
             return commandManager.Undo();
             
+        case EditCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareEdit(arguments));
+            
         case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
+            
+        case ClearCommand.COMMAND_WORD2:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareFind(arguments));
+            
+        case FindCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareFind(arguments));
 
         case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+            
+        case ListCommand.COMMAND_WORD2:
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+           
+        case ExitCommand.COMMAND_WORD2:
+            return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        case HelpCommand.COMMAND_WORD2:
             return new HelpCommand();
 
         default:
