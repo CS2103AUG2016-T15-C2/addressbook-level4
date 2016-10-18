@@ -17,6 +17,7 @@ import seedu.address.model.tag.UniqueTagList;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD2 = "e";
     
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an entry in the scheduler. "
             + "Parameters: INDEX NAME st/START_TIME et/END_TIME d/DATE [t/TAG]...\n"

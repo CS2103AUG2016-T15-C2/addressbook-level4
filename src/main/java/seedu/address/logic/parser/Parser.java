@@ -36,9 +36,9 @@ public class Parser {
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+)"
                     + " (?<name>[^/]+)"
-                    + " (?<isStartTimePrivate>p?)(?:st/(?<startTime>[^/]+))?"
-                    + " (?<isEndTimePrivate>p?)(?:et/(?<endTime>[^/]+))?"
-                    + " (?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
+                    + " (?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
+                    + " (?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
+                    + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     public Parser() {}
@@ -61,29 +61,56 @@ public class Parser {
 
         case AddCommand.COMMAND_WORD:
             return prepareAdd(arguments);
+        
+        case AddCommand.COMMAND_WORD2:
+            return prepareAdd(arguments);
 
         case SelectCommand.COMMAND_WORD:
+            return prepareSelect(arguments);
+        
+        case SelectCommand.COMMAND_WORD2:
             return prepareSelect(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
 
+        case DeleteCommand.COMMAND_WORD2:
+            return prepareDelete(arguments);
+
         case EditCommand.COMMAND_WORD:
+            return prepareEdit(arguments);
+            
+        case EditCommand.COMMAND_WORD2:
             return prepareEdit(arguments);
             
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+            
+        case ClearCommand.COMMAND_WORD2:
+            return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
+            return prepareFind(arguments);
+            
+        case FindCommand.COMMAND_WORD2:
             return prepareFind(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+            
+        case ListCommand.COMMAND_WORD2:
+            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+           
+        case ExitCommand.COMMAND_WORD2:
+            return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        case HelpCommand.COMMAND_WORD2:
             return new HelpCommand();
 
         default:
