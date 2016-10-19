@@ -6,9 +6,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.SchedulerChangedEvent;
 import seedu.address.commons.events.storage.DataSavingExceptionEvent;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.model.ReadOnlyScheduler;
 import seedu.address.model.UserPrefs;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Optional;
@@ -73,7 +75,12 @@ public class StorageManager extends ComponentManager implements Storage {
     @Override
     public void saveScheduler(ReadOnlyScheduler scheduler, String filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        schedulerStorage.saveScheduler(scheduler, filePath);
+        assert scheduler != null;
+        assert filePath != null;
+        
+        File file = new File(filePath);
+        FileUtil.createIfMissing(file);
+        XmlFileStorage.saveDataToFile(file, new XmlSerializableScheduler(scheduler));
     }
 
 

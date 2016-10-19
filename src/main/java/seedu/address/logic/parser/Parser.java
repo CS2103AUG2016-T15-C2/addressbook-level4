@@ -28,28 +28,33 @@ public class Parser {
 
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
-                    + "(?<isStartTimePrivate>p?)(?:st/(?<startTime>[^/]+))?"
-                    + "(?<isEndTimePrivate>p?)(?:et/(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
+                    + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
+                    + "(?<isEndTimePrivate>p?)(?:(to/|et/|by/)(?<endTime>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+)"
                     + " (?<name>[^/]+)"
-                    + " (?<isStartTimePrivate>p?)(?:st/(?<startTime>[^/]+))?"
-                    + " (?<isEndTimePrivate>p?)(?:et/(?<endTime>[^/]+))?"
-                    + " (?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
+                    + " (?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
+                    + " (?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
+                    + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
-    public Parser() {}
+    private CommandManager commandManager = new CommandManager();
+
+    public Parser() {
+    }
 
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput full user input string
+     * @param userInput
+     *            full user input string
      * @return the command based on the user input
+     * @throws Exception
      */
-    public Command parseCommand(String userInput) {
+    public Command parseCommand(String userInput) throws Exception {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -60,33 +65,74 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return prepareAdd(arguments);
+            return commandManager.ExecuteCommand(prepareAdd(arguments));
+        
+        case AddCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareAdd(arguments));
 
         case SelectCommand.COMMAND_WORD:
-            return prepareSelect(arguments);
+            return commandManager.ExecuteCommand(prepareSelect(arguments));
+        
+        case SelectCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareSelect(arguments));
 
         case DeleteCommand.COMMAND_WORD:
-            return prepareDelete(arguments);
+            return commandManager.ExecuteCommand(prepareDelete(arguments));
+
+        case DeleteCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareDelete(arguments));
 
         case EditCommand.COMMAND_WORD:
-            return prepareEdit(arguments);
+            return commandManager.ExecuteCommand(prepareEdit(arguments));
+            
+        case EditCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareEdit(arguments));
             
         case CompletedCommand.COMMAND_WORD:
             return prepareCompleted(arguments);
             
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+            
+        case ClearCommand.COMMAND_WORD2:
+            return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return prepareFind(arguments);
+            return commandManager.ExecuteCommand(prepareFind(arguments));
+            
+        case FindCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareFind(arguments));
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+            
+        case ListCommand.COMMAND_WORD2:
+            return new ListCommand();
+            
+        case PathCommand.COMMAND_WORD:
+        	return commandManager.ExecuteCommand(preparePath(arguments));
+        	
+        case PathCommand.COMMAND_WORD2:
+        	return commandManager.ExecuteCommand(preparePath(arguments));
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+           
+        case ExitCommand.COMMAND_WORD2:
+            return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+            
+        case "undo":
+            commandManager.Undo();
+            return null;
+
+        case "redo":
+            commandManager.Redo();
+            return null;
+            
+        case HelpCommand.COMMAND_WORD2:
             return new HelpCommand();
 
         default:
@@ -97,31 +143,27 @@ public class Parser {
     /**
      * Parses arguments in the context of the add entry command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
-    private Command prepareAdd(String args){
+    private Command prepareAdd(String args) {
         final Matcher matcher = ENTRY_DATA_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         try {
-            return new AddCommand(
-                    matcher.group("name"),
-                    matcher.group("startTime"),
-                    matcher.group("endTime"),
-                    matcher.group("date"),
-                    getTagsFromArgs(matcher.group("tagArguments"))
-            );
+            return new AddCommand(matcher.group("name"), matcher.group("startTime"), matcher.group("endTime"),
+                    matcher.group("date"), getTagsFromArgs(matcher.group("tagArguments")));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
     }
 
     /**
-     * Extracts the new entry's tags from the add command's tag arguments string.
-     * Merges duplicate tag strings.
+     * Extracts the new entry's tags from the add command's tag arguments
+     * string. Merges duplicate tag strings.
      */
     private static Set<String> getTagsFromArgs(String tagArguments) throws IllegalValueException {
         // no tags
@@ -136,43 +178,44 @@ public class Parser {
     /**
      * Parses arguments in the context of the delete entry command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
     private Command prepareDelete(String args) {
 
         Optional<Integer> index = parseIndex(args);
-        if(!index.isPresent()){
-            return new IncorrectCommand(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         return new DeleteCommand(index.get());
     }
 
+    /**
+     * Parses arguments into the context of the edit entry command.
+     * 
+     * @param args
+     *            full command args string
+     * @return the newly prepared command
+     */
     private Command prepareEdit(String args) {
         final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
-        if(!matcher.matches()){
-            return new IncorrectCommand(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));    
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
-        
+
         try {
-            return new EditCommand(
-                    Integer.parseInt(matcher.group("targetIndex")),
-                    matcher.group("name"),
-                    matcher.group("startTime"),
-                    matcher.group("endTime"),
-                    matcher.group("date"),
-                    getTagsFromArgs(matcher.group("tagArguments"))
-            );
+            return new EditCommand(Integer.parseInt(matcher.group("targetIndex")), matcher.group("name"),
+                    matcher.group("startTime"), matcher.group("endTime"), matcher.group("date"),
+                    getTagsFromArgs(matcher.group("tagArguments")));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
-        
+
     }
-    
+
     /**
      * Parses arguments in the context of the completed entry command.
      *
@@ -205,22 +248,23 @@ public class Parser {
     /**
      * Parses arguments in the context of the select entry command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
     private Command prepareSelect(String args) {
         Optional<Integer> index = parseIndex(args);
-        if(!index.isPresent()){
-            return new IncorrectCommand(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
         }
 
         return new SelectCommand(index.get());
     }
 
     /**
-     * Returns the specified index in the {@code command} IF a positive unsigned integer is given as the index.
-     *   Returns an {@code Optional.empty()} otherwise.
+     * Returns the specified index in the {@code command} IF a positive unsigned
+     * integer is given as the index. Returns an {@code Optional.empty()}
+     * otherwise.
      */
     private Optional<Integer> parseIndex(String command) {
         final Matcher matcher = ENTRY_INDEX_ARGS_FORMAT.matcher(command.trim());
@@ -229,7 +273,7 @@ public class Parser {
         }
 
         String index = matcher.group("targetIndex");
-        if(!StringUtil.isUnsignedInteger(index)){
+        if (!StringUtil.isUnsignedInteger(index)) {
             return Optional.empty();
         }
         return Optional.of(Integer.parseInt(index));
@@ -239,14 +283,14 @@ public class Parser {
     /**
      * Parses arguments in the context of the find entry command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
     private Command prepareFind(String args) {
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    FindCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         // keywords delimited by whitespace
@@ -255,4 +299,19 @@ public class Parser {
         return new FindCommand(keywordSet);
     }
 
+    /**
+     * Parses arguments in the context of the file path command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command preparePath(String args) {
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    PathCommand.MESSAGE_USAGE));
+        }
+        String filePath = args;					//store input to filePath
+		return new PathCommand(filePath);		//push input to PathCommand
+    }
 }
