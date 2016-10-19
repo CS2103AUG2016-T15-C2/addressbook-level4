@@ -18,20 +18,19 @@ import seedu.address.model.tag.UniqueTagList;
 public class EditCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "edit";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an entry in the scheduler. "
-            + "Parameters: INDEX NAME st/START_TIME et/END_TIME d/DATE [t/TAG]...\n"
-            + "Example: " + COMMAND_WORD
+            + "Parameters: INDEX NAME st/START_TIME et/END_TIME d/DATE [t/TAG]...\n" + "Example: " + COMMAND_WORD
             + " 2 John Wedding st/15:00 et/21:00 d/12-10-2016 t/undone";
-    
+
     public static final String MESSAGE_SUCCESS = "Entry editted: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the scheduler";
-    
+
     public final int targetIndex;
     public final Entry toAdd;
     public Entry prevEntry;
     public Entry currEntry;
-    
+
     public EditCommand(int targetIndex, String name, String startTime, String endTime, String date, Set<String> tags)
             throws IllegalValueException {
         this.targetIndex = targetIndex;
@@ -39,19 +38,14 @@ public class EditCommand extends UndoableCommand {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        this.toAdd = new Entry(
-                new Name(name),
-                new StartTime(startTime),
-                new EndTime(endTime),
-                new Date(date),
-                new UniqueTagList(tagSet)
-        );
+        this.toAdd = new Entry(new Name(name), new StartTime(startTime), new EndTime(endTime), new Date(date),
+                new UniqueTagList(tagSet));
     }
-    
+
     @Override
     public CommandResult execute() {
         UnmodifiableObservableList<ReadOnlyEntry> lastShownList = model.getFilteredEntryList();
-        
+
         if (lastShownList.size() < targetIndex) {
             indicateAttemptToExecuteIncorrectCommand();
             return new CommandResult(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
@@ -72,7 +66,6 @@ public class EditCommand extends UndoableCommand {
         } catch (UniqueEntryList.DuplicateEntryException e) {
             return new CommandResult(MESSAGE_DUPLICATE_ENTRY);
         }
-        
 
     }
 
@@ -80,6 +73,12 @@ public class EditCommand extends UndoableCommand {
     public void undo() throws EntryNotFoundException, DuplicateEntryException {
         model.deleteEntry(currEntry);
         model.addEntry(prevEntry);
+    }
+
+    @Override
+    public void redo() throws Exception {
+        model.deleteEntry(prevEntry);
+        model.addEntry(currEntry);
     }
 
 }

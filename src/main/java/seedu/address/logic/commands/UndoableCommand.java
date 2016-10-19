@@ -1,10 +1,15 @@
 package seedu.address.logic.commands;
 
-public abstract class UndoableCommand extends Command{
+public abstract class UndoableCommand extends Command {
 
     /**
-     * Undo the most recent command.
+     * Undo the most recent commands (up to 10).
      */
-    public abstract void  undo() throws Exception;
-    
+    public abstract void undo() throws Exception;
+
+    /**
+     * Redo the recently undone command.
+     */
+    public abstract void redo() throws Exception;
+
 }
