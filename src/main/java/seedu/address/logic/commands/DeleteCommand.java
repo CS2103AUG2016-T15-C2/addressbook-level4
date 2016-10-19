@@ -13,6 +13,7 @@ import seedu.address.model.entry.UniqueEntryList.EntryNotFoundException;
 public class DeleteCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD2 = "d";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the entry identified by the index number used in the last entry listing.\n"

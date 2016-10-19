@@ -16,9 +16,16 @@ import java.util.Set;
 public class AddCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "add";
+<<<<<<< HEAD
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry to the scheduler. "
             + "Parameters: NAME st/START_TIME et/END_TIME d/DATE  [t/TAG]...\n" + "Example: " + COMMAND_WORD
+=======
+    public static final String COMMAND_WORD2 = "a";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " or "+ COMMAND_WORD2 + ": Adds an entry to the scheduler. "
+            + "Parameters: NAME st/START_TIME et/END_TIME d/DATE  [t/TAG]...\n"
+            + "Example: " + COMMAND_WORD
+>>>>>>> 852b51e3a4a870310c499488ba6e2978bcf7a49c
             + " John Wedding st/14:00 et/21:00 d/12-10-2016 t/done or t/undone";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";

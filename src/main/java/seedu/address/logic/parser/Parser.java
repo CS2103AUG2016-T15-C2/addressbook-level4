@@ -23,6 +23,7 @@ public class Parser {
 
     private static final Pattern ENTRY_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
+<<<<<<< HEAD
     private static final Pattern KEYWORDS_ARGS_FORMAT = Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one
                                                                                                            // or
                                                                                                            // more
@@ -45,6 +46,26 @@ public class Parser {
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of
                                                          // tags
 
+=======
+    private static final Pattern KEYWORDS_ARGS_FORMAT =
+            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+
+    private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
+            Pattern.compile("(?<name>[^/]+)"
+                    + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
+                    + "(?<isEndTimePrivate>p?)(?:(to/|et/|by/)(?<endTime>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
+                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+
+    private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
+            Pattern.compile("(?<targetIndex>\\d+)"
+                    + " (?<name>[^/]+)"
+                    + " (?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
+                    + " (?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
+                    + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
+                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+    
+>>>>>>> 852b51e3a4a870310c499488ba6e2978bcf7a49c
     private CommandManager commandManager = new CommandManager();
 
     public Parser() {
@@ -70,31 +91,69 @@ public class Parser {
 
         case AddCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareAdd(arguments));
+        
+        case AddCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareAdd(arguments));
 
         case SelectCommand.COMMAND_WORD:
+            return commandManager.ExecuteCommand(prepareSelect(arguments));
+        
+        case SelectCommand.COMMAND_WORD2:
             return commandManager.ExecuteCommand(prepareSelect(arguments));
 
         case DeleteCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareDelete(arguments));
 
+        case DeleteCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareDelete(arguments));
+
         case EditCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareEdit(arguments));
+<<<<<<< HEAD
 
+=======
+            
+        case "undo":
+            return commandManager.Undo();
+            
+        case EditCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareEdit(arguments));
+            
+>>>>>>> 852b51e3a4a870310c499488ba6e2978bcf7a49c
         case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
+            
+        case ClearCommand.COMMAND_WORD2:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareFind(arguments));
+            
+        case FindCommand.COMMAND_WORD2:
+            return commandManager.ExecuteCommand(prepareFind(arguments));
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+            
+        case ListCommand.COMMAND_WORD2:
+            return new ListCommand();
+            
+        case PathCommand.COMMAND_WORD:
+        	return commandManager.ExecuteCommand(preparePath(arguments));
+        	
+        case PathCommand.COMMAND_WORD2:
+        	return commandManager.ExecuteCommand(preparePath(arguments));
 
         case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+           
+        case ExitCommand.COMMAND_WORD2:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+<<<<<<< HEAD
         case "undo":
             commandManager.Undo();
             return null;
@@ -102,6 +161,10 @@ public class Parser {
         case "redo":
             commandManager.Redo();
             return null;
+=======
+        case HelpCommand.COMMAND_WORD2:
+            return new HelpCommand();
+>>>>>>> 852b51e3a4a870310c499488ba6e2978bcf7a49c
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
@@ -238,4 +301,19 @@ public class Parser {
         return new FindCommand(keywordSet);
     }
 
+    /**
+     * Parses arguments in the context of the file path command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command preparePath(String args) {
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    PathCommand.MESSAGE_USAGE));
+        }
+        String filePath = args;					//store input to filePath
+		return new PathCommand(filePath);		//push input to PathCommand
+    }
 }

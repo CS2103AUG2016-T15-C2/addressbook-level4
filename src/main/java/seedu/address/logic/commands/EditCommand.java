@@ -18,7 +18,12 @@ import seedu.address.model.tag.UniqueTagList;
 public class EditCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "edit";
+<<<<<<< HEAD
 
+=======
+    public static final String COMMAND_WORD2 = "e";
+    
+>>>>>>> 852b51e3a4a870310c499488ba6e2978bcf7a49c
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an entry in the scheduler. "
             + "Parameters: INDEX NAME st/START_TIME et/END_TIME d/DATE [t/TAG]...\n" + "Example: " + COMMAND_WORD
             + " 2 John Wedding st/15:00 et/21:00 d/12-10-2016 t/undone";
