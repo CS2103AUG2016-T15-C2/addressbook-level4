@@ -91,6 +91,9 @@ public class Parser {
         case MarkedCommand.COMMAND_WORD:
             return prepareMarked(arguments);
             
+        case MarkedCommand.COMMAND_WORD2:
+            return prepareMarked(arguments);
+            
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
             
@@ -244,6 +247,16 @@ public class Parser {
         }
         
     }
+    /*
+    private Command prepareMarked(String args) {
+
+        Optional<Integer> index = parseIndex(args);
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkedCommand.MESSAGE_USAGE));
+        }
+
+        return new MarkedCommand(index.get());
+    }*/
     
     /**
      * Parses arguments in the context of the select entry command.
