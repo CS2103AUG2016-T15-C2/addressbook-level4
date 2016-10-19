@@ -42,15 +42,17 @@ public class Parser {
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     private CommandManager commandManager = new CommandManager();
-    
-    public Parser() {}
+
+    public Parser() {
+    }
 
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput full user input string
+     * @param userInput
+     *            full user input string
      * @return the command based on the user input
-     * @throws Exception 
+     * @throws Exception
      */
     public Command parseCommand(String userInput) throws Exception {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -83,11 +85,11 @@ public class Parser {
         case EditCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareEdit(arguments));
             
-        case "undo":
-            return commandManager.Undo();
-            
         case EditCommand.COMMAND_WORD2:
             return commandManager.ExecuteCommand(prepareEdit(arguments));
+            
+        case MarkedCommand.COMMAND_WORD:
+            return prepareMarked(arguments);
             
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -121,7 +123,15 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+            
+        case "undo":
+            commandManager.Undo();
+            return null;
 
+        case "redo":
+            commandManager.Redo();
+            return null;
+            
         case HelpCommand.COMMAND_WORD2:
             return new HelpCommand();
 
@@ -133,31 +143,27 @@ public class Parser {
     /**
      * Parses arguments in the context of the add entry command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
-    private Command prepareAdd(String args){
+    private Command prepareAdd(String args) {
         final Matcher matcher = ENTRY_DATA_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         try {
-            return new AddCommand(
-                    matcher.group("name"),
-                    matcher.group("startTime"),
-                    matcher.group("endTime"),
-                    matcher.group("date"),
-                    getTagsFromArgs(matcher.group("tagArguments"))
-            );
+            return new AddCommand(matcher.group("name"), matcher.group("startTime"), matcher.group("endTime"),
+                    matcher.group("date"), getTagsFromArgs(matcher.group("tagArguments")));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
     }
 
     /**
-     * Extracts the new entry's tags from the add command's tag arguments string.
-     * Merges duplicate tag strings.
+     * Extracts the new entry's tags from the add command's tag arguments
+     * string. Merges duplicate tag strings.
      */
     private static Set<String> getTagsFromArgs(String tagArguments) throws IllegalValueException {
         // no tags
@@ -172,27 +178,51 @@ public class Parser {
     /**
      * Parses arguments in the context of the delete entry command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
     private Command prepareDelete(String args) {
 
         Optional<Integer> index = parseIndex(args);
-        if(!index.isPresent()){
-            return new IncorrectCommand(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         return new DeleteCommand(index.get());
     }
-    
+
     /**
      * Parses arguments into the context of the edit entry command.
      * 
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the newly prepared command
      */
     private Command prepareEdit(String args) {
+        final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
+        // Validate arg string format
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+
+        try {
+            return new EditCommand(Integer.parseInt(matcher.group("targetIndex")), matcher.group("name"),
+                    matcher.group("startTime"), matcher.group("endTime"), matcher.group("date"),
+                    getTagsFromArgs(matcher.group("tagArguments")));
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
+        }
+
+    }
+
+    /**
+     * Parses arguments in the context of the completed entry command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareMarked(String args) {
         final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
         if(!matcher.matches()){
@@ -201,7 +231,7 @@ public class Parser {
         }
         
         try {
-            return new EditCommand(
+            return new MarkedCommand(
                     Integer.parseInt(matcher.group("targetIndex")),
                     matcher.group("name"),
                     matcher.group("startTime"),
@@ -218,22 +248,23 @@ public class Parser {
     /**
      * Parses arguments in the context of the select entry command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
     private Command prepareSelect(String args) {
         Optional<Integer> index = parseIndex(args);
-        if(!index.isPresent()){
-            return new IncorrectCommand(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
         }
 
         return new SelectCommand(index.get());
     }
 
     /**
-     * Returns the specified index in the {@code command} IF a positive unsigned integer is given as the index.
-     *   Returns an {@code Optional.empty()} otherwise.
+     * Returns the specified index in the {@code command} IF a positive unsigned
+     * integer is given as the index. Returns an {@code Optional.empty()}
+     * otherwise.
      */
     private Optional<Integer> parseIndex(String command) {
         final Matcher matcher = ENTRY_INDEX_ARGS_FORMAT.matcher(command.trim());
@@ -242,7 +273,7 @@ public class Parser {
         }
 
         String index = matcher.group("targetIndex");
-        if(!StringUtil.isUnsignedInteger(index)){
+        if (!StringUtil.isUnsignedInteger(index)) {
             return Optional.empty();
         }
         return Optional.of(Integer.parseInt(index));
@@ -252,14 +283,14 @@ public class Parser {
     /**
      * Parses arguments in the context of the find entry command.
      *
-     * @param args full command args string
+     * @param args
+     *            full command args string
      * @return the prepared command
      */
     private Command prepareFind(String args) {
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    FindCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         // keywords delimited by whitespace
