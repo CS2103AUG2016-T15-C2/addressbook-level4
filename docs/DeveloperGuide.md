@@ -260,6 +260,7 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | list all items | view all entries and dates that are due sorted by date and time and know what needs to be done next
 `* * *` | user | edit an item | update entries that are outdated
 `* * *` | user | delete an item | remove entries that I no longer need
+`* * *` | user | mark an item | distinguish completed from uncompleted items
 `* * *` | user | undo an operation | have read-consistency and data changes should not be visible to queries that started running before committing them
 `* * *` | advanced user | use flexible commands | type a command faster
 `* * *` | user | find an item by name | locate details of item without having to go through the entire list
@@ -267,8 +268,6 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | path items | save my files on shared folders for accessibility on other devices
 `* *` | user | clear all items | clear all my list in the scheduler 
 `*` | user | exit the program | exit the program conveniently
-
-{More to be added}
 
 ## Appendix B : Use Cases
 
@@ -321,6 +320,20 @@ Use case ends.
 2a. The list is empty
 
 > 2a1. Scheduler displays empty list <br>
+
+### Use case: Mark items
+
+**MSS**
+
+1. User selects the targeted entry
+2. Scheduler tags the selected entry as completed <br>
+Use case ends.
+
+**Extensions**
+
+1a. The list is empty
+
+> 1a1. Scheduler displays empty list <br>
 
 #### Use case: Edit items
 
@@ -452,15 +465,15 @@ Use case ends.
 ## Appendix C : Non Functional Requirements
 
 1. Should work on any [mainstream OS](#mainstream-os) as long as it has Java `1.8.0_60` or higher installed.
-2. Should be able to hold up to 1000 persons.
+2. Should be able to hold up to 1000 entries.
 3. Should come with automated unit tests and open source code.
 4. Should favor DOS style commands over Unix-style commands.
-5. Synchronization capability to other task management sites (ex: Google calendar)
-6. Back-up data that can be used to recover if original copy gets deleted
-7. Able to migrate all items into .txt file
-
-
-{More to be added}
+5. Synchronization capability to other task management sites (ex: Google calendar).
+6. Back-up data that can be used to recover if original copy gets deleted.
+7. Able to migrate all items into .txt file.
+8. Able to update collaborators of list as changes are made.
+9. Able to receover to last working point in case of sudden termination.
+10. Able to reproduce history of activities.
 
 ## Appendix D : Glossary
 
@@ -474,5 +487,32 @@ Use case ends.
 
 ## Appendix E : Product Survey
 
-{TODO: Add a summary of competing products}
+#### Google Calendar
+* Syncs tasks immediately to your calendar (tasks are in calendar view)
+* Syncs with your email (emails with date/time will have the option to be added to the calendar
+* Option to create multiple calendars (similar to tagging the task)
+* Able to add attachments
+* Able to display calendar to view tasks after filtering entries (e.g. calendar 4-day view - displays only tasks with deadlines in 4 days)
+* Keyboard shortcuts (e.g. c = create event)
 
+#### Evernote
+* Option of presentation mode (full screen view of tasks)
+* Tracks task details (e.g. location, task creation date, author, etc.)
+* Sync on multiple devices (e.g. laptops, mo
+* Export and convert lists to other file formats (e.g. PDF)
+
+#### Wunderlist
+* Able to create shared lists
+* Assign to-dos 
+* Subtasks (break down larger tasks)
+* Personalisation (background)
+* Upload attachments
+* Keyboard shortcuts to mark task as completed
+* Browser extension (save/add links to task notes)
+
+#### Trello
+* Activity feed (i.e. shows history of events)
+* Personalisation option
+* Able to group and assign tasks
+* Option of priority marking and alarm
+* Shared board (i.e. many collaborators on a list)
