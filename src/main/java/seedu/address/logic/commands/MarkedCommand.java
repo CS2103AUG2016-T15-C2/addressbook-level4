@@ -17,8 +17,8 @@ import seedu.address.model.entry.UniqueEntryList.EntryNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
-public class CompletedCommand extends Command {
-	public static final String COMMAND_WORD = "completed";
+public class MarkedCommand extends Command {
+	public static final String COMMAND_WORD = "mark";
 
 	public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags an entry as completed in the scheduler. "
 			+ "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD
@@ -30,7 +30,7 @@ public class CompletedCommand extends Command {
 	public final int targetIndex;
 	public final Entry toMarkCompleted;
 
-	public CompletedCommand(int targetIndex, String name, String startTime, String endTime, String date, Set<String> tags)
+	public MarkedCommand(int targetIndex, String name, String startTime, String endTime, String date, Set<String> tags)
             throws IllegalValueException {
         this.targetIndex = targetIndex;
         final Set<Tag> tagSet = new HashSet<>();

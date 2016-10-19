@@ -88,8 +88,8 @@ public class Parser {
         case EditCommand.COMMAND_WORD2:
             return commandManager.ExecuteCommand(prepareEdit(arguments));
             
-        case CompletedCommand.COMMAND_WORD:
-            return prepareCompleted(arguments);
+        case MarkedCommand.COMMAND_WORD:
+            return prepareMarked(arguments);
             
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -222,7 +222,7 @@ public class Parser {
      * @param args full command args string
      * @return the prepared command
      */
-    private Command prepareCompleted(String args) {
+    private Command prepareMarked(String args) {
         final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
         if(!matcher.matches()){
@@ -231,7 +231,7 @@ public class Parser {
         }
         
         try {
-            return new CompletedCommand(
+            return new MarkedCommand(
                     Integer.parseInt(matcher.group("targetIndex")),
                     matcher.group("name"),
                     matcher.group("startTime"),
