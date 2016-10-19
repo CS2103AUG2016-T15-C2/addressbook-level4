@@ -260,6 +260,7 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | list all items | view all entries and dates that are due sorted by date and time and know what needs to be done next
 `* * *` | user | edit an item | update entries that are outdated
 `* * *` | user | delete an item | remove entries that I no longer need
+`* * *` | user | mark an item | distinguish completed from uncompleted items
 `* * *` | user | undo an operation | have read-consistency and data changes should not be visible to queries that started running before committing them
 `* * *` | advanced user | use flexible commands | type a command faster
 `* * *` | user | find an item by name | locate details of item without having to go through the entire list
@@ -267,8 +268,6 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | path items | save my files on shared folders for accessibility on other devices
 `* *` | user | clear all items | clear all my list in the scheduler 
 `*` | user | exit the program | exit the program conveniently
-
-{More to be added}
 
 ## Appendix B : Use Cases
 
@@ -321,6 +320,20 @@ Use case ends.
 2a. The list is empty
 
 > 2a1. Scheduler displays empty list <br>
+
+### Use case: Mark items
+
+**MSS**
+
+1. User selects the targeted entry
+2. Scheduler tags the selected entry as completed <br>
+Use case ends.
+
+**Extensions**
+
+1a. The list is empty
+
+> 1a1. Scheduler displays empty list <br>
 
 #### Use case: Edit items
 
