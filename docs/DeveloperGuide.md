@@ -474,5 +474,32 @@ Use case ends.
 
 ## Appendix E : Product Survey
 
-{TODO: Add a summary of competing products}
+#### Google Calendar
+* Syncs tasks immediately to your calendar (tasks are in calendar view)
+* Syncs with your email (emails with date/time will have the option to be added to the calendar
+* Option to create multiple calendars (similar to tagging the task)
+* Able to add attachments
+* Able to display calendar to view tasks after filtering entries (e.g. calendar 4-day view - displays only tasks with deadlines in 4 days)
+* Keyboard shortcuts (e.g. c = create event)
 
+#### Evernote
+* Option of presentation mode (full screen view of tasks)
+* Tracks task details (e.g. location, task creation date, author, etc.)
+* Sync on multiple devices (e.g. laptops, mo
+* Export and convert lists to other file formats (e.g. PDF)
+
+#### Wunderlist
+* Able to create shared lists
+* Assign to-dos 
+* Subtasks (break down larger tasks)
+* Personalisation (background)
+* Upload attachments
+* Keyboard shortcuts to mark task as completed
+* Browser extension (save/add links to task notes)
+
+#### Trello
+* Activity feed (i.e. shows history of events)
+* Personalisation option
+* Able to group and assign tasks
+* Option of priority marking and alarm
+* Shared board (i.e. many collaborators on a list)
