@@ -23,30 +23,6 @@ public class Parser {
 
     private static final Pattern ENTRY_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
-<<<<<<< HEAD
-    private static final Pattern KEYWORDS_ARGS_FORMAT = Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one
-                                                                                                           // or
-                                                                                                           // more
-                                                                                                           // keywords
-                                                                                                           // separated
-                                                                                                           // by
-                                                                                                           // whitespace
-
-    private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes
-                                                          // are reserved for
-                                                          // delimiter prefixes
-            Pattern.compile("(?<name>[^/]+)" + "(?<isStartTimePrivate>p?)(?:st/(?<startTime>[^/]+))?"
-                    + "(?<isEndTimePrivate>p?)(?:et/(?<endTime>[^/]+))?" + "(?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
-                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of
-                                                         // tags
-
-    private static final Pattern ENTRY_EDIT_ARGS_FORMAT = Pattern
-            .compile("(?<targetIndex>\\d+)" + " (?<name>[^/]+)" + "(?<isStartTimePrivate>p?)(?:st/(?<startTime>[^/]+))?"
-                    + "(?<isEndTimePrivate>p?)(?:et/(?<endTime>[^/]+))?" + "(?<isDatePrivate>p?)(?:d/(?<date>[^/]+))?"
-                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of
-                                                         // tags
-
-=======
     private static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
 
@@ -65,7 +41,6 @@ public class Parser {
                     + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
->>>>>>> 852b51e3a4a870310c499488ba6e2978bcf7a49c
     private CommandManager commandManager = new CommandManager();
 
     public Parser() {
@@ -109,17 +84,10 @@ public class Parser {
 
         case EditCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareEdit(arguments));
-<<<<<<< HEAD
-
-=======
-            
-        case "undo":
-            return commandManager.Undo();
             
         case EditCommand.COMMAND_WORD2:
             return commandManager.ExecuteCommand(prepareEdit(arguments));
             
->>>>>>> 852b51e3a4a870310c499488ba6e2978bcf7a49c
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
             
@@ -152,8 +120,7 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-<<<<<<< HEAD
+            
         case "undo":
             commandManager.Undo();
             return null;
@@ -161,10 +128,9 @@ public class Parser {
         case "redo":
             commandManager.Redo();
             return null;
-=======
+            
         case HelpCommand.COMMAND_WORD2:
             return new HelpCommand();
->>>>>>> 852b51e3a4a870310c499488ba6e2978bcf7a49c
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
