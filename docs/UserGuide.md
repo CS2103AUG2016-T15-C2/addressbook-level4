@@ -88,9 +88,13 @@ Examples:
 * `edit 3 Do Homework1 d/19-02-12`
 * `e 2 Do Homework2`
 
-#### Undo most recent action: `undo`
-Reverts scheduler back to the state before the most recent committed action.<br>
+#### Undo recent actions (up to 10): `undo`
+Reverts scheduler back to the state before the recent committed actions.<br>
 Format: `undo`
+
+#### Redo recent undone actions: `redo`
+Reverts scheduler back to the state before the recent undone actions.<br>
+Format: `redo`
 
 #### Deleting an item: `delete`
 Delete the item selected by the user. User can also type `d` instead of `delete`<br>
@@ -159,6 +163,7 @@ Edit | `edit INDEX NAME st/START TIME et/END_TIME d/DATE`
 Edit | `edit INDEX NAME d/DATE` 
 Edit | `edit INDEX NAME` 
 Undo | `undo` 
+Redo | `redo`
 Delete | `delete INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Exit | `exit`
