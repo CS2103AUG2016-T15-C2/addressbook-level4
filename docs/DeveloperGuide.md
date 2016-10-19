@@ -452,15 +452,15 @@ Use case ends.
 ## Appendix C : Non Functional Requirements
 
 1. Should work on any [mainstream OS](#mainstream-os) as long as it has Java `1.8.0_60` or higher installed.
-2. Should be able to hold up to 1000 persons.
+2. Should be able to hold up to 1000 entries.
 3. Should come with automated unit tests and open source code.
 4. Should favor DOS style commands over Unix-style commands.
-5. Synchronization capability to other task management sites (ex: Google calendar)
-6. Back-up data that can be used to recover if original copy gets deleted
-7. Able to migrate all items into .txt file
-
-
-{More to be added}
+5. Synchronization capability to other task management sites (ex: Google calendar).
+6. Back-up data that can be used to recover if original copy gets deleted.
+7. Able to migrate all items into .txt file.
+8. Able to update collaborators of list as changes are made.
+9. Able to receover to last working point in case of sudden termination.
+10. Able to reproduce history of activities.
 
 ## Appendix D : Glossary
 
