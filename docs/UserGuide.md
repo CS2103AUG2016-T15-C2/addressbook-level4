@@ -20,12 +20,13 @@
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
 5. Some example commands you can try:
    * **`list`** : lists all items
-   * **`add`**` `add Meeting from/13:00 to/17:00 d/19-02-16 [t/priority]` : 
+   * **`add`**` `add Meeting from/13:00 to/17:00 sd/19-02-2016 ed/20-02-2016 [t/priority]` : 
      adds an item named `Meeting` to the scheduler.
-   * **`add`**` `a Homework by/20-02-16` : 
-     adds an item named `Homework` to the scheduler. Notice that `a` is used instead of `add`, and that all parameter other than the name is optional
    * **`delete`**` 3` : deletes the 3rd item shown in the scheduler
    * **`exit`** : exits the app
+   * **`add`**: `add Homework by/20-02-2016`: adds an item `Homework` with only 1 parameter
+   * **`add`**: `add Homework ed/20-02-2016`: adds an item `Homework` with only 1 parameter (notice that by/ and ed/ are interchangeable)
+   * **`add`**: `add Lecture st/12:00 sd/12-10-2016 ed/13-10-2016
 6. Refer to the [Features](#features) section below for details of each command.<br>
 
 
