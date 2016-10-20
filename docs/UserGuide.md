@@ -26,7 +26,6 @@
    * **`exit`** : exits the app
    * **`add`**: `add Homework by/20-02-2016`: adds an item `Homework` with only 1 parameter
    * **`add`**: `add Homework ed/20-02-2016`: adds an item `Homework` with only 1 parameter (notice that by/ and ed/ are interchangeable)
-   * **`add`**: `add Lecture st/12:00 sd/12-10-2016 ed/13-10-2016
 6. Refer to the [Features](#features) section below for details of each command.<br>
 
 
@@ -90,15 +89,15 @@ Format: `edit INDEX NUMBER st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE`
 Format: `e INDEX NUMBER st/START_TIME et/END_TIME sd/DATE ed/END_DATE` 
 
 Edits a task to the scheduler specified by the index <br>
-Format: `edit INDEX NUMBER d/DATE` 
-Format: `e INDEX NUMBER d/DATE` 
+Format: `edit INDEX NUMBER ed/DATE` 
+Format: `e INDEX NUMBER ed/DATE` 
 
 Edits a floating task to the scheduler specified by the index <br>
 Format: `edit INDEX NUMBER` 
 Format: `e INDEX NUMBER` 
 
 Examples: 
-* `edit 1 Meeting st/12:00 et/17:00 d/19-02-16 t/priority`
+* `edit 1 Meeting st/12:00 et/17:00 ed/19-02-16 t/priority`
 * `edit 3 Do Homework1 ed/19-02-12`
 * `e 2 Do Homework2`
 
