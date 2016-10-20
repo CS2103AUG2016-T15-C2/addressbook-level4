@@ -70,6 +70,15 @@ Examples:
 * `list by/date`
 * `l by/date`
 
+#### Marking an item as completed: `mark`
+Marks an event as completed in the scheduler. User can also type `m` instead of `edit` <br>
+Format: `mark INDEX NAME st/START_TIME et/END_TIME d/DATE` 
+Format: `m INDEX NAME st/START_TIME et/END_TIME d/DATE`  
+
+Edits a floating task to the scheduler specified by the index <br>
+Format: `edit INDEX NAME` 
+Format: `e INDEX NAME` 
+
 #### Editing an item : `edit`
 Edits an event to the scheduler specified by the index. User can also type `e` instead of `edit` <br>
 Format: `edit INDEX NAME st/START_TIME et/END_TIME d/DATE` 
