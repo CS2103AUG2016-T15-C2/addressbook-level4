@@ -20,23 +20,26 @@
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
 5. Some example commands you can try:
    * **`list`** : lists all items
-   * **`add`**` `add Meeting from/13:00 to/17:00 d/19-02-16 [t/priority]` : 
+   * **`add`**` `add Meeting from/13:00 to/17:00 sd/19-02-2016 ed/20-02-2016 [t/priority]` : 
      adds an item named `Meeting` to the scheduler.
    * **`delete`**` 3` : deletes the 3rd item shown in the scheduler
    * **`exit`** : exits the app
+   * **`add`**: `add Homework by/20-02-2016`: adds an item `Homework` with only 1 parameter
+   * **`add`**: `add Homework ed/20-02-2016`: adds an item `Homework` with only 1 parameter (notice that by/ and ed/ are interchangeable)
 6. Refer to the [Features](#features) section below for details of each command.<br>
 
 
 ## Features
-
 > **Command Format**
+> * All the parameters for the add and edit command (other than the name or index number, respectively) are optional. For example, if you only want to put in info for the end date, simply do `add NAME ed/12-12-2016` instead of filling out every paramter 
 > * Words in `UPPER_CASE` are the parameters.
 > * Items in `SQUARE_BRACKETS` are optional.
 > * Items with `...` after them can have multiple instances.
 > * The order of parameters is fixed.
 > * parameter marker `st/` is interchangeable with: `from/` `f/`
 > * paramter marker  `et/` is interchangeable with: `to/`
-> * paramter marker `d/` is interchangeable with: `date/`<br>
+> * paramter marker `sd/` is interchangeable with: `sdate/`
+> * paramter marker `ed/` is interchangeable with: `edate/` or `d/` `date/` or `by/` (in case of a deadline task)<br>
 #### Viewing help : `help`
 Format: `help`
 
@@ -44,22 +47,22 @@ Format: `help`
  
 #### Adding an item: `add`
 Adds an event to the scheduler. Advanced users can type `a` instead.<br>
-Format: `add NAME st/START_TIME et/END_TIME d/DATE [t/TAG]` 
-Format: `a NAME st/START_TIME et/END_TIME d/DATE [t/TAG]` 
+Format: `add NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE [t/TAG]` 
+Format: `a NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE [t/TAG]` 
 
 Adds a task to the scheduler<br>
-Format: `add NAME d/DATE` 
-Format: `a NAME d/DATE` 
+Format: `add NAME ed/DATE` 
+Format: `a NAME ed/DATE` 
 
 Adds a floating task to the scheduler<br>
 Format: `add NAME` 
 Format: `a NAME` 
 
 Examples: 
-* `add Meeting st/12:00 et/17:00 d/19-02-16 t/priority`
+* `add Meeting st/12:00 et/17:00 sd/19-02-16 ed/20-02-16 t/priority`
 * `add Gathering from/19:00 to/23:00 d/24-05-16 t/priority`
-* `add Do Homework1 date/19-02-16`
-* `a Do Homework2 by/13:00`
+* `add Do Homework1 ed/19-02-2016`
+* `a Do Homework2 by/20-02-2016`
 
 #### Listing all items: `list`
 Shows a list of all items in the scheduler. User can also type `l` instead of `list`<br>
@@ -67,34 +70,35 @@ Format: `list [by/SORT_CATEGORY]`
 Format: `l [by/SORT_CATEGORY]`
 Examples: 
 * `list`
-* `list by/date`
-* `l by/date`
+* `list by/complete`
+* `l by/incomplete`
+* `list by/ed`
 
 #### Marking an item as completed: `mark`
-Marks an event as completed in the scheduler. User can also type `m` instead of `edit` <br>
-Format: `mark INDEX NAME st/START_TIME et/END_TIME d/DATE` 
-Format: `m INDEX NAME st/START_TIME et/END_TIME d/DATE`  
+Marks an event as completed in the scheduler. User can also type `m` instead of `mark`. Marked events will have a tag: `complete` <br>
+Format: `mark INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE` 
+Format: `m INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE`  
 
 Edits a floating task to the scheduler specified by the index <br>
-Format: `edit INDEX NAME` 
-Format: `e INDEX NAME` 
+Format: `edit INDEX NUMBER` 
+Format: `e INDEX NUMBER` 
 
 #### Editing an item : `edit`
 Edits an event to the scheduler specified by the index. User can also type `e` instead of `edit` <br>
-Format: `edit INDEX NAME st/START_TIME et/END_TIME d/DATE` 
-Format: `e INDEX NAME st/START_TIME et/END_TIME d/DATE` 
+Format: `edit INDEX NUMBER st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE` 
+Format: `e INDEX NUMBER st/START_TIME et/END_TIME sd/DATE ed/END_DATE` 
 
 Edits a task to the scheduler specified by the index <br>
-Format: `edit INDEX NAME d/DATE` 
-Format: `e INDEX NAME d/DATE` 
+Format: `edit INDEX NUMBER ed/DATE` 
+Format: `e INDEX NUMBER ed/DATE` 
 
 Edits a floating task to the scheduler specified by the index <br>
-Format: `edit INDEX NAME` 
-Format: `e INDEX NAME` 
+Format: `edit INDEX NUMBER` 
+Format: `e INDEX NUMBER` 
 
 Examples: 
-* `edit 1 Meeting st/12:00 et/17:00 d/19-02-16 t/priority`
-* `edit 3 Do Homework1 d/19-02-12`
+* `edit 1 Meeting st/12:00 et/17:00 ed/19-02-16 t/priority`
+* `edit 3 Do Homework1 ed/19-02-12`
 * `e 2 Do Homework2`
 
 #### Undo recent actions (up to 10): `undo`
@@ -164,13 +168,13 @@ Format: `c`
 Command | Format  
 -------- | :-------- 
 Help | `help`
-Add | `add NAME st/START_TIME et/END_TIME d/DATE [t/TAG]`
-Add | `add NAME d/DATE [t/TAG]`  
+Add | `add NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE [t/TAG]`
+Add | `add NAME sd/START_DATE [t/TAG]`  
 Add | `add NAME [t/TAG]`
 List | `list [by/SORT_CATEGORY]`
-Edit | `edit INDEX NAME st/START TIME et/END_TIME d/DATE`
-Edit | `edit INDEX NAME d/DATE` 
-Edit | `edit INDEX NAME` 
+Edit | `edit INDEX NUMBER st/START TIME et/END_TIME sd/START_DATE ed/END_DATE`
+Edit | `edit INDEX NUMBER d/DATE` 
+Edit | `edit INDEX NUMBER` 
 Undo | `undo` 
 Redo | `redo`
 Delete | `delete INDEX`
