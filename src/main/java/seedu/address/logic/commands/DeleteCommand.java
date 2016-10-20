@@ -7,7 +7,8 @@ import seedu.address.model.entry.UniqueEntryList.DuplicateEntryException;
 import seedu.address.model.entry.UniqueEntryList.EntryNotFoundException;
 
 /**
- * Deletes a entry identified using it's last displayed index from the scheduler.
+ * Deletes a entry identified using it's last displayed index from the
+ * scheduler.
  */
 public class DeleteCommand extends UndoableCommand {
 
@@ -16,8 +17,7 @@ public class DeleteCommand extends UndoableCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the entry identified by the index number used in the last entry listing.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
 
@@ -27,7 +27,6 @@ public class DeleteCommand extends UndoableCommand {
     public DeleteCommand(int targetIndex) {
         this.targetIndex = targetIndex;
     }
-
 
     @Override
     public CommandResult execute() {
@@ -50,10 +49,14 @@ public class DeleteCommand extends UndoableCommand {
         return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete));
     }
 
-
     @Override
     public void undo() throws DuplicateEntryException {
         model.addEntry(prevEntry);
+    }
+
+    @Override
+    public void redo() throws Exception {
+        model.deleteEntry(prevEntry);
     }
 
 }

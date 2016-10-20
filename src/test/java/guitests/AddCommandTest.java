@@ -21,13 +21,16 @@ public class AddCommandTest extends SchedulerGuiTest {
 
         //add another entry
         entryToAdd = td.pickup;
-        assertAddSuccess(entryToAdd, currentList);
+        assertAdvancedAddSuccess(entryToAdd, currentList);
         currentList = TestUtil.addEntrysToList(currentList, entryToAdd);
+        
+        entryToAdd = td.hike;
 
         //add duplicate entry
         commandBox.runCommand(td.meeting.getAddCommand());
         assertResultMessage(AddCommand.MESSAGE_DUPLICATE_ENTRY);
         assertTrue(entryListPanel.isListMatching(currentList));
+        
 
         //add to empty list
         commandBox.runCommand("clear");
@@ -37,7 +40,19 @@ public class AddCommandTest extends SchedulerGuiTest {
         commandBox.runCommand("adds Johnny");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
+    
+    private void assertAdvancedAddSuccess(TestEntry entryToAdd, TestEntry... currentList) {
+        commandBox.runCommand(entryToAdd.getAdvancedAddCommand());
 
+        //confirm the new card contains the right data
+        EntryCardHandle addedCard = entryListPanel.navigateToEntry(entryToAdd.getName().fullName);
+        assertMatching(entryToAdd, addedCard);
+
+        //confirm the list now contains all previous entrys plus the new entry
+        TestEntry[] expectedList = TestUtil.addEntrysToList(currentList, entryToAdd);
+        assertTrue(entryListPanel.isListMatching(expectedList));
+    }
+    
     private void assertAddSuccess(TestEntry entryToAdd, TestEntry... currentList) {
         commandBox.runCommand(entryToAdd.getAddCommand());
 
