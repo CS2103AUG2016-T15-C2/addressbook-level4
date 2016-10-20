@@ -148,7 +148,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in xml format and read it back.
+* can save the Scheduler data in xml format and read it back.
 
 ### Common classes
 
