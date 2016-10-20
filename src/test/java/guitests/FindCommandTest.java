@@ -11,7 +11,7 @@ public class FindCommandTest extends SchedulerGuiTest {
     @Test
     public void find_nonEmptyList() {
         assertFindResult("find Mark"); //no results
-        assertFindResult("find Test", td.chem, td.bio); //multiple results
+        assertAdvancedFindResult("f Test", td.chem, td.bio); //multiple results
 
         //find after deleting one result
         commandBox.runCommand("delete 1");
@@ -31,6 +31,13 @@ public class FindCommandTest extends SchedulerGuiTest {
     }
 
     private void assertFindResult(String command, TestEntry... expectedHits ) {
+        commandBox.runCommand(command);
+        assertListSize(expectedHits.length);
+        assertResultMessage(expectedHits.length + " entrys listed!");
+        assertTrue(entryListPanel.isListMatching(expectedHits));
+    }
+    
+    private void assertAdvancedFindResult(String command, TestEntry... expectedHits ) {
         commandBox.runCommand(command);
         assertListSize(expectedHits.length);
         assertResultMessage(expectedHits.length + " entrys listed!");

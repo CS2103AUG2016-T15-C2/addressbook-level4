@@ -9,9 +9,9 @@ public class ClearCommandTest extends SchedulerGuiTest {
     @Test
     public void clear() {
 
-        //verify a non-empty list can be cleared
+        //verify a non-empty list can be cleared using advanced command
         assertTrue(entryListPanel.isListMatching(td.getTypicalEntrys()));
-        assertClearCommandSuccess();
+        assertAdvancedClearCommandSuccess();
 
         //verify other commands can work after a clear command
         commandBox.runCommand(td.meeting.getAddCommand());
@@ -25,6 +25,12 @@ public class ClearCommandTest extends SchedulerGuiTest {
 
     private void assertClearCommandSuccess() {
         commandBox.runCommand("clear");
+        assertListSize(0);
+        assertResultMessage("Scheduler has been cleared!");
+    }
+    
+    private void assertAdvancedClearCommandSuccess() {
+        commandBox.runCommand("c");
         assertListSize(0);
         assertResultMessage("Scheduler has been cleared!");
     }

@@ -14,7 +14,7 @@ public class SelectCommandTest extends SchedulerGuiTest {
         assertSelectionInvalid(10); //invalid index
         assertNoEntrySelected();
 
-        assertSelectionSuccess(1); //first entry in the list
+        assertAdvancedSelectionSuccess(1); //first entry in the list
         int entryCount = td.getTypicalEntrys().length;
         assertSelectionSuccess(entryCount); //last entry in the list
         int middleIndex = entryCount / 2;
@@ -40,6 +40,12 @@ public class SelectCommandTest extends SchedulerGuiTest {
 
     private void assertSelectionSuccess(int index) {
         commandBox.runCommand("select " + index);
+        assertResultMessage("Selected Entry: "+index);
+        assertEntrySelected(index);
+    }
+    
+    private void assertAdvancedSelectionSuccess(int index) {
+        commandBox.runCommand("s " + index);
         assertResultMessage("Selected Entry: "+index);
         assertEntrySelected(index);
     }
