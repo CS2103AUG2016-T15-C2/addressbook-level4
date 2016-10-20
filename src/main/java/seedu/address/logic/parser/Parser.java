@@ -311,7 +311,7 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     PathCommand.MESSAGE_USAGE));
         }
-        String filePath = args;					//store input to filePath
+        String filePath = args.trim();					//store input to filePath
 		return new PathCommand(filePath);		//push input to PathCommand
     }
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<scheduler>
+    <entrys>
+        <name>try</name>
+        <startTime>12:00</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+    </entrys>
+</scheduler>

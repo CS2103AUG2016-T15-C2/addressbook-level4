@@ -22,18 +22,14 @@ import java.util.logging.Logger;
 public class StorageManager extends ComponentManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private SchedulerStorage schedulerStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private XmlSchedulerStorage schedulerStorage;
+    private JsonUserPrefsStorage userPrefsStorage;
 
-
-    public StorageManager(SchedulerStorage schedulerStorage, UserPrefsStorage userPrefsStorage) {
-        super();
-        this.schedulerStorage = schedulerStorage;
-        this.userPrefsStorage = userPrefsStorage;
-    }
-
+    
     public StorageManager(String schedulerFilePath, String userPrefsFilePath) {
-        this(new XmlSchedulerStorage(schedulerFilePath), new JsonUserPrefsStorage(userPrefsFilePath));
+        super();
+        this.schedulerStorage = new XmlSchedulerStorage(schedulerFilePath);
+        this.userPrefsStorage = new JsonUserPrefsStorage(userPrefsFilePath);    
     }
 
     // ================ UserPrefs methods ==============================
@@ -69,20 +65,19 @@ public class StorageManager extends ComponentManager implements Storage {
 
     @Override
     public void saveScheduler(ReadOnlyScheduler scheduler) throws IOException {
-        saveScheduler(scheduler, schedulerStorage.getSchedulerFilePath());
+    	schedulerStorage.saveScheduler(scheduler, schedulerStorage.getSchedulerFilePath());
     }
 
     @Override
     public void saveScheduler(ReadOnlyScheduler scheduler, String filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        assert scheduler != null;
-        assert filePath != null;
-        
-        File file = new File(filePath);
-        FileUtil.createIfMissing(file);
-        XmlFileStorage.saveDataToFile(file, new XmlSerializableScheduler(scheduler));
+        schedulerStorage.saveScheduler(scheduler, filePath);
     }
 
+    @Override
+    public void setFilePath(String pathFile) {
+    	this.schedulerStorage = new XmlSchedulerStorage(pathFile);
+    }
 
     @Override
     @Subscribe
@@ -94,5 +89,4 @@ public class StorageManager extends ComponentManager implements Storage {
             raise(new DataSavingExceptionEvent(e));
         }
     }
-
 }

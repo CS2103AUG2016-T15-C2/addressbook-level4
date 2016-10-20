@@ -8,7 +8,7 @@ import java.util.logging.Level;
  */
 public class Config {
 
-    public static final String DEFAULT_CONFIG_FILE = "config.json";
+    public static final String DEFAULT_CONFIG_FILE = "config.json";  //all the app data
 
     // Config values customizable through config file
     private String appTitle = "Scheduler App";

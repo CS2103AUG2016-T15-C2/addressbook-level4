@@ -36,4 +36,6 @@ public interface Storage extends SchedulerStorage, UserPrefsStorage {
      * Raises {@link DataSavingExceptionEvent} if there was an error during saving.
      */
     void handleSchedulerChangedEvent(SchedulerChangedEvent abce);
+    
+    void setFilePath(String filePath);
 }
