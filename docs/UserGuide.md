@@ -28,7 +28,8 @@
 
 
 ## Features
-
+> **Special Note**
+> * All the parameters for the add and edit command (other than the name or index number, respectively) are optional. For example, if you only want to put in info for the end date, simply do `add NAME ed/12-12-2016` <br>
 > **Command Format**
 > * Words in `UPPER_CASE` are the parameters.
 > * Items in `SQUARE_BRACKETS` are optional.
@@ -36,7 +37,8 @@
 > * The order of parameters is fixed.
 > * parameter marker `st/` is interchangeable with: `from/` `f/`
 > * paramter marker  `et/` is interchangeable with: `to/`
-> * paramter marker `d/` is interchangeable with: `date/`<br>
+> * paramter marker `sd/` is interchangeable with: `sdate/`
+> * paramter marker `ed/` is interchangeable with: `edate/` or `d/` `date/` or `by/` (in case of a deadline task)<br>
 #### Viewing help : `help`
 Format: `help`
 
@@ -44,22 +46,22 @@ Format: `help`
  
 #### Adding an item: `add`
 Adds an event to the scheduler. Advanced users can type `a` instead.<br>
-Format: `add NAME st/START_TIME et/END_TIME d/DATE [t/TAG]` 
-Format: `a NAME st/START_TIME et/END_TIME d/DATE [t/TAG]` 
+Format: `add NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE [t/TAG]` 
+Format: `a NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE [t/TAG]` 
 
 Adds a task to the scheduler<br>
-Format: `add NAME d/DATE` 
-Format: `a NAME d/DATE` 
+Format: `add NAME ed/DATE` 
+Format: `a NAME ed/DATE` 
 
 Adds a floating task to the scheduler<br>
 Format: `add NAME` 
 Format: `a NAME` 
 
 Examples: 
-* `add Meeting st/12:00 et/17:00 d/19-02-16 t/priority`
+* `add Meeting st/12:00 et/17:00 sd/19-02-16 ed/20-02-16 t/priority`
 * `add Gathering from/19:00 to/23:00 d/24-05-16 t/priority`
-* `add Do Homework1 date/19-02-16`
-* `a Do Homework2 by/13:00`
+* `add Do Homework1 ed/19-02-2016`
+* `a Do Homework2 by/20-02-2016`
 
 #### Listing all items: `list`
 Shows a list of all items in the scheduler. User can also type `l` instead of `list`<br>
@@ -67,13 +69,14 @@ Format: `list [by/SORT_CATEGORY]`
 Format: `l [by/SORT_CATEGORY]`
 Examples: 
 * `list`
-* `list by/date`
-* `l by/date`
+* `list by/complete`
+* `l by/incomplete`
+* `list by/ed`
 
 #### Marking an item as completed: `mark`
-Marks an event as completed in the scheduler. User can also type `m` instead of `edit` <br>
-Format: `mark INDEX NAME st/START_TIME et/END_TIME d/DATE` 
-Format: `m INDEX NAME st/START_TIME et/END_TIME d/DATE`  
+Marks an event as completed in the scheduler. User can also type `m` instead of `mark`. Marked events will have a tag: `complete` <br>
+Format: `mark INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE` 
+Format: `m INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE`  
 
 Edits a floating task to the scheduler specified by the index <br>
 Format: `edit INDEX NAME` 
