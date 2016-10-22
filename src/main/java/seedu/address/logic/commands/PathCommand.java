@@ -17,7 +17,7 @@ public class PathCommand extends Command {
     public static final String COMMAND_WORD2 = "p";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " or "+ COMMAND_WORD2 + ": Change a specific file path to save. "
             + "Parameters: FILE_PATH\n"
-            + "Example: " + COMMAND_WORD +  " or "+ COMMAND_WORD2 + " dropbox.xml";
+            + "Example: " + COMMAND_WORD +  " or "+ COMMAND_WORD2 + " dropbox";
     
     public static final String MESSAGE_SUCCESS = "File Path to save changed to: ";
     
