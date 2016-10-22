@@ -80,7 +80,7 @@ public class StorageManagerTest {
     /**
      * A Stub class to throw an exception when the save method is called
      */
-    class XmlSchedulerStorageExceptionThrowingStub extends XmlSchedulerStorage{
+/*    class XmlSchedulerStorageExceptionThrowingStub extends XmlSchedulerStorage{
 
         public XmlSchedulerStorageExceptionThrowingStub(String filePath) {
             super(filePath);
@@ -91,6 +91,6 @@ public class StorageManagerTest {
             throw new IOException("dummy exception");
         }
     }
-
+*/
 
 }
