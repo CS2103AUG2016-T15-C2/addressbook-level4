@@ -25,6 +25,9 @@ public class Parser {
 
     private static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
+    
+    private static final Pattern PATH_DATA_ARGS_FORMAT =
+    		Pattern.compile("(?<name>[\\p{Alnum}|/]+)"); //data/ <---
 
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
@@ -306,12 +309,15 @@ public class Parser {
      * @return the prepared command
      */
     private Command preparePath(String args) {
-        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        final Matcher matcher = PATH_DATA_ARGS_FORMAT.matcher(args.trim());
+        //Validate arg string format
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     PathCommand.MESSAGE_USAGE));
         }
-        String filePath = args;					//store input to filePath
-		return new PathCommand(filePath);		//push input to PathCommand
+        else {
+        	String filePath = "data/" + matcher.group("name").trim().replaceAll("/$", "") + ".xml";					//store input to filePath
+        	return new PathCommand(filePath);		//push input to PathCommand
+        }
     }
 }
