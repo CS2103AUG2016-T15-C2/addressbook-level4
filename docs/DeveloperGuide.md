@@ -79,7 +79,7 @@ command `delete 3`.
 
 <img src="images\SDforDeletePerson.png" width="800">
 
->Note how the `Model` simply raises a `AddressBookChangedEvent` when the Address Book data are changed,
+>Note how the `Model` simply raises a `SchedulerChangedEvent` when the Scheduler data are changed,
  instead of asking the `Storage` to save the updates to the hard disk.
 
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates
@@ -98,7 +98,7 @@ The sections below give more details of each component.
 
 **API** : [`Ui.java`](../src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`,
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EntryListPanel`,
 `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class
 and they can be loaded using the `UiPartLoader`.
 
@@ -120,7 +120,7 @@ The `UI` component,
 
 1. `Logic` uses the `Parser` class to parse the user command.
 2. This results in a `Command` object which goes through `CommandManager` before being executed by the `LogicManager`.
-3. The command execution can affect the `Model` (e.g. adding a person) and/or raise events.
+3. The command execution can affect the `Model` (e.g. adding an entry) and/or raise events.
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
@@ -135,8 +135,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 The `Model`,
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
-* exposes a `UnmodifiableObservableList<ReadOnlyPerson>` that can be 'observed' e.g. the UI can be bound to this list
+* stores the Scheduler data.
+* exposes a `UnmodifiableObservableList<ReadOnlyEntry>` that can be 'observed' e.g. the UI can be bound to this list
   so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -152,7 +152,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.scheduler.commons` package.
 
 ## Implementation
 
@@ -241,7 +241,7 @@ Here are the steps to create a new release.
    
 ### Managing Dependencies
 
-A project often depends on third-party libraries. For example, Address Book depends on the
+A project often depends on third-party libraries. For example, Scheduler depends on the
 [Jackson library](http://wiki.fasterxml.com/JacksonHome) for XML parsing. Managing these _dependencies_
 can be automated using Gradle. For example, Gradle can download the dependencies automatically, which
 is better than these alternatives.<br>
@@ -262,10 +262,11 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | delete an item | remove entries that I no longer need
 `* * *` | user | mark an item | distinguish completed from uncompleted items
 `* * *` | user | undo an operation | have read-consistency and data changes should not be visible to queries that started running before committing them
+`* * *` | user | redo an operation | commit to data changes
 `* * *` | advanced user | use flexible commands | type a command faster
 `* * *` | user | find an item by name | locate details of item without having to go through the entire list
 `* * *` | user | track items | keep track of items that have been completed/uncompleted to filter items based on completion
-`* * *` | user | path items | save my files on shared folders for accessibility on other devices
+`* * *` | user | path items | specify a specific folder as the data storage location 
 `* *` | user | clear all items | clear all my list in the scheduler 
 `*` | user | exit the program | exit the program conveniently
 
@@ -396,6 +397,21 @@ Use case ends.
 
 > Use case ends
 
+#### Use case: Redo action
+
+**MSS**
+
+1. User requests to redo most recently executed action
+2. System reverts back to previous state in history
+3. Scheduler displays updated list <br>
+Use case ends.
+
+**Extensions**
+
+1a. The scheduler is new and no previous actions were executed
+
+> Use case ends
+
 #### Use case: Find item
 
 **MSS**
@@ -481,15 +497,11 @@ Use case ends.
 
 > Windows, Linux, Unix, OS-X
 
-##### Private contact detail
-
-> A contact detail that is not meant to be shared with others
-
 ## Appendix E : Product Survey
 
 #### Google Calendar
 * Syncs tasks immediately to your calendar (tasks are in calendar view)
-* Syncs with your email (emails with date/time will have the option to be added to the calendar
+* Syncs with your email (email with date/time will have the option to be added to the calendar
 * Option to create multiple calendars (similar to tagging the task)
 * Able to add attachments
 * Able to display calendar to view tasks after filtering entries (e.g. calendar 4-day view - displays only tasks with deadlines in 4 days)
