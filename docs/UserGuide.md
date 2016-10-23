@@ -74,15 +74,6 @@ Examples:
 * `l by/incomplete`
 * `list by/ed`
 
-#### Marking an item as completed: `mark`
-Marks an event as completed in the scheduler. User can also type `m` instead of `mark`. Marked events will have a tag: `complete` <br>
-Format: `mark INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE` 
-Format: `m INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE`  
-
-Edits a floating task to the scheduler specified by the index <br>
-Format: `edit INDEX NUMBER` 
-Format: `e INDEX NUMBER` 
-
 #### Editing an item : `edit`
 Edits an event to the scheduler specified by the index. User can also type `e` instead of `edit` <br>
 Format: `edit INDEX NUMBER st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE` 
@@ -137,10 +128,10 @@ Examples:
 * `f CS Assignment Errand`<br>
   Returns Any item having names `CS`, `Assignment`, or `Errand`
 
-#### Exiting the program : `exit`
-Exits the program. User can also type `ex` instead of `exit`<br>
-Format: `exit`
-Format: `ex`
+#### Marking an item as completed: `mark`
+Marks an event as completed in the scheduler. User can also type `m` instead of `mark`. Marked events will have a tag: `complete` <br>
+Format: `mark INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE` 
+Format: `m INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE`  
 
 #### Changing the file save path: `path`
 File path can be manually changed to a user-specified location. User can also type `p` instead of `path`<br>
@@ -154,6 +145,11 @@ Examples:
 Deletes all entries in the scheduler. User can also type `c` instead of `clear`<br>
 Format: `clear`
 Format: `c`
+
+#### Exiting the program : `exit`
+Exits the program. User can also type `ex` instead of `exit`<br>
+Format: `exit`
+Format: `ex`
 
 ## FAQ
 
@@ -177,6 +173,7 @@ Undo | `undo`
 Redo | `redo`
 Delete | `delete INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
-Exit | `exit`
+Mark | `mark INDEX NUMBER st/START TIME et/END_TIME sd/START_DATE ed/END_DATE`
 Path | `path FILE_PATH`
 Clear | `clear`
+Exit | `exit`
