@@ -2,10 +2,10 @@ package guitests;
 
 import guitests.guihandles.EntryCardHandle;
 import org.junit.Test;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.commons.core.Messages;
-import seedu.address.testutil.TestEntry;
-import seedu.address.testutil.TestUtil;
+import seedu.scheduler.logic.commands.AddCommand;
+import seedu.scheduler.commons.core.Messages;
+import seedu.scheduler.testutil.TestEntry;
+import seedu.scheduler.testutil.TestUtil;
 
 import static org.junit.Assert.assertTrue;
 

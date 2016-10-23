@@ -77,7 +77,7 @@ allprojects {
         archiveName = "scheduler.jar"
 
         manifest {
-            attributes "Main-Class": "seedu.address.MainApp"
+            attributes "Main-Class": "seedu.scheduler.MainApp"
         }
 
         destinationDir = file("${buildDir}/jar/")
@@ -138,7 +138,7 @@ task guiTests(type: SchedulerTest) {
 
 
 task nonGuiTests(type: SchedulerTest) {
-    include 'seedu/address/**'
+    include 'seedu/scheduler/**'
 
     jacoco {
         destinationFile = new File("${buildDir}/jacoco/test.exec")
