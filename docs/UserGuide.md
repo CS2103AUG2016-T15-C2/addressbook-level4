@@ -37,9 +37,9 @@
 > * Items with `...` after them can have multiple instances.
 > * The order of parameters is fixed.
 > * parameter marker `st/` is interchangeable with: `from/` `f/`
-> * paramter marker  `et/` is interchangeable with: `to/`
-> * paramter marker `sd/` is interchangeable with: `sdate/`
-> * paramter marker `ed/` is interchangeable with: `edate/` or `d/` `date/` or `by/` (in case of a deadline task)<br>
+> * parameter marker  `et/` is interchangeable with: `to/`
+> * parameter marker `sd/` is interchangeable with: `sdate/`
+> * parameter marker `ed/` is interchangeable with: `edate/` or `d/` `date/` or `by/` (in case of a deadline task)<br>
 #### Viewing help : `help`
 Format: `help`
 
@@ -142,14 +142,13 @@ Exits the program. User can also type `ex` instead of `exit`<br>
 Format: `exit`
 Format: `ex`
 
-
-#### Saving the data: `save`
-Scheduler data are saved in the hard disk automatically after any command that changes the data. Data is saved at path previously assigned by the user.<br>
-Format: `save FILE_SAVE`
-
 #### Changing the file save path: `path`
-File path can be manually changed to a user-specified location.<br>
+File path can be manually changed to a user-specified location. User can also type `p` instead of `path`<br>
 Format: `path FILE_PATH`
+
+Examples:
+* `path dropbox`
+* `p dropbox`
 
 #### Clear scheduler of all entries: `clear`
 Deletes all entries in the scheduler. User can also type `c` instead of `clear`<br>
@@ -161,7 +160,6 @@ Format: `c`
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with 
        the file that contains the data of your previous Scheduler folder.
-       
 
 ## Command Summary
 
@@ -180,6 +178,5 @@ Redo | `redo`
 Delete | `delete INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Exit | `exit`
-Save | `path FILE_SAVE`
 Path | `path FILE_PATH`
 Clear | `clear`
