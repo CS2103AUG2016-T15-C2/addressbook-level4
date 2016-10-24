@@ -17,7 +17,10 @@ public class CommandManager {
      * @param Command cmd from Parser
      * @return Command cmd as needed by Parser
      */
-    public Command ExecuteCommand(Command cmd) {
+    public Command stackCommand(Command cmd) {
+        if(cmd instanceof IncorrectCommand){
+            return cmd;
+        }
         if (cmd instanceof UndoableCommand) {
             if (commandUndoStack.size() == 10) {
                 commandUndoStack.removeLast();
@@ -36,7 +39,7 @@ public class CommandManager {
      * 
      * @throws Exception
      */
-    public void Undo() throws Exception {
+    public void undo() throws Exception {
         if (commandUndoStack.size() > 0) {
             UndoableCommand cmd = (UndoableCommand) commandUndoStack.pop();
             commandRedoStack.push(cmd);
@@ -49,7 +52,7 @@ public class CommandManager {
      * 
      * @throws Exception
      */
-    public void Redo() throws Exception {
+    public void redo() throws Exception {
         if (commandRedoStack.size() > 0) {
             UndoableCommand cmd = (UndoableCommand) commandRedoStack.pop();
             commandUndoStack.push(cmd);

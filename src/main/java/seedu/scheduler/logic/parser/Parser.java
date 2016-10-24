@@ -68,43 +68,43 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return commandManager.ExecuteCommand(prepareAdd(arguments));
+            return commandManager.stackCommand(prepareAdd(arguments));
         
         case AddCommand.COMMAND_WORD2:
-            return commandManager.ExecuteCommand(prepareAdd(arguments));
+            return commandManager.stackCommand(prepareAdd(arguments));
 
         case SelectCommand.COMMAND_WORD:
-            return commandManager.ExecuteCommand(prepareSelect(arguments));
+            return commandManager.stackCommand(prepareSelect(arguments));
         
         case SelectCommand.COMMAND_WORD2:
-            return commandManager.ExecuteCommand(prepareSelect(arguments));
+            return commandManager.stackCommand(prepareSelect(arguments));
 
         case DeleteCommand.COMMAND_WORD:
-            return commandManager.ExecuteCommand(prepareDelete(arguments));
+            return commandManager.stackCommand(prepareDelete(arguments));
 
         case DeleteCommand.COMMAND_WORD2:
-            return commandManager.ExecuteCommand(prepareDelete(arguments));
+            return commandManager.stackCommand(prepareDelete(arguments));
 
         case EditCommand.COMMAND_WORD:
-            return commandManager.ExecuteCommand(prepareEdit(arguments));
+            return commandManager.stackCommand(prepareEdit(arguments));
             
         case EditCommand.COMMAND_WORD2:
-            return commandManager.ExecuteCommand(prepareEdit(arguments));
+            return commandManager.stackCommand(prepareEdit(arguments));
             
         case MarkedCommand.COMMAND_WORD:
-            return commandManager.ExecuteCommand(prepareMarked(arguments));
+            return commandManager.stackCommand(prepareMarked(arguments));
             
         case ClearCommand.COMMAND_WORD:
-            return commandManager.ExecuteCommand(new ClearCommand());
+            return commandManager.stackCommand(new ClearCommand());
             
         case ClearCommand.COMMAND_WORD2:
-            return commandManager.ExecuteCommand(new ClearCommand());
+            return commandManager.stackCommand(new ClearCommand());
 
         case FindCommand.COMMAND_WORD:
-            return commandManager.ExecuteCommand(prepareFind(arguments));
+            return commandManager.stackCommand(prepareFind(arguments));
             
         case FindCommand.COMMAND_WORD2:
-            return commandManager.ExecuteCommand(prepareFind(arguments));
+            return commandManager.stackCommand(prepareFind(arguments));
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -113,10 +113,10 @@ public class Parser {
             return new ListCommand();
             
         case PathCommand.COMMAND_WORD:
-        	return commandManager.ExecuteCommand(preparePath(arguments));
+        	return commandManager.stackCommand(preparePath(arguments));
         	
         case PathCommand.COMMAND_WORD2:
-        	return commandManager.ExecuteCommand(preparePath(arguments));
+        	return commandManager.stackCommand(preparePath(arguments));
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -125,11 +125,11 @@ public class Parser {
             return new ExitCommand();
             
         case "undo":
-            commandManager.Undo();
+            commandManager.undo();
             return null;
 
         case "redo":
-            commandManager.Redo();
+            commandManager.redo();
             return null;
             
         case HelpCommand.COMMAND_WORD:
