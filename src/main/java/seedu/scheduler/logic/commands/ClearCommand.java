@@ -33,8 +33,8 @@ public class ClearCommand extends Command {
 
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
-		alert.setHeaderText("Look, a Confirmation Dialog");
-		alert.setContentText("Are you ok with this?");
+		alert.setHeaderText("Clearing the list will remove all data");
+		alert.setContentText("Proceed to clear the list?");
 
 		result = alert.showAndWait();
 	}
