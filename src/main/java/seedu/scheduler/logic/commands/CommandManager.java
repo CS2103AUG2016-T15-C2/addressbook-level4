@@ -14,8 +14,7 @@ public class CommandManager {
     /**
      * Push cmd into commandUndoStack (up to 10 commands).
      * 
-     * @param Command
-     *            cmd from Parser
+     * @param Command cmd from Parser
      * @return Command cmd as needed by Parser
      */
     public Command ExecuteCommand(Command cmd) {
@@ -24,6 +23,9 @@ public class CommandManager {
                 commandUndoStack.removeLast();
             }
             commandUndoStack.push(cmd);
+            commandRedoStack.clear();
+        } else if (cmd instanceof ClearCommand) {
+            commandUndoStack.clear();
             commandRedoStack.clear();
         }
         return cmd;

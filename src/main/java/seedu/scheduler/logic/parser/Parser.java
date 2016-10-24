@@ -92,13 +92,13 @@ public class Parser {
             return commandManager.ExecuteCommand(prepareEdit(arguments));
             
         case MarkedCommand.COMMAND_WORD:
-            return prepareMarked(arguments);
+            return commandManager.ExecuteCommand(prepareMarked(arguments));
             
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return commandManager.ExecuteCommand(new ClearCommand());
             
         case ClearCommand.COMMAND_WORD2:
-            return new ClearCommand();
+            return commandManager.ExecuteCommand(new ClearCommand());
 
         case FindCommand.COMMAND_WORD:
             return commandManager.ExecuteCommand(prepareFind(arguments));
@@ -123,9 +123,6 @@ public class Parser {
            
         case ExitCommand.COMMAND_WORD2:
             return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
             
         case "undo":
             commandManager.Undo();
@@ -135,6 +132,9 @@ public class Parser {
             commandManager.Redo();
             return null;
             
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
         case HelpCommand.COMMAND_WORD2:
             return new HelpCommand();
 
