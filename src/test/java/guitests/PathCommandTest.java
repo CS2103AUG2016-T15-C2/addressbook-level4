@@ -5,7 +5,6 @@ import seedu.address.logic.commands.PathCommand;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
-import seedu.address.commons.util.ConfigUtilTest;
 
 import static org.junit.Assert.*;
 
@@ -25,7 +24,7 @@ public class PathCommandTest extends SchedulerGuiTest {
 		assertEquals(expected.toString(), newPath);
 		assertResultMessage(String.format(PathCommand.MESSAGE_SUCCESS, newPath + ".xml"));
 		
-		// Checking for the consistency of setting, repeatedly, of setpath <filename> in ConfigTest.json.
+		// Checking for the consistency of setting, repeatedly, of path <filename> in ConfigTest.json.
 		Config origConfig = initConfig("ConfigTest.json");
 		String origPath = origConfig.getSchedulerFilePath().replace(".xml","");
 		String newPath2 = "scheduler";
