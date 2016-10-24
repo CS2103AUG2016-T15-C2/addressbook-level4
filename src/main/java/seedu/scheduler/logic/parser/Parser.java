@@ -121,7 +121,7 @@ public class Parser {
         case PathCommand.COMMAND_WORD2:
         	return commandManager.stackCommand(preparePath(arguments));
         //@@author	
-
+        
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
            
