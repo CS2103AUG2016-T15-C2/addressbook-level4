@@ -1,7 +1,7 @@
 package guitests;
 
 import org.junit.Test;
-import seedu.address.model.entry.ReadOnlyEntry;
+import seedu.scheduler.model.entry.ReadOnlyEntry;
 
 import static org.junit.Assert.assertEquals;
 

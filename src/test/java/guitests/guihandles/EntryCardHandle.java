@@ -3,7 +3,7 @@ package guitests.guihandles;
 import guitests.GuiRobot;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-import seedu.address.model.entry.ReadOnlyEntry;
+import seedu.scheduler.model.entry.ReadOnlyEntry;
 
 /**
  * Provides a handle to a entry card in the entry list panel.

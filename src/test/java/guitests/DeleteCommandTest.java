@@ -1,11 +1,11 @@
 package guitests;
 
 import org.junit.Test;
-import seedu.address.testutil.TestEntry;
-import seedu.address.testutil.TestUtil;
+import seedu.scheduler.testutil.TestEntry;
+import seedu.scheduler.testutil.TestUtil;
 
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS;
+import static seedu.scheduler.logic.commands.DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS;
 
 public class DeleteCommandTest extends SchedulerGuiTest {
 
