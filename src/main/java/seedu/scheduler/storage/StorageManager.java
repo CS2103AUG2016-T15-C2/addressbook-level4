@@ -31,6 +31,7 @@ public class StorageManager extends ComponentManager implements Storage {
         this.schedulerStorage = new XmlSchedulerStorage(schedulerFilePath);
         this.userPrefsStorage = new JsonUserPrefsStorage(userPrefsFilePath);    
     }
+    //@@author
 
     // ================ UserPrefs methods ==============================
 
