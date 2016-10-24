@@ -30,7 +30,7 @@ Deliverables and deadlines: Ensure project deliverables are done on time and in 
    * [Path filePath](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#changing-the-file-save-path--path)
 * Code written: [functional code][test code][docs]
 * Other major contributions:
-   * Did the initial refactoring from AddressBook to Scheduler [[#37](https://github.com/CS2103AUG2016-T15-C2/main/pull/37)]
+   * Did the initial refactoring from AddressBook to Scheduler [[#37](https://github.com/CS2103AUG2016-T15-C2/main/pull/37)][[Merge base0.1 to master](https://github.com/CS2103AUG2016-T15-C2/main/commit/7eefac7edcd4b76712dfd52906980656fd9a6998)]
    * Set up Travis
    
 -----
