@@ -97,9 +97,11 @@ public class StatusBarFooter extends UiPart {
         setSyncStatus("Last Updated: " + lastUpdated);
     }
     
+    //@@author A0139956L
     @Subscribe
     public void getFilePathRequestEvent(FilePathChangeEvent event) {
         addSaveLocation();
         setSaveLocation("./" + event.toString());
     }
+    //@@author
 }
