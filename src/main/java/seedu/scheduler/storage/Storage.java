@@ -37,5 +37,7 @@ public interface Storage extends SchedulerStorage, UserPrefsStorage {
      */
     void handleSchedulerChangedEvent(SchedulerChangedEvent abce);
     
+    //@@author A0139956L
     void setFilePath(String filePath);
+    //@@author
 }

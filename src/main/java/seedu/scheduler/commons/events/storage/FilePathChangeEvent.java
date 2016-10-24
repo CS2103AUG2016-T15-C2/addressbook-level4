@@ -4,6 +4,7 @@ import seedu.scheduler.commons.events.BaseEvent;
 
 /**
  * Indicates a change in file path
+ * @@author A0139956L
  */
 public class FilePathChangeEvent extends BaseEvent {
 	
@@ -18,3 +19,4 @@ public class FilePathChangeEvent extends BaseEvent {
         return this.path;
     }
 }
+//@@author

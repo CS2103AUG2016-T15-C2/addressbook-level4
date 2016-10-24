@@ -177,6 +177,7 @@ public class MainApp extends Application {
         System.exit(0);
     }
     
+    //@@author A0139956L
     @Subscribe
     public void changeFilePathRequestEvent(FilePathChangeEvent event) {
     	logger.info(LogsCenter.getEventHandlingLogMessage(event));
@@ -189,6 +190,7 @@ public class MainApp extends Application {
     	}
     	storage.setFilePath(event.toString());
     }
+    //@@author
 
     @Subscribe
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {
