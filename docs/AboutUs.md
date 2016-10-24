@@ -21,11 +21,18 @@ Deliverables and deadlines: Ensure project deliverables are done on time and in 
 
 -----
 
-#### [Leow Zheng Yu](http://github.com/zhengyu92)
+#### Leow Zheng Yu [@zhengyu92](http://github.com/zhengyu92)
 <img src="images/ZhengYu.jpg" width="150"><br>
-Role: Integration Manager <br>  
-Responsibilities: In charge of versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
 
+* Components in charge of: [Storage](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#storage-component)
+* Aspects/tools in charge of: Features, Testing, Documentation, Github 
+* Features implemented:
+   * [Path filePath](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#changing-the-file-save-path--path)
+* Code written: [functional code][test code][docs]
+* Other major contributions:
+   * Did the initial refactoring from AddressBook to Scheduler [[#37](https://github.com/CS2103AUG2016-T15-C2/main/pull/37)][[Merge base0.1 to master](https://github.com/CS2103AUG2016-T15-C2/main/commit/7eefac7edcd4b76712dfd52906980656fd9a6998)]
+   * Set up Travis
+   
 -----
 
 #### [Niveetha](http://github.com/niveetha)

@@ -26,8 +26,10 @@ public class Parser {
     private static final Pattern KEYWORDS_ARGS_FORMAT =
             Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
     
+    //@@author A0139956L
     private static final Pattern PATH_DATA_ARGS_FORMAT =
     		Pattern.compile("(?<name>[\\p{Alnum}|/]+)"); //data/ <---
+    //@@author
 
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
@@ -111,12 +113,14 @@ public class Parser {
             
         case ListCommand.COMMAND_WORD2:
             return new ListCommand();
-            
+        
+        //@@author A0139956L    
         case PathCommand.COMMAND_WORD:
         	return commandManager.stackCommand(preparePath(arguments));
         	
         case PathCommand.COMMAND_WORD2:
         	return commandManager.stackCommand(preparePath(arguments));
+        //@@author	
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -307,6 +311,7 @@ public class Parser {
      *
      * @param args full command args string
      * @return the prepared command
+     * @@author A0139956L
      */
     private Command preparePath(String args) {
         final Matcher matcher = PATH_DATA_ARGS_FORMAT.matcher(args.trim());
@@ -320,4 +325,5 @@ public class Parser {
         	return new PathCommand(filePath);		//push input to PathCommand
         }
     }
+    //@@author
 }

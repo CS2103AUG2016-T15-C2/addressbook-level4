@@ -10,6 +10,7 @@ import seedu.scheduler.commons.util.StringUtil;
 
 /**
  * Manually change a file path to a user-specified location.
+ * @@author A0139956L
  */
 public class PathCommand extends Command {
 	
@@ -32,5 +33,5 @@ public class PathCommand extends Command {
 		EventsCenter.getInstance().post(new FilePathChangeEvent(filePath));
 		return new CommandResult(MESSAGE_SUCCESS + filePath);
 	}
-
 }
+//@@author

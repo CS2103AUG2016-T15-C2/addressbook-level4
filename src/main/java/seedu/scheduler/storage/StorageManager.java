@@ -25,12 +25,13 @@ public class StorageManager extends ComponentManager implements Storage {
     private XmlSchedulerStorage schedulerStorage;
     private JsonUserPrefsStorage userPrefsStorage;
 
-    
+    //@@author A0139956L
     public StorageManager(String schedulerFilePath, String userPrefsFilePath) {
         super();
         this.schedulerStorage = new XmlSchedulerStorage(schedulerFilePath);
         this.userPrefsStorage = new JsonUserPrefsStorage(userPrefsFilePath);    
     }
+    //@@author
 
     // ================ UserPrefs methods ==============================
 
@@ -62,7 +63,8 @@ public class StorageManager extends ComponentManager implements Storage {
         logger.fine("Attempting to read data from file: " + filePath);
         return schedulerStorage.readScheduler(filePath);
     }
-
+    
+    //@@author A0139956L
     @Override
     public void saveScheduler(ReadOnlyScheduler scheduler) throws IOException {
     	schedulerStorage.saveScheduler(scheduler, schedulerStorage.getSchedulerFilePath());
@@ -73,11 +75,13 @@ public class StorageManager extends ComponentManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         schedulerStorage.saveScheduler(scheduler, filePath);
     }
+    
 
     @Override
     public void setFilePath(String pathFile) {
     	this.schedulerStorage = new XmlSchedulerStorage(pathFile);
     }
+    //@@author
 
     @Override
     @Subscribe
