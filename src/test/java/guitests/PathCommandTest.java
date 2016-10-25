@@ -1,0 +1,74 @@
+package guitests;
+
+import org.junit.Test;
+import seedu.address.logic.commands.PathCommand;
+import seedu.address.commons.core.Config;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.util.ConfigUtil;
+
+import static org.junit.Assert.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Optional;
+
+public class PathCommandTest extends SchedulerGuiTest {
+
+	@Test
+	public void PathCommandTest() {
+				
+		// Checking for the existence of User specified filename or path.
+		String newPath = "testscheduler";
+		commandBox.runCommand("path " + newPath); 		//add a file path
+		File expected = new File(newPath);
+		System.out.println(expected.toString());
+		assertEquals(expected.toString(), newPath);
+		assertResultMessage(PathCommand.MESSAGE_SUCCESS + newPath + ".xml");
+		
+		// Checking for the consistency of setting, repeatedly, of path <filename> in ConfigTest.json.
+		Config origConfig = initConfig("ConfigTest.json");
+		String origPath = origConfig.getSchedulerFilePath().replace(".xml","");
+
+		String newPath2 = "scheduler";
+		commandBox.runCommand("path " + newPath2);  //add a file path
+		assertResultMessage(PathCommand.MESSAGE_SUCCESS + newPath2 + ".xml");
+			
+		origConfig = initConfig("ConfigTest.json");
+		String compareString = origConfig.getSchedulerFilePath();
+		assertEquals(newPath2, compareString.substring(0,compareString.length()-4));
+		
+		commandBox.runCommand("path " + origPath);
+		assertResultMessage(PathCommand.MESSAGE_SUCCESS + origPath + ".xml");
+		
+		origConfig = initConfig("ConfigTest.json");
+		String compareString2 = origConfig.getSchedulerFilePath();
+		assertEquals(origPath, compareString2.substring(0,compareString2.length()-4));
+	}
+
+	protected Config initConfig(String configFilePath) {
+		
+		Config initializedConfig;
+		String configFilePathUsed;
+		
+		configFilePathUsed = "ConfigTest.json";
+		
+		if(configFilePath != null) {
+			configFilePathUsed = configFilePath;
+		}
+		
+		try {
+			Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);	
+			initializedConfig = configOptional.orElse(new Config());
+		} catch (DataConversionException e) {
+			initializedConfig = new Config();
+		}
+		
+		 //Update config file in case it was missing to begin with or there are new/unused fields
+		try {
+			ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
+		} catch (IOException e) {
+		}
+		
+		return initializedConfig;
+	}
+}
