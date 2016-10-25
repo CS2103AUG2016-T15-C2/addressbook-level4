@@ -18,9 +18,6 @@ public class CommandManager {
      * @return Command cmd as needed by Parser
      */
     public Command stackCommand(Command cmd) {
-        if(cmd instanceof IncorrectCommand){
-            return cmd;
-        }
         if (cmd instanceof UndoableCommand) {
             if (commandUndoStack.size() == 10) {
                 commandUndoStack.removeLast();

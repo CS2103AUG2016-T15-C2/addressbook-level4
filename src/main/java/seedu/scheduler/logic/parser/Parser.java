@@ -70,10 +70,10 @@ public class Parser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
-            return commandManager.stackCommand(prepareAdd(arguments));
+            return prepareAdd(arguments);
         
         case AddCommand.COMMAND_WORD2:
-            return commandManager.stackCommand(prepareAdd(arguments));
+            return prepareAdd(arguments);
 
         case SelectCommand.COMMAND_WORD:
             return commandManager.stackCommand(prepareSelect(arguments));
@@ -82,10 +82,10 @@ public class Parser {
             return commandManager.stackCommand(prepareSelect(arguments));
 
         case DeleteCommand.COMMAND_WORD:
-            return commandManager.stackCommand(prepareDelete(arguments));
+            return prepareDelete(arguments);
 
         case DeleteCommand.COMMAND_WORD2:
-            return commandManager.stackCommand(prepareDelete(arguments));
+            return prepareDelete(arguments);
 
         case EditCommand.COMMAND_WORD:
             return commandManager.stackCommand(prepareEdit(arguments));
@@ -161,8 +161,8 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         try {
-            return new AddCommand(matcher.group("name"), matcher.group("startTime"), matcher.group("endTime"),
-                    matcher.group("date"), getTagsFromArgs(matcher.group("tagArguments")));
+            return commandManager.stackCommand(new AddCommand(matcher.group("name"), matcher.group("startTime"), matcher.group("endTime"),
+                    matcher.group("date"), getTagsFromArgs(matcher.group("tagArguments"))));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
@@ -196,7 +196,7 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        return new DeleteCommand(index.get());
+        return commandManager.stackCommand(new DeleteCommand(index.get()));
     }
 
     /**
