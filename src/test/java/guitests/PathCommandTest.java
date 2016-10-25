@@ -22,7 +22,6 @@ public class PathCommandTest extends SchedulerGuiTest {
 		String newPath = "testscheduler";
 		commandBox.runCommand("path " + newPath); 		//add a file path
 		File expected = new File(newPath);
-		System.out.println(expected.toString());
 		assertEquals(expected.toString(), newPath);
 		assertResultMessage(PathCommand.MESSAGE_SUCCESS + newPath + ".xml");
 		
