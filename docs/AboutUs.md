@@ -13,7 +13,7 @@ Role: Project Mentor<br>
 -----
 
 
-#### [Chankyu Oh](github.com/chankyuoh) <br>
+#### [Chankyu Oh](http://github.com/chankyuoh) <br>
 <img src="images/profilePicture.jpg" width="150"><br>
 * Components in charge of: [Logic](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#logic-component)
 * Aspects/tools in charge of: Features, Testing, Documentation, Git 
