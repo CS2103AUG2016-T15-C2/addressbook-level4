@@ -21,23 +21,24 @@ public class PathCommandTest extends SchedulerGuiTest {
 		String newPath = "testscheduler";
 		commandBox.runCommand("path " + newPath); 		//add a file path
 		File expected = new File(newPath);
+		System.out.println(expected.toString());
 		assertEquals(expected.toString(), newPath);
-		assertResultMessage(String.format(PathCommand.MESSAGE_SUCCESS, newPath + ".xml"));
+		assertResultMessage(PathCommand.MESSAGE_SUCCESS + newPath + ".xml");
 		
 		// Checking for the consistency of setting, repeatedly, of path <filename> in ConfigTest.json.
 		Config origConfig = initConfig("ConfigTest.json");
 		String origPath = origConfig.getSchedulerFilePath().replace(".xml","");
+
 		String newPath2 = "scheduler";
-				
 		commandBox.runCommand("path " + newPath2);  //add a file path
-		assertResultMessage(String.format(PathCommand.MESSAGE_SUCCESS, newPath2 + ".xml"));
+		assertResultMessage(PathCommand.MESSAGE_SUCCESS + newPath2 + ".xml");
 			
 		origConfig = initConfig("ConfigTest.json");
 		String compareString = origConfig.getSchedulerFilePath();
 		assertEquals(newPath2, compareString.substring(0,compareString.length()-4));
 		
 		commandBox.runCommand("path " + origPath);
-		assertResultMessage(String.format(PathCommand.MESSAGE_SUCCESS, origPath + ".xml"));
+		assertResultMessage(PathCommand.MESSAGE_SUCCESS + origPath + ".xml");
 		
 		origConfig = initConfig("ConfigTest.json");
 		String compareString2 = origConfig.getSchedulerFilePath();
