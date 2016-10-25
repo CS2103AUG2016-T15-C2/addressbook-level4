@@ -23,6 +23,8 @@ Role: Project Mentor<br>
 * Code written: [functional code][test code][docs]
 * Other major contributions:
    * Helped resolve initial test failures when refactoring Addressbook to Scheduler
+   
+   
 -----
 
 #### Leow Zheng Yu [@zhengyu92](http://github.com/zhengyu92)
