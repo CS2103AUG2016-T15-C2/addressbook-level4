@@ -25,7 +25,7 @@ Deliverables and deadlines: Ensure project deliverables are done on time and in 
 <img src="images/ZhengYu.jpg" width="150"><br>
 
 * Components in charge of: [Storage](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#storage-component)
-* Aspects/tools in charge of: Features, Testing, Documentation, Github 
+* Aspects/tools in charge of: Features, Testing, Documentation, Git 
 * Features implemented:
    * [Path filePath](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#changing-the-file-save-path--path)
 * Code written: [functional code][test code][docs]
