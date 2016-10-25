@@ -15,10 +15,14 @@ Role: Project Mentor<br>
 
 #### [Chankyu Oh](github.com/chankyuoh) <br>
 <img src="images/profilePicture.jpg" width="150"><br>
-Role: Code Quality Manager <br>  
-Responsibilities: Look after code quality, ensures adherence to coding standards, etc.
-Deliverables and deadlines: Ensure project deliverables are done on time and in the right format.
-
+* Components in charge of: [Logic](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#logic-component)
+* Aspects/tools in charge of: Features, Testing, Documentation, Git 
+* Features implemented:
+   * [Optional Command format](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#features)
+   * [Natural Language Commands](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#features)
+* Code written: [functional code][test code][docs]
+* Other major contributions:
+   * Helped resolve initial test failures when refactoring Addressbook to Scheduler
 -----
 
 #### Leow Zheng Yu [@zhengyu92](http://github.com/zhengyu92)
