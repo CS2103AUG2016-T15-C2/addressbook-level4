@@ -1,10 +1,10 @@
 package guitests;
 
 import org.junit.Test;
-import seedu.address.logic.commands.PathCommand;
-import seedu.address.commons.core.Config;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.util.ConfigUtil;
+import seedu.scheduler.logic.commands.PathCommand;
+import seedu.scheduler.commons.core.Config;
+import seedu.scheduler.commons.exceptions.DataConversionException;
+import seedu.scheduler.commons.util.ConfigUtil;
 
 import static org.junit.Assert.*;
 
