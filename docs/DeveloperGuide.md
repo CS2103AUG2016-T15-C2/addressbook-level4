@@ -77,7 +77,7 @@ interface and exposes its functionality using the `LogicManager.java` class.<br>
 The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the
 command `delete 3`.
 
-<img src="images\SDforDeletePerson.png" width="800">
+<img src="images\SDforDeleteEntry.JPG" width="800">
 
 >Note how the `Model` simply raises a `SchedulerChangedEvent` when the Scheduler data are changed,
  instead of asking the `Storage` to save the updates to the hard disk.
