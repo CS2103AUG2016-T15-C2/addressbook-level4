@@ -316,7 +316,7 @@ public class Parser {
                     PathCommand.MESSAGE_USAGE));
         }
         else {
-        	String filePath = "data/" + matcher.group("name").trim().replaceAll("/$", "") + ".xml";					//store input to filePath
+        	String filePath = matcher.group("name").trim().replaceAll("/$", "") + ".xml";					//store input to filePath
         	return new PathCommand(filePath);		//push input to PathCommand
         }
     }
