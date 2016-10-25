@@ -1,3 +1,4 @@
+//@@author A0139956L
 package guitests;
 
 import org.junit.Test;
@@ -72,3 +73,4 @@ public class PathCommandTest extends SchedulerGuiTest {
 		return initializedConfig;
 	}
 }
+//author
