@@ -133,13 +133,13 @@ Marks an event as completed in the scheduler. User can also type `m` instead of 
 Format: `mark INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE` 
 Format: `m INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE`  
 
-#### Changing the file save path: `path`
-File path can be manually changed to a user-specified location. User can also type `p` instead of `path`<br>
+#### Specify a folder as data storage location: `path`
+Data storage location can be manually changed to a user-specified location. User can also type `p` instead of `path`<br>
 Format: `path FILE_PATH`
 
 Examples:
-* `path dropbox`
-* `p dropbox`
+* `path data/dropbox`
+* `p data/dropbox`
 
 #### Clear scheduler of all entries: `clear`
 Deletes all entries in the scheduler. User can also type `c` instead of `clear`<br>
