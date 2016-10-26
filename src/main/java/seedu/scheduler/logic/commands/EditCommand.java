@@ -13,7 +13,9 @@ import seedu.scheduler.model.tag.Tag;
 import seedu.scheduler.model.tag.UniqueTagList;
 
 /**
- * Edits an entry in the scheduler
+ * Edits an entry in the scheduler given an index.
+ * 
+ * @@author A0152962B
  */
 public class EditCommand extends UndoableCommand {
 
