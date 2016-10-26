@@ -55,7 +55,8 @@ public class EditCommand extends UndoableCommand {
         ReadOnlyEntry entryToEdit = lastShownList.get(targetIndex - 1);
 
         try {
-            model.editEntry(targetIndex, replacement, entryToEdit);
+            model.editEntry(targetIndex - 1, replacement, entryToEdit);
+            prevEntry = (Entry) entryToEdit;
             return new CommandResult(String.format(MESSAGE_SUCCESS, replacement));
         } catch (UniqueEntryList.DuplicateEntryException dee) {
             return new CommandResult(MESSAGE_DUPLICATE_ENTRY);
@@ -66,14 +67,12 @@ public class EditCommand extends UndoableCommand {
 
     @Override
     public void undo() throws EntryNotFoundException, DuplicateEntryException {
-        model.deleteEntry(currEntry);
-        model.addEntry(prevEntry);
+        model.editEntry(targetIndex - 1, prevEntry, replacement);
     }
 
     @Override
     public void redo() throws Exception {
-        model.deleteEntry(prevEntry);
-        model.addEntry(currEntry);
+        model.editEntry(targetIndex - 1, replacement, prevEntry);
     }
 
 }
