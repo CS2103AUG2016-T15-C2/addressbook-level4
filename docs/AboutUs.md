@@ -37,7 +37,7 @@ Role: Project Mentor<br>
 * Code written: [functional code][test code][docs]
 * Other major contributions:
    * Did the initial refactoring from AddressBook to Scheduler [[#37](https://github.com/CS2103AUG2016-T15-C2/main/pull/37)][[Merge base0.1 to master](https://github.com/CS2103AUG2016-T15-C2/main/commit/7eefac7edcd4b76712dfd52906980656fd9a6998)]
-   * Enhanced the UI by adding colour indicator and hiding empty parameters [[#55](https://github.com/CS2103AUG2016-T15-C2/main/pull/55)]
+   * Enhanced the UI such as adding colour indicator and hiding empty parameters [[#55](https://github.com/CS2103AUG2016-T15-C2/main/pull/55)]
    * Helped to implement initial optional command and parameters format
    * Set up Travis
    
