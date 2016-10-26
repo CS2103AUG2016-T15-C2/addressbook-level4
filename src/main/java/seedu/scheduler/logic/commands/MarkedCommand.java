@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.scheduler.commons.core.Messages;
 import seedu.scheduler.commons.core.UnmodifiableObservableList;
 import seedu.scheduler.commons.exceptions.IllegalValueException;
-import seedu.scheduler.model.entry.Date;
+import seedu.scheduler.model.entry.StartDate;
 import seedu.scheduler.model.entry.EndTime;
 import seedu.scheduler.model.entry.Entry;
 import seedu.scheduler.model.entry.Name;
@@ -30,7 +30,7 @@ public class MarkedCommand extends Command {
 	public final int targetIndex;
 	public final Entry toMarkCompleted;
 
-	public MarkedCommand(int targetIndex, String name, String startTime, String endTime, String date, Set<String> tags)
+	public MarkedCommand(int targetIndex, String name, String startTime, String endTime, String startDate, Set<String> tags)
             throws IllegalValueException {
         this.targetIndex = targetIndex;
         final Set<Tag> tagSet = new HashSet<>();
@@ -42,7 +42,7 @@ public class MarkedCommand extends Command {
                 new Name(name),
                 new StartTime(startTime),
                 new EndTime(endTime),
-                new Date(date),
+                new StartDate(startDate),
                 new UniqueTagList(tagSet)
         );
     }

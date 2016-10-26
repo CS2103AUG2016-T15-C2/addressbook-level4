@@ -4,30 +4,30 @@ package seedu.scheduler.model.entry;
 import seedu.scheduler.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Entry's date in the scheduler.
+ * Represents a Entry's startDate in the scheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Date {
+public class StartDate {
     
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Item's date should be in the format dd-mm-yyyy in numbers separated by a '-'";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Item's start date should be in the format dd-mm-yyyy in numbers separated by a '-'";
     public static final String DATE_VALIDATION_REGEX = "((0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((18|19|20|21)\\d\\d)|empty)"; 
 
     public final String value;
 
     /**
-     * Validates given date.
+     * Validates given start date.
      *
      * @throws IllegalValueException if given date string is invalid.
      */
-    public Date(String date) throws IllegalValueException {
-        assert date != null;
-        if (date == null) {
-            date = "empty";
+    public StartDate(String startDate) throws IllegalValueException {
+        assert startDate != null;
+        if (startDate == null) {
+            startDate = "empty";
         }
-        if (!isValidDate(date)) {
+        if (!isValidDate(startDate)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
         }
-        this.value = date;
+        this.value = startDate;
     }
 
     /**
@@ -45,8 +45,8 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Date // instanceof handles nulls
-                && this.value.equals(((Date) other).value)); // state check
+                || (other instanceof StartDate // instanceof handles nulls
+                && this.value.equals(((StartDate) other).value)); // state check
     }
 
     @Override

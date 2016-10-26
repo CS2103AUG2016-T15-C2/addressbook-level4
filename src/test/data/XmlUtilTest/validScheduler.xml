@@ -4,55 +4,55 @@
         <name>Hans Meeting</name>
         <startTime isPrivate="false">11:00</startTime>
         <endTime isPrivate="false">12:00</endTime>
-        <date isPrivate="false">15/11/2016</date>
+        <startDate isPrivate="false">15/11/2016</startDate>
     </entrys>
     <entrys>
         <name>Golf Game</name>
         <startTime isPrivate="false">07:00</startTime>
         <endTime isPrivate="false">13:30</endTime>
-        <date isPrivate="false">20/12/2016</date>
+        <startDate isPrivate="false">20/12/2016</startDate>
     </entrys>
     <entrys>
  
         <name>Tennis</name>
         <startTime isPrivate="false">09:00</startTime>
         <endTime isPrivate="false">11:00</endTime>
-        <date isPrivate="false">25/11/2017</date>
+        <startDate isPrivate="false">25/11/2017</startDate>
     </entrys>
     <entrys>
         <name>Cornelia Meier</name>
         <startTime isPrivate="false">87652533</startTime>
         <endTime isPrivate="false">cornelia@google.com</endTime>
-        <date isPrivate="false">10th street</date>
+        <startDate isPrivate="false">10th street</startDate>
     </entrys>
     <entrys>
         <name>Werner Meyer</name>
         <startTime isPrivate="false">9482224</startTime>
         <endTime isPrivate="false">werner@gmail.com</endTime>
-        <date isPrivate="false">michegan ave</date>
+        <startDate isPrivate="false">michegan ave</startDate>
     </entrys>
     <entrys>
         <name>Lydia Kunz</name>
         <startTime isPrivate="false">9482427</startTime>
         <endTime isPrivate="false">lydia@gmail.com</endTime>
-        <date isPrivate="false">little tokyo</date>
+        <startDate isPrivate="false">little tokyo</startDate>
     </entrys>
     <entrys>
         <name>Anna Best</name>
         <startTime isPrivate="false">9482442</startTime>
         <endTime isPrivate="false">anna@google.com</endTime>
-        <date isPrivate="false">4th street</date>
+        <startDate isPrivate="false">4th street</startDate>
     </entrys>
     <entrys>
         <name>Stefan Meier</name>
         <startTime isPrivate="false">8482424</startTime>
         <endTime isPrivate="false">stefan@mail.com</endTime>
-        <date isPrivate="false">little india</date>
+        <startDate isPrivate="false">little india</startDate>
     </entrys>
     <entrys>
         <name>Martin Mueller</name>
         <startTime isPrivate="false">8482131</startTime>
         <endTime isPrivate="false">hans@google.com</endTime>
-        <date isPrivate="false">chicago ave</date>
+        <startDate isPrivate="false">chicago ave</startDate>
     </entrys>
 </scheduler>

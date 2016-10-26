@@ -9,7 +9,7 @@ import seedu.scheduler.model.entry.*;
 public class TestEntry implements ReadOnlyEntry {
 
     private Name name;
-    private Date date;
+    private StartDate startDate;
     private EndTime endTime;
     private StartTime startTime;
     private UniqueTagList tags;
@@ -22,8 +22,8 @@ public class TestEntry implements ReadOnlyEntry {
         this.name = name;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(StartDate startDate) {
+        this.startDate = startDate;
     }
 
     public void setEndTime(EndTime endTime) {
@@ -50,8 +50,8 @@ public class TestEntry implements ReadOnlyEntry {
     }
 
     @Override
-    public Date getDate() {
-        return date;
+    public StartDate getStartDate() {
+        return startDate;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class TestEntry implements ReadOnlyEntry {
         sb.append("add " + this.getName().fullName + " ");
         sb.append("st/" + this.getStartTime().value + " ");
         sb.append("et/" + this.getEndTime().value + " ");
-        sb.append("d/" + this.getDate().value + " ");
+        sb.append("sd/" + this.getStartDate().value + " ");
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
@@ -79,7 +79,7 @@ public class TestEntry implements ReadOnlyEntry {
         sb.append("a " + this.getName().fullName + " ");
         sb.append("st/" + this.getStartTime().value + " ");
         sb.append("et/" + this.getEndTime().value + " ");
-        sb.append("d/" + this.getDate().value + " ");
+        sb.append("sd/" + this.getStartDate().value + " ");
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
