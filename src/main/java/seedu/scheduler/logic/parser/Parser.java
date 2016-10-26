@@ -234,7 +234,7 @@ public class Parser {
         // Validate arg string format
         if(!matcher.matches()){
             return new IncorrectCommand(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));    
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkedCommand.MESSAGE_USAGE));    
         }
         
         try {
