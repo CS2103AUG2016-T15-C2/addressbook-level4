@@ -79,6 +79,8 @@ public class UniqueEntryList implements Iterable<Entry> {
      * 
      * @throws EntryNotFoundException if no such entry could be found in the list.
      * @throws DuplicateEntryException if the entry to replace is a duplicate of an existing entry in the list.
+     * 
+     * @@author A0152962B
      */
     public void edit(int index, Entry replacement, ReadOnlyEntry toEdit) throws EntryNotFoundException, DuplicateEntryException {
         assert toEdit != null;
