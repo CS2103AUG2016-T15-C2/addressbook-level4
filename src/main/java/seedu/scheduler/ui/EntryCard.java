@@ -29,10 +29,12 @@ public class EntryCard extends UiPart{
 
     private ReadOnlyEntry entry;
     private int displayedIndex;
+    
     //@@author A0139956L
     public static final String COMPLETED_INDICATION = "-fx-background-color: #ccffcc;";
     public static final String OVERDUE_INDICATION = "-fx-background-color:  #ffcce6;";
     //@@author
+    
     public EntryCard(){
 
     }
@@ -51,12 +53,13 @@ public class EntryCard extends UiPart{
         hideFieldsAccordingToType(entry);
         indicatingColourByCondition(entry);
         id.setText(displayedIndex + ". ");
-        startTime.setText("Start Time: " + entry.getStartTime().value);
-        date.setText("Date: " + entry.getDate().value);
-        endTime.setText("End Time: " + entry.getEndTime().value);
+        startTime.setText("Start Time : " + entry.getStartTime().value);
+        date.setText("Date          : " + entry.getDate().value);
+        endTime.setText("End Time   : " + entry.getEndTime().value);
         tags.setText(entry.tagsString());
     }
     //@@author
+    
     public HBox getLayout() {
         return cardPane;
     }
@@ -73,12 +76,13 @@ public class EntryCard extends UiPart{
     
     //@@author A0139956L
     public void hideFieldsAccordingToType(ReadOnlyEntry entry) {
-        //task
+        //deadline task
         if (entry.getStartTime().toString().contains("empty") 
         		&& entry.getEndTime().toString().contains("empty")) {
             startTime.setVisible(false);
             endTime.setVisible(false);
         } 
+        //floating task
         if (entry.getStartTime().toString().contains("empty") 
         		&& entry.getEndTime().toString().contains("empty")
         		&& entry.getDate().toString().contains("empty")) {
@@ -89,13 +93,13 @@ public class EntryCard extends UiPart{
     }
     
     public void indicatingColourByCondition(ReadOnlyEntry entry) {
-        
+    	//entry completed
         if (entry.tagsString().contains("Completed")) {
-            cardPane.setStyle(COMPLETED_INDICATION);   // if entry completed
+            cardPane.setStyle(COMPLETED_INDICATION);   
         } 
+        // if entry overdue
         //else if (entryRead.getDate().before(new Date())) {
-            // if entry overdue
-            //cardPane.setStyle(OVERDUE_INDICATION);
+             //cardPane.setStyle(OVERDUE_INDICATION);  
        // }
     }
 }
