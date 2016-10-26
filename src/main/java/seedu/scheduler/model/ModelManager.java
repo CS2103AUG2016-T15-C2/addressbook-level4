@@ -78,6 +78,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateSchedulerChanged();
     }
     
+    //@@author A0152962B
     @Override
     public synchronized void editEntry(int index, Entry replacement, ReadOnlyEntry toEdit) 
             throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException{
@@ -85,6 +86,7 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredListToShowAll();
         indicateSchedulerChanged();
     }
+    //@@author
 
     //=========== Filtered Entry List Accessors ===============================================================
 
