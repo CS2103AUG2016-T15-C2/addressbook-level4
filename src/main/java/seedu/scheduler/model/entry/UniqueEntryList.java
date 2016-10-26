@@ -75,7 +75,7 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
     
     /**
-     * Replaces the specified entry;
+     * Edits(replaces) the specified entry;
      * 
      * @throws EntryNotFoundException if no such entry could be found in the list.
      * @throws DuplicateEntryException if the entry to replace is a duplicate of an existing entry in the list.
