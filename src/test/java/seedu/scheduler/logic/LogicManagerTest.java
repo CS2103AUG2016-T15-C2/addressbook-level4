@@ -143,7 +143,15 @@ public class LogicManagerTest {
         assertCommandBehavior("exit", ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT);
     }
 
+    @Test
+    public void execute_clear() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        model.addEntry(helper.generateEntry(1));
+        model.addEntry(helper.generateEntry(2));
+        model.addEntry(helper.generateEntry(3));
 
+        assertCommandBehavior("clear", ClearCommand.MESSAGE_SUCCESS, new Scheduler(), Collections.emptyList());
+    }
 
 
     @Test
