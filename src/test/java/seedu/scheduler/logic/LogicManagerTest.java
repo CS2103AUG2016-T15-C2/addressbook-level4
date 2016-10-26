@@ -318,6 +318,7 @@ public class LogicManagerTest {
                 expectedAB.getEntryList());
     }
     
+    //@@author A0152962B
     @Test
     public void execute_editToDuplicate_notAllowed() throws Exception {
         TestDataHelper helper = new TestDataHelper();
@@ -360,6 +361,7 @@ public class LogicManagerTest {
                 expectedAB,
                 expectedAB.getEntryList());
     }
+    //@@author
 
     @Test
     public void execute_find_invalidArgsFormat() throws Exception {
