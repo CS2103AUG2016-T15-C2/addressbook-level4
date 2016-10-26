@@ -32,7 +32,7 @@ public class Parser {
     //@@author
 
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
-            Pattern.compile("(?<name>[^/]+)"
+            Pattern.compile("(?<name>[^/]+)?"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + "(?<isEndTimePrivate>p?)(?:(to/|et/|by/)(?<endTime>[^/]+))?"
                     + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
@@ -88,10 +88,10 @@ public class Parser {
             return prepareDelete(arguments);
 
         case EditCommand.COMMAND_WORD:
-            return commandManager.stackCommand(prepareEdit(arguments));
+            return prepareEdit(arguments);
             
         case EditCommand.COMMAND_WORD2:
-            return commandManager.stackCommand(prepareEdit(arguments));
+            return prepareEdit(arguments);
             
         case MarkedCommand.COMMAND_WORD:
             return commandManager.stackCommand(prepareMarked(arguments));
@@ -163,7 +163,8 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         try {
-            return commandManager.stackCommand(new AddCommand(matcher.group("name"), matcher.group("startTime"), matcher.group("endTime"),
+            return commandManager.stackCommand(
+                    new AddCommand(matcher.group("name"), matcher.group("startTime"), matcher.group("endTime"),
                     matcher.group("date"), getTagsFromArgs(matcher.group("tagArguments"))));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
@@ -204,8 +205,7 @@ public class Parser {
     /**
      * Parses arguments into the context of the edit entry command.
      * 
-     * @param args
-     *            full command args string
+     * @param args full command args string
      * @return the newly prepared command
      */
     private Command prepareEdit(String args) {
@@ -216,9 +216,10 @@ public class Parser {
         }
 
         try {
-            return new EditCommand(Integer.parseInt(matcher.group("targetIndex")), matcher.group("name"),
+            return commandManager.stackCommand(
+                    new EditCommand(Integer.parseInt(matcher.group("targetIndex")), matcher.group("name"),
                     matcher.group("startTime"), matcher.group("endTime"), matcher.group("date"),
-                    getTagsFromArgs(matcher.group("tagArguments")));
+                    getTagsFromArgs(matcher.group("tagArguments"))));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
