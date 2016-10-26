@@ -35,7 +35,7 @@ public class Parser {
             Pattern.compile("(?<name>[^/]+)"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + "(?<isEndTimePrivate>p?)(?:(to/|et/|by/)(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:(sd/|sdate)(?<startDate>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(sd/|sdate|d)(?<startDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
@@ -43,7 +43,7 @@ public class Parser {
                     + " (?<name>[^/]+)"
                     + " (?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + " (?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
-                    + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<startDate>[^/]+))?"
+                    + " (?<isDatePrivate>p?)(?:(on/|date/|d/|sd/)(?<startDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     private CommandManager commandManager = new CommandManager();
@@ -162,7 +162,7 @@ public class Parser {
         }
         try {
             return commandManager.stackCommand(new AddCommand(matcher.group("name"), matcher.group("startTime"), matcher.group("endTime"),
-                    matcher.group("date"), getTagsFromArgs(matcher.group("tagArguments"))));
+                    matcher.group("startDate"), getTagsFromArgs(matcher.group("tagArguments"))));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
@@ -215,7 +215,7 @@ public class Parser {
 
         try {
             return new EditCommand(Integer.parseInt(matcher.group("targetIndex")), matcher.group("name"),
-                    matcher.group("startTime"), matcher.group("endTime"), matcher.group("date"),
+                    matcher.group("startTime"), matcher.group("endTime"), matcher.group("startDate"),
                     getTagsFromArgs(matcher.group("tagArguments")));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());

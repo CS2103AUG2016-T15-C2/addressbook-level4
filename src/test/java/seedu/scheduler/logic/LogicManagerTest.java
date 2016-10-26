@@ -171,7 +171,7 @@ public class LogicManagerTest {
     	assertCommandBehavior(
                 "add []\\[;]", Name.MESSAGE_NAME_CONSTRAINTS);	
     	assertCommandBehavior(
-                "add []\\[;] st/01:02, et/01:02, d/01-02-2015, tag", Name.MESSAGE_NAME_CONSTRAINTS);
+                "add []\\[;] st/01:02, et/01:02, sd/01-02-2015, tag", Name.MESSAGE_NAME_CONSTRAINTS);
     }
 
     @Test
@@ -327,7 +327,7 @@ public class LogicManagerTest {
         expectedAB.addEntry(toBeAdded);
         helper.addToModel(model, threeEntrys);
         
-        assertCommandBehavior("edit 2 Adam Brown st/11:11 et/11:11 d/01-02-2034 t/tag1 t/tag2",
+        assertCommandBehavior("edit 2 Adam Brown st/11:11 et/11:11 sd/01-02-2034 t/tag1 t/tag2",
                 String.format(EditCommand.MESSAGE_SUCCESS, toBeAdded), 
                 expectedAB,
                 expectedAB.getEntryList());
@@ -444,7 +444,7 @@ public class LogicManagerTest {
             cmd.append(p.getName().toString());
             cmd.append(" st/").append(p.getStartTime());
             cmd.append(" et/").append(p.getEndTime());
-            cmd.append(" d/").append(p.getStartDate());
+            cmd.append(" sd/").append(p.getStartDate());
 
             UniqueTagList tags = p.getTags();
             for(Tag t: tags){
