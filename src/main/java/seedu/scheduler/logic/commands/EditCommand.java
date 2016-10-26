@@ -31,9 +31,7 @@ public class EditCommand extends UndoableCommand {
     private final int targetIndex;
     private final Entry replacement;
     private Entry prevEntry;
-    private Entry currEntry;
     
-
     public EditCommand(int targetIndex, String name, String startTime, String endTime, String date, Set<String> tags)
             throws IllegalValueException {
         this.targetIndex = targetIndex;
