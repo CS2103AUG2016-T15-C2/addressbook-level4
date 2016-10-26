@@ -317,14 +317,19 @@ public class LogicManagerTest {
     }
     
     @Test
+    public void execute_editInvalidArgsFormat_errorMessageShown() throws Exception {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+        assertIncorrectIndexFormatBehaviorForCommand("edit", expectedMessage);
+    }
+    
+    @Test
     public void execute_edit_editsCorrectEntry() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         List<Entry> threeEntrys = helper.generateEntryList(3);
         
         Scheduler expectedAB = helper.generateScheduler(threeEntrys);
-        expectedAB.removeEntry(threeEntrys.get(1));
         Entry toBeAdded = helper.adam();
-        expectedAB.addEntry(toBeAdded);
+        expectedAB.editEntry(1, toBeAdded, threeEntrys.get(1));
         helper.addToModel(model, threeEntrys);
         
         assertCommandBehavior("edit 2 Adam Brown st/11:11 et/11:11 d/01-02-2034 t/tag1 t/tag2",
