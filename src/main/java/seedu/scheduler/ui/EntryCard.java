@@ -44,7 +44,7 @@ public class EntryCard extends UiPart{
         name.setText(entry.getName().fullName);
         id.setText(displayedIndex + ". ");
         startTime.setText("Start Time: " + entry.getStartTime().value);
-        date.setText("Date: " + entry.getDate().value);
+        date.setText("Date: " + entry.getStartDate().value);
         endTime.setText("End Time: " + entry.getEndTime().value);
         tags.setText(entry.tagsString());
     }

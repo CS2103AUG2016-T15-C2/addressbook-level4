@@ -27,8 +27,8 @@ public class EntryBuilder {
         return this;
     }
 
-    public EntryBuilder withDate(String date) throws IllegalValueException {
-        this.entry.setDate(new Date(date));
+    public EntryBuilder withDate(String startDate) throws IllegalValueException {
+        this.entry.setDate(new StartDate(startDate));
         return this;
     }
 

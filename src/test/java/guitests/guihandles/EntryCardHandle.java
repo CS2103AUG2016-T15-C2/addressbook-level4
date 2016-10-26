@@ -43,7 +43,7 @@ public class EntryCardHandle extends GuiHandle {
 
     public boolean isSameEntry(ReadOnlyEntry entry){
         return getFullName().equals(entry.getName().fullName) && getStartTime().equals(entry.getStartTime().value)
-                && getEndTime().equals(entry.getEndTime().value) && getDate().equals(entry.getDate().value);
+                && getEndTime().equals(entry.getEndTime().value) && getDate().equals(entry.getStartDate().value);
     }
 
     @Override

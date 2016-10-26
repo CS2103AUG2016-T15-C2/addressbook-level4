@@ -35,7 +35,7 @@ public class Parser {
             Pattern.compile("(?<name>[^/]+)"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + "(?<isEndTimePrivate>p?)(?:(to/|et/|by/)(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(sd/|sdate)(?<startDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
@@ -43,7 +43,7 @@ public class Parser {
                     + " (?<name>[^/]+)"
                     + " (?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + " (?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
-                    + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
+                    + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<startDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     private CommandManager commandManager = new CommandManager();
@@ -243,7 +243,7 @@ public class Parser {
                     matcher.group("name"),
                     matcher.group("startTime"),
                     matcher.group("endTime"),
-                    matcher.group("date"),
+                    matcher.group("startDate"),
                     getTagsFromArgs(matcher.group("tagArguments"))
             );
         } catch (IllegalValueException ive) {

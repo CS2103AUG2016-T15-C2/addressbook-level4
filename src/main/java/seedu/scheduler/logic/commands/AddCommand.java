@@ -36,13 +36,13 @@ public class AddCommand extends UndoableCommand {
      * @throws IllegalValueException
      *             if any of the raw values are invalid
      */
-    public AddCommand(String name, String startTime, String endTime, String date, Set<String> tags)
+    public AddCommand(String name, String startTime, String endTime, String startDate, Set<String> tags)
             throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        this.toAdd = new Entry(new Name(name), new StartTime(startTime), new EndTime(endTime), new Date(date),
+        this.toAdd = new Entry(new Name(name), new StartTime(startTime), new EndTime(endTime), new StartDate(startDate),
                 new UniqueTagList(tagSet));
         prevEntry = this.toAdd;
     }

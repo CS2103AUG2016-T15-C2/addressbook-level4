@@ -407,7 +407,7 @@ public class LogicManagerTest {
             Name name = new Name("Adam Brown");
             StartTime privateStartTime = new StartTime("11:11");
             EndTime endTime = new EndTime("11:11");
-            Date privateDate = new Date("01-02-2034");
+            StartDate privateDate = new StartDate("01-02-2034");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
@@ -430,7 +430,7 @@ public class LogicManagerTest {
                     new Name("Entry " + seed),
                     new StartTime(num[random.nextInt(24)] + ":00"),
                     new EndTime(num[random.nextInt(24)] + ":00"),
-                    new Date(num[random.nextInt(28)+1] + "-" + num[random.nextInt(12)+1] + "-2016"),
+                    new StartDate(num[random.nextInt(28)+1] + "-" + num[random.nextInt(12)+1] + "-2016"),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
@@ -444,7 +444,7 @@ public class LogicManagerTest {
             cmd.append(p.getName().toString());
             cmd.append(" st/").append(p.getStartTime());
             cmd.append(" et/").append(p.getEndTime());
-            cmd.append(" d/").append(p.getDate());
+            cmd.append(" d/").append(p.getStartDate());
 
             UniqueTagList tags = p.getTags();
             for(Tag t: tags){
@@ -529,7 +529,7 @@ public class LogicManagerTest {
                     new Name(name),
                     new StartTime("11:11"),
                     new EndTime("11:11"),
-                    new Date("01-02-2034"),
+                    new StartDate("01-02-2034"),
                     new UniqueTagList(new Tag("tag"))
             );
         }
