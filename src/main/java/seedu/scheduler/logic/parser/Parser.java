@@ -40,10 +40,10 @@ public class Parser {
 
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+)"
-                    + " (?<name>[^/]+)"
-                    + " (?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
-                    + " (?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
-                    + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
+                    + "(?<name>[^/]+)"
+                    + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
+                    + "(?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     private CommandManager commandManager = new CommandManager();
