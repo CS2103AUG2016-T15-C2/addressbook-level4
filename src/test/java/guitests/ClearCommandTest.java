@@ -2,6 +2,8 @@ package guitests;
 
 import org.junit.Test;
 
+import javafx.scene.input.KeyCode;
+
 import static org.junit.Assert.assertTrue;
 
 public class ClearCommandTest extends SchedulerGuiTest {
@@ -25,12 +27,16 @@ public class ClearCommandTest extends SchedulerGuiTest {
 
     private void assertClearCommandSuccess() {
         commandBox.runCommand("clear");
+        GuiRobot robot = new GuiRobot();
+        robot.type(KeyCode.ENTER).sleep(500);
         assertListSize(0);
         assertResultMessage("Scheduler has been cleared!");
     }
     
     private void assertAdvancedClearCommandSuccess() {
         commandBox.runCommand("c");
+        GuiRobot robot = new GuiRobot();
+        robot.type(KeyCode.ENTER).sleep(500);
         assertListSize(0);
         assertResultMessage("Scheduler has been cleared!");
     }
