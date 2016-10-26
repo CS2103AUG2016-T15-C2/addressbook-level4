@@ -26,11 +26,13 @@ public class EditCommand extends UndoableCommand {
 
     public static final String MESSAGE_SUCCESS = "Entry editted: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the scheduler";
-
-    public final int targetIndex;
-    public final Entry toAdd;
-    public Entry prevEntry;
-    public Entry currEntry;
+    public static final String MESSAGE_ENTRY_MISSING = "The target entry cannot be missing";
+    
+    private final int targetIndex;
+    private final Entry replacement;
+    private Entry prevEntry;
+    private Entry currEntry;
+    
 
     public EditCommand(int targetIndex, String name, String startTime, String endTime, String date, Set<String> tags)
             throws IllegalValueException {
@@ -39,7 +41,7 @@ public class EditCommand extends UndoableCommand {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        this.toAdd = new Entry(new Name(name), new StartTime(startTime), new EndTime(endTime), new Date(date),
+        this.replacement = new Entry(new Name(name), new StartTime(startTime), new EndTime(endTime), new Date(date),
                 new UniqueTagList(tagSet));
     }
 
@@ -52,22 +54,16 @@ public class EditCommand extends UndoableCommand {
             return new CommandResult(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
 
-        ReadOnlyEntry entryToDelete = lastShownList.get(targetIndex - 1);
+        ReadOnlyEntry entryToEdit = lastShownList.get(targetIndex - 1);
 
         try {
-            model.deleteEntry(entryToDelete);
-        } catch (EntryNotFoundException pnfe) {
-            assert false : "The target entry cannot be missing";
-        }
-        prevEntry = (Entry) entryToDelete;
-        currEntry = toAdd;
-        try {
-            model.addEntry(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (UniqueEntryList.DuplicateEntryException e) {
+            model.editEntry(targetIndex, replacement, entryToEdit);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, replacement));
+        } catch (UniqueEntryList.DuplicateEntryException dee) {
             return new CommandResult(MESSAGE_DUPLICATE_ENTRY);
+        } catch (UniqueEntryList.EntryNotFoundException enfe) {
+            return new CommandResult(MESSAGE_ENTRY_MISSING);
         }
-
     }
 
     @Override
