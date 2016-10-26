@@ -1,6 +1,10 @@
 package seedu.scheduler.logic;
 
 import com.google.common.eventbus.Subscribe;
+
+import guitests.GuiRobot;
+import javafx.scene.input.KeyCode;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -108,7 +112,10 @@ public class LogicManagerTest {
 
         //Execute the command
         CommandResult result = logic.execute(inputCommand);
-
+        if (inputCommand.equals("clear")) {
+            GuiRobot robot = new GuiRobot();
+            robot.type(KeyCode.ENTER).sleep(500);
+        }
         //Confirm the ui display elements should contain the right data
         assertEquals(expectedMessage, result.feedbackToUser);
         assertEquals(expectedShownList, model.getFilteredEntryList());

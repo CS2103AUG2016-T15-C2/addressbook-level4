@@ -34,14 +34,14 @@ public class EditCommand extends UndoableCommand {
     private final Entry replacement;
     private Entry prevEntry;
     
-    public EditCommand(int targetIndex, String name, String startTime, String endTime, String date, Set<String> tags)
+    public EditCommand(int targetIndex, String name, String startTime, String endTime, String date,String endDate, Set<String> tags)
             throws IllegalValueException {
         this.targetIndex = targetIndex;
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        this.replacement = new Entry(new Name(name), new StartTime(startTime), new EndTime(endTime), new Date(date),
+        this.replacement = new Entry(new Name(name), new StartTime(startTime), new EndTime(endTime), new Date(date), new EndDate(endDate),
                 new UniqueTagList(tagSet));
     }
 
