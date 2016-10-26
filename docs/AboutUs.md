@@ -48,10 +48,13 @@ Responsibilities: Responsible for overall project coordination.
 
 -----
 
-#### [Hendersen Lam](http://github.com/takukou)
+#### Hendersen Lam [@takukou](http://github.com/takukou)
 <img src="images/hendersenlam.jpg" width="150"><br>
-Role: Testing Manager <br>  
-Responsibilities: Ensures the testing of the project is done properly and on time.
+
+* Features implemented:
+	* [Undo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#undo-recent-actions-(up-to-10)--undo)
+	* [Redo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#redo-recent-undone-actions--redo)
+* Code written: [functional code]
 
  
  -----

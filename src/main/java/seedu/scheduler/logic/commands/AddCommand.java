@@ -28,7 +28,6 @@ public class AddCommand extends UndoableCommand {
     public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the scheduler";
 
     private Entry toAdd;
-    private Entry prevEntry;
 
     /**
      * Convenience constructor using raw values.
@@ -44,7 +43,6 @@ public class AddCommand extends UndoableCommand {
         }
         this.toAdd = new Entry(new Name(name), new StartTime(startTime), new EndTime(endTime), new Date(date), new EndDate(endDate),
                 new UniqueTagList(tagSet));
-        prevEntry = this.toAdd;
     }
 
     @Override
@@ -61,12 +59,12 @@ public class AddCommand extends UndoableCommand {
 
     @Override
     public void undo() throws EntryNotFoundException {
-        model.deleteEntry(prevEntry);
+        model.deleteEntry(toAdd);
     }
 
     @Override
     public void redo() throws DuplicateEntryException {
-        model.addEntry(prevEntry);
+        model.addEntry(toAdd);
     }
 
 }

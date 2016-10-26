@@ -32,7 +32,7 @@ public class Parser {
    
     //@@author A0161210A, A0139956L
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
-            Pattern.compile("(?<name>[^/]+)"
+            Pattern.compile("(?<name>[^/]+)?"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + "(?<isEndTimePrivate>p?)(?:(to/|et/|by/)(?<endTime>[^/]+))?"
                     + "(?<isDatePrivate>p?)(?:(on/|sdate/|sd/)(?<date>[^/]+))?"
@@ -41,10 +41,10 @@ public class Parser {
 
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+)"
-                    + " (?<name>[^/]+)"
-                    + " (?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
-                    + " (?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
-                    + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
+                    + "(?<name>[^/]+)"
+                    + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
+                    + "(?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
                     + "(?<isEndDatePrivate>p?)(?:(edate/|ed/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
@@ -90,10 +90,10 @@ public class Parser {
             return prepareDelete(arguments);
 
         case EditCommand.COMMAND_WORD:
-            return commandManager.stackCommand(prepareEdit(arguments));
+            return prepareEdit(arguments);
             
         case EditCommand.COMMAND_WORD2:
-            return commandManager.stackCommand(prepareEdit(arguments));
+            return prepareEdit(arguments);
             
         case MarkedCommand.COMMAND_WORD:
             return commandManager.stackCommand(prepareMarked(arguments));
@@ -129,7 +129,8 @@ public class Parser {
            
         case ExitCommand.COMMAND_WORD2:
             return new ExitCommand();
-            
+          
+        //@@author A0152962B
         case "undo":
             commandManager.undo();
             return null;
@@ -137,6 +138,7 @@ public class Parser {
         case "redo":
             commandManager.redo();
             return null;
+        //@@author
             
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
@@ -204,8 +206,7 @@ public class Parser {
     /**
      * Parses arguments into the context of the edit entry command.
      * 
-     * @param args
-     *            full command args string
+     * @param args full command args string
      * @return the newly prepared command
      */
     private Command prepareEdit(String args) {

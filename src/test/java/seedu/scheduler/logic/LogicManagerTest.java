@@ -151,9 +151,7 @@ public class LogicManagerTest {
     public void execute_add_invalidArgsFormat() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         assertCommandBehavior(
-                "add ", expectedMessage);
-        //assertCommandBehavior(
-        //        "add Valid Name 01:02, 01:02, 01-02-2015, tag", expectedMessage);
+                "add test g/1231", expectedMessage);
     }
 
     @Test
@@ -259,7 +257,11 @@ public class LogicManagerTest {
             model.addEntry(p);
         }
 
-        assertCommandBehavior(commandWord + " 3", expectedMessage, model.getScheduler(), entryList);
+        if(commandWord == "delete"){
+            assertCommandBehavior(commandWord + " 3", expectedMessage, model.getScheduler(), entryList);
+        } else if(commandWord == "edit"){
+            assertCommandBehavior(commandWord + " 3 name", expectedMessage, model.getScheduler(), entryList);
+        }
     }
 
     @Test
@@ -316,23 +318,50 @@ public class LogicManagerTest {
                 expectedAB.getEntryList());
     }
     
+    //@@author A0152962B
+    @Test
+    public void execute_editToDuplicate_notAllowed() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        List<Entry> threeEntrys = helper.generateEntryList(3);
+        Entry toEditTo = helper.adam();
+        threeEntrys.add(toEditTo);
+        
+        Scheduler expectedAB = helper.generateScheduler(threeEntrys);
+        helper.addToModel(model, threeEntrys);
+        
+        assertCommandBehavior("edit 2 Adam Brown st/11:11 et/11:11 d/01-02-2034 t/tag1 t/tag2",
+                String.format(EditCommand.MESSAGE_DUPLICATE_ENTRY, toEditTo), 
+                expectedAB,
+                expectedAB.getEntryList());
+    }
+    
+    @Test
+    public void execute_editIndexNotFound_errorMessageShown() throws Exception {
+        assertIndexNotFoundBehaviorForCommand("edit");
+    }
+    
+    @Test
+    public void execute_editInvalidArgsFormat_errorMessageShown() throws Exception {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+        assertIncorrectIndexFormatBehaviorForCommand("edit", expectedMessage);
+    }
+    
     @Test
     public void execute_edit_editsCorrectEntry() throws Exception {
         TestDataHelper helper = new TestDataHelper();
         List<Entry> threeEntrys = helper.generateEntryList(3);
         
         Scheduler expectedAB = helper.generateScheduler(threeEntrys);
-        expectedAB.removeEntry(threeEntrys.get(1));
-        Entry toBeAdded = helper.adam();
-        expectedAB.addEntry(toBeAdded);
+        Entry toEditTo = helper.adam();
+        expectedAB.editEntry(1, toEditTo, threeEntrys.get(1));
         helper.addToModel(model, threeEntrys);
         
         assertCommandBehavior("edit 2 Adam Brown st/11:11 et/11:11 d/01-02-2034 t/tag1 t/tag2",
-                String.format(EditCommand.MESSAGE_SUCCESS, toBeAdded), 
+                String.format(EditCommand.MESSAGE_SUCCESS, toEditTo), 
                 expectedAB,
                 expectedAB.getEntryList());
     }
-
+    //@@author
 
     @Test
     public void execute_find_invalidArgsFormat() throws Exception {

@@ -19,7 +19,6 @@ public class StartTime {
      * @throws IllegalValueException if given startTime string is invalid.
      */
     public StartTime(String startTime) throws IllegalValueException {
-        assert startTime != null;
         if (startTime==null) {
             startTime = "empty";
         }
