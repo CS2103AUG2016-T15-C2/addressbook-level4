@@ -1,6 +1,8 @@
 package guitests;
 
 import org.junit.Test;
+
+import javafx.scene.input.KeyCode;
 import seedu.scheduler.model.entry.ReadOnlyEntry;
 
 import static org.junit.Assert.assertEquals;
@@ -29,6 +31,8 @@ public class SelectCommandTest extends SchedulerGuiTest {
     @Test
     public void selectEntry_emptyList(){
         commandBox.runCommand("clear");
+        GuiRobot robot = new GuiRobot();
+        robot.type(KeyCode.ENTER).sleep(500);
         assertListSize(0);
         assertSelectionInvalid(1); //invalid index
     }

@@ -1,6 +1,8 @@
 package guitests;
 
 import org.junit.Test;
+
+import javafx.scene.input.KeyCode;
 import seedu.scheduler.commons.core.Messages;
 import seedu.scheduler.testutil.TestEntry;
 
@@ -21,6 +23,8 @@ public class FindCommandTest extends SchedulerGuiTest {
     @Test
     public void find_emptyList(){
         commandBox.runCommand("clear");
+        GuiRobot robot = new GuiRobot();
+        robot.type(KeyCode.ENTER).sleep(500);
         assertFindResult("find Jean"); //no results
     }
 
