@@ -111,6 +111,10 @@ public class Scheduler implements ReadOnlyScheduler {
             throw new UniqueEntryList.EntryNotFoundException();
         }
     }
+    
+    public void editEntry(int index, Entry r, ReadOnlyEntry toEdit) throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException {
+        entrys.edit(index, r, toEdit);
+    }
 
 //// tag-level operations
 

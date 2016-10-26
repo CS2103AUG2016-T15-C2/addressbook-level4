@@ -22,6 +22,9 @@ public interface Model {
 
     /** Adds the given entry */
     void addEntry(Entry entry) throws UniqueEntryList.DuplicateEntryException;
+    
+    void editEntry(int index, Entry replacement, ReadOnlyEntry entryToEdit) 
+            throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException;
 
     /** Returns the filtered entry list as an {@code UnmodifiableObservableList<ReadOnlyEntry>} */
     UnmodifiableObservableList<ReadOnlyEntry> getFilteredEntryList();
