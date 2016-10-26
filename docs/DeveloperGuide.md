@@ -265,7 +265,6 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | redo an operation | commit to data changes
 `* * *` | advanced user | use flexible commands | type a command faster
 `* * *` | user | find an item by name | locate details of item without having to go through the entire list
-`* * *` | user | track items | keep track of items that have been completed/uncompleted to filter items based on completion
 `* * *` | user | path folder | specify a specific folder as the data storage location 
 `* *` | user | clear all items | clear all my list in the scheduler 
 `*` | user | exit the program | exit the program conveniently
@@ -427,19 +426,6 @@ Use case ends.
 
 > 2a1. Scheduler displays empty list <br>
 
-#### Use case: Track items
-
-**MSS**
-
-1. User calls the track function
-2. Scheduler displays the items which are done and yet to be done <br>
-Use case ends.
-
-**Extensions**
-
-2a. The list is empty
-
-> 2a1. Scheduler displays empty list <br>
 <!-- @@author A0139956L -->
 #### Use case: Path folder
 
