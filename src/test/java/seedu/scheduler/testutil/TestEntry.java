@@ -12,6 +12,7 @@ public class TestEntry implements ReadOnlyEntry {
     private Date date;
     private EndTime endTime;
     private StartTime startTime;
+    private EndDate endDate;
     private UniqueTagList tags;
 
     public TestEntry() {
@@ -24,6 +25,10 @@ public class TestEntry implements ReadOnlyEntry {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+    
+    public void setEndDate(EndDate endDate) {
+        this.endDate = endDate;
     }
 
     public void setEndTime(EndTime endTime) {
@@ -52,6 +57,11 @@ public class TestEntry implements ReadOnlyEntry {
     @Override
     public Date getDate() {
         return date;
+    }
+    
+    @Override
+    public EndDate getEndDate() {
+        return endDate;
     }
 
     @Override

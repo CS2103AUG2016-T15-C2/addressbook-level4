@@ -29,13 +29,14 @@ public class Parser {
     //@@author A0139956L
     private static final Pattern PATH_DATA_ARGS_FORMAT =
     		Pattern.compile("(?<name>[\\p{Alnum}|/]+)"); //data/ <---
-    //@@author
-
+   
+    //@@author A0161210A, A0139956L
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + "(?<isEndTimePrivate>p?)(?:(to/|et/|by/)(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|sdate/|sd/)(?<date>[^/]+))?"
+                    + "(?<isEndDatePrivate>p?)(?:(ed/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
@@ -44,6 +45,7 @@ public class Parser {
                     + " (?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + " (?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
                     + " (?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
+                    + "(?<isEndDatePrivate>p?)(?:(edate/|ed/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     private CommandManager commandManager = new CommandManager();
@@ -162,7 +164,7 @@ public class Parser {
         }
         try {
             return commandManager.stackCommand(new AddCommand(matcher.group("name"), matcher.group("startTime"), matcher.group("endTime"),
-                    matcher.group("date"), getTagsFromArgs(matcher.group("tagArguments"))));
+                    matcher.group("date"), matcher.group("endDate"), getTagsFromArgs(matcher.group("tagArguments"))));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
@@ -215,7 +217,7 @@ public class Parser {
 
         try {
             return new EditCommand(Integer.parseInt(matcher.group("targetIndex")), matcher.group("name"),
-                    matcher.group("startTime"), matcher.group("endTime"), matcher.group("date"),
+                    matcher.group("startTime"), matcher.group("endTime"), matcher.group("date"), matcher.group("endDate"),
                     getTagsFromArgs(matcher.group("tagArguments")));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
@@ -244,6 +246,7 @@ public class Parser {
                     matcher.group("startTime"),
                     matcher.group("endTime"),
                     matcher.group("date"),
+                    matcher.group("endDate"),
                     getTagsFromArgs(matcher.group("tagArguments"))
             );
         } catch (IllegalValueException ive) {

@@ -406,12 +406,13 @@ public class LogicManagerTest {
         Entry adam() throws Exception {
             Name name = new Name("Adam Brown");
             StartTime privateStartTime = new StartTime("11:11");
-            EndTime endTime = new EndTime("11:11");
+            EndTime endTime = new EndTime("11:15");
             Date privateDate = new Date("01-02-2034");
+            EndDate privateEndDate = new EndDate("01-02-2035");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Entry(name, privateStartTime, endTime, privateDate, tags);
+            return new Entry(name, privateStartTime, endTime, privateDate, privateEndDate, tags);
         }
 
         /**
@@ -431,6 +432,7 @@ public class LogicManagerTest {
                     new StartTime(num[random.nextInt(24)] + ":00"),
                     new EndTime(num[random.nextInt(24)] + ":00"),
                     new Date(num[random.nextInt(28)+1] + "-" + num[random.nextInt(12)+1] + "-2016"),
+                    new EndDate(num[random.nextInt(28)+1] + "-" + num[random.nextInt(12)+1] + "-2017"),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
@@ -444,8 +446,9 @@ public class LogicManagerTest {
             cmd.append(p.getName().toString());
             cmd.append(" st/").append(p.getStartTime());
             cmd.append(" et/").append(p.getEndTime());
-            cmd.append(" d/").append(p.getDate());
-
+            cmd.append(" sd/").append(p.getDate());
+            cmd.append(" ed/").append(p.getEndDate());
+            
             UniqueTagList tags = p.getTags();
             for(Tag t: tags){
                 cmd.append(" t/").append(t.tagName);
@@ -530,6 +533,7 @@ public class LogicManagerTest {
                     new StartTime("11:11"),
                     new EndTime("11:11"),
                     new Date("01-02-2034"),
+                    new EndDate("02-02-2034"),
                     new UniqueTagList(new Tag("tag"))
             );
         }

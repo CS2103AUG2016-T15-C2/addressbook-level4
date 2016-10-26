@@ -15,18 +15,20 @@ public class Entry implements ReadOnlyEntry {
     private StartTime startTime;
     private EndTime endTime;
     private Date date;
+    private EndDate endDate;
 
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Entry(Name name, StartTime startTime, EndTime endTime, Date date, UniqueTagList tags) {
+    public Entry(Name name, StartTime startTime, EndTime endTime, Date date, EndDate endDate, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(name, startTime, endTime, date, tags);
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
         this.date = date;
+        this.endDate = endDate;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
@@ -34,7 +36,7 @@ public class Entry implements ReadOnlyEntry {
      * Copy constructor.
      */
     public Entry(ReadOnlyEntry source) {
-        this(source.getName(), source.getStartTime(), source.getEndTime(), source.getDate(), source.getTags());
+        this(source.getName(), source.getStartTime(), source.getEndTime(), source.getDate(), source.getEndDate(), source.getTags());
     }
 
     @Override
@@ -55,6 +57,11 @@ public class Entry implements ReadOnlyEntry {
     @Override
     public Date getDate() {
         return date;
+    }
+    
+    @Override
+    public EndDate getEndDate() {
+        return endDate;
     }
 
     @Override
