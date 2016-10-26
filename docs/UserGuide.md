@@ -141,6 +141,7 @@ Examples:
 * `path data/dropbox`
 * `p data/dropbox`
 <!-- @@author -->
+
 #### Clear scheduler of all entries: `clear`
 Deletes all entries in the scheduler. User can also type `c` instead of `clear`<br>
 Format: `clear`
