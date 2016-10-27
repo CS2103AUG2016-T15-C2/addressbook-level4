@@ -35,7 +35,7 @@ public class Parser {
             Pattern.compile("(?<name>[^/]+)?"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + "(?<isEndTimePrivate>p?)(?:(to/|et/)(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:(on/|sdate/|sd/)(?<date>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|sdate/|sd/|)(?<date>[^/]+))?"
                     + "(?<isEndDatePrivate>p?)(?:(ed/|by/|edate/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     //@@author A0152962B
@@ -45,8 +45,8 @@ public class Parser {
                     + "(?<name>[^/]+)"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + "(?<isEndTimePrivate>p?)(?:(to/|et/)(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
-                    + "(?<isEndDatePrivate>p?)(?:(edate/|ed/|by/)(?<endDate>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|date/|sd/|by/)(?<date>[^/]+))?"
+                    + "(?<isEndDatePrivate>p?)(?:(edate/|ed/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     private CommandManager commandManager = new CommandManager();
@@ -206,14 +206,12 @@ public class Parser {
 
         return commandManager.stackCommand(new DeleteCommand(index.get()));
     }
-
+//@@author A0152962B
     /**
      * Parses arguments into the context of the edit entry command.
      * 
      * @param args full command args string
      * @return the newly prepared command
-     * 
-     * @@author A0152962B
      */
     private Command prepareEdit(String args) {
         final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
@@ -319,13 +317,12 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
-
+    //@@author A0139956L
     /**
      * Parses arguments in the context of the file path command.
      *
      * @param args full command args string
      * @return the prepared command
-     * @@author A0139956L
      */
     private Command preparePath(String args) {
         final Matcher matcher = PATH_DATA_ARGS_FORMAT.matcher(args.trim());
