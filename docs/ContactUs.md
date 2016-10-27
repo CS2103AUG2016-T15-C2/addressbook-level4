@@ -4,5 +4,5 @@
   if you noticed bugs or have suggestions on how to improve.
 
 * **Contributing** : We welcome pull requests. Follow the process described [here](https://github.com/oss-generic/process)
-
+<!-- @@author A0139956L -->
 * **Email us** : You can also reach us at `leow.zhengyu [at] u.nus.edu`
