@@ -72,14 +72,14 @@ allprojects {
             }
         }
     }
-    
+    //@@author A0139956L
     shadowJar {
         archiveName = "scheduler.jar"
 
         manifest {
             attributes "Main-Class": "seedu.scheduler.MainApp"
         }
-
+    //@@author
         destinationDir = file("${buildDir}/jar/")
     }
 }
@@ -112,13 +112,13 @@ tasks.coveralls {
     dependsOn coverage
     onlyIf { System.env.'CI' }
 }
-
+//@@author A0139956L
 class SchedulerTest extends Test {
     public SchedulerTest() {
     	  forkEvery = 1
         systemProperty 'testfx.setup.timeout', '60000'
     }
-
+//@@author
     public void setHeadless() {
         systemProperty 'java.awt.robot', 'true'
         systemProperty 'testfx.robot', 'glass'
@@ -127,7 +127,7 @@ class SchedulerTest extends Test {
         systemProperty 'prism.text', 't2k'
     }
 }
-
+//@@author A0139956L
 task guiTests(type: SchedulerTest) {
     include 'guitests/**'
 
@@ -151,7 +151,7 @@ task allTests(type: SchedulerTest) {
         destinationFile = new File("${buildDir}/jacoco/test.exec")
     }
 }
-
+//@@author
 task headless << {
     println "Setting headless mode properties."
     guiTests.setHeadless()
