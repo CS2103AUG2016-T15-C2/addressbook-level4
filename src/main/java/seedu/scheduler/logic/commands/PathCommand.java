@@ -1,16 +1,11 @@
+//@@author A0139956L
 package seedu.scheduler.logic.commands;
 
-import java.io.IOException;
-
-import seedu.scheduler.commons.core.Config;
 import seedu.scheduler.commons.core.EventsCenter;
 import seedu.scheduler.commons.events.storage.FilePathChangeEvent;
-import seedu.scheduler.commons.util.ConfigUtil;
-import seedu.scheduler.commons.util.StringUtil;
 
 /**
  * Manually change a file path to a user-specified location.
- * @@author A0139956L
  */
 public class PathCommand extends Command {
 	
@@ -34,4 +29,3 @@ public class PathCommand extends Command {
 		return new CommandResult(MESSAGE_SUCCESS + filePath);
 	}
 }
-//@@author
