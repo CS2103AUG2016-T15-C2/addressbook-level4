@@ -14,7 +14,7 @@ public interface Logic {
      * @return the result of the command execution.
      * @throws Exception 
      */
-    CommandResult execute(String commandText) throws Exception;
+    CommandResult execute(String commandText);
 
     /** Returns the filtered list of entrys */
     ObservableList<ReadOnlyEntry> getFilteredEntryList();

@@ -10,8 +10,8 @@ import java.util.Stack;
  */
 public class CommandManager {
     
-    public static final String MESSAGE_UNDO_FAIL = "No commands to undo.";
-    public static final String MESSAGE_REDO_FAIL = "No commands to redo.";
+    public static final String MESSAGE_UNDO_FAIL = "Unable to undo.";
+    public static final String MESSAGE_REDO_FAIL = "Unable to redo.";
     
     private LinkedList<Command> commandUndoStack = new LinkedList<Command>();
     private Stack<Command> commandRedoStack = new Stack<Command>();
@@ -38,27 +38,31 @@ public class CommandManager {
 
     /**
      * Execute undo command from respective commands.
-     * 
-     * @throws Exception
      */
-    public void undo() throws Exception {
+    public void undo() {
         if (commandUndoStack.size() > 0) {
             UndoableCommand cmd = (UndoableCommand) commandUndoStack.pop();
             commandRedoStack.push(cmd);
-            cmd.undo();
+            try{
+                cmd.undo();
+            } catch (Exception e) {
+                
+            }
         }
     }
 
     /**
      * Execute redo command from respective commands.
-     * 
-     * @throws Exception
      */
-    public void redo() throws Exception {
+    public void redo() {
         if (commandRedoStack.size() > 0) {
             UndoableCommand cmd = (UndoableCommand) commandRedoStack.pop();
             commandUndoStack.push(cmd);
-            cmd.redo();
+            try{
+                cmd.redo();
+            } catch (Exception e){
+                
+            }
         }
     }
 }
