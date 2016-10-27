@@ -34,9 +34,9 @@ public class Parser {
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)?"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
-                    + "(?<isEndTimePrivate>p?)(?:(to/|et/|by/)(?<endTime>[^/]+))?"
+                    + "(?<isEndTimePrivate>p?)(?:(to/|et/)(?<endTime>[^/]+))?"
                     + "(?<isDatePrivate>p?)(?:(on/|sdate/|sd/)(?<date>[^/]+))?"
-                    + "(?<isEndDatePrivate>p?)(?:(ed/)(?<endDate>[^/]+))?"
+                    + "(?<isEndDatePrivate>p?)(?:(ed/|by/|edate/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     //@@author A0152962B
 
@@ -44,9 +44,9 @@ public class Parser {
             Pattern.compile("(?<targetIndex>\\d+)"
                     + "(?<name>[^/]+)"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
-                    + "(?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
+                    + "(?<isEndTimePrivate>p?)(?:(to/|et/)(?<endTime>[^/]+))?"
                     + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
-                    + "(?<isEndDatePrivate>p?)(?:(edate/|ed/)(?<endDate>[^/]+))?"
+                    + "(?<isEndDatePrivate>p?)(?:(edate/|ed/|by/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     private CommandManager commandManager = new CommandManager();
