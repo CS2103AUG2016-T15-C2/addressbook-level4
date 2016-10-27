@@ -93,6 +93,7 @@ public class UniqueEntryList implements Iterable<Entry> {
         }
         internalList.set(index, replacement);
     }
+    //@@author
 
     public ObservableList<Entry> getInternalList() {
         return internalList;

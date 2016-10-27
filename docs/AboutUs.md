@@ -52,9 +52,10 @@ Responsibilities: Responsible for overall project coordination.
 <img src="images/hendersenlam.jpg" width="150"><br>
 
 * Features implemented:
-	* [Undo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#undo-recent-actions-(up-to-10)--undo)
-	* [Redo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#redo-recent-undone-actions--redo)
-* Code written: [functional code]
+    * [Edit] (https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#editing-an-item--edit) 
+	 * [Undo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#undo-recent-actions-(up-to-10)--undo)
+	 * [Redo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#redo-recent-undone-actions--redo)
+* Code written: [functional code][test code][docs]
 
  
  -----
