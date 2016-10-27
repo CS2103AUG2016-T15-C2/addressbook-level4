@@ -10,12 +10,12 @@
 0. Ensure you have Java version `1.8.0_60` or later installed in your Computer.<br>
    > Having any Java 8 version is not enough. <br>
    This app will not work with earlier versions of Java 8.
-   
+<!-- @@author A0139956L -->   
 1. Download the latest `scheduler.jar` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your Scheduler.
 3. Double-click the file to start the app. The GUI should appear in a few seconds. 
-   > <img src="images/Ui.png" width="600">
-
+   > <img src="images/Ui.JPG" width="600">
+<!-- @@author -->
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
 5. Some example commands you can try:
@@ -132,7 +132,7 @@ Examples:
 Marks an event as completed in the scheduler. User can also type `m` instead of `mark`. Marked events will have a tag: `complete` <br>
 Format: `mark INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE` 
 Format: `m INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE`  
-
+<!-- @@author A0139956L -->
 #### Specify a folder as data storage location: `path`
 Data storage location can be manually changed to a user-specified location. User can also type `p` instead of `path`<br>
 Format: `path FILE_PATH`
@@ -140,6 +140,7 @@ Format: `path FILE_PATH`
 Examples:
 * `path data/dropbox`
 * `p data/dropbox`
+<!-- @@author -->
 
 #### Clear scheduler of all entries: `clear`
 Deletes all entries in the scheduler. User can also type `c` instead of `clear`<br>

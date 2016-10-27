@@ -76,7 +76,7 @@ interface and exposes its functionality using the `LogicManager.java` class.<br>
 
 The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the
 command `delete 3`.
-
+<!-- @@author A0139956L -->
 <img src="images\SDforDeleteEntry.JPG" width="800">
 
 >Note how the `Model` simply raises a `SchedulerChangedEvent` when the Scheduler data are changed,
@@ -85,7 +85,7 @@ command `delete 3`.
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates
 being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time. <br>
 <img src="images\SDforDeleteEntryEventHandling.JPG" width="800">
-
+<!-- @@author -->
 > Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having
   to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct 
   coupling between components.
@@ -93,7 +93,7 @@ being saved to the hard disk and the status bar of the UI being updated to refle
 The sections below give more details of each component.
 
 ### UI component
-
+<!-- @@author A0139956L -->
 <img src="images/UiClassDiagram.JPG" width="800"><br>
 
 **API** : [`Ui.java`](../src/main/java/seedu/scheduler/ui/Ui.java)
@@ -106,7 +106,7 @@ The `UI` component uses JavaFx UI framework. The layout of these UI parts are de
  that are in the `src/main/resources/view` folder.<br>
  For example, the layout of the [`MainWindow`](../src/main/java/seedu/scheduler/ui/MainWindow.java) is specified in
  [`MainWindow.fxml`](../src/main/resources/view/MainWindow.fxml)
-
+<!-- @@author -->
 The `UI` component,
 * Executes user commands using the `Logic` component.
 * Binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change.
@@ -115,7 +115,7 @@ The `UI` component,
 ### Logic component
 
 <img src="images/LogicClassDiagram.png" width="800"><br>
-
+<!-- @@author A0139956L -->
 **API** : [`Logic.java`](../src/main/java/seedu/scheduler/logic/Logic.java)
 
 1. `Logic` uses the `Parser` class to parse the user command.
@@ -126,9 +126,9 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
  API call.<br>
 <img src="images/DeletePersonSdForLogic.JPG" width="800"><br>
-
+<!-- @@author -->
 ### Model component
-
+<!-- @@author A0139956L -->
 <img src="images/ModelClassDiagram.JPG" width="800"><br>
 
 **API** : [`Model.java`](../src/main/java/seedu/scheduler/model/Model.java)
@@ -139,21 +139,21 @@ The `Model`,
 * exposes a `UnmodifiableObservableList<ReadOnlyEntry>` that can be 'observed' e.g. the UI can be bound to this list
   so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
+<!-- @@author -->
 ### Storage component
-
+<!-- @@author A0139956L -->
 <img src="images/StorageClassDiagram.JPG" width="800"><br>
 
 **API** : [`Storage.java`](../src/main/java/seedu/scheduler/storage/Storage.java)
-
+<!-- @@author -->
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Scheduler data in xml format and read it back.
 
 ### Common classes
-
+<!-- @@author A0139956L -->
 Classes used by multiple components are in the `seedu.scheduler.commons` package.
-
+<!-- @@author -->
 ## Implementation
 
 ### Logging
@@ -201,7 +201,7 @@ We have two types of tests:
 
 1. **GUI Tests** - These are _System Tests_ that test the entire App by simulating user actions on the GUI. 
    These are in the `guitests` package.
-  
+<!-- @@author A0139956L -->  
 2. **Non-GUI Tests** - These are tests not involving the GUI. They include,
    1. _Unit tests_ targeting the lowest level methods/classes. <br>
       e.g. `seedu.scheduler.commons.UrlUtilTest`
@@ -211,7 +211,7 @@ We have two types of tests:
    3. Hybrids of unit and integration tests. These test are checking multiple code units as well as 
       how the are connected together.<br>
       e.g. `seedu.scheduler.logic.LogicManagerTest`
-  
+<!-- @@author -->  
 **Headless GUI Testing** :
 Thanks to the [TestFX](https://github.com/TestFX/TestFX) library we use,
  our GUI tests can be run in the _headless_ mode. 
@@ -240,19 +240,19 @@ Here are the steps to create a new release.
     and upload the JAR file your created.
    
 ### Managing Dependencies
-
+<!-- @@author A0139956L -->
 A project often depends on third-party libraries. For example, Scheduler depends on the
 [Jackson library](http://wiki.fasterxml.com/JacksonHome) for XML parsing. Managing these _dependencies_
 can be automated using Gradle. For example, Gradle can download the dependencies automatically, which
 is better than these alternatives.<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
 b. Require developers to download those libraries manually (this creates extra work for developers)<br>
-
+<!-- @@author -->
 ## Appendix A : User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (unlikely to have) - `*`
 
-
+<!-- @@author A0139956L -->
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
 `* * *` | new user | see usage instructions | refer to instructions when I forget how to use the App
@@ -265,15 +265,14 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | redo an operation | commit to data changes
 `* * *` | advanced user | use flexible commands | type a command faster
 `* * *` | user | find an item by name | locate details of item without having to go through the entire list
-`* * *` | user | track items | keep track of items that have been completed/uncompleted to filter items based on completion
 `* * *` | user | path folder | specify a specific folder as the data storage location 
 `* *` | user | clear all items | clear all my list in the scheduler 
 `*` | user | exit the program | exit the program conveniently
-
+<!-- @@author -->
 ## Appendix B : Use Cases
-
+<!-- @@author A0139956L -->
 (For all use cases below, the **System** is the `Scheduler` and the **Actor** is the `user`, unless specified otherwise)
-
+<!-- @@author -->
 #### Use case: Open Help documentation
 
 **MSS**
@@ -296,7 +295,7 @@ Use case ends.
 
 2a. The user adds an events
 
-> 2a1. Scheduler displays item as a calendar <br>
+> 2a1. Scheduler displays item in a list with start time, end time and date <br>
 
 2b. The user adds a task with a deadline
 
@@ -351,11 +350,11 @@ Use case ends.
 
 4a. The item is an event 
 
-> 4a1. The function requires an input “'NAME OF EVENT' 'START DATE AND TIME' 'END DATE AND TIME'" <br>
+> 4a1. The function requires an input “'NAME OF EVENT' 'START TIME' 'END TIME' 'DATE'" <br>
 
 4b. The item is a task with a deadline 
 
-> 4b1. The function requires an input “'NAME OF TASK' 'DEADLINE'” <br>
+> 4b1. The function requires an input “'NAME OF TASK' 'DATE'” <br>
 
 4c. The item is a floating task
 
@@ -427,20 +426,7 @@ Use case ends.
 
 > 2a1. Scheduler displays empty list <br>
 
-#### Use case: Track items
-
-**MSS**
-
-1. User calls the track function
-2. Scheduler displays the items which are done and yet to be done <br>
-Use case ends.
-
-**Extensions**
-
-2a. The list is empty
-
-> 2a1. Scheduler displays empty list <br>
-
+<!-- @@author A0139956L -->
 #### Use case: Path folder
 
 **MSS**
@@ -454,7 +440,7 @@ Use case ends.
 2a. The folder does not exist
 
 > 2a1. Scheduler will create a folder <br>
-
+<!-- @@author -->
 #### Use case: Clear items
 
 **MSS**
