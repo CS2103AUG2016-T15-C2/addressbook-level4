@@ -72,4 +72,3 @@ public class PathCommandTest extends SchedulerGuiTest {
 		return initializedConfig;
 	}
 }
-//author
