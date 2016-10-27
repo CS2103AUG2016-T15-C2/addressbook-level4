@@ -30,7 +30,9 @@ public class Parser {
     private static final Pattern PATH_DATA_ARGS_FORMAT =
     		Pattern.compile("(?<name>[\\p{Alnum}|/]+)"); //data/ <---
    
-    //@@author A0161210A, A0139956L
+    //@@author 
+    
+    //@@author A0161210A
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)?"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
@@ -38,6 +40,7 @@ public class Parser {
                     + "(?<isDatePrivate>p?)(?:(on/|sdate/|sd/)(?<date>[^/]+))?"
                     + "(?<isEndDatePrivate>p?)(?:(ed/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+    //@@author
 
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+)"
@@ -69,6 +72,7 @@ public class Parser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+      //@@author A0161210A
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -115,6 +119,8 @@ public class Parser {
             
         case ListCommand.COMMAND_WORD2:
             return new ListCommand();
+        
+        //@@author
         
         //@@author A0139956L    
         case PathCommand.COMMAND_WORD:

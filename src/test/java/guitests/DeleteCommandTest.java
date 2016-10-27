@@ -50,7 +50,7 @@ public class DeleteCommandTest extends SchedulerGuiTest {
         //confirm the result message is correct
         assertResultMessage(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete));
     }
-    
+  //@@author A0161210A
     /**
      * Runs the advanced delete command to delete the entry at specified index and confirms the result is correct.
      * @param targetIndexOneIndexed e.g. to delete the first entry in the list, 1 should be given as the target index.
@@ -68,6 +68,7 @@ public class DeleteCommandTest extends SchedulerGuiTest {
         //confirm the result message is correct
         assertResultMessage(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete));
     }
+    //@@author
 
 
 }

@@ -3,6 +3,7 @@ package seedu.scheduler.model.entry;
 
 import seedu.scheduler.commons.exceptions.IllegalValueException;
 
+//@@author A0161210A
 /**
  * Represents a Entry's endDate in the scheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidEndDate(String)}

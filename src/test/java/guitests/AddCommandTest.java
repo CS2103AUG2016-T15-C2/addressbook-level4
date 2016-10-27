@@ -40,7 +40,7 @@ public class AddCommandTest extends SchedulerGuiTest {
         commandBox.runCommand("adds Johnny");
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
     }
-    
+  //@@author A0161210A
     private void assertAdvancedAddSuccess(TestEntry entryToAdd, TestEntry... currentList) {
         commandBox.runCommand(entryToAdd.getAdvancedAddCommand());
 
@@ -52,6 +52,7 @@ public class AddCommandTest extends SchedulerGuiTest {
         TestEntry[] expectedList = TestUtil.addEntrysToList(currentList, entryToAdd);
         assertTrue(entryListPanel.isListMatching(expectedList));
     }
+    //@@author
     
     private void assertAddSuccess(TestEntry entryToAdd, TestEntry... currentList) {
         commandBox.runCommand(entryToAdd.getAddCommand());

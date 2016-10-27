@@ -23,7 +23,8 @@ public class ClearCommandTest extends SchedulerGuiTest {
         //verify clear command works when the list is empty
         assertClearCommandSuccess();
     }
-
+    
+  //@@author A0161210A
     private void assertClearCommandSuccess() {
         commandBox.runCommand("clear");
         GuiRobot robot = new GuiRobot();
@@ -31,7 +32,6 @@ public class ClearCommandTest extends SchedulerGuiTest {
         assertListSize(0);
         assertResultMessage("Scheduler has been cleared!");
     }
-    
     private void assertAdvancedClearCommandSuccess() {
         commandBox.runCommand("c");
         GuiRobot robot = new GuiRobot();
@@ -39,4 +39,5 @@ public class ClearCommandTest extends SchedulerGuiTest {
         assertListSize(0);
         assertResultMessage("Scheduler has been cleared!");
     }
+    //@@author
 }
