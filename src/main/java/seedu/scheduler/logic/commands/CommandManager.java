@@ -5,8 +5,8 @@ import java.util.Stack;
 
 /**
  * Manager that commands have to go through
+ * 
  * @@author A0152962B
- *
  */
 public class CommandManager {
     
