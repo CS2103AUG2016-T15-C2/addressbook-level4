@@ -17,7 +17,7 @@ import seedu.scheduler.model.entry.UniqueEntryList.EntryNotFoundException;
 import seedu.scheduler.model.tag.Tag;
 import seedu.scheduler.model.tag.UniqueTagList;
 
-//@@Niveetha
+//@@author A0126090N
 public class MarkedCommand extends Command {
 	public static final String COMMAND_WORD = "mark";
 
