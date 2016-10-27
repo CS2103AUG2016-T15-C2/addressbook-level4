@@ -57,6 +57,7 @@ public class AddCommand extends UndoableCommand {
 
     }
 
+    //@@author A0152962B
     @Override
     public void undo() throws EntryNotFoundException {
         model.deleteEntry(toAdd);
@@ -66,5 +67,6 @@ public class AddCommand extends UndoableCommand {
     public void redo() throws DuplicateEntryException {
         model.addEntry(toAdd);
     }
+    //@@author
 
 }

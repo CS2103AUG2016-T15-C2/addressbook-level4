@@ -30,8 +30,6 @@ public class Parser {
     private static final Pattern PATH_DATA_ARGS_FORMAT =
     		Pattern.compile("(?<name>[\\p{Alnum}|/]+)"); //data/ <---
    
-    //@@author 
-    
     //@@author A0161210A
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)?"
@@ -40,7 +38,7 @@ public class Parser {
                     + "(?<isDatePrivate>p?)(?:(on/|sdate/|sd/)(?<date>[^/]+))?"
                     + "(?<isEndDatePrivate>p?)(?:(ed/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
-    //@@author
+    //@@author A0152962B
 
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+)"
@@ -52,6 +50,7 @@ public class Parser {
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     private CommandManager commandManager = new CommandManager();
+    //@@author
 
     public Parser() {
     }
@@ -214,6 +213,8 @@ public class Parser {
      * 
      * @param args full command args string
      * @return the newly prepared command
+     * 
+     * @@author A0152962B
      */
     private Command prepareEdit(String args) {
         final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
@@ -231,6 +232,7 @@ public class Parser {
         }
 
     }
+    //@@author
 
     /**
      * Parses arguments in the context of the completed entry command.
