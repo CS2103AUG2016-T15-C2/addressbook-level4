@@ -263,7 +263,7 @@ public class Parser {
         }
         
     }
-  //@@author A0126090N
+    //@@author A0126090N
     
     /**
      * Parses arguments in the context of the select entry command.
@@ -280,6 +280,7 @@ public class Parser {
 
         return new SelectCommand(index.get()); //
     }
+    //@@author
 
     /**
      * Returns the specified index in the {@code command} IF a positive unsigned
