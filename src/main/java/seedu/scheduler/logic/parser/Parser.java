@@ -207,14 +207,12 @@ public class Parser {
 
         return commandManager.stackCommand(new DeleteCommand(index.get()));
     }
-
+//@@author A0152962B
     /**
      * Parses arguments into the context of the edit entry command.
      * 
      * @param args full command args string
      * @return the newly prepared command
-     * 
-     * @@author A0152962B
      */
     private Command prepareEdit(String args) {
         final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
@@ -319,13 +317,12 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
-
+    //@@author A0139956L
     /**
      * Parses arguments in the context of the file path command.
      *
      * @param args full command args string
      * @return the prepared command
-     * @@author A0139956L
      */
     private Command preparePath(String args) {
         final Matcher matcher = PATH_DATA_ARGS_FORMAT.matcher(args.trim());
