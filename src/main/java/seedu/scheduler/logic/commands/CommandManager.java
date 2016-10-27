@@ -3,10 +3,9 @@ package seedu.scheduler.logic.commands;
 import java.util.LinkedList;
 import java.util.Stack;
 
+//@@author A0152962B
 /**
  * Manager that commands have to go through
- * 
- * @@author A0152962B
  */
 public class CommandManager {
     

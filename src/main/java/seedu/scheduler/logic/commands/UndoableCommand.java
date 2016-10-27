@@ -1,9 +1,8 @@
 package seedu.scheduler.logic.commands;
 
+//@@author A0152962B
 /**
  * Represents a command that is undoable.
- * 
- * @@author A0152962B
  */
 public abstract class UndoableCommand extends Command {
 

@@ -12,10 +12,9 @@ import seedu.scheduler.model.entry.UniqueEntryList.EntryNotFoundException;
 import seedu.scheduler.model.tag.Tag;
 import seedu.scheduler.model.tag.UniqueTagList;
 
+//@@author A0152962B
 /**
  * Edits an entry in the scheduler given an index.
- * 
- * @@author A0152962B
  */
 public class EditCommand extends UndoableCommand {
 

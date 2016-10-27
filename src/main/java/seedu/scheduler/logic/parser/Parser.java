@@ -207,13 +207,12 @@ public class Parser {
         return commandManager.stackCommand(new DeleteCommand(index.get()));
     }
 
+    //@@author A0152962B
     /**
      * Parses arguments into the context of the edit entry command.
      * 
      * @param args full command args string
      * @return the newly prepared command
-     * 
-     * @@author A0152962B
      */
     private Command prepareEdit(String args) {
         final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
@@ -231,8 +230,7 @@ public class Parser {
         }
 
     }
-    //@@author
-
+    
     //@@author A0126090N
     /**
      * Parses arguments in the context of the completed entry command.
