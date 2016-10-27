@@ -46,8 +46,15 @@ Role: Project Mentor<br>
 
 #### [Niveetha](http://github.com/niveetha)
 <img src="images/PD1.jpg" width="150"><br>
-Role: Team Lead<br>  
-Responsibilities: Responsible for overall project coordination.
+
+* Components in charge of: [Logic](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#logic-component)
+* Aspects/tools in charge of: Features, Testing, Documentation, Git 
+* Features implemented:
+    * [Clear Prompt](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/src/main/java/seedu/scheduler/logic/commands/ClearCommand.java)
+    * [Marked](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/src/main/java/seedu/scheduler/logic/commands/MarkedCommand.java)
+* Code written: [functional code][test code][docs]
+* Other major contributions:
+    * Helped resolve initial test failures when refactoring Addressbook to Scheduler
 
 -----
 
