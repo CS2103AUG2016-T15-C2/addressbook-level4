@@ -31,12 +31,14 @@ public class ClearCommand extends Command {
 	
 	public ClearCommand() {
 
+		//@@Niveetha
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
 		alert.setHeaderText("Clearing the list will remove all data");
 		alert.setContentText("Proceed to clear the list?");
 
 		result = alert.showAndWait();
+		//@@Niveetha
 	}
 
 	@Override

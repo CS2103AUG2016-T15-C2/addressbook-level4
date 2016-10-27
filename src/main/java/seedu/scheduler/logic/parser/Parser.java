@@ -223,6 +223,7 @@ public class Parser {
 
     }
 
+    //@@author A0126090N
     /**
      * Parses arguments in the context of the completed entry command.
      *
@@ -251,6 +252,7 @@ public class Parser {
         }
         
     }
+  //@@author A0126090N
     
     /**
      * Parses arguments in the context of the select entry command.
@@ -265,7 +267,7 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
         }
 
-        return new SelectCommand(index.get());
+        return new SelectCommand(index.get()); //
     }
 
     /**

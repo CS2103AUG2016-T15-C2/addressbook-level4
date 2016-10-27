@@ -147,6 +147,7 @@ public class LogicManagerTest {
     }
 
 
+    //@@Niveetha
     @Test
     public void execute_add_invalidArgsFormat() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
@@ -156,6 +157,7 @@ public class LogicManagerTest {
         //        "add Valid Name 01:02, 01:02, 01-02-2015, tag", expectedMessage);
     }
 
+    //@@Niveetha
     @Test
     public void execute_add_invalidEntryData() throws Exception {
         //assertCommandBehavior(
