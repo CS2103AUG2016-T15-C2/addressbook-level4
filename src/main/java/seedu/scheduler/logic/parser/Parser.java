@@ -97,11 +97,13 @@ public class Parser {
         case EditCommand.COMMAND_WORD2:
             return prepareEdit(arguments);
             
+        //@@author A0126090N
         case MarkedCommand.COMMAND_WORD:
             return prepareMarked(arguments);
 
         case MarkedCommand.COMMAND_WORD2:
             return prepareMarked(arguments);
+        //@@author
             
         case ClearCommand.COMMAND_WORD:
             return commandManager.stackCommand(new ClearCommand());
