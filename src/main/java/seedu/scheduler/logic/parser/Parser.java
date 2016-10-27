@@ -316,13 +316,12 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
-
+    //@@author A0139956L
     /**
      * Parses arguments in the context of the file path command.
      *
      * @param args full command args string
      * @return the prepared command
-     * @@author A0139956L
      */
     private Command preparePath(String args) {
         final Matcher matcher = PATH_DATA_ARGS_FORMAT.matcher(args.trim());
