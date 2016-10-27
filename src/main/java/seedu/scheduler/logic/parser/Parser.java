@@ -98,7 +98,10 @@ public class Parser {
             return prepareEdit(arguments);
             
         case MarkedCommand.COMMAND_WORD:
-            return commandManager.stackCommand(prepareMarked(arguments));
+            return prepareMarked(arguments);
+
+        case MarkedCommand.COMMAND_WORD2:
+            return prepareMarked(arguments);
             
         case ClearCommand.COMMAND_WORD:
             return commandManager.stackCommand(new ClearCommand());
