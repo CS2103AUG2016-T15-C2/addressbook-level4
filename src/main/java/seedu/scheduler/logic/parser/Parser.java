@@ -261,7 +261,7 @@ public class Parser {
         }
         
     }
-    //@@author A0126090N
+    //@@author
     
     /**
      * Parses arguments in the context of the select entry command.
