@@ -49,6 +49,7 @@ public class DeleteCommand extends UndoableCommand {
         return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete));
     }
 
+    //@@author A0152962B
     @Override
     public void undo() throws DuplicateEntryException {
         model.addEntry(prevEntry);
@@ -58,5 +59,6 @@ public class DeleteCommand extends UndoableCommand {
     public void redo() throws Exception {
         model.deleteEntry(prevEntry);
     }
+    //@@author
 
 }

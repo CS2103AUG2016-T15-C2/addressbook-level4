@@ -29,24 +29,28 @@ public class Parser {
     //@@author A0139956L
     private static final Pattern PATH_DATA_ARGS_FORMAT =
     		Pattern.compile("(?<name>[\\p{Alnum}|/]+)"); //data/ <---
-    //@@author
-
+   
+    //@@author A0161210A
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
-            Pattern.compile("(?<name>[^/]+)"
+            Pattern.compile("(?<name>[^/]+)?"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
-                    + "(?<isEndTimePrivate>p?)(?:(to/|et/|by/)(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
+                    + "(?<isEndTimePrivate>p?)(?:(to/|et/)(?<endTime>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|sdate/|sd/)(?<date>[^/]+))?"
+                    + "(?<isEndDatePrivate>p?)(?:(ed/|by/|edate/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+    //@@author A0152962B
 
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+)"
                     + "(?<name>[^/]+)"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
-                    + "(?<isEndTimePrivate>p?)(?:(to/|by/|et/)(?<endTime>[^/]+))?"
+                    + "(?<isEndTimePrivate>p?)(?:(to/|et/)(?<endTime>[^/]+))?"
                     + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
+                    + "(?<isEndDatePrivate>p?)(?:(edate/|ed/|by/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     private CommandManager commandManager = new CommandManager();
+    //@@author
 
     public Parser() {
     }
@@ -67,6 +71,7 @@ public class Parser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+      //@@author A0161210A
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -88,10 +93,10 @@ public class Parser {
             return prepareDelete(arguments);
 
         case EditCommand.COMMAND_WORD:
-            return commandManager.stackCommand(prepareEdit(arguments));
+            return prepareEdit(arguments);
             
         case EditCommand.COMMAND_WORD2:
-            return commandManager.stackCommand(prepareEdit(arguments));
+            return prepareEdit(arguments);
             
         case MarkedCommand.COMMAND_WORD:
             return commandManager.stackCommand(prepareMarked(arguments));
@@ -114,6 +119,8 @@ public class Parser {
         case ListCommand.COMMAND_WORD2:
             return new ListCommand();
         
+        //@@author
+        
         //@@author A0139956L    
         case PathCommand.COMMAND_WORD:
         	return commandManager.stackCommand(preparePath(arguments));
@@ -127,7 +134,8 @@ public class Parser {
            
         case ExitCommand.COMMAND_WORD2:
             return new ExitCommand();
-            
+          
+        //@@author A0152962B
         case "undo":
             commandManager.undo();
             return null;
@@ -135,6 +143,7 @@ public class Parser {
         case "redo":
             commandManager.redo();
             return null;
+        //@@author
             
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
@@ -162,7 +171,7 @@ public class Parser {
         }
         try {
             return commandManager.stackCommand(new AddCommand(matcher.group("name"), matcher.group("startTime"), matcher.group("endTime"),
-                    matcher.group("date"), getTagsFromArgs(matcher.group("tagArguments"))));
+                    matcher.group("date"), matcher.group("endDate"), getTagsFromArgs(matcher.group("tagArguments"))));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
@@ -202,9 +211,10 @@ public class Parser {
     /**
      * Parses arguments into the context of the edit entry command.
      * 
-     * @param args
-     *            full command args string
+     * @param args full command args string
      * @return the newly prepared command
+     * 
+     * @@author A0152962B
      */
     private Command prepareEdit(String args) {
         final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
@@ -215,13 +225,14 @@ public class Parser {
 
         try {
             return new EditCommand(Integer.parseInt(matcher.group("targetIndex")), matcher.group("name"),
-                    matcher.group("startTime"), matcher.group("endTime"), matcher.group("date"),
+                    matcher.group("startTime"), matcher.group("endTime"), matcher.group("date"), matcher.group("endDate"),
                     getTagsFromArgs(matcher.group("tagArguments")));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
 
     }
+    //@@author
 
     //@@author A0126090N
     /**
@@ -245,6 +256,7 @@ public class Parser {
                     matcher.group("startTime"),
                     matcher.group("endTime"),
                     matcher.group("date"),
+                    matcher.group("endDate"),
                     getTagsFromArgs(matcher.group("tagArguments"))
             );
         } catch (IllegalValueException ive) {

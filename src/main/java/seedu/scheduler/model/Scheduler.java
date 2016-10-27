@@ -111,6 +111,19 @@ public class Scheduler implements ReadOnlyScheduler {
             throw new UniqueEntryList.EntryNotFoundException();
         }
     }
+    
+    /**
+     * Edits(replace) a specified entry in the list.
+     * 
+     * @throws UniqueEntryList.DuplicateEntryException if an equivalent entry already exists.
+     * @throws UniqueEntryList.EntryNotFoundException if no such entry could be found in the list.
+     * 
+     * @@author A0152962B
+     */
+    public void editEntry(int index, Entry r, ReadOnlyEntry toEdit) throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException {
+        entrys.edit(index, r, toEdit);
+    }
+    //@@author
 
 //// tag-level operations
 

@@ -12,6 +12,7 @@ public interface ReadOnlyEntry {
     StartTime getStartTime();
     EndTime getEndTime();
     Date getDate();
+    EndDate getEndDate();
 
     /**
      * The returned TagList is a deep copy of the internal TagList,
@@ -43,6 +44,8 @@ public interface ReadOnlyEntry {
                 .append(getEndTime())
                 .append(" Date: ")
                 .append(getDate())
+                .append(" EndDate: ")
+                .append(getEndDate())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

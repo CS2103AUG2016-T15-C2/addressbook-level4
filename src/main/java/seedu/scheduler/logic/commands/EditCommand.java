@@ -13,7 +13,9 @@ import seedu.scheduler.model.tag.Tag;
 import seedu.scheduler.model.tag.UniqueTagList;
 
 /**
- * Edits an entry in the scheduler
+ * Edits an entry in the scheduler given an index.
+ * 
+ * @@author A0152962B
  */
 public class EditCommand extends UndoableCommand {
 
@@ -26,20 +28,20 @@ public class EditCommand extends UndoableCommand {
 
     public static final String MESSAGE_SUCCESS = "Entry editted: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the scheduler";
-
-    public final int targetIndex;
-    public final Entry toAdd;
-    public Entry prevEntry;
-    public Entry currEntry;
-
-    public EditCommand(int targetIndex, String name, String startTime, String endTime, String date, Set<String> tags)
+    public static final String MESSAGE_ENTRY_MISSING = "The target entry cannot be missing";
+    
+    private final int targetIndex;
+    private final Entry replacement;
+    private Entry prevEntry;
+    
+    public EditCommand(int targetIndex, String name, String startTime, String endTime, String date,String endDate, Set<String> tags)
             throws IllegalValueException {
         this.targetIndex = targetIndex;
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        this.toAdd = new Entry(new Name(name), new StartTime(startTime), new EndTime(endTime), new Date(date),
+        this.replacement = new Entry(new Name(name), new StartTime(startTime), new EndTime(endTime), new Date(date), new EndDate(endDate),
                 new UniqueTagList(tagSet));
     }
 
@@ -52,34 +54,27 @@ public class EditCommand extends UndoableCommand {
             return new CommandResult(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
 
-        ReadOnlyEntry entryToDelete = lastShownList.get(targetIndex - 1);
+        ReadOnlyEntry entryToEdit = lastShownList.get(targetIndex - 1);
 
         try {
-            model.deleteEntry(entryToDelete);
-        } catch (EntryNotFoundException pnfe) {
-            assert false : "The target entry cannot be missing";
-        }
-        prevEntry = (Entry) entryToDelete;
-        currEntry = toAdd;
-        try {
-            model.addEntry(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (UniqueEntryList.DuplicateEntryException e) {
+            model.editEntry(targetIndex - 1, replacement, entryToEdit);
+            prevEntry = (Entry) entryToEdit;
+            return new CommandResult(String.format(MESSAGE_SUCCESS, replacement));
+        } catch (UniqueEntryList.DuplicateEntryException dee) {
             return new CommandResult(MESSAGE_DUPLICATE_ENTRY);
+        } catch (UniqueEntryList.EntryNotFoundException enfe) {
+            return new CommandResult(MESSAGE_ENTRY_MISSING);
         }
-
     }
 
     @Override
     public void undo() throws EntryNotFoundException, DuplicateEntryException {
-        model.deleteEntry(currEntry);
-        model.addEntry(prevEntry);
+        model.editEntry(targetIndex - 1, prevEntry, replacement);
     }
 
     @Override
     public void redo() throws Exception {
-        model.deleteEntry(prevEntry);
-        model.addEntry(currEntry);
+        model.editEntry(targetIndex - 1, replacement, prevEntry);
     }
 
 }

@@ -73,6 +73,27 @@ public class UniqueEntryList implements Iterable<Entry> {
         }
         return entryFoundAndDeleted;
     }
+    
+    /**
+     * Edits(replaces) the specified entry;
+     * 
+     * @throws EntryNotFoundException if no such entry could be found in the list.
+     * @throws DuplicateEntryException if the entry to replace is a duplicate of an existing entry in the list.
+     * 
+     * @@author A0152962B
+     */
+    public void edit(int index, Entry replacement, ReadOnlyEntry toEdit) throws EntryNotFoundException, DuplicateEntryException {
+        assert toEdit != null;
+        final boolean entryFound = internalList.contains(toEdit);
+        if(!entryFound) {
+            throw new EntryNotFoundException();
+        }
+        if(contains(replacement)) {
+            throw new DuplicateEntryException();
+        }
+        internalList.set(index, replacement);
+    }
+    //@@author
 
     public ObservableList<Entry> getInternalList() {
         return internalList;

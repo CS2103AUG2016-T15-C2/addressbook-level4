@@ -9,6 +9,7 @@ import seedu.scheduler.commons.core.ComponentManager;
 import seedu.scheduler.model.entry.Entry;
 import seedu.scheduler.model.entry.ReadOnlyEntry;
 import seedu.scheduler.model.entry.UniqueEntryList;
+import seedu.scheduler.model.entry.UniqueEntryList.DuplicateEntryException;
 import seedu.scheduler.model.entry.UniqueEntryList.EntryNotFoundException;
 
 import java.util.Set;
@@ -76,6 +77,16 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredListToShowAll();
         indicateSchedulerChanged();
     }
+    
+    //@@author A0152962B
+    @Override
+    public synchronized void editEntry(int index, Entry replacement, ReadOnlyEntry toEdit) 
+            throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException{
+        scheduler.editEntry(index, replacement, toEdit);
+        updateFilteredListToShowAll();
+        indicateSchedulerChanged();
+    }
+    //@@author
 
     //=========== Filtered Entry List Accessors ===============================================================
 

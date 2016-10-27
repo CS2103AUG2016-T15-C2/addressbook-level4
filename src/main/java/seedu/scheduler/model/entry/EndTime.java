@@ -9,7 +9,7 @@ import seedu.scheduler.commons.exceptions.IllegalValueException;
  */
 public class EndTime {
 
-    public static final String MESSAGE_ENDTIME_CONSTRAINTS =
+    public static final String MESSAGE_END_TIME_CONSTRAINTS =
             "Item's end time should be in the 24-Hr format hh-mm in numbers separated by a ':'";
     public static final String ENDTIME_VALIDATION_REGEX = "(([01]?[0-9]|2[0-3]):[0-5][0-9]|empty)"; 
 
@@ -21,13 +21,12 @@ public class EndTime {
      * @throws IllegalValueException if given endTime scheduler string is invalid.
      */
     public EndTime(String endTime) throws IllegalValueException {
-        assert endTime != null;
         if(endTime == null) {
             endTime = "empty";
         }
         endTime = endTime.trim();
         if (!isValidEndTime(endTime)) {
-            throw new IllegalValueException(MESSAGE_ENDTIME_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_END_TIME_CONSTRAINTS);
         }
         this.value = endTime;
     }

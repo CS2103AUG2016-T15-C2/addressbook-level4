@@ -9,7 +9,7 @@ import seedu.scheduler.commons.exceptions.IllegalValueException;
  */
 public class Date {
     
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Item's date should be in the format dd-mm-yyyy in numbers separated by a '-'";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Item's start date should be in the format dd-mm-yyyy in numbers separated by a '-'";
     public static final String DATE_VALIDATION_REGEX = "((0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((18|19|20|21)\\d\\d)|empty)"; 
 
     public final String value;
@@ -20,10 +20,10 @@ public class Date {
      * @throws IllegalValueException if given date string is invalid.
      */
     public Date(String date) throws IllegalValueException {
-        assert date != null;
         if (date == null) {
             date = "empty";
         }
+        date = date.trim();
         if (!isValidDate(date)) {
             throw new IllegalValueException(MESSAGE_DATE_CONSTRAINTS);
         }
@@ -31,7 +31,7 @@ public class Date {
     }
 
     /**
-     * Returns true if a given string is a valid entry endTime.
+     * Returns true if a given string is a valid entry end.
      */
     public static boolean isValidDate(String test) {
         return test.matches(DATE_VALIDATION_REGEX);

@@ -31,6 +31,11 @@ public class EntryBuilder {
         this.entry.setDate(new Date(date));
         return this;
     }
+    
+    public EntryBuilder withEndDate(String endDate) throws IllegalValueException {
+        this.entry.setEndDate(new EndDate(endDate));
+        return this;
+    }
 
     public EntryBuilder withStartTime(String startTime) throws IllegalValueException {
         this.entry.setStartTime(new StartTime(startTime));
