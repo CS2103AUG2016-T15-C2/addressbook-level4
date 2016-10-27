@@ -23,6 +23,8 @@ public class EntryCard extends UiPart{
     @FXML
     private Label date;
     @FXML
+    private Label endDate;
+    @FXML
     private Label endTime;
     @FXML
     private Label tags;

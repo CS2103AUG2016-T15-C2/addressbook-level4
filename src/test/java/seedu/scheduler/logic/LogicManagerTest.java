@@ -154,7 +154,7 @@ public class LogicManagerTest {
     }
 
 
-    //@@Niveetha
+    //@@author A0126090N
     @Test
     public void execute_add_invalidArgsFormat() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
@@ -162,7 +162,6 @@ public class LogicManagerTest {
                 "add test g/1231", expectedMessage);
     }
 
-    //@@Niveetha
     @Test
     public void execute_add_invalidEntryData() throws Exception {
         //assertCommandBehavior(
@@ -183,7 +182,8 @@ public class LogicManagerTest {
                 "add []\\[;] st/01:02, et/01:02, d/01-02-2015, tag", Name.MESSAGE_NAME_CONSTRAINTS);
                 */
     }
-
+    //@@author
+    
     @Test
     public void execute_add_successful() throws Exception {
         // setup expectations
