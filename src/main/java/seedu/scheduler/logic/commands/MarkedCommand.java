@@ -21,6 +21,7 @@ import seedu.scheduler.model.tag.UniqueTagList;
 //@@author A0126090N
 public class MarkedCommand extends Command {
 	public static final String COMMAND_WORD = "mark";
+	public static final String COMMAND_WORD2 = "m";
 
 	public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags an entry as completed in the scheduler. "
 			+ "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD
