@@ -35,7 +35,7 @@ public class Parser {
             Pattern.compile("(?<name>[^/]+)?"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + "(?<isEndTimePrivate>p?)(?:(to/|et/)(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:(on/|sdate/|sd/)(?<date>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|sdate/|sd/|)(?<date>[^/]+))?"
                     + "(?<isEndDatePrivate>p?)(?:(ed/|by/|edate/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     //@@author A0152962B
@@ -45,8 +45,8 @@ public class Parser {
                     + "(?<name>[^/]+)"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + "(?<isEndTimePrivate>p?)(?:(to/|et/)(?<endTime>[^/]+))?"
-                    + "(?<isDatePrivate>p?)(?:(on/|date/|d/)(?<date>[^/]+))?"
-                    + "(?<isEndDatePrivate>p?)(?:(edate/|ed/|by/)(?<endDate>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|date/|sd/|by/)(?<date>[^/]+))?"
+                    + "(?<isEndDatePrivate>p?)(?:(edate/|ed/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
     private CommandManager commandManager = new CommandManager();
