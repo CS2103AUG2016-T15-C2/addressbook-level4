@@ -19,7 +19,7 @@ public interface ReadOnlyEntry {
      * changes on the returned list will not affect the entry's internal tags.
      */
     UniqueTagList getTags();
-
+//@@author A0139956L
     /**
      * Returns true if both have the same state. (interfaces cannot override .equals)
      */
@@ -29,9 +29,10 @@ public interface ReadOnlyEntry {
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getStartTime().equals(this.getStartTime())
                 && other.getEndTime().equals(this.getEndTime())
-                && other.getDate().equals(this.getDate()));
+                && other.getDate().equals(this.getDate())
+                && other.getEndDate().equals(this.getEndDate()));
     }
-
+//@@author
     /**
      * Formats the entry as text, showing all contact details.
      */
@@ -44,7 +45,7 @@ public interface ReadOnlyEntry {
                 .append(getEndTime())
                 .append(" Date: ")
                 .append(getDate())
-                .append(" EndDate: ")
+                .append(" End Date: ")
                 .append(getEndDate())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
