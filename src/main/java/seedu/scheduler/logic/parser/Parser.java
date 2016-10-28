@@ -244,27 +244,12 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareMarked(String args) {
-        final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
-        // Validate arg string format
-        if(!matcher.matches()){
-            return new IncorrectCommand(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkedCommand.MESSAGE_USAGE));    
+    	Optional<Integer> index = parseIndex(args);
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkedCommand.MESSAGE_USAGE));
         }
-        
-        try {
-            return new MarkedCommand(
-                    Integer.parseInt(matcher.group("targetIndex")),
-                    matcher.group("name"),
-                    matcher.group("startTime"),
-                    matcher.group("endTime"),
-                    matcher.group("date"),
-                    matcher.group("endDate"),
-                    getTagsFromArgs(matcher.group("tagArguments"))
-            );
-        } catch (IllegalValueException ive) {
-            return new IncorrectCommand(ive.getMessage());
-        }
-        
+        //return commandManager.stackCommand(new MarkedCommand(index.get()));
+        return new MarkedCommand(index.get());
     }
     //@@author
     
