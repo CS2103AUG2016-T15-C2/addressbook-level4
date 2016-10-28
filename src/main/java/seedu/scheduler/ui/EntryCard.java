@@ -55,9 +55,10 @@ public class EntryCard extends UiPart{
         hideFieldsAccordingToType(entry);
         indicatingColourByCondition(entry);
         id.setText(displayedIndex + ". ");
+        date.setText("Start Date : " + entry.getDate().value);
         startTime.setText("Start Time : " + entry.getStartTime().value);
-        date.setText("Date          : " + entry.getDate().value);
-        endTime.setText("End Time   : " + entry.getEndTime().value);
+        endDate.setText("End Date  : " + entry.getEndDate().value);
+        endTime.setText("End Time  : " + entry.getEndTime().value);
         tags.setText(entry.tagsString());
     }
     //@@author
