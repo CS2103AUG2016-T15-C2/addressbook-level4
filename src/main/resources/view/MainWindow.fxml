@@ -28,7 +28,7 @@
          <items>
             <VBox fx:id="entryList" minWidth="340" prefWidth="340">
                 <padding>
-                    <Insets top="10.0" bottom="10.0" left="10.0" right="10.0" />
+                    <Insets top="10.0" bottom="10.0" left="10.0" right="5.0" />
                 </padding>
                <children>
                   <AnchorPane fx:id="entryListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
@@ -36,7 +36,7 @@
             </VBox>
             <AnchorPane fx:id="browserPlaceholder" prefWidth="340" >
                 <padding>
-                    <Insets top="10.0" bottom="10.0" left="10.0" right="10.0"/>
+                    <Insets top="10.0" bottom="10.0" left="5.0" right="10.0"/>
                 </padding>
             </AnchorPane>
          </items>
