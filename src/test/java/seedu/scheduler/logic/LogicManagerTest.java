@@ -160,29 +160,32 @@ public class LogicManagerTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         assertCommandBehavior(
                 "add test g/1231", expectedMessage);
+        assertCommandBehavior(
+                "add test_ g/1231", expectedMessage);
+        assertCommandBehavior(
+                "a meeting g/1231", expectedMessage);
     }
-
+    //@@author
+    /*
     @Test
     public void execute_add_invalidEntryData() throws Exception {
-        //assertCommandBehavior(
-        //        "add []\\[;] st/01:02, et/01:02, d/01-02-2015, tag", Name.MESSAGE_NAME_CONSTRAINTS);
-        //assertCommandBehavior(
-        //        "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
-        //assertCommandBehavior(
-        //        "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag", EndTime.MESSAGE_ENDTIME_CONSTRAINTS);
-        //assertCommandBehavior(
-        //        "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag", Date.MESSAGE_DATE_CONSTRAINTS);
-        //assertCommandBehavior(
-        //        "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
+    	assertCommandBehavior(
+                "add []\\[;]", Name.MESSAGE_NAME_CONSTRAINTS);	
+        assertCommandBehavior(
+                "add Valid Name st/25:02, et/01:02, d/01-02-2015, tag", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
+        assertCommandBehavior(
+                "add Valid Name st/01:02, et/25:02, d/01-02-2015, tag", EndTime.MESSAGE_END_TIME_CONSTRAINTS);
+        assertCommandBehavior(
+                "add Valid Name st/01:02, et/01:02, d/32-02-2015, tag", Date.MESSAGE_DATE_CONSTRAINTS);
+        assertCommandBehavior(
+                "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
     	//NEEDFIX
-        /*
         assertCommandBehavior(
                 "add []\\[;]", Name.MESSAGE_NAME_CONSTRAINTS);	
     	assertCommandBehavior(
                 "add []\\[;] st/01:02, et/01:02, d/01-02-2015, tag", Name.MESSAGE_NAME_CONSTRAINTS);
-                */
     }
-    //@@author
+	*/
     
     @Test
     public void execute_add_successful() throws Exception {
