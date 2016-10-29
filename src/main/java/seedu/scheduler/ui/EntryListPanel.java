@@ -10,7 +10,6 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import seedu.scheduler.commons.events.ui.EntryPanelSelectionChangedEvent;
 import seedu.scheduler.model.entry.ReadOnlyEntry;
 import seedu.scheduler.commons.core.LogsCenter;
 
@@ -63,21 +62,11 @@ public class EntryListPanel extends UiPart {
     private void setConnections(ObservableList<ReadOnlyEntry> entryList) {
         entryListView.setItems(entryList);
         entryListView.setCellFactory(listView -> new EntryListViewCell());
-        setEventHandlerForSelectionChangeEvent();
     }
 
     private void addToPlaceholder() {
         SplitPane.setResizableWithParent(placeHolderPane, false);
         placeHolderPane.getChildren().add(panel);
-    }
-
-    private void setEventHandlerForSelectionChangeEvent() {
-        entryListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                logger.fine("Selection in entry list panel changed to : '" + newValue + "'");
-                raise(new EntryPanelSelectionChangedEvent(newValue));
-            }
-        });
     }
 
     public void scrollTo(int index) {

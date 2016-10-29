@@ -10,7 +10,7 @@
       <URL value="@Extensions.css" />
    </stylesheets>
    <children>
-      <MenuBar VBox.vgrow="NEVER">
+      <MenuBar maxHeight="37.0" minHeight="37.0" prefWidth="692.0" VBox.vgrow="NEVER">
          <menus>
             <Menu mnemonicParsing="false" text="File">
                <items>
