@@ -41,6 +41,10 @@ public class AddCommand extends UndoableCommand {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
+        //@@author A0126090N
+        if (date != null && startTime == null && endTime == null) 
+        	endTime = "12:00";
+        //@@author
         this.toAdd = new Entry(new Name(name), new StartTime(startTime), new EndTime(endTime), new Date(date), new EndDate(endDate),
                 new UniqueTagList(tagSet));
     }
