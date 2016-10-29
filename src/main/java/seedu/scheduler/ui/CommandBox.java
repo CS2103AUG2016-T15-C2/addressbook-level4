@@ -43,14 +43,15 @@ public class CommandBox extends UiPart {
         this.logic = logic;
         registerAsAnEventHandler(this);
     }
-
+//@@author A0139956L
     private void addToPlaceholder() {
         SplitPane.setResizableWithParent(placeHolderPane, false);
         placeHolderPane.getChildren().add(commandTextField);
+        commandTextField.requestFocus();  //auto-focus upon start up
         FxViewUtil.applyAnchorBoundaryParameters(commandPane, 0.0, 0.0, 0.0, 0.0);
         FxViewUtil.applyAnchorBoundaryParameters(commandTextField, 0.0, 0.0, 0.0, 0.0);
     }
-
+//@@author
     @Override
     public void setNode(Node node) {
         commandPane = (AnchorPane) node;

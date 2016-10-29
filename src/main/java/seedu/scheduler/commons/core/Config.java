@@ -11,7 +11,7 @@ public class Config {
     public static final String DEFAULT_CONFIG_FILE = "config.json";  //all the app data
 
     // Config values customizable through config file
-    private String appTitle = "Scheduler App";
+    private String appTitle = "Scheduler";
     private Level logLevel = Level.INFO;
     private String userPrefsFilePath = "preferences.json";
     private String schedulerFilePath = "data/scheduler.xml";
