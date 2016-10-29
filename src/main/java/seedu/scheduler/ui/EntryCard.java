@@ -84,14 +84,17 @@ public class EntryCard extends UiPart{
         		&& entry.getEndTime().toString().contains("empty")) {
             startTime.setVisible(false);
             endTime.setVisible(false);
+            date.setVisible(false);
         } 
         //floating task
         if (entry.getStartTime().toString().contains("empty") 
         		&& entry.getEndTime().toString().contains("empty")
-        		&& entry.getDate().toString().contains("empty")) {
+        		&& entry.getDate().toString().contains("empty")
+        		&& entry.getEndDate().toString().contains("empty")) {
             startTime.setVisible(false);
             endTime.setVisible(false);
             date.setVisible(false);
+            endDate.setVisible(false);
         } 
     }
     
