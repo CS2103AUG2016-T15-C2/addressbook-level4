@@ -12,6 +12,7 @@ import seedu.scheduler.commons.core.Config;
 import seedu.scheduler.commons.core.LogsCenter;
 import seedu.scheduler.commons.events.storage.DataSavingExceptionEvent;
 import seedu.scheduler.commons.events.ui.JumpToListRequestEvent;
+import seedu.scheduler.commons.events.ui.EntryPanelSelectionChangedEvent;
 import seedu.scheduler.commons.events.ui.ShowHelpRequestEvent;
 import seedu.scheduler.commons.util.StringUtil;
 import seedu.scheduler.logic.Logic;
@@ -61,6 +62,7 @@ public class UiManager extends ComponentManager implements Ui {
     public void stop() {
         prefs.updateLastUsedGuiSetting(mainWindow.getCurrentGuiSetting());
         mainWindow.hide();
+        mainWindow.releaseResources();
     }
 
     private void showFileOperationAlertAndWait(String description, String details, Throwable cause) {
@@ -114,4 +116,11 @@ public class UiManager extends ComponentManager implements Ui {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         mainWindow.getEntryListPanel().scrollTo(event.targetIndex);
     }
+
+    @Subscribe
+    private void handleEntryPanelSelectionChangedEvent(EntryPanelSelectionChangedEvent event){
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        mainWindow.loadEntryPage(event.getNewSelection());
+    }
+
 }

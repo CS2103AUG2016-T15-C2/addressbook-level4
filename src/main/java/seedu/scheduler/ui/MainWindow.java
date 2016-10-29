@@ -13,6 +13,7 @@ import seedu.scheduler.commons.core.GuiSettings;
 import seedu.scheduler.commons.events.ui.ExitAppRequestEvent;
 import seedu.scheduler.logic.Logic;
 import seedu.scheduler.model.UserPrefs;
+import seedu.scheduler.model.entry.ReadOnlyEntry;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -28,6 +29,7 @@ public class MainWindow extends UiPart {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private BrowserPanel browserPanel;
     private EntryListPanel entryListPanel;
     private ResultDisplay resultDisplay;
     private StatusBarFooter statusBarFooter;
@@ -42,7 +44,7 @@ public class MainWindow extends UiPart {
     private String schedulerName;
 
     @FXML
-    private AnchorPane displayPlaceholder;
+    private AnchorPane browserPlaceholder;
 
     @FXML
     private AnchorPane commandBoxPlaceholder;
@@ -106,6 +108,7 @@ public class MainWindow extends UiPart {
     }
 
     void fillInnerParts() {
+        browserPanel = BrowserPanel.load(browserPlaceholder);
         entryListPanel = EntryListPanel.load(primaryStage, getEntryListPlaceholder(), logic.getFilteredEntryList());
         resultDisplay = ResultDisplay.load(primaryStage, getResultDisplayPlaceholder());
         statusBarFooter = StatusBarFooter.load(primaryStage, getStatusbarPlaceholder(), config.getSchedulerFilePath());
@@ -181,5 +184,13 @@ public class MainWindow extends UiPart {
 
     public EntryListPanel getEntryListPanel() {
         return this.entryListPanel;
+    }
+
+    public void loadEntryPage(ReadOnlyEntry entry) {
+        browserPanel.loadEntryPage(entry);
+    }
+
+    public void releaseResources() {
+        browserPanel.freeResources();
     }
 }

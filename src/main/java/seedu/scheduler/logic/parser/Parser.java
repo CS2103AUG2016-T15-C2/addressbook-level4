@@ -79,6 +79,12 @@ public class Parser {
         case AddCommand.COMMAND_WORD2:
             return prepareAdd(arguments);
 
+        case SelectCommand.COMMAND_WORD:
+            return commandManager.stackCommand(prepareSelect(arguments));
+        
+        case SelectCommand.COMMAND_WORD2:
+            return commandManager.stackCommand(prepareSelect(arguments));
+
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
 
@@ -111,6 +117,8 @@ public class Parser {
             
         case ListCommand.COMMAND_WORD2:
             return new ListCommand();
+        
+        //@@author
         
         //@@author A0139956L    
         case PathCommand.COMMAND_WORD:
@@ -253,6 +261,24 @@ public class Parser {
         }
         
     }
+    //@@author A0126090N
+    
+    /**
+     * Parses arguments in the context of the select entry command.
+     *
+     * @param args
+     *            full command args string
+     * @return the prepared command
+     */
+    private Command prepareSelect(String args) {
+        Optional<Integer> index = parseIndex(args);
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
+        }
+
+        return new SelectCommand(index.get()); //
+    }
+    //@@author
 
     /**
      * Returns the specified index in the {@code command} IF a positive unsigned

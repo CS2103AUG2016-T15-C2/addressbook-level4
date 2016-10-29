@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import seedu.scheduler.commons.core.EventsCenter;
 import seedu.scheduler.logic.commands.*;
+import seedu.scheduler.commons.events.ui.JumpToListRequestEvent;
 import seedu.scheduler.commons.events.ui.ShowHelpRequestEvent;
 import seedu.scheduler.commons.events.model.SchedulerChangedEvent;
 import seedu.scheduler.model.Scheduler;
@@ -47,6 +48,7 @@ public class LogicManagerTest {
     //These are for checking the correctness of the events raised
     private ReadOnlyScheduler latestSavedScheduler;
     private boolean helpShown;
+    private int targetedJumpIndex;
 
     @Subscribe
     private void handleLocalModelChangedEvent(SchedulerChangedEvent abce) {
@@ -56,6 +58,11 @@ public class LogicManagerTest {
     @Subscribe
     private void handleShowHelpRequestEvent(ShowHelpRequestEvent she) {
         helpShown = true;
+    }
+
+    @Subscribe
+    private void handleJumpToListRequestEvent(JumpToListRequestEvent je) {
+        targetedJumpIndex = je.targetIndex;
     }
 
     @Before
@@ -68,6 +75,7 @@ public class LogicManagerTest {
 
         latestSavedScheduler = new Scheduler(model.getScheduler()); // last saved assumed to be up to date before.
         helpShown = false;
+        targetedJumpIndex = -1; // non yet
     }
 
     @After
@@ -267,6 +275,34 @@ public class LogicManagerTest {
             assertCommandBehavior(commandWord + " 3 name", expectedMessage, model.getScheduler(), entryList);
         }
     }
+
+    @Test
+    public void execute_selectInvalidArgsFormat_errorMessageShown() throws Exception {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE);
+        assertIncorrectIndexFormatBehaviorForCommand("select", expectedMessage);
+    }
+
+    @Test
+    public void execute_selectIndexNotFound_errorMessageShown() throws Exception {
+        assertIndexNotFoundBehaviorForCommand("select");
+    }
+
+    @Test
+    public void execute_select_jumpsToCorrectEntry() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        List<Entry> threeEntrys = helper.generateEntryList(3);
+
+        Scheduler expectedAB = helper.generateScheduler(threeEntrys);
+        helper.addToModel(model, threeEntrys);
+
+        assertCommandBehavior("select 2",
+                String.format(SelectCommand.MESSAGE_SELECT_ENTRY_SUCCESS, 2),
+                expectedAB,
+                expectedAB.getEntryList());
+        assertEquals(1, targetedJumpIndex);
+        assertEquals(model.getFilteredEntryList().get(1), threeEntrys.get(1));
+    }
+
 
     @Test
     public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
