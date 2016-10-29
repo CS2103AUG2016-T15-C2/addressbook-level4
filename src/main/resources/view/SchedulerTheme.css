@@ -139,6 +139,7 @@
 .cell_big_label {
     -fx-fonr-size: 14px;
     -fx-text-fill: #010504;
+    -fx-font-weight: bold;
 }
 
 .cell_small_label {
