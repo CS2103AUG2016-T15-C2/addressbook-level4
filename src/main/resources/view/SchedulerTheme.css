@@ -102,9 +102,14 @@
 }
 
 .split-pane {
-    -fx-border-radius: 5;
-    -fx-border-width: 5;
+    -fx-border-radius: 1;
+    -fx-border-width: 1;
     -fx-background-color: derive(#0a0f51, 100%);
+}
+
+.list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
 }
 
 .list-cell {
@@ -113,8 +118,17 @@
     -fx-padding: 0 0 0 0;
 }
 
+.list-cell .empty {
+    -fx-background-color:derive(#0a0f51, 100%);
+}
+
 .list-cell .label {
     -fx-text-fill: #010504;
+}
+
+.cell_index_label {
+    -fx-font-size:16px;
+    -fx-font-weight: bold;
 }
 
 .cell_big_label {
@@ -122,19 +136,18 @@
     -fx-text-fill: #010504;
 }
 
+.cell_big_label {
+    -fx-fonr-size: 14px;
+    -fx-text-fill: #010504;
+}
+
 .cell_small_label {
-    -fx-font-size: 11px;
+    -fx-font-size: 12px;
     -fx-text-fill: #010504;
 }
 
 .anchor-pane {
-     -fx-background-color: derive(#0a0f51, 20%);
-}
-
-.anchor-pane-with-border {
-     -fx-background-color: derive(#0a0f51, 20%);
-     -fx-border-color: derive(#0a0f51, 10%);
-     -fx-border-top-width: 1px;
+     -fx-background-color: #ffffff;
 }
 
 .status-bar {
@@ -144,6 +157,9 @@
 
 .result-display {
     -fx-background-color: #ffffff;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-background-insets: 0;
 }
 
 .result-display .label {
@@ -165,17 +181,17 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#0a0f51, 30%);
-    -fx-border-color: derive(#0a0f51, 30%);
+    -fx-background-color: derive(#0a0f51, 100%);
+    -fx-border-color: derive(#0a0f51, 100%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .anchor-pane {
-    -fx-background-color: derive(#0a0f51, 30%);
+    -fx-background-color: derive(#0a0f51, 100%);
 }
 
 .context-menu {
-    -fx-background-color: derive(#0a0f51, 50%);
+    -fx-background-color: derive(#0a0f51, 30%);
 }
 
 .context-menu .label {
@@ -188,13 +204,14 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Helvetica Bold";
     -fx-text-fill: white;
-    -fx-opacity: 0.9;
+    -fx-opacity: 1.0;
 }
 
 .menu .left-container {
     -fx-background-color: black;
+    
 }
 
 /*
@@ -255,13 +272,13 @@
 }
 
 .dialog-pane > *.label.content {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#0a0f51, 25%);
+    -fx-background-color: derive(#0a0f51, 300%);
 }
 
 .dialog-pane:header *.header-panel *.label {
@@ -295,8 +312,8 @@
 
 #cardPane {
     -fx-background-color: transparent;
-    -fx-border-color: #d6d6d6;
-    -fx-border-width: 1 1 1 1;
+    -fx-border-color: #bcbcbc;
+    -fx-border-width: 0 0 4 0;
 }
 
 #commandTypeLabel {
