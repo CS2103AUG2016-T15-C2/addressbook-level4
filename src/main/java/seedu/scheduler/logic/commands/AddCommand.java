@@ -7,6 +7,9 @@ import seedu.scheduler.model.entry.UniqueEntryList.EntryNotFoundException;
 import seedu.scheduler.model.tag.Tag;
 import seedu.scheduler.model.tag.UniqueTagList;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,13 +45,30 @@ public class AddCommand extends UndoableCommand {
             tagSet.add(new Tag(tagName));
         }
         //@@author A0126090N
-        if (date != null && startTime == null && endTime == null) 
-        	endTime = "12:00";
+        if (date != null && startTime == null && endTime == null) {
+        	startTime = getCurrentTime();
+        	endTime = "24:00";
+        }
+        if (date == null && (startTime != null || endTime != null)) {
+        	date = getCurrentDate();
+        }
         //@@author
         this.toAdd = new Entry(new Name(name), new StartTime(startTime), new EndTime(endTime), new Date(date), new EndDate(endDate),
                 new UniqueTagList(tagSet));
     }
-
+    //@@author A0126090N
+    public String getCurrentTime() {
+    	DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+    	Calendar cal = Calendar.getInstance();
+    	return dateFormat.format(cal.getTime());
+    }
+    
+    public String getCurrentDate() {
+    	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    	Calendar cal = Calendar.getInstance();
+    	return dateFormat.format(cal.getTime());
+    }
+    //@@author
     @Override
     public CommandResult execute() {
         assert model != null;
