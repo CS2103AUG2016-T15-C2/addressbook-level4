@@ -21,11 +21,14 @@ public class FindCommand extends Command {
     private final Set<String> keywords;
     public boolean isCompleteTracker = false;
     public boolean isIncompleteTracker = false;
+    //@@author A0161210A
     public FindCommand(Set<String> keywords) {
         this.keywords = keywords;
-        this.isCompleteTracker = (keywords.contains("completed"));
+        this.isCompleteTracker = (keywords.contains("completed")) |(keywords.contains("c")) | (keywords.contains("complete"));
         Object[] keywordArray = keywords.toArray();
-        this.isIncompleteTracker = keywordArray[0].equals("incompleted") && !(keywords.contains("completed"));
+        this.isIncompleteTracker = (keywordArray[0].equals("i")|keywordArray[0].equals("incompleted") 
+                |keywordArray[0].equals("incomplete")) 
+                && !(keywords.contains("completed"));
     }
 
     @Override
@@ -33,5 +36,5 @@ public class FindCommand extends Command {
         model.updateFilteredEntryList(keywords,this.isCompleteTracker,this.isIncompleteTracker);
         return new CommandResult(getMessageForEntryListShownSummary(model.getFilteredEntryList().size()));
     }
-
+    //@@author
 }

@@ -34,9 +34,9 @@ public interface Model {
 
     /** Updates the filter of the filtered entry list to show all entrys */
     void updateFilteredListToShowAll();
-
+    //@@author A0161210A
     /** Updates the filter of the filtered entry list to filter by the given keywords*/
     void updateFilteredEntryList(Set<String> keywords, boolean completeTracker, boolean isIncompleteTracker);
-
+    //@@author
 
 }

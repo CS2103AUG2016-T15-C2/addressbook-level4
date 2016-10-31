@@ -99,7 +99,7 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredListToShowAll() {
         filteredEntrys.setPredicate(null);
     }
-
+    //@@author A061210A
     @Override
     public void updateFilteredEntryList(Set<String> keywords, boolean completeTracker,boolean incompleteTracker){
         if (completeTracker) {
@@ -113,6 +113,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
     }
+    //@@author
 
     private void updateFilteredEntryList(Expression expression) {
         filteredEntrys.setPredicate(expression::satisfies);
@@ -170,7 +171,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
     
-
+    //@@author A0161210A
     private class TagQualifier implements Qualifier {
         private Set<String> nameKeyWords;
 
@@ -206,5 +207,6 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
+    //@@author
 
 }
