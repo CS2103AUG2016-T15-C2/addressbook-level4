@@ -19,30 +19,44 @@ public class PathCommandTest extends SchedulerGuiTest {
 	public void PathCommandTest() {
 				
 		// Checking for the existence of User specified filename or path.
-		String newPath = "testscheduler";
-		commandBox.runCommand("path " + newPath); 		//add a file path
-		File expected = new File(newPath);
-		assertEquals(expected.toString(), newPath);
-		assertResultMessage(PathCommand.MESSAGE_SUCCESS + newPath + ".xml");
+		assertPathCommandSuccess();
 		
 		// Checking for the consistency of setting, repeatedly, of path <filename> in ConfigTest.json.
 		Config origConfig = initConfig("ConfigTest.json");
 		String origPath = origConfig.getSchedulerFilePath().replace(".xml","");
-
-		String newPath2 = "scheduler";
-		commandBox.runCommand("path " + newPath2);  //add a file path
-		assertResultMessage(PathCommand.MESSAGE_SUCCESS + newPath2 + ".xml");
-			
-		origConfig = initConfig("ConfigTest.json");
-		String compareString = origConfig.getSchedulerFilePath();
-		assertEquals(newPath2, compareString.substring(0,compareString.length()-4));
 		
+		assertAdvancedPathCommandSuccess();
+		
+		assertOrigPathCommandSuccess(origPath);
+	}
+
+	private void assertOrigPathCommandSuccess(String origPath) {
+		Config origConfig;
 		commandBox.runCommand("path " + origPath);
 		assertResultMessage(PathCommand.MESSAGE_SUCCESS + origPath + ".xml");
 		
 		origConfig = initConfig("ConfigTest.json");
 		String compareString2 = origConfig.getSchedulerFilePath();
 		assertEquals(origPath, compareString2.substring(0,compareString2.length()-4));
+	}
+
+	private void assertAdvancedPathCommandSuccess() {
+		Config origConfig;
+		String newPath2 = "scheduler";
+		commandBox.runCommand("p " + newPath2);  //add a file path
+		assertResultMessage(PathCommand.MESSAGE_SUCCESS + newPath2 + ".xml");
+			
+		origConfig = initConfig("ConfigTest.json");
+		String compareString = origConfig.getSchedulerFilePath();
+		assertEquals(newPath2, compareString.substring(0,compareString.length()-4));
+	}
+
+	private void assertPathCommandSuccess() {
+		String newPath = "testscheduler";
+		commandBox.runCommand("path " + newPath); 		//add a file path
+		File expected = new File(newPath);
+		assertEquals(expected.toString(), newPath);
+		assertResultMessage(PathCommand.MESSAGE_SUCCESS + newPath + ".xml");
 	}
 
 	protected Config initConfig(String configFilePath) {
