@@ -8,14 +8,8 @@
 
 * This is a desktop Scheduler application. It has a GUI but most of the user interactions happen using 
   a CLI (Command Line Interface).
-* It is a Java sample application intended for students learning Software Engineering while using Java as 
-  the main programming language. 
-* It is **written in OOP fashion**. It provides a **reasonably well-written** code example that is 
-  **significantly bigger** (around 6 KLoC)than what students usually write in beginner-level SE modules. 
-* What's different from [level 3](https://github.com/se-edu/addressbook-level3):
-    * A more sophisticated GUI that includes a list panel. <!-- and an in-built Browser. -->
-    * More test cases, including automated GUI testing.
-    * Support for *Build Automation* using Gradle and for *Continuous Integration* using Travis CI.
+* This application is a CS2103 project and is still undergoing development.
+* Our latest release: [v0.4](https://github.com/CS2103AUG2016-T15-C2/main/releases/tag/v0.4)w
 <!-- @@author -->
   
 #### Site Map
@@ -28,6 +22,7 @@
 
 #### Acknowledgements
 
+* This application was adapted from a CS2103 sample application, [AddressBook-Level 4](https://github.com/nus-cs2103-AY1617S1/addressbook-level4) designed and built by *Assoc. Prof Damith C. Rajapakse* and his teaching team. 
 * Some parts of this sample application were inspired by the excellent 
   [Java FX tutorial](http://code.makery.ch/library/javafx-8-tutorial/) by *Marco Jakob*. 
 
