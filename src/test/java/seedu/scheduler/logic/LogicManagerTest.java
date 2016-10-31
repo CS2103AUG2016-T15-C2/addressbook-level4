@@ -162,8 +162,10 @@ public class LogicManagerTest {
 
     @Test
     public void execute_add_invalidEntryData() throws Exception {
-        //assertCommandBehavior(
-        //        "add []\\[;] st/01:02, et/01:02, d/01-02-2015, tag", Name.MESSAGE_NAME_CONSTRAINTS);
+    	//@@author A0126090N
+        assertCommandBehavior(
+                "add []\\[;]", Name.MESSAGE_NAME_CONSTRAINTS);
+        //@@author
         //assertCommandBehavior(
         //        "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
         //assertCommandBehavior(
