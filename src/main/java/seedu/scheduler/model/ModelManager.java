@@ -101,8 +101,17 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void updateFilteredEntryList(Set<String> keywords){
-        updateFilteredEntryList(new PredicateExpression(new NameQualifier(keywords)));
+    public void updateFilteredEntryList(Set<String> keywords, boolean completeTracker,boolean incompleteTracker){
+        if (completeTracker) {
+            updateFilteredEntryList(new PredicateExpression(new TagQualifier(keywords)));
+        }
+        else if(incompleteTracker) {
+            updateFilteredEntryList(new PredicateExpression(new IncompleteTagQualifier(keywords)));
+        }
+        else {
+            updateFilteredEntryList(new PredicateExpression(new NameQualifier(keywords)));
+        }
+
     }
 
     private void updateFilteredEntryList(Expression expression) {
@@ -153,6 +162,43 @@ public class ModelManager extends ComponentManager implements Model {
                     .filter(keyword -> StringUtil.containsIgnoreCase(entry.getName().fullName, keyword))
                     .findAny()
                     .isPresent();
+        }
+
+        @Override
+        public String toString() {
+            return "name=" + String.join(", ", nameKeyWords);
+        }
+    }
+    
+
+    private class TagQualifier implements Qualifier {
+        private Set<String> nameKeyWords;
+
+        TagQualifier(Set<String> nameKeyWords) {
+            this.nameKeyWords = nameKeyWords;
+        }
+
+        @Override
+        public boolean run(ReadOnlyEntry entry) {
+            return (entry.tagsString().contains("Completed")); 
+        }
+
+        @Override
+        public String toString() {
+            return "name=" + String.join(", ", nameKeyWords);
+        }
+    }
+    
+    private class IncompleteTagQualifier implements Qualifier {
+        private Set<String> nameKeyWords;
+
+        IncompleteTagQualifier(Set<String> nameKeyWords) {
+            this.nameKeyWords = nameKeyWords;
+        }
+
+        @Override
+        public boolean run(ReadOnlyEntry entry) {
+            return (!entry.tagsString().contains("Completed")); 
         }
 
         @Override

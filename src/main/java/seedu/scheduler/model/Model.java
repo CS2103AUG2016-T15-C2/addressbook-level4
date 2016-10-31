@@ -36,6 +36,7 @@ public interface Model {
     void updateFilteredListToShowAll();
 
     /** Updates the filter of the filtered entry list to filter by the given keywords*/
-    void updateFilteredEntryList(Set<String> keywords);
+    void updateFilteredEntryList(Set<String> keywords, boolean completeTracker, boolean isIncompleteTracker);
+
 
 }
