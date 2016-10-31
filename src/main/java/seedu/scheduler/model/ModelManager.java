@@ -99,11 +99,21 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredListToShowAll() {
         filteredEntrys.setPredicate(null);
     }
-
+    //@@author A061210A
     @Override
-    public void updateFilteredEntryList(Set<String> keywords){
-        updateFilteredEntryList(new PredicateExpression(new NameQualifier(keywords)));
+    public void updateFilteredEntryList(Set<String> keywords, boolean completeTracker,boolean incompleteTracker){
+        if (completeTracker) {
+            updateFilteredEntryList(new PredicateExpression(new TagQualifier(keywords)));
+        }
+        else if(incompleteTracker) {
+            updateFilteredEntryList(new PredicateExpression(new IncompleteTagQualifier(keywords)));
+        }
+        else {
+            updateFilteredEntryList(new PredicateExpression(new NameQualifier(keywords)));
+        }
+
     }
+    //@@author
 
     private void updateFilteredEntryList(Expression expression) {
         filteredEntrys.setPredicate(expression::satisfies);
@@ -160,5 +170,43 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
+    
+    //@@author A0161210A
+    private class TagQualifier implements Qualifier {
+        private Set<String> nameKeyWords;
+
+        TagQualifier(Set<String> nameKeyWords) {
+            this.nameKeyWords = nameKeyWords;
+        }
+
+        @Override
+        public boolean run(ReadOnlyEntry entry) {
+            return (entry.tagsString().contains("Completed")); 
+        }
+
+        @Override
+        public String toString() {
+            return "name=" + String.join(", ", nameKeyWords);
+        }
+    }
+    
+    private class IncompleteTagQualifier implements Qualifier {
+        private Set<String> nameKeyWords;
+
+        IncompleteTagQualifier(Set<String> nameKeyWords) {
+            this.nameKeyWords = nameKeyWords;
+        }
+
+        @Override
+        public boolean run(ReadOnlyEntry entry) {
+            return (!entry.tagsString().contains("Completed")); 
+        }
+
+        @Override
+        public String toString() {
+            return "name=" + String.join(", ", nameKeyWords);
+        }
+    }
+    //@@author
 
 }
