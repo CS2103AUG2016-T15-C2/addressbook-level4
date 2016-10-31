@@ -38,10 +38,12 @@
 > * Items in `SQUARE_BRACKETS` are optional.
 > * Items with `...` after them can have multiple instances.
 > * The order of parameters is fixed.
+<!-- @@author A0161210A --> 
 > * parameter marker `st/` is interchangeable with: `from/` `f/`
 > * parameter marker `et/` is interchangeable with: `to/`
 > * parameter marker `sd/` is interchangeable with: `sdate/`
 > * parameter marker `ed/` is interchangeable with: `edate/` or `d/` `date/` or `by/` (in case of a deadline task)<br>
+<!-- @@author --> 
 #### Viewing help : `help`
 Format: `help`
 
@@ -56,39 +58,43 @@ Format: `a NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/T
 > * Current date is added by default when start/end time is added to scheduler without a date.
 <!-- @@author --> 
 
+<!-- @@author A0161210A --> 
 Examples: 
 * `add Meeting st/12:00 et/17:00 sd/19-02-16 ed/20-02-16 t/priority`
 * `add Gathering from/19:00 to/23:00 d/24-05-16 t/priority`
 * `add Do Homework1 ed/19-02-2016`
 * `a Do Homework2 by/20-02-2016`
+<!-- @@author -->
 
 #### Listing all items: `list`
 Shows a list of all items in the scheduler. User can also type `l` instead of `list`<br>
-Format: `list [by/SORT_CATEGORY]`
-Format: `l [by/SORT_CATEGORY]`
+Format: `list`<br>
 Examples: 
 * `list`
-* `list by/complete`
-* `l by/incomplete`
-* `list by/ed`
+* `l`
 
 #### Editing an item : `edit`
-Edits an event to the scheduler specified by the index. User can also type `e` instead of `edit` <br>
-Format: `edit INDEX NUMBER st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE` 
-Format: `e INDEX NUMBER st/START_TIME et/END_TIME sd/DATE ed/END_DATE` 
+Edits a full event to the scheduler specified by the index. User can also type `e` instead of `edit` <br>
+Format: `edit INDEX NUMBER st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE t/TAG` 
+Format: `e INDEX NUMBER st/START_TIME et/END_TIME sd/DATE ed/END_DATE t/TAG` 
 
-Edits a task to the scheduler specified by the index <br>
+Edits a deadline task to the scheduler specified by the index <br>
 Format: `edit INDEX NUMBER ed/DATE` 
 Format: `e INDEX NUMBER ed/DATE` 
 
 Edits a floating task to the scheduler specified by the index <br>
 Format: `edit INDEX NUMBER` 
-Format: `e INDEX NUMBER` 
-
+Format: `e INDEX NUMBER` <br>
 Examples: 
 * `edit 1 Meeting st/12:00 et/17:00 ed/19-02-16 t/priority`
 * `edit 3 Do Homework1 ed/19-02-12`
-* `e 2 Do Homework2`
+* `e 2 Do Homework2` <br><br>
+<!-- @@author A0161210A --> 
+Important Note: The Edit functionality works more like a Replace command. Consider these 2 cases. <br>
+* 1)if user has a fully filled out event, but only wants to edit the end time parameter, user will have to type out every paramter, and only change the end time parameter to the desired paramter.
+* 2)If user has a fully filled out event, but wants to edit it to a deadline task, user should only type in the endDate and endTime parameter
+<!-- @@author -->
+
 
 #### Undo recent actions (up to 10): `undo`
 Reverts scheduler back to the state before the recent committed actions.<br>
@@ -125,6 +131,20 @@ Examples:
   Returns `CS2103 Tutorial` and words related to `tutorial`
 * `f CS Assignment Errand`<br>
   Returns Any item having names `CS`, `Assignment`, or `Errand`
+
+<!-- @@author A0161210A --> 
+#### Finding all items that have been completed or incompleted: `find [completed or incompleted]`
+Finds and lists items that have been marked as completed or not marked as completed. The keyword `completed` and `incompleted` also have advanced command shortcuts <br>
+Format: `find complete`, `find completed`, `find c`
+Format: `find incomplete`, `find incompleted`, `find i` <br>
+<br>
+Note: Advanced users can use advanced command input for find in conjunction to type `f c` or `f i` for the quickest shortcut
+
+Examples:
+* `find completed`<br>
+* `f c` <br>
+* `f incomplete` 
+<!-- @@author A0161210A -->
   
 <!-- @@author A0126090N --> 
 #### Marking an entry as completed: `mark`
@@ -184,6 +204,8 @@ Delete | `delete INDEX`
 Delete | `d INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Find | `f KEYWORD [MORE_KEYWORDS]`
+Find | `find completed`
+Find | `find incompleted`
 Mark | `mark INDEX`
 Mark | `m INDEX`
 Path | `path FILE_PATH`
