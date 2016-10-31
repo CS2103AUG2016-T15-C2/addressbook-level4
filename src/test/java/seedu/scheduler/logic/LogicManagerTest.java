@@ -153,8 +153,6 @@ public class LogicManagerTest {
         //assertCommandBehavior("clear", ClearCommand.MESSAGE_SUCCESS, new Scheduler(), Collections.emptyList());
     }
 
-
-    //@@author A0126090N
     @Test
     public void execute_add_invalidArgsFormat() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
@@ -162,25 +160,15 @@ public class LogicManagerTest {
                 "add test g/1231", expectedMessage);
     }
 
+    //@@author A0126090N
     @Test
     public void execute_add_invalidEntryData() throws Exception {
-        //assertCommandBehavior(
-        //        "add []\\[;] st/01:02, et/01:02, d/01-02-2015, tag", Name.MESSAGE_NAME_CONSTRAINTS);
-        //assertCommandBehavior(
-        //        "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
-        //assertCommandBehavior(
-        //        "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag", EndTime.MESSAGE_ENDTIME_CONSTRAINTS);
-        //assertCommandBehavior(
-        //        "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag", Date.MESSAGE_DATE_CONSTRAINTS);
-        //assertCommandBehavior(
-        //        "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
-    	//NEEDFIX
-        /*
         assertCommandBehavior(
-                "add []\\[;]", Name.MESSAGE_NAME_CONSTRAINTS);	
-    	assertCommandBehavior(
-                "add []\\[;] st/01:02, et/01:02, d/01-02-2015, tag", Name.MESSAGE_NAME_CONSTRAINTS);
-                */
+                "add []\\[;]", Name.MESSAGE_NAME_CONSTRAINTS);
+        assertCommandBehavior(
+                "add Valid Name et/01:02 st/01:02", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        assertCommandBehavior(
+                "add Valid Name st/25:02", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
     }
     //@@author
     
@@ -274,6 +262,14 @@ public class LogicManagerTest {
         } else if(commandWord == "edit"){
             assertCommandBehavior(commandWord + " 3 name", expectedMessage, model.getScheduler(), entryList);
         }
+        //@@author A0126090N
+        else if(commandWord == "mark"){
+            assertCommandBehavior(commandWord + " 3", expectedMessage, model.getScheduler(), entryList);
+        }
+        else if(commandWord == "m"){
+            assertCommandBehavior(commandWord + " 3", expectedMessage, model.getScheduler(), entryList);
+        }
+        //@@author
     }
 
     @Test
@@ -303,17 +299,28 @@ public class LogicManagerTest {
         assertEquals(model.getFilteredEntryList().get(1), threeEntrys.get(1));
     }
 
-
+    //@@author A0126090N
     @Test
-    public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
-        assertIncorrectIndexFormatBehaviorForCommand("delete", expectedMessage);
+    public void execute_markedInvalidArgsFormat_errorMessageShown() throws Exception {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkedCommand.MESSAGE_USAGE);
+        assertIncorrectIndexFormatBehaviorForCommand("mark", expectedMessage);
     }
 
     @Test
-    public void execute_deleteIndexNotFound_errorMessageShown() throws Exception {
-        assertIndexNotFoundBehaviorForCommand("delete");
+    public void execute_markedIndexNotFound_errorMessageShown() throws Exception {
+        assertIndexNotFoundBehaviorForCommand("mark");
     }
+    
+    public void execute_markedAdvancedInvalidArgsFormat_errorMessageShown() throws Exception {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkedCommand.MESSAGE_USAGE);
+        assertIncorrectIndexFormatBehaviorForCommand("m", expectedMessage);
+    }
+
+    @Test
+    public void execute_markedAdvancedIndexNotFound_errorMessageShown() throws Exception {
+        assertIndexNotFoundBehaviorForCommand("m");
+    }
+    //@@author 
 
     @Test
     public void execute_delete_removesCorrectEntry() throws Exception {
@@ -329,6 +336,19 @@ public class LogicManagerTest {
                 expectedAB,
                 expectedAB.getEntryList());
     }
+    
+    //@@author A0126090N
+    @Test
+    public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+        assertIncorrectIndexFormatBehaviorForCommand("delete", expectedMessage);
+    }
+
+    @Test
+    public void execute_deleteIndexNotFound_errorMessageShown() throws Exception {
+        assertIndexNotFoundBehaviorForCommand("delete");
+    }
+    //@@author
     
     //@@author A0152962B
     @Test
