@@ -69,15 +69,19 @@ public class EditCommand extends UndoableCommand {
     }
 
     @Override
-    public void undo() throws EntryNotFoundException, DuplicateEntryException {
-        model.editEntry(targetIndex - 1, prevEntry, replacement);
+    public void undo() {
+        try {
             model.editEntry(prevEntry, replacement);
+        } catch (EntryNotFoundException enfe) {
+        } catch (DuplicateEntryException dee) { }
     }
 
     @Override
-    public void redo() throws Exception {
-        model.editEntry(targetIndex - 1, replacement, prevEntry);
+    public void redo() {
+        try {
             model.editEntry(replacement, prevEntry);
+        } catch (EntryNotFoundException enfe) {
+        } catch (DuplicateEntryException dee) { }
     }
 
 }

@@ -52,13 +52,17 @@ public class DeleteCommand extends UndoableCommand {
 
     //@@author A0152962B
     @Override
-    public void undo() throws DuplicateEntryException {
-        model.addEntry(prevEntry);
+    public void undo() {
+        try {
+            model.addEntryAtIndex(targetIndex, prevEntry);
+        } catch (DuplicateEntryException e) { }
     }
 
     @Override
-    public void redo() throws Exception {
-        model.deleteEntry(prevEntry);
+    public void redo() {
+        try {
+            model.deleteEntry(prevEntry);
+        } catch (EntryNotFoundException e) { }
     }
     //@@author
 
