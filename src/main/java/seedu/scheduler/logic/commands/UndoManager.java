@@ -9,8 +9,10 @@ import java.util.Stack;
  */
 public class UndoManager {
     
-    public static final String MESSAGE_UNDO_FAIL = "Unable to undo.";
-    public static final String MESSAGE_REDO_FAIL = "Unable to redo.";
+    //public static final String MESSAGE_UNDO_FAIL = "Unable to undo.";
+    //public static final String MESSAGE_REDO_FAIL = "Unable to redo.";
+    //public static final String MESSAGE_UNDO_SUCCESS = "Undo successful.";
+    //public static final String MESSAGE_REDO_SUCCESS = "Redo successful.";
     
     private LinkedList<Command> commandUndoStack = new LinkedList<Command>();
     private Stack<Command> commandRedoStack = new Stack<Command>();
