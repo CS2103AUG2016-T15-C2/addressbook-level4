@@ -226,20 +226,23 @@ public class LogicManagerTest {
         // setup expectations
         TestDataHelper helper = new TestDataHelper();
         Entry toBeAdded = helper.adam();
-        Scheduler expectedAB =  new Scheduler();
-        Scheduler expectedEmpty = new Scheduler();
+        List<Entry> threeEntrys = helper.generateEntryList(3);
+        Scheduler expectedAB = helper.generateScheduler(threeEntrys);
         expectedAB.addEntry(toBeAdded);
+        helper.addToModel(model, threeEntrys);
         
         assertCommandBehavior(helper.generateAddCommand(toBeAdded),
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
                 expectedAB,
                 expectedAB.getEntryList());
         
+        expectedAB.removeEntry(toBeAdded);
         assertCommandBehavior("undo",
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
-                expectedEmpty,
-                expectedEmpty.getEntryList());
+                expectedAB,
+                expectedAB.getEntryList());
         
+        expectedAB.addEntry(toBeAdded);
         assertCommandBehavior("redo",
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
                 expectedAB,
@@ -366,7 +369,7 @@ public class LogicManagerTest {
         
         Scheduler expectedAB = helper.generateScheduler(threeEntrys);
         helper.addToModel(model, threeEntrys);
-        assertCommandBehavior("edit 2 Adam Brown st/11:11 et/11:15 sd/01-02-2034 ed/01-02-2035 t/tag1 t/tag2",
+        assertCommandBehavior(helper.generateEditCommand(toEditTo, 2),
                 String.format(EditCommand.MESSAGE_DUPLICATE_ENTRY, toEditTo), 
                 expectedAB,
                 expectedAB.getEntryList());
@@ -392,7 +395,7 @@ public class LogicManagerTest {
         Entry toEditTo = helper.adam();
         expectedAB.editEntry(toEditTo, threeEntrys.get(1));
         helper.addToModel(model, threeEntrys);
-        assertCommandBehavior("edit 2 Adam Brown st/11:11 et/11:15 sd/01-02-2034 ed/01-02-2035 t/tag1 t/tag2",
+        assertCommandBehavior(helper.generateEditCommand(toEditTo, 2),//"edit 2 Adam Brown st/11:11 et/11:15 sd/01-02-2034 ed/01-02-2035 t/tag1 t/tag2",
                 String.format(EditCommand.MESSAGE_SUCCESS, toEditTo), 
                 expectedAB,
                 expectedAB.getEntryList());
@@ -503,24 +506,47 @@ public class LogicManagerTest {
         }
 
         /** Generates the correct add command based on the entry given */
-        String generateAddCommand(Entry p) {
+        String generateAddCommand(Entry e) {
             StringBuffer cmd = new StringBuffer();
 
             cmd.append("add ");
 
-            cmd.append(p.getName().toString());
-            cmd.append(" st/").append(p.getStartTime());
-            cmd.append(" et/").append(p.getEndTime());
-            cmd.append(" sd/").append(p.getDate());
-            cmd.append(" ed/").append(p.getEndDate());
+            cmd.append(e.getName().toString());
+            cmd.append(" st/").append(e.getStartTime());
+            cmd.append(" et/").append(e.getEndTime());
+            cmd.append(" sd/").append(e.getDate());
+            cmd.append(" ed/").append(e.getEndDate());
             
-            UniqueTagList tags = p.getTags();
+            UniqueTagList tags = e.getTags();
             for(Tag t: tags){
                 cmd.append(" t/").append(t.tagName);
             }
 
             return cmd.toString();
         }
+        
+        //@@author A0152962B
+        /** Generates the correct edit command based on the entry and index given */
+        String generateEditCommand(Entry e, int index) {
+            StringBuffer cmd = new StringBuffer();
+            
+            cmd.append("edit ");
+            
+            cmd.append(Integer.toString(index) + " ");
+            cmd.append(e.getName().toString());
+            cmd.append(" st/").append(e.getStartTime());
+            cmd.append(" et/").append(e.getEndTime());
+            cmd.append(" sd/").append(e.getDate());
+            cmd.append(" ed/").append(e.getEndDate());
+            
+            UniqueTagList tags = e.getTags();
+            for(Tag t: tags){
+                cmd.append(" t/").append(t.tagName);
+            }
+            
+            return cmd.toString();
+        }
+        //@@author
 
         /**
          * Generates an Scheduler with auto-generated entrys.
