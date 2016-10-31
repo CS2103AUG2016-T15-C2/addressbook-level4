@@ -29,16 +29,14 @@ public class ClearCommand extends Command {
 
 	private static Optional<ButtonType> result;
 	
+	//@@author A0126090N
 	public ClearCommand() {
-
-		//@@Niveetha
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation Dialog");
 		alert.setHeaderText("Clearing the list will remove all data");
 		alert.setContentText("Proceed to clear the list?");
 
 		result = alert.showAndWait();
-		//@@Niveetha
 	}
 
 	@Override
@@ -52,4 +50,5 @@ public class ClearCommand extends Command {
 			return new CommandResult(MESSAGE_STOPPED);
 		}
 	}
+	//@@author
 }
