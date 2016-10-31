@@ -22,7 +22,7 @@
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
 5. Some example commands you can try:
    * **`list`** : lists all items
-   * **`add`**` `add Meeting from/13:00 to/17:00 sd/19-02-2016 ed/20-02-2016 [t/priority]` : 
+   * **`add`**: `add Meeting from/13:00 to/17:00 sd/19-02-2016 ed/20-02-2016 [t/priority]` : 
      adds an item named `Meeting` to the scheduler.
    * **`delete`**` 3` : deletes the 3rd item shown in the scheduler
    * **`exit`** : exits the app
@@ -135,7 +135,7 @@ Examples:
 <!-- @@author A0161210A --> 
 #### Finding all items that have been completed or incompleted: `find [completed or incompleted]`
 Finds and lists items that have been marked as completed or not marked as completed. The keyword `completed` and `incompleted` also have advanced command shortcuts <br>
-Format: `find complete`, `find completed`, `find c`
+Format: `find complete`, `find completed`, `find c` <br>
 Format: `find incomplete`, `find incompleted`, `find i` <br>
 <br>
 Note: Advanced users can use advanced command input for find in conjunction to type `f c` or `f i` for the quickest shortcut
