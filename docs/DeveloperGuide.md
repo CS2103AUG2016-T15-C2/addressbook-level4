@@ -273,6 +273,7 @@ Priority | As a ... | I want to ... | So that I can...
 <!-- @@author A0139956L -->
 (For all use cases below, the **System** is the `Scheduler` and the **Actor** is the `user`, unless specified otherwise)
 <!-- @@author -->
+<!-- @@author A0126090N -->
 #### Use case: Open Help documentation
 
 **MSS**
