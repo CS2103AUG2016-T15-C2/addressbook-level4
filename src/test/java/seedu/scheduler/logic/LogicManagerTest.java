@@ -368,7 +368,7 @@ public class LogicManagerTest {
         
         Scheduler expectedAB = helper.generateScheduler(threeEntrys);
         Entry toEditTo = helper.adam();
-        expectedAB.editEntry(1, toEditTo, threeEntrys.get(1));
+        expectedAB.editEntry(toEditTo, threeEntrys.get(1));
         helper.addToModel(model, threeEntrys);
         //NEEDFIX
         /*
