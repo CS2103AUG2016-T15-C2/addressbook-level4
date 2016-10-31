@@ -45,10 +45,6 @@ public class AddCommand extends UndoableCommand {
             tagSet.add(new Tag(tagName));
         }
         //@@author A0126090N
-        if (date != null && startTime == null && endTime == null) {
-        	startTime = getCurrentTime();
-        	endTime = "24:00";
-        }
         if (date == null && (startTime != null || endTime != null)) {
         	date = getCurrentDate();
         }
