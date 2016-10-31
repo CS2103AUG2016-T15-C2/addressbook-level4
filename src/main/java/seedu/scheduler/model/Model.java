@@ -24,8 +24,11 @@ public interface Model {
     void addEntry(Entry entry) throws UniqueEntryList.DuplicateEntryException;
     
     //@@author A0152962B
+    /** Adds the given entry at the index */
+    void addEntryAtIndex(int targetIndex, Entry Entry) throws UniqueEntryList.DuplicateEntryException;
+    
     /** Edits the given entry */
-    void editEntry(int index, Entry replacement, ReadOnlyEntry entryToEdit) 
+    void editEntry(Entry replacement, ReadOnlyEntry entryToEdit) 
             throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException;
     //@@author
     

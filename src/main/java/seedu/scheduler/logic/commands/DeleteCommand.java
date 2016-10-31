@@ -21,8 +21,10 @@ public class DeleteCommand extends UndoableCommand {
 
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
 
-    public final int targetIndex;
-    public Entry prevEntry;
+    //@@author A0152962B
+    private final int targetIndex;
+    private Entry prevEntry;
+    //@@author 
 
     public DeleteCommand(int targetIndex) {
         this.targetIndex = targetIndex;
@@ -45,19 +47,26 @@ public class DeleteCommand extends UndoableCommand {
         } catch (EntryNotFoundException pnfe) {
             assert false : "The target entry cannot be missing";
         }
+        //@@author A0152962B
         prevEntry = (Entry) entryToDelete;
+        undoManager.stackCommand(this);
+        //@@author
         return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete));
     }
 
     //@@author A0152962B
     @Override
-    public void undo() throws DuplicateEntryException {
-        model.addEntry(prevEntry);
+    public void undo() {
+        try {
+            model.addEntryAtIndex(targetIndex, prevEntry);
+        } catch (DuplicateEntryException e) { }
     }
 
     @Override
-    public void redo() throws Exception {
-        model.deleteEntry(prevEntry);
+    public void redo() {
+        try {
+            model.deleteEntry(prevEntry);
+        } catch (EntryNotFoundException e) { }
     }
     //@@author
 

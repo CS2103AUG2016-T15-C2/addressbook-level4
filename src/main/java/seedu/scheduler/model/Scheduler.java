@@ -76,9 +76,9 @@ public class Scheduler implements ReadOnlyScheduler {
      *
      * @throws UniqueEntryList.DuplicateEntryException if an equivalent entry already exists.
      */
-    public void addEntry(Entry p) throws UniqueEntryList.DuplicateEntryException {
-        syncTagsWithMasterList(p);
-        entrys.add(p);
+    public void addEntry(Entry e) throws UniqueEntryList.DuplicateEntryException {
+        syncTagsWithMasterList(e);
+        entrys.add(e);
     }
 
     /**
@@ -112,16 +112,19 @@ public class Scheduler implements ReadOnlyScheduler {
         }
     }
     
+    //@@author A0152962B
+    public void addEntryAtIndex(int index, Entry entry) throws UniqueEntryList.DuplicateEntryException {
+        entrys.addAtIndex(index, entry);
+    }
+    
     /**
      * Edits(replace) a specified entry in the list.
      * 
      * @throws UniqueEntryList.DuplicateEntryException if an equivalent entry already exists.
      * @throws UniqueEntryList.EntryNotFoundException if no such entry could be found in the list.
-     * 
-     * @@author A0152962B
      */
-    public void editEntry(int index, Entry r, ReadOnlyEntry toEdit) throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException {
-        entrys.edit(index, r, toEdit);
+    public void editEntry(Entry e, ReadOnlyEntry toEdit) throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException {
+        entrys.edit(e, toEdit);
     }
     //@@author
 
@@ -173,4 +176,5 @@ public class Scheduler implements ReadOnlyScheduler {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(entrys, tags);
     }
+
 }

@@ -21,7 +21,6 @@ public class EndDate {
      * @throws IllegalValueException if given endDate string is invalid.
      */
     public EndDate(String endDate) throws IllegalValueException {
-        assert endDate != null;
         if (endDate == null) {
             endDate = "empty";
         }

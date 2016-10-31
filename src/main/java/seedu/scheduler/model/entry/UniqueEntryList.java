@@ -75,13 +75,21 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
     
     //@@author A0152962B
+    public void addAtIndex(int index, Entry toAdd) throws DuplicateEntryException {
+        assert toAdd != null;
+        if (contains(toAdd)) {
+            throw new DuplicateEntryException();
+        }
+        internalList.add(index - 1, toAdd);
+    }
+    
     /**
      * Edits(replaces) the specified entry;
      * 
      * @throws EntryNotFoundException if no such entry could be found in the list.
      * @throws DuplicateEntryException if the entry to replace is a duplicate of an existing entry in the list.
      */
-    public void edit(int index, Entry replacement, ReadOnlyEntry toEdit) throws EntryNotFoundException, DuplicateEntryException {
+    public void edit(Entry replacement, ReadOnlyEntry toEdit) throws EntryNotFoundException, DuplicateEntryException {
         assert toEdit != null;
         final boolean entryFound = internalList.contains(toEdit);
         if(!entryFound) {
@@ -90,6 +98,7 @@ public class UniqueEntryList implements Iterable<Entry> {
         if(contains(replacement)) {
             throw new DuplicateEntryException();
         }
+        int index = internalList.indexOf(toEdit);
         internalList.set(index, replacement);
     }
     //@@author
@@ -115,4 +124,5 @@ public class UniqueEntryList implements Iterable<Entry> {
     public int hashCode() {
         return internalList.hashCode();
     }
+
 }
