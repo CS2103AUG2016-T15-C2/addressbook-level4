@@ -21,8 +21,8 @@ public class DeleteCommand extends UndoableCommand {
 
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
 
-    public final int targetIndex;
-    public Entry prevEntry;
+    private final int targetIndex;
+    private Entry prevEntry;
 
     public DeleteCommand(int targetIndex) {
         this.targetIndex = targetIndex;
