@@ -20,6 +20,7 @@ import seedu.scheduler.model.Model;
 import seedu.scheduler.model.ModelManager;
 import seedu.scheduler.model.ReadOnlyScheduler;
 import seedu.scheduler.model.entry.*;
+import seedu.scheduler.model.entry.UniqueEntryList.DuplicateEntryException;
 import seedu.scheduler.model.tag.Tag;
 import seedu.scheduler.model.tag.UniqueTagList;
 import seedu.scheduler.storage.StorageManager;
@@ -220,6 +221,30 @@ public class LogicManagerTest {
 
     }
 
+    @Test
+    public void execute_addUndoRedo() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        Entry toBeAdded = helper.adam();
+        Scheduler expectedAB =  new Scheduler();
+        Scheduler expectedEmpty = new Scheduler();
+        expectedAB.addEntry(toBeAdded);
+        
+        assertCommandBehavior(helper.generateAddCommand(toBeAdded),
+                String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
+                expectedAB,
+                expectedAB.getEntryList());
+        
+        assertCommandBehavior("undo",
+                String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
+                expectedEmpty,
+                expectedEmpty.getEntryList());
+        
+        assertCommandBehavior("redo",
+                String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
+                expectedAB,
+                expectedAB.getEntryList());
+    }
 
     @Test
     public void execute_list_showsAllEntrys() throws Exception {
@@ -333,6 +358,7 @@ public class LogicManagerTest {
     //@@author A0152962B
     @Test
     public void execute_editToDuplicate_notAllowed() throws Exception {
+        // setup expectations
         TestDataHelper helper = new TestDataHelper();
         List<Entry> threeEntrys = helper.generateEntryList(3);
         Entry toEditTo = helper.adam();
@@ -340,19 +366,15 @@ public class LogicManagerTest {
         
         Scheduler expectedAB = helper.generateScheduler(threeEntrys);
         helper.addToModel(model, threeEntrys);
-        //NEEDFIX
-        /*
-        assertCommandBehavior("edit 2 Adam Brown st/11:11 et/11:11 d/01-02-2034 t/tag1 t/tag2",
+        assertCommandBehavior("edit 2 Adam Brown st/11:11 et/11:15 sd/01-02-2034 ed/01-02-2035 t/tag1 t/tag2",
                 String.format(EditCommand.MESSAGE_DUPLICATE_ENTRY, toEditTo), 
                 expectedAB,
                 expectedAB.getEntryList());
-                */
     }
     
     @Test
     public void execute_editIndexNotFound_errorMessageShown() throws Exception {
-        //NEEDFIX
-        //assertIndexNotFoundBehaviorForCommand("edit");
+        assertIndexNotFoundBehaviorForCommand("edit");
     }
     
     @Test
@@ -370,13 +392,10 @@ public class LogicManagerTest {
         Entry toEditTo = helper.adam();
         expectedAB.editEntry(toEditTo, threeEntrys.get(1));
         helper.addToModel(model, threeEntrys);
-        //NEEDFIX
-        /*
-        assertCommandBehavior("edit 2 Adam Brown st/11:11 et/11:11 d/01-02-2034 t/tag1 t/tag2",
+        assertCommandBehavior("edit 2 Adam Brown st/11:11 et/11:15 sd/01-02-2034 ed/01-02-2035 t/tag1 t/tag2",
                 String.format(EditCommand.MESSAGE_SUCCESS, toEditTo), 
                 expectedAB,
                 expectedAB.getEntryList());
-                */
     }
     //@@author
 
