@@ -58,6 +58,7 @@ public class EditCommand extends UndoableCommand {
         try {
             model.editEntry(targetIndex - 1, replacement, entryToEdit);
             prevEntry = (Entry) entryToEdit;
+            undoManager.stackCommand(this);
             return new CommandResult(String.format(MESSAGE_SUCCESS, replacement));
         } catch (UniqueEntryList.DuplicateEntryException dee) {
             return new CommandResult(MESSAGE_DUPLICATE_ENTRY);

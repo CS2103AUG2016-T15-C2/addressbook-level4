@@ -7,7 +7,7 @@ import java.util.Stack;
 /**
  * Manager that commands have to go through
  */
-public class CommandManager {
+public class UndoManager {
     
     public static final String MESSAGE_UNDO_FAIL = "Unable to undo.";
     public static final String MESSAGE_REDO_FAIL = "Unable to redo.";

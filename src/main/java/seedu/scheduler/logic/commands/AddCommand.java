@@ -74,6 +74,7 @@ public class AddCommand extends UndoableCommand {
         assert model != null;
         try {
             model.addEntry(toAdd);
+            undoManager.stackCommand(this);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniqueEntryList.DuplicateEntryException e) {
             return new CommandResult(MESSAGE_DUPLICATE_ENTRY);

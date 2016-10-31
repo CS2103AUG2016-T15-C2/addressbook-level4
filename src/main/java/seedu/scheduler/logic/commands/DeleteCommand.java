@@ -46,6 +46,7 @@ public class DeleteCommand extends UndoableCommand {
             assert false : "The target entry cannot be missing";
         }
         prevEntry = (Entry) entryToDelete;
+        undoManager.stackCommand(this);
         return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete));
     }
 
