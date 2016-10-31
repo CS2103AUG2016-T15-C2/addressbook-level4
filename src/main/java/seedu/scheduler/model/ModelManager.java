@@ -79,11 +79,16 @@ public class ModelManager extends ComponentManager implements Model {
     }
     
     //@@author A0152962B
-    @Override
-    public synchronized void editEntry(int index, Entry replacement, ReadOnlyEntry toEdit) 
-            throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException{
-        scheduler.editEntry(index, replacement, toEdit);
+    public synchronized void addEntryAtIndex(int index, Entry entry) throws UniqueEntryList.DuplicateEntryException {
+        scheduler.addEntryAtIndex(index, entry);
         updateFilteredListToShowAll();
+        indicateSchedulerChanged();
+    }
+    
+    @Override
+    public synchronized void editEntry(Entry replacement, ReadOnlyEntry toEdit) 
+            throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException{
+        scheduler.editEntry(replacement, toEdit);
         indicateSchedulerChanged();
     }
     //@@author
