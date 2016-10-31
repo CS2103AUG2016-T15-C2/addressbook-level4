@@ -118,8 +118,6 @@ public class Parser {
         case ListCommand.COMMAND_WORD2:
             return new ListCommand();
         
-        //@@author
-        
         //@@author A0139956L    
         case PathCommand.COMMAND_WORD:
         	return commandManager.stackCommand(preparePath(arguments));
@@ -336,5 +334,4 @@ public class Parser {
         	return new PathCommand(filePath);		//push input to PathCommand
         }
     }
-    //@@author
 }
