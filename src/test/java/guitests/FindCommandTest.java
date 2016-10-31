@@ -44,6 +44,7 @@ public class FindCommandTest extends SchedulerGuiTest {
         assertTrue(entryListPanel.isListMatching(expectedHits));
     }
     
+    
     private void assertAdvancedFindResult(String command, TestEntry... expectedHits ) {
         commandBox.runCommand(command);
         assertListSize(expectedHits.length);

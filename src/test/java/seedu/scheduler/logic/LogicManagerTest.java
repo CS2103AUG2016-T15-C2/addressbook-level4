@@ -404,6 +404,48 @@ public class LogicManagerTest {
                 expectedAB,
                 expectedList);
     }
+    
+    //@@author A0161210A
+    @Test
+    public void execute_find_matchesCompletedTasks() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        Entry pTarget1 = helper.adam(); //adam is a completed task
+        Entry p3 = helper.generateEntryWithName("bla KEY bla bceofeia");
+        Entry p1 = helper.generateEntryWithName("KE Y");
+        Entry p2 = helper.generateEntryWithName("KEYKEYKEY sduauo");
+        
+
+        List<Entry> fourEntrys = helper.generateEntryList(p1, pTarget1, p2, p3);
+        Scheduler expectedAB = helper.generateScheduler(fourEntrys);
+        List<Entry> expectedList = helper.generateEntryList(pTarget1);
+        helper.addToModel(model, fourEntrys);
+
+        assertCommandBehavior("find completed",
+                Command.getMessageForEntryListShownSummary(expectedList.size()),
+                expectedAB,
+                expectedList);
+    }
+    
+    @Test
+    public void execute_find_matchesIncompletedTasks() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        Entry p1 = helper.adam(); //adam is a completed task
+        Entry p1Target = helper.generateEntryWithName("bla KEY bla bceofeia");
+        Entry p2Target = helper.generateEntryWithName("KE Y");
+        Entry p3Target = helper.generateEntryWithName("KEYKEYKEY sduauo");
+        
+
+        List<Entry> fourEntrys = helper.generateEntryList(p1, p1Target, p2Target, p3Target);
+        Scheduler expectedAB = helper.generateScheduler(fourEntrys);
+        List<Entry> expectedList = helper.generateEntryList(p1Target, p2Target, p3Target);
+        helper.addToModel(model, fourEntrys);
+
+        assertCommandBehavior("find incompleted",
+                Command.getMessageForEntryListShownSummary(expectedList.size()),
+                expectedAB,
+                expectedList);
+    }
+    //@@author
 
     @Test
     public void execute_find_isNotCaseSensitive() throws Exception {
@@ -431,6 +473,7 @@ public class LogicManagerTest {
         Entry pTarget2 = helper.generateEntryWithName("bla rAnDoM bla bceofeia");
         Entry pTarget3 = helper.generateEntryWithName("key key");
         Entry p1 = helper.generateEntryWithName("sduauo");
+        helper.adam();
 
         List<Entry> fourEntrys = helper.generateEntryList(pTarget1, p1, pTarget2, pTarget3);
         Scheduler expectedAB = helper.generateScheduler(fourEntrys);
@@ -455,7 +498,7 @@ public class LogicManagerTest {
             EndTime endTime = new EndTime("11:15");
             Date privateDate = new Date("01-02-2034");
             EndDate privateEndDate = new EndDate("01-02-2035");
-            Tag tag1 = new Tag("tag1");
+            Tag tag1 = new Tag("Completed");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
             return new Entry(name, privateStartTime, endTime, privateDate, privateEndDate, tags);
