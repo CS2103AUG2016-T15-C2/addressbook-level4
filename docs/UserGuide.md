@@ -14,7 +14,9 @@
 1. Download the latest `scheduler.jar` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your Scheduler.
 3. Double-click the file to start the app. The GUI should appear in a few seconds. 
-   > <img src="images/Ui.JPG" width="600">
+<!-- @@author A0126090N --> 
+   > <img src="images/Ui2.png" width="600">
+<!-- @@author --> 
 <!-- @@author -->
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
@@ -37,26 +39,22 @@
 > * Items with `...` after them can have multiple instances.
 > * The order of parameters is fixed.
 > * parameter marker `st/` is interchangeable with: `from/` `f/`
-> * parameter marker  `et/` is interchangeable with: `to/`
+> * parameter marker `et/` is interchangeable with: `to/`
 > * parameter marker `sd/` is interchangeable with: `sdate/`
 > * parameter marker `ed/` is interchangeable with: `edate/` or `d/` `date/` or `by/` (in case of a deadline task)<br>
 #### Viewing help : `help`
 Format: `help`
 
 > Help is also shown if you enter an incorrect command e.g. `abcd`
- 
+
+<!-- @@author A0126090N --> 
 #### Adding an item: `add`
 Adds an event to the scheduler. Advanced users can type `a` instead.<br>
-Format: `add NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE [t/TAG]` 
-Format: `a NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE [t/TAG]` 
+Format: `add NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]` 
+Format: `a NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]` 
 
-Adds a task to the scheduler<br>
-Format: `add NAME ed/DATE` 
-Format: `a NAME ed/DATE` 
-
-Adds a floating task to the scheduler<br>
-Format: `add NAME` 
-Format: `a NAME` 
+> * Current date is added by default when start/end time is added to scheduler without a date.
+<!-- @@author --> 
 
 Examples: 
 * `add Meeting st/12:00 et/17:00 sd/19-02-16 ed/20-02-16 t/priority`
@@ -127,11 +125,17 @@ Examples:
   Returns `CS2103 Tutorial` and words related to `tutorial`
 * `f CS Assignment Errand`<br>
   Returns Any item having names `CS`, `Assignment`, or `Errand`
+  
+<!-- @@author A0126090N --> 
+#### Marking an entry as completed: `mark`
+Marks an entry as completed in the scheduler. User can also type `m` instead of `mark`. Marked entries will have a tag: `completed`, and be highlighted in green <br>
+Format: `mark INDEX` 
+Format: `m INDEX` 
 
-#### Marking an item as completed: `mark`
-Marks an event as completed in the scheduler. User can also type `m` instead of `mark`. Marked events will have a tag: `complete` <br>
-Format: `mark INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE` 
-Format: `m INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE`  
+> * Marked entry will move to the end of the scheduler.
+> * If list was called before 'mark', the filtered list will exit and marked entry will be displayed on the unfiltered scheduler.
+<!-- @@author --> 
+
 <!-- @@author A0139956L -->
 #### Specify a folder as data storage location: `path`
 Data storage location can be manually changed to a user-specified location. User can also type `p` instead of `path`<br>
@@ -142,10 +146,14 @@ Examples:
 * `p data/dropbox`
 <!-- @@author -->
 
+<!-- @@author A0126090N --> 
 #### Clear scheduler of all entries: `clear`
 Deletes all entries in the scheduler. User can also type `c` instead of `clear`<br>
 Format: `clear`
 Format: `c`
+
+> * A prompt will pop up when function is called to confirm action.
+<!-- @@author --> 
 
 #### Exiting the program : `exit`
 Exits the program. User can also type `ex` instead of `exit`<br>
@@ -158,23 +166,29 @@ Format: `ex`
 **A**: Install the app in the other computer and overwrite the empty data file it creates with 
        the file that contains the data of your previous Scheduler folder.
 
+<!-- @@author A0126090N --> 
 ## Command Summary
 
 Command | Format  
 -------- | :-------- 
 Help | `help`
-Add | `add NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE [t/TAG]`
-Add | `add NAME sd/START_DATE [t/TAG]`  
-Add | `add NAME [t/TAG]`
+Add | `add NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
+Add | `a NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
 List | `list [by/SORT_CATEGORY]`
-Edit | `edit INDEX NUMBER st/START TIME et/END_TIME sd/START_DATE ed/END_DATE`
-Edit | `edit INDEX NUMBER d/DATE` 
-Edit | `edit INDEX NUMBER` 
+List | `l [by/SORT_CATEGORY]`
+Edit | `edit INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
+Edit | `e INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
 Undo | `undo` 
 Redo | `redo`
 Delete | `delete INDEX`
+Delete | `d INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
-Mark | `mark INDEX NUMBER st/START TIME et/END_TIME sd/START_DATE ed/END_DATE`
+Find | `f KEYWORD [MORE_KEYWORDS]`
+Mark | `mark INDEX`
+Mark | `m INDEX`
 Path | `path FILE_PATH`
+Path | `p`
 Clear | `clear`
+Clear | `c`
 Exit | `exit`
+Exit | `ex`
