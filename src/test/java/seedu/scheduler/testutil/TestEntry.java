@@ -93,4 +93,15 @@ public class TestEntry implements ReadOnlyEntry {
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
+
+    public String getEditCommand(int targetIndexOneIndexed) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("edit " + Integer.toString(targetIndexOneIndexed) + " ");
+        sb.append(this.getName().fullName + " ");
+        sb.append("st/" + this.getStartTime().value + " ");
+        sb.append("et/" + this.getEndTime().value + " ");
+        sb.append("d/" + this.getDate().value + " ");
+        this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
+        return sb.toString();
+    }
 }
