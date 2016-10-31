@@ -160,17 +160,17 @@ public class LogicManagerTest {
                 "add test g/1231", expectedMessage);
     }
 
+    //@@author A0126090N
     @Test
     public void execute_add_invalidEntryData() throws Exception {
-    	//@@author A0126090N
         assertCommandBehavior(
                 "add []\\[;]", Name.MESSAGE_NAME_CONSTRAINTS);
         assertCommandBehavior(
                 "add Valid Name et/01:02 st/01:02", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        //@@author
-        //assertCommandBehavior(
-        //        "add Valid Name st/01:02, et/01:02, d/01-02-2015, tag", EndTime.MESSAGE_ENDTIME_CONSTRAINTS);
+        assertCommandBehavior(
+                "add Valid Name st/25:02", StartTime.MESSAGE_START_TIME_CONSTRAINTS);
     }
+    //@@author
     
     @Test
     public void execute_add_successful() throws Exception {
