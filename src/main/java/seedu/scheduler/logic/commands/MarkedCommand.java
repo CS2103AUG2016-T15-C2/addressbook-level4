@@ -57,13 +57,13 @@ public class MarkedCommand extends UndoableCommand {
         							tagSet
         	);        			
         	prevEntry = (Entry) entryToDelete;
-        	//model.deleteEntry(entryToDelete);
+        	model.deleteEntry(entryToDelete);
         	model.addEntry(entryToMark);
-        } //catch (EntryNotFoundException pnfe) {
-            //assert false : "The target entry cannot be missing";
-        /*}*/ catch (DuplicateTagException e) {
+        } catch (DuplicateTagException e) {
         	e.getMessage();
 		} catch (IllegalValueException e) {
+			e.getMessage();
+		} catch (EntryNotFoundException e) {
 			e.getMessage();
 		}
         return new CommandResult(String.format(MESSAGE_MARKED_ENTRY_SUCCESS, entryToMark));   
