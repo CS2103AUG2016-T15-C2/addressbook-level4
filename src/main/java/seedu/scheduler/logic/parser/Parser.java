@@ -238,7 +238,7 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareMarked(String args) {
-        final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
+        final Matcher matcher = ENTRY_INDEX_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
         if(!matcher.matches()){
             return new IncorrectCommand(
