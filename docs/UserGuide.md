@@ -73,6 +73,7 @@ Examples:
 * `list`
 * `l`
 
+<!-- @@author A0152962B -->
 #### Editing an item : `edit`
 Edits a full event to the scheduler specified by the index. User can also type `e` instead of `edit` <br>
 Format: `edit INDEX NUMBER st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE t/TAG` 
@@ -93,16 +94,17 @@ Examples:
 Important Note: The Edit functionality works more like a Replace command. Consider these 2 cases. <br>
 * 1)if user has a fully filled out event, but only wants to edit the end time parameter, user will have to type out every paramter, and only change the end time parameter to the desired paramter.
 * 2)If user has a fully filled out event, but wants to edit it to a deadline task, user should only type in the endDate and endTime parameter
-<!-- @@author -->
-
+<!-- @@author A0152962B-->
 
 #### Undo recent actions (up to 10): `undo`
-Reverts scheduler back to the state before the recent committed actions.<br>
+Reverts scheduler back to the state before the recent committed actions (up to 10 undoable commands).<br>
+Undoable commands include: `add` `delete` `edit` `mark` `clear`<br>
 Format: `undo`
 
 #### Redo recent undone actions: `redo`
 Reverts scheduler back to the state before the recent undone actions.<br>
 Format: `redo`
+<!-- @@author -->
 
 #### Deleting an item: `delete`
 Delete the item selected by the user. User can also type `d` instead of `delete`<br>
