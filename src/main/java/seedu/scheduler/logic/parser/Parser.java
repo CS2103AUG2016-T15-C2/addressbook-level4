@@ -99,6 +99,9 @@ public class Parser {
         case MarkedCommand.COMMAND_WORD:
             return prepareMarked(arguments);
             
+        case MarkedCommand.COMMAND_WORD2:
+            return prepareMarked(arguments);
+            
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
             
