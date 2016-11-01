@@ -66,6 +66,7 @@ public class MarkedCommand extends UndoableCommand {
 		} catch (EntryNotFoundException e) {
 			e.getMessage();
 		}
+        undoManager.stackCommand(this);
         return new CommandResult(String.format(MESSAGE_MARKED_ENTRY_SUCCESS, entryToMark));   
     }
     
