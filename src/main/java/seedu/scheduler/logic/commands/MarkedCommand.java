@@ -74,14 +74,16 @@ public class MarkedCommand extends UndoableCommand {
     @Override
     public void undo() {
         try {
+        	model.deleteEntry(prevEntry);
             model.addEntryAtIndex(targetIndex, prevEntry);
-        } catch (DuplicateEntryException e) { }
+        } catch (DuplicateEntryException | EntryNotFoundException e) { }
     }
 
     @Override
     public void redo() {
         try {
-            model.deleteEntry(prevEntry);
-        } catch (EntryNotFoundException e) { }
+        	model.deleteEntry(prevEntry);
+        	model.addEntry(entryToMark);
+        } catch (EntryNotFoundException | DuplicateEntryException e) { }
     }
 }
