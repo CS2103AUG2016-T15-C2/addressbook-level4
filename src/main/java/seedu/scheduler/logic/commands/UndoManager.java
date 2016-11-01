@@ -30,10 +30,10 @@ public class UndoManager {
             }
             commandUndoStack.push(cmd);
             commandRedoStack.clear();
-        } else if (cmd instanceof ClearCommand) {
-            commandUndoStack.clear();
-            commandRedoStack.clear();
-        }
+        } //else if (cmd instanceof ClearCommand) {
+            //commandUndoStack.clear();
+            //commandRedoStack.clear();
+        //}
         return cmd;
     }
 
@@ -44,11 +44,7 @@ public class UndoManager {
         if (commandUndoStack.size() > 0) {
             UndoableCommand cmd = (UndoableCommand) commandUndoStack.pop();
             commandRedoStack.push(cmd);
-            try{
-                cmd.undo();
-            } catch (Exception e) {
-                
-            }
+            cmd.undo();
         }
     }
 
@@ -59,11 +55,7 @@ public class UndoManager {
         if (commandRedoStack.size() > 0) {
             UndoableCommand cmd = (UndoableCommand) commandRedoStack.pop();
             commandUndoStack.push(cmd);
-            try{
-                cmd.redo();
-            } catch (Exception e){
-                
-            }
+            cmd.redo();
         }
     }
 }

@@ -1,5 +1,6 @@
 package seedu.scheduler.logic.commands;
 
+import seedu.scheduler.model.ReadOnlyScheduler;
 import seedu.scheduler.model.Scheduler;
 
 import java.util.Optional;
@@ -20,35 +21,48 @@ import javafx.stage.Stage;
 /**
  * Clears the scheduler.
  */
-public class ClearCommand extends Command {
+public class ClearCommand extends UndoableCommand {
 
-	public static final String COMMAND_WORD = "clear";
-	public static final String COMMAND_WORD2 = "c";
-	public static final String MESSAGE_SUCCESS = "Scheduler has been cleared!";
-	public static final String MESSAGE_STOPPED = "";
+    public static final String COMMAND_WORD = "clear";
+    public static final String COMMAND_WORD2 = "c";
+    public static final String MESSAGE_SUCCESS = "Scheduler has been cleared!";
+    public static final String MESSAGE_STOPPED = "";
 
-	private static Optional<ButtonType> result;
-	
-	//@@author A0126090N
-	public ClearCommand() {
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirmation Dialog");
-		alert.setHeaderText("Clearing the list will remove all data");
-		alert.setContentText("Proceed to clear the list?");
+    private static Optional<ButtonType> result;
+    private ReadOnlyScheduler lastScheduler;
 
-		result = alert.showAndWait();
-	}
+    // @@author A0126090N
+    public ClearCommand() {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Clearing the list will remove all data");
+        alert.setContentText("Proceed to clear the list?");
 
-	@Override
-	public CommandResult execute() {
-		if (result.get() == ButtonType.OK) {
-			assert model != null;
-			model.resetData(Scheduler.getEmptyScheduler());
-			return new CommandResult(MESSAGE_SUCCESS);
-		} else {
-			// ... user chose CANCEL or closed the dialog
-			return new CommandResult(MESSAGE_STOPPED);
-		}
-	}
-	//@@author
+        result = alert.showAndWait();
+    }
+
+    @Override
+    public CommandResult execute() {
+        if (result.get() == ButtonType.OK) {
+            assert model != null;
+            lastScheduler = new Scheduler(model.getScheduler());
+            model.resetData(Scheduler.getEmptyScheduler());
+            undoManager.stackCommand(this);
+            return new CommandResult(MESSAGE_SUCCESS);
+        } else {
+            // ... user chose CANCEL or closed the dialog
+            return new CommandResult(MESSAGE_STOPPED);
+        }
+    }
+    // @@author
+
+    @Override
+    public void undo() {
+        model.resetData(lastScheduler);
+    }
+
+    @Override
+    public void redo() {
+        model.resetData(Scheduler.getEmptyScheduler());
+    }
 }
