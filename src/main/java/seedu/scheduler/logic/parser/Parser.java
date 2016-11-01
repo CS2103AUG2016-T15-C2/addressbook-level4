@@ -28,7 +28,7 @@ public class Parser {
     
     //@@author A0139956L
     private static final Pattern PATH_DATA_ARGS_FORMAT =
-    		Pattern.compile("(?<name>[\\p{Alnum}|/]+)"); //data/ <---
+            Pattern.compile("(?<name>[\\p{Alnum}|/]+)"); //data/ <---
    
     //@@author A0161210A
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
@@ -49,7 +49,6 @@ public class Parser {
                     + "(?<isEndDatePrivate>p?)(?:(edate/|ed/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
-    private CommandManager commandManager = new CommandManager();
     //@@author
 
     public Parser() {
@@ -80,10 +79,10 @@ public class Parser {
             return prepareAdd(arguments);
 
         case SelectCommand.COMMAND_WORD:
-            return commandManager.stackCommand(prepareSelect(arguments));
+            return prepareSelect(arguments);
         
         case SelectCommand.COMMAND_WORD2:
-            return commandManager.stackCommand(prepareSelect(arguments));
+            return prepareSelect(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -97,25 +96,20 @@ public class Parser {
         case EditCommand.COMMAND_WORD2:
             return prepareEdit(arguments);
             
-        //@@author A0126090N
         case MarkedCommand.COMMAND_WORD:
             return prepareMarked(arguments);
-
-        case MarkedCommand.COMMAND_WORD2:
-            return prepareMarked(arguments);
-        //@@author
             
         case ClearCommand.COMMAND_WORD:
-            return commandManager.stackCommand(new ClearCommand());
+            return new ClearCommand();
             
         case ClearCommand.COMMAND_WORD2:
-            return commandManager.stackCommand(new ClearCommand());
+            return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return commandManager.stackCommand(prepareFind(arguments));
+            return prepareFind(arguments);
             
         case FindCommand.COMMAND_WORD2:
-            return commandManager.stackCommand(prepareFind(arguments));
+            return prepareFind(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -123,13 +117,15 @@ public class Parser {
         case ListCommand.COMMAND_WORD2:
             return new ListCommand();
         
+        //@@author
+        
         //@@author A0139956L    
         case PathCommand.COMMAND_WORD:
-        	return commandManager.stackCommand(preparePath(arguments));
-        	
+            return preparePath(arguments);
+            
         case PathCommand.COMMAND_WORD2:
-        	return commandManager.stackCommand(preparePath(arguments));
-        //@@author	
+            return preparePath(arguments);
+        //@@author  
         
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -139,11 +135,11 @@ public class Parser {
           
         //@@author A0152962B
         case "undo":
-            commandManager.undo();
+            UndoableCommand.undoManager.undo();
             return null;
 
         case "redo":
-            commandManager.redo();
+            UndoableCommand.undoManager.redo();
             return null;
         //@@author
             
@@ -172,8 +168,8 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         try {
-            return commandManager.stackCommand(new AddCommand(matcher.group("name"), matcher.group("startTime"), matcher.group("endTime"),
-                    matcher.group("date"), matcher.group("endDate"), getTagsFromArgs(matcher.group("tagArguments"))));
+            return new AddCommand(matcher.group("name"), matcher.group("startTime"), matcher.group("endTime"),
+                    matcher.group("date"), matcher.group("endDate"), getTagsFromArgs(matcher.group("tagArguments")));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
@@ -207,7 +203,7 @@ public class Parser {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        return commandManager.stackCommand(new DeleteCommand(index.get()));
+        return new DeleteCommand(index.get());
     }
 
     //@@author A0152962B
@@ -242,14 +238,19 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareMarked(String args) {
-    	Optional<Integer> index = parseIndex(args);
-        if (!index.isPresent()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkedCommand.MESSAGE_USAGE));
+        final Matcher matcher = ENTRY_EDIT_ARGS_FORMAT.matcher(args.trim());
+        // Validate arg string format
+        if(!matcher.matches()){
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkedCommand.MESSAGE_USAGE));    
         }
-        //return commandManager.stackCommand(new MarkedCommand(index.get()));
-        return new MarkedCommand(index.get());
+        
+        return new MarkedCommand(
+                Integer.parseInt(matcher.group("targetIndex"))
+        );
+        
     }
-    //@@author
+    //@@author A0126090N
     
     /**
      * Parses arguments in the context of the select entry command.
@@ -320,8 +321,9 @@ public class Parser {
                     PathCommand.MESSAGE_USAGE));
         }
         else {
-        	String filePath = matcher.group("name").trim().replaceAll("/$", "") + ".xml";					//store input to filePath
-        	return new PathCommand(filePath);		//push input to PathCommand
+            String filePath = matcher.group("name").trim().replaceAll("/$", "") + ".xml";                   //store input to filePath
+            return new PathCommand(filePath);       //push input to PathCommand
         }
     }
+    //@@author
 }
