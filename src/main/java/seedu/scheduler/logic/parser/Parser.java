@@ -134,11 +134,11 @@ public class Parser {
             return new ExitCommand();
           
         //@@author A0152962B
-        case "undo":
+        case UndoableCommand.COMMAND_WORD_UNDO:
             UndoableCommand.undoManager.undo();
             return null;
 
-        case "redo":
+        case UndoableCommand.COMMAND_WORD_REDO:
             UndoableCommand.undoManager.redo();
             return null;
         //@@author
