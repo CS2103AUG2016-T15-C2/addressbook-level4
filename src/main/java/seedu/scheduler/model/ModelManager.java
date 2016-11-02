@@ -5,6 +5,7 @@ import seedu.scheduler.commons.core.LogsCenter;
 import seedu.scheduler.commons.core.UnmodifiableObservableList;
 import seedu.scheduler.commons.util.StringUtil;
 import seedu.scheduler.commons.events.model.SchedulerChangedEvent;
+import seedu.scheduler.commons.exceptions.IllegalValueException;
 import seedu.scheduler.commons.core.ComponentManager;
 import seedu.scheduler.model.entry.Entry;
 import seedu.scheduler.model.entry.ReadOnlyEntry;
@@ -106,6 +107,13 @@ public class ModelManager extends ComponentManager implements Model {
     }
     //@@author A061210A
     @Override
+    /**
+     * Updates the entry list by the given filter
+     * @param keywords  Keywords to filter by
+     * @param completeTracker  Indicates whether to filter out for complete task or not
+     * @param incompleteTracker Indicates whether to filter out for incomplete task or not
+     * @throws IllegalValueException if given endDate string is invalid.
+     */
     public void updateFilteredEntryList(Set<String> keywords, boolean completeTracker,boolean incompleteTracker){
         if (completeTracker) {
             updateFilteredEntryList(new PredicateExpression(new TagQualifier(keywords)));

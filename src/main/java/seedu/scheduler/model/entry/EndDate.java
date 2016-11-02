@@ -14,10 +14,9 @@ public class EndDate {
     public static final String DATE_VALIDATION_REGEX = "((0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((18|19|20|21)\\d\\d)|empty)"; 
 
     public final String value;
-
     /**
-     * ValiendDates given endDate.
-     *
+     * 
+     * @param endDate  The specified end date in string format for this entry
      * @throws IllegalValueException if given endDate string is invalid.
      */
     public EndDate(String endDate) throws IllegalValueException {
@@ -31,11 +30,14 @@ public class EndDate {
     }
 
     /**
-     * Returns true if a given string is a valid entry endTime.
+     * Returns true if a given string is a valid entry endDate.
+     * @param test  string that is to be tested to see if it is in a valid end date format
+     * @return true if input string is in valid format
      */
     public static boolean isValidEndDate(String test) {
         return test.matches(DATE_VALIDATION_REGEX);
     }
+  //@@author
 
     @Override
     public String toString() {

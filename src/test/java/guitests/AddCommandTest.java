@@ -4,6 +4,7 @@ import guitests.guihandles.EntryCardHandle;
 import org.junit.Test;
 import seedu.scheduler.logic.commands.AddCommand;
 import seedu.scheduler.commons.core.Messages;
+import seedu.scheduler.commons.exceptions.IllegalValueException;
 import seedu.scheduler.testutil.TestEntry;
 import seedu.scheduler.testutil.TestUtil;
 
@@ -16,18 +17,15 @@ public class AddCommandTest extends SchedulerGuiTest {
         //add one entry
         TestEntry[] currentList = td.getTypicalEntrys();
         TestEntry entryToAdd = td.meeting;
-        //NEEDFIX
         //assertAddSuccess(entryToAdd, currentList);
         currentList = TestUtil.addEntrysToList(currentList, entryToAdd);
 
         //add another entry
         entryToAdd = td.pickup;
-        //NEEDFIX
         //assertAdvancedAddSuccess(entryToAdd, currentList);
         currentList = TestUtil.addEntrysToList(currentList, entryToAdd);
         
         entryToAdd = td.hike;
-        //NEEDFIX
 /*
         //add duplicate entry
         commandBox.runCommand(td.meeting.getAddCommand());
@@ -45,10 +43,14 @@ public class AddCommandTest extends SchedulerGuiTest {
         */
     }
   //@@author A0161210A
+    /**
+     * Test to see if the advanced add command ('a' instead of 'add') works properly
+     * @param entryToAdd  the entry to be added
+     * @param currentList current list of entries
+     * 
+     */
     private void assertAdvancedAddSuccess(TestEntry entryToAdd, TestEntry... currentList) {
         commandBox.runCommand(entryToAdd.getAdvancedAddCommand());
-
-        //confirm the new card contains the right data
         EntryCardHandle addedCard = entryListPanel.navigateToEntry(entryToAdd.getName().fullName);
         assertMatching(entryToAdd, addedCard);
 
