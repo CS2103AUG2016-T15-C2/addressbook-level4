@@ -119,7 +119,7 @@ The `UI` component,
 **API** : [`Logic.java`](../src/main/java/seedu/scheduler/logic/Logic.java)
 
 1. `Logic` uses the `Parser` class to parse the user command.
-2. This results in a `Command` object which goes through `CommandManager` before being executed by the `LogicManager`.
+2. This results in a `Command` object goes through the `LogicManager`, while `UndoableCommand` object goes through `UndoManager` after being executing a valid command.
 3. The command execution can affect the `Model` (e.g. adding an entry) and/or raise events.
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
@@ -485,7 +485,7 @@ Use case ends.
 > Windows, Linux, Unix, OS-X
 
 ## Appendix E : Product Survey
-
+<!-- @@author A0152962B -->
 #### Google Calendar
 * Syncs tasks immediately to your calendar (tasks are in calendar view)
 * Syncs with your email (email with date/time will have the option to be added to the calendar
@@ -515,3 +515,4 @@ Use case ends.
 * Able to group and assign tasks
 * Option of priority marking and alarm
 * Shared board (i.e. many collaborators on a list)
+<!-- @@author -->
