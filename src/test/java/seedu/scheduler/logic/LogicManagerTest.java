@@ -118,7 +118,9 @@ public class LogicManagerTest {
             robot.type(KeyCode.ENTER).sleep(500);
         }
         //Confirm the ui display elements should contain the right data
-        assertEquals(expectedMessage, result.feedbackToUser);
+        if(!inputCommand.equals("undo") && !inputCommand.equals("redo")) {
+            assertEquals(expectedMessage, result.feedbackToUser);
+        }
         assertEquals(expectedShownList, model.getFilteredEntryList());
 
         //Confirm the state of data (saved and in-memory) is as expected
@@ -153,12 +155,29 @@ public class LogicManagerTest {
         //NEEDFIX
         //assertCommandBehavior("clear", ClearCommand.MESSAGE_SUCCESS, new Scheduler(), Collections.emptyList());
     }
+    
+    //@@author A0152962B
+    @Test
+    public void execute_clearUndoRedo() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        List<Entry> threeEntrys = helper.generateEntryList(3);
+        Scheduler expectedAB = helper.generateScheduler(threeEntrys);
+        helper.addToModel(model, threeEntrys);
+        //NEEDFIX 
+        //assertCommandBehavior("clear", ClearCommand.MESSAGE_SUCCESS, new Scheduler(), Collections.emptyList());
 
+        //assertCommandBehavior("undo", ClearCommand.MESSAGE_SUCCESS, expectedAB, expectedAB.getEntryList());
+
+        //assertCommandBehavior("redo", ClearCommand.MESSAGE_SUCCESS, new Scheduler(), Collections.emptyList());
+    }
+    
+    //@@author
     @Test
     public void execute_add_invalidArgsFormat() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         assertCommandBehavior(
-                "add test g/1231", expectedMessage);
+                "a test g/1231", expectedMessage);
     }
 
     //@@author A0126090N
@@ -208,7 +227,8 @@ public class LogicManagerTest {
                 expectedAB.getEntryList());
 
     }
-
+    
+    //@@author A0152962B
     @Test
     public void execute_addUndoRedo() throws Exception {
         // setup expectations
@@ -236,7 +256,8 @@ public class LogicManagerTest {
                 expectedAB,
                 expectedAB.getEntryList());
     }
-
+    
+    //@@author
     @Test
     public void execute_list_showsAllEntrys() throws Exception {
         // prepare expectations
@@ -376,9 +397,37 @@ public class LogicManagerTest {
     public void execute_deleteIndexNotFound_errorMessageShown() throws Exception {
         assertIndexNotFoundBehaviorForCommand("delete");
     }
-    //@@author
+  //@@author A0152962B
+    @Test
+    public void execute_deleteUndoRedo() throws Exception {
+        // setup expectations
+        TestDataHelper helper = new TestDataHelper();
+        
+        List<Entry> threeEntrys = helper.generateEntryList(3);
+        Entry toBeAdded = threeEntrys.get(1);
+        Scheduler expectedAB = helper.generateScheduler(threeEntrys);
+        expectedAB.removeEntry(toBeAdded);
+        helper.addToModel(model, threeEntrys);
+        
+        
+        assertCommandBehavior("d 2",
+                String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, toBeAdded),
+                expectedAB,
+                expectedAB.getEntryList());
+        
+        expectedAB.addEntryAtIndex(2, toBeAdded);
+        assertCommandBehavior("undo",
+                String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, toBeAdded),
+                expectedAB,
+                expectedAB.getEntryList());
+        
+        expectedAB.removeEntry(toBeAdded);
+        assertCommandBehavior("redo",
+                String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, toBeAdded),
+                expectedAB,
+                expectedAB.getEntryList());
+    }
     
-    //@@author A0152962B
     @Test
     public void execute_editToDuplicate_notAllowed() throws Exception {
         // setup expectations

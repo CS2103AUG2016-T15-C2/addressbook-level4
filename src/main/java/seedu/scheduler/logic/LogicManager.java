@@ -5,6 +5,7 @@ import seedu.scheduler.commons.core.ComponentManager;
 import seedu.scheduler.commons.core.LogsCenter;
 import seedu.scheduler.logic.commands.Command;
 import seedu.scheduler.logic.commands.CommandResult;
+import seedu.scheduler.logic.commands.UndoableCommand;
 import seedu.scheduler.logic.parser.Parser;
 import seedu.scheduler.model.Model;
 import seedu.scheduler.model.entry.ReadOnlyEntry;
@@ -30,6 +31,14 @@ public class LogicManager extends ComponentManager implements Logic {
     public CommandResult execute(String commandText) {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         Command command = parser.parseCommand(commandText);
+        if(commandText == "undo") {
+            UndoableCommand.undoManager.undo();
+            return null;
+        }
+        if(commandText == "redo") {
+            UndoableCommand.undoManager.redo();
+            return null;
+        }
         command.setData(model);
         return command.execute();
     }
