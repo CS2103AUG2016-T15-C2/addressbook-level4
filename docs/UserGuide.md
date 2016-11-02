@@ -101,9 +101,15 @@ Reverts scheduler back to the state before the recent committed actions (up to 1
 Undoable commands include: `add` `delete` `edit` `mark` `clear`<br>
 Format: `undo`
 
+>Undo stack holds up to 10 recent undoable comments.
+>Does not display a text feedback to user.
+
 #### Redo recent undone actions: `redo`
 Reverts scheduler back to the state before the recent undone actions.<br>
 Format: `redo`
+
+>Redo stacks clears upon a new valid commmand.
+>Does not display a	text feedback to user.
 <!-- @@author -->
 
 #### Deleting an item: `delete`
