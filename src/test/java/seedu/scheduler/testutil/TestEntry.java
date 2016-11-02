@@ -79,7 +79,8 @@ public class TestEntry implements ReadOnlyEntry {
         sb.append("add " + this.getName().fullName + " ");
         sb.append("st/" + this.getStartTime().value + " ");
         sb.append("et/" + this.getEndTime().value + " ");
-        sb.append("d/" + this.getDate().value + " ");
+        sb.append("sd/" + this.getDate().value + " ");
+        sb.append("ed/" + this.getEndDate().value + " ");
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
@@ -89,18 +90,20 @@ public class TestEntry implements ReadOnlyEntry {
         sb.append("a " + this.getName().fullName + " ");
         sb.append("st/" + this.getStartTime().value + " ");
         sb.append("et/" + this.getEndTime().value + " ");
-        sb.append("d/" + this.getDate().value + " ");
+        sb.append("sd/" + this.getDate().value + " ");
+        sb.append("ed/" + this.getEndDate().value + " ");
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
 
     public String getEditCommand(int targetIndexOneIndexed) {
         StringBuilder sb = new StringBuilder();
-        sb.append("edit " + Integer.toString(targetIndexOneIndexed) + " ");
+        sb.append("edit " + Integer.toString(targetIndexOneIndexed + 1) + " ");
         sb.append(this.getName().fullName + " ");
         sb.append("st/" + this.getStartTime().value + " ");
         sb.append("et/" + this.getEndTime().value + " ");
-        sb.append("d/" + this.getDate().value + " ");
+        sb.append("sd/" + this.getDate().value + " ");
+        sb.append("ed/" + this.getEndDate().value + " ");
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }
