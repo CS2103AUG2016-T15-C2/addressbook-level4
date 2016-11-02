@@ -153,12 +153,10 @@ public class EntryCard extends UiPart{
     	//get today date from system
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         Date today = new Date();
-        //System.out.println("Today: " + df.format(today));
     	
     	//put startDate and endDate into Date
     	String startDate = entry.getDate().toString();   	
     	String endDate = entry.getEndDate().toString();
-    	System.out.println("String for ed: " + endDate);
     	
         DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         DateFormat edf = new SimpleDateFormat("dd-MM-yyyy");
@@ -167,7 +165,6 @@ public class EntryCard extends UiPart{
         
 		try {
 			startDateObj = sdf.parse(startDate);
-			System.out.println("Start date: " + sdf.format(startDateObj));
 			
 	        //if entry startDate overdue
 	        if (onlyStartDateInput(entry, today, startDateObj)) {
@@ -178,7 +175,6 @@ public class EntryCard extends UiPart{
        
 		try {
 	        endDateObj = edf.parse(endDate);
-	        System.out.println("End date: " + edf.format(endDateObj));
 	        
 	        //if entry endDate overdue
 	        if (endDateObj.before(today)) {
