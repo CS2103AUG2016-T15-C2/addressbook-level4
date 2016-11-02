@@ -1,6 +1,10 @@
 package seedu.scheduler.ui;
 
-//import java.util.Date;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -80,32 +84,90 @@ public class EntryCard extends UiPart{
     //@@author A0139956L
     public void hideFieldsAccordingToType(ReadOnlyEntry entry) {
         //deadline task
-        if (entry.getStartTime().toString().contains("empty") 
-        		&& entry.getEndTime().toString().contains("empty")) {
+        if (endDateInput(entry)) {
             startTime.setVisible(false);
             endTime.setVisible(false);
             date.setVisible(false);
         } 
+        if (startDateInput(entry)) {
+            startTime.setVisible(false);
+            endTime.setVisible(false);
+            endDate.setVisible(false);
+        } 
         //floating task
-        if (entry.getStartTime().toString().contains("empty") 
-        		&& entry.getEndTime().toString().contains("empty")
-        		&& entry.getDate().toString().contains("empty")
-        		&& entry.getEndDate().toString().contains("empty")) {
+        if (floatTask(entry)) {
             startTime.setVisible(false);
             endTime.setVisible(false);
             date.setVisible(false);
             endDate.setVisible(false);
         } 
+        if (startTimeInput(entry)) {
+        	endTime.setVisible(false);
+        	endDate.setVisible(false);
+        }
+        if (endTimeInput(entry)) {
+        	startTime.setVisible(false);
+        	date.setVisible(false);
+        }
     }
+
+	private boolean endDateInput(ReadOnlyEntry entry) {
+		return entry.getStartTime().toString().contains("empty") 
+        		&& entry.getEndTime().toString().contains("empty")
+        		&& entry.getDate().toString().contains("empty");
+	}
+
+	private boolean startDateInput(ReadOnlyEntry entry) {
+		return entry.getStartTime().toString().contains("empty") 
+        		&& entry.getEndTime().toString().contains("empty")
+        		&& entry.getEndDate().toString().contains("empty");
+	}
+
+	private boolean floatTask(ReadOnlyEntry entry) {
+		return entry.getStartTime().toString().contains("empty") 
+        		&& entry.getEndTime().toString().contains("empty")
+        		&& entry.getDate().toString().contains("empty")
+        		&& entry.getEndDate().toString().contains("empty");
+	}
+	
+	private boolean startTimeInput(ReadOnlyEntry entry) {
+		return entry.getEndTime().toString().contains("empty")
+         		&& entry.getEndDate().toString().contains("empty");
+	}
+	
+	private boolean endTimeInput(ReadOnlyEntry entry) {
+		return entry.getStartTime().toString().contains("empty") 
+        		&& entry.getDate().toString().contains("empty");
+	}
     
     public void indicatingColourByCondition(ReadOnlyEntry entry) {
+    	//today date from system
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        Date today = new Date();
+        System.out.println(df.format(today));
+    	
+    	//put getDate into Date
+    	String getDate = entry.getDate().toString();
+    	
+        DateFormat gdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date dateobj;
+		try {
+			dateobj = gdf.parse(getDate);
+	        System.out.println(gdf.format(dateobj));
+	        
+	        //if entry overdue
+	        if (dateobj.before(today)) {
+	             cardPane.setStyle(OVERDUE_INDICATION);  
+	        }
+	        
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+ 	
     	//entry completed
         if (entry.tagsString().contains("Completed")) {
             cardPane.setStyle(COMPLETED_INDICATION);   
         } 
-        // if entry overdue
-        //else if (entryRead.getDate().before(new Date())) {
-             //cardPane.setStyle(OVERDUE_INDICATION);  
-       // }
+
     }
 }
