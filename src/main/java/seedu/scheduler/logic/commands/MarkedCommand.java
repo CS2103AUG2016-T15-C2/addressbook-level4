@@ -25,6 +25,7 @@ public class MarkedCommand extends UndoableCommand {
             + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARKED_ENTRY_SUCCESS = "Marked Entry: %1$s";
+    public static final String MESSAGE_REMARK_MARKED_ENTRY_ERROR = "Entry marked";
 
     public final int targetIndex;
     public Entry entryToMark;
@@ -48,6 +49,12 @@ public class MarkedCommand extends UndoableCommand {
 
         try {
         	UniqueTagList tagSet = entryToDelete.getTags();
+        	
+        	if (tagSet.contains(new Tag("Completed"))) {
+                indicateAttemptToExecuteIncorrectCommand();
+                return new CommandResult(MESSAGE_REMARK_MARKED_ENTRY_ERROR);
+            }
+        	
         	tagSet.add(new Tag("Completed"));
         	entryToMark = new Entry(entryToDelete.getName(),
         							entryToDelete.getStartTime(),
