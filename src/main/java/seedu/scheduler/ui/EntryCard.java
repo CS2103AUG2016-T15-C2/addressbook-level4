@@ -174,7 +174,6 @@ public class EntryCard extends UiPart{
 	             cardPane.setStyle(OVERDUE_INDICATION);  
 	        }
 		} catch (ParseException e1) {
-			e1.printStackTrace();
 		}
        
 		try {
@@ -186,7 +185,6 @@ public class EntryCard extends UiPart{
 	             cardPane.setStyle(OVERDUE_INDICATION);  
 	        }
 		} catch (ParseException e) {
-			e.printStackTrace();
 		}
  	
     	//if entry completed
