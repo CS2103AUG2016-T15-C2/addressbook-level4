@@ -5,7 +5,7 @@ import java.util.Stack;
 
 //@@author A0152962B
 /**
- * Manager that commands have to go through
+ * Manager that undoable commands have to go through after executing a valid command.
  */
 public class UndoManager {
     
@@ -14,27 +14,24 @@ public class UndoManager {
     //public static final String MESSAGE_UNDO_SUCCESS = "Undo successful.";
     //public static final String MESSAGE_REDO_SUCCESS = "Redo successful.";
     
-    private LinkedList<Command> commandUndoStack = new LinkedList<Command>();
-    private Stack<Command> commandRedoStack = new Stack<Command>();
+    private LinkedList<UndoableCommand> commandUndoStack = new LinkedList<UndoableCommand>(); //Use LinkedList instead Stack to remove last element when there's more than 10 commands
+    private Stack<UndoableCommand> commandRedoStack = new Stack<UndoableCommand>();
 
     /**
      * Push cmd into commandUndoStack (up to 10 commands).
      * 
-     * @param Command cmd from Parser
-     * @return Command cmd as needed by Parser
+     * @param cmd UndoableCommand given by each command after execution of a valid command.
      */
-    public Command stackCommand(Command cmd) {
-        if (cmd instanceof UndoableCommand) {
-            if (commandUndoStack.size() == 10) {
-                commandUndoStack.removeLast();
-            }
-            commandUndoStack.push(cmd);
-            commandRedoStack.clear();
-        } //else if (cmd instanceof ClearCommand) {
-            //commandUndoStack.clear();
-            //commandRedoStack.clear();
+    public void stackCommand(UndoableCommand cmd) {
+        //if (cmd instanceof ClearCommand) {
+        //    commandUndoStack.clear();
+        //    commandRedoStack.clear();
         //}
-        return cmd;
+        if (commandUndoStack.size() == 10) {
+            commandUndoStack.removeLast();
+        }
+        commandUndoStack.push(cmd);
+        commandRedoStack.clear();
     }
 
     /**
@@ -42,7 +39,7 @@ public class UndoManager {
      */
     public void undo() {
         if (commandUndoStack.size() > 0) {
-            UndoableCommand cmd = (UndoableCommand) commandUndoStack.pop();
+            UndoableCommand cmd = commandUndoStack.pop();
             commandRedoStack.push(cmd);
             cmd.undo();
         }
@@ -53,7 +50,7 @@ public class UndoManager {
      */
     public void redo() {
         if (commandRedoStack.size() > 0) {
-            UndoableCommand cmd = (UndoableCommand) commandRedoStack.pop();
+            UndoableCommand cmd = commandRedoStack.pop();
             commandUndoStack.push(cmd);
             cmd.redo();
         }

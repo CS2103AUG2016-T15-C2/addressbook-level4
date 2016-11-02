@@ -75,6 +75,13 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
     
     //@@author A0152962B
+    /**
+     * Adds an entry into the list at a given index. Shifts all entrys after the index in the list down by one.
+     * 
+     * @param index  Index of the entry to add.
+     * @param toAdd  Entry to add at the index of the list.
+     * @throws DuplicateEntryException if the entry to add is a duplicate of an existing entry in the list.
+     */
     public void addAtIndex(int index, Entry toAdd) throws DuplicateEntryException {
         assert toAdd != null;
         if (contains(toAdd)) {
@@ -86,6 +93,8 @@ public class UniqueEntryList implements Iterable<Entry> {
     /**
      * Edits(replaces) the specified entry;
      * 
+     * @param replacement  The entry to replace the to-be-edited entry with.
+     * @param toEdit  The target entry to be replaced with.
      * @throws EntryNotFoundException if no such entry could be found in the list.
      * @throws DuplicateEntryException if the entry to replace is a duplicate of an existing entry in the list.
      */
