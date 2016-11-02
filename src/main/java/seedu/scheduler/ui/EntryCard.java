@@ -94,6 +94,10 @@ public class EntryCard extends UiPart{
             endTime.setVisible(false);
             endDate.setVisible(false);
         } 
+        if(startAndEndDateInput(entry)) {
+            startTime.setVisible(false);
+            endTime.setVisible(false);
+        }
         //floating task
         if (floatTask(entry)) {
             startTime.setVisible(false);
@@ -110,6 +114,11 @@ public class EntryCard extends UiPart{
         	date.setVisible(false);
         }
     }
+
+	private boolean startAndEndDateInput(ReadOnlyEntry entry) {
+		return entry.getStartTime().toString().contains("empty") 
+        		&& entry.getEndTime().toString().contains("empty");
+	}
 
 	private boolean endDateInput(ReadOnlyEntry entry) {
 		return entry.getStartTime().toString().contains("empty") 
@@ -141,33 +150,56 @@ public class EntryCard extends UiPart{
 	}
     
     public void indicatingColourByCondition(ReadOnlyEntry entry) {
-    	//today date from system
+    	//get today date from system
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         Date today = new Date();
-        System.out.println(df.format(today));
+        //System.out.println("Today: " + df.format(today));
     	
-    	//put getDate into Date
-    	String getDate = entry.getDate().toString();
+    	//put startDate and endDate into Date
+    	String startDate = entry.getDate().toString();   	
+    	String endDate = entry.getEndDate().toString();
+    	System.out.println("String for ed: " + endDate);
     	
-        DateFormat gdf = new SimpleDateFormat("dd-MM-yyyy");
-        Date dateobj;
+        DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat edf = new SimpleDateFormat("dd-MM-yyyy");
+        Date startDateObj;
+        Date endDateObj;
+        
 		try {
-			dateobj = gdf.parse(getDate);
-	        System.out.println(gdf.format(dateobj));
-	        
-	        //if entry overdue
-	        if (dateobj.before(today)) {
+			startDateObj = sdf.parse(startDate);
+			System.out.println("Start date: " + sdf.format(startDateObj));
+			
+	        //if entry startDate overdue
+	        if (onlyStartDateInput(entry, today, startDateObj)) {
 	             cardPane.setStyle(OVERDUE_INDICATION);  
 	        }
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+       
+		try {
+	        endDateObj = edf.parse(endDate);
+	        System.out.println("End date: " + edf.format(endDateObj));
 	        
+	        //if entry endDate overdue
+	        if (endDateObj.before(today)) {
+	             cardPane.setStyle(OVERDUE_INDICATION);  
+	        }
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
  	
-    	//entry completed
+    	//if entry completed
         if (entry.tagsString().contains("Completed")) {
             cardPane.setStyle(COMPLETED_INDICATION);   
-        } 
+        }  	
 
     }
+
+	private boolean onlyStartDateInput(ReadOnlyEntry entry, Date today, Date startDateObj) {
+		return startDateObj.before(today) 
+				&& entry.getStartTime().toString().contains("empty") 
+				&& entry.getEndTime().toString().contains("empty")
+				&& entry.getEndDate().toString().contains("empty");
+	}
 }
