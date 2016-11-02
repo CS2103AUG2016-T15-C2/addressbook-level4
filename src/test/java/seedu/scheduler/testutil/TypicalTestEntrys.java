@@ -9,7 +9,7 @@ import seedu.scheduler.model.entry.*;
  */
 public class TypicalTestEntrys {
 
-    public static TestEntry chem, bio, dinner, date, groceries, concert, hike, meeting, pickup;
+    public static TestEntry chem, bio, dinner, date, groceries, concert, hike, meeting, meetingCompleted, pickup;
 
     public TypicalTestEntrys() {
         try {
@@ -27,6 +27,7 @@ public class TypicalTestEntrys {
 
             //Manually added
             meeting = new EntryBuilder().withName("Project meeting").withStartTime("14:00").withEndTime("16:00").withEndDate("01-10-2017").withDate("10-10-2016").build();
+            meetingCompleted = new EntryBuilder().withName("Project meeting").withStartTime("14:00").withEndTime("16:00").withEndDate("01-10-2017").withDate("10-10-2016").withTags("Completed").build();
             pickup = new EntryBuilder().withName("Pickup parents from airport").withStartTime("15:00").withEndDate("01-10-2017").withEndTime("16:00").withDate("11-10-2016").build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
