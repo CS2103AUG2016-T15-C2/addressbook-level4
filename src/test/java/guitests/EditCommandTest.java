@@ -23,7 +23,7 @@ public class EditCommandTest extends SchedulerGuiTest {
         commandBox.runCommand(entryToEditTo.getEditCommand(targetIndexOneIndexed));
         
         //confirm the list now contains all previous entrys plus the newly edited entry
-        TestEntry[] expectedList = TestUtil.replaceEntryFromList(currentList, entryToEditTo, targetIndexOneIndexed-1);
+        TestEntry[] expectedList = TestUtil.replaceEntryFromList(currentList, entryToEditTo, targetIndexOneIndexed);
         assertTrue(entryListPanel.isListMatching(expectedList));
     }
 }
