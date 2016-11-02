@@ -371,7 +371,7 @@ public class LogicManagerTest {
         assertIndexNotFoundBehaviorForCommand("m");
     }
     //@@author 
-
+    
     @Test
     public void execute_delete_removesCorrectEntry() throws Exception {
         TestDataHelper helper = new TestDataHelper();
@@ -387,7 +387,6 @@ public class LogicManagerTest {
                 expectedAB.getEntryList());
     }
     
-    //@@author A0126090N
     @Test
     public void execute_deleteInvalidArgsFormat_errorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
