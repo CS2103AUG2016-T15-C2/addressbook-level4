@@ -406,6 +406,10 @@ public class LogicManagerTest {
     }
     
     //@@author A0161210A
+    /**
+     * Asserts find completed tasks displays correct entry list
+     * 
+     */
     @Test
     public void execute_find_matchesCompletedTasks() throws Exception {
         TestDataHelper helper = new TestDataHelper();
@@ -425,7 +429,10 @@ public class LogicManagerTest {
                 expectedAB,
                 expectedList);
     }
-    
+    /**
+     * Asserts find incomplete tasks displays correct entry list
+     * 
+     */
     @Test
     public void execute_find_matchesIncompletedTasks() throws Exception {
         TestDataHelper helper = new TestDataHelper();

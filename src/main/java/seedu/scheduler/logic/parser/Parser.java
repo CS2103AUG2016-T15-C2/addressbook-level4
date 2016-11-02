@@ -31,6 +31,7 @@ public class Parser {
     		Pattern.compile("(?<name>[\\p{Alnum}|/]+)"); //data/ <---
    
     //@@author A0161210A
+    // Pattern allows all parameters to be optional and allow natural language inputs
     private static final Pattern ENTRY_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)?"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
@@ -38,6 +39,7 @@ public class Parser {
                     + "(?<isDatePrivate>p?)(?:(on/|sdate/|sd/|)(?<date>[^/]+))?"
                     + "(?<isEndDatePrivate>p?)(?:(ed/|by/|edate/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+    //@@author 
     //@@author A0152962B
 
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
@@ -78,6 +80,7 @@ public class Parser {
         
         case AddCommand.COMMAND_WORD2:
             return prepareAdd(arguments);
+      //@@author
 
         case SelectCommand.COMMAND_WORD:
             return commandManager.stackCommand(prepareSelect(arguments));

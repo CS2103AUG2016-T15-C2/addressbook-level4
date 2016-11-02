@@ -3,6 +3,7 @@ package guitests;
 import org.junit.Test;
 
 import javafx.scene.input.KeyCode;
+import seedu.scheduler.commons.exceptions.IllegalValueException;
 
 import static org.junit.Assert.assertTrue;
 
@@ -27,16 +28,25 @@ public class ClearCommandTest extends SchedulerGuiTest {
     }
     
   //@@author A0161210A
+    /**
+     * Asserts clear command works as intended. 
+     */
     private void assertClearCommandSuccess() {
         commandBox.runCommand("clear");
         GuiRobot robot = new GuiRobot();
+        // press enter when the clear warning window pops up
         robot.type(KeyCode.ENTER).sleep(500);
         assertListSize(0);
         assertResultMessage("Scheduler has been cleared!");
     }
+    /**
+     * Asserts advanced clear command works successfully ('c' instead of 'clear')
+     */
+    
     private void assertAdvancedClearCommandSuccess() {
         commandBox.runCommand("c");
         GuiRobot robot = new GuiRobot();
+        // press enter when the clear warning window pops up
         robot.type(KeyCode.ENTER).sleep(500);
         assertListSize(0);
         assertResultMessage("Scheduler has been cleared!");
