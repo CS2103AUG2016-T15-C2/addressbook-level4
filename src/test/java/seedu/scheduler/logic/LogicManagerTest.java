@@ -268,12 +268,10 @@ public class LogicManagerTest {
         // prepare scheduler state
         helper.addToModel(model, 2);
         //NEED TO FIX
-        /*
-        assertCommandBehavior("list",
-                ListCommand.MESSAGE_SUCCESS,
-                expectedAB,
-                expectedList);
-         */
+        //assertCommandBehavior("list",
+        //        ListCommand.MESSAGE_SUCCESS,
+        //        expectedAB,
+        //        expectedList);
     }
 
 
@@ -306,16 +304,18 @@ public class LogicManagerTest {
             model.addEntry(p);
         }
 
-        if(commandWord == "delete"){
+        if(commandWord.equals("delete")){
             assertCommandBehavior(commandWord + " 3", expectedMessage, model.getScheduler(), entryList);
-        } else if(commandWord == "edit"){
+        }
+        //@@author A0152962B
+        else if(commandWord.equals("edit")){
             assertCommandBehavior(commandWord + " 3 name", expectedMessage, model.getScheduler(), entryList);
         }
         //@@author A0126090N
-        else if(commandWord == "mark"){
+        else if(commandWord.equals("mark")){
             assertCommandBehavior(commandWord + " 3", expectedMessage, model.getScheduler(), entryList);
         }
-        else if(commandWord == "m"){
+        else if(commandWord.equals("m")){
             assertCommandBehavior(commandWord + " 3", expectedMessage, model.getScheduler(), entryList);
         }
         //@@author
@@ -446,7 +446,7 @@ public class LogicManagerTest {
     
     @Test
     public void execute_editIndexNotFound_errorMessageShown() throws Exception {
-        assertIndexNotFoundBehaviorForCommand("edit");
+        assertIndexNotFoundBehaviorForCommand("e");
     }
     
     @Test
