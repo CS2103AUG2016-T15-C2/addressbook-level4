@@ -241,16 +241,14 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareMarked(String args) {
-        final Matcher matcher = ENTRY_INDEX_ARGS_FORMAT.matcher(args.trim());
+        Optional<Integer> index = parseIndex(args);
         // Validate arg string format
-        if(!matcher.matches()){
+        if(!index.isPresent()){
             return new IncorrectCommand(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkedCommand.MESSAGE_USAGE));    
         }
         
-        return new MarkedCommand(
-                Integer.parseInt(matcher.group("targetIndex"))
-        );
+        return new MarkedCommand(index.get());
         
     }
     //@@author A0126090N
