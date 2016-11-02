@@ -339,6 +339,7 @@ public class LogicManagerTest {
         assertIndexNotFoundBehaviorForCommand("mark");
     }
     
+    @Test
     public void execute_markedAdvancedInvalidArgsFormat_errorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkedCommand.MESSAGE_USAGE);
         assertIncorrectIndexFormatBehaviorForCommand("m", expectedMessage);
