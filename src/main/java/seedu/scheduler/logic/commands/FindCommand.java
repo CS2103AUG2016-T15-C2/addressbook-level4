@@ -15,8 +15,10 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all entrys whose names contain any of "
             + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
+            + "Can also be used to find completed and incompleted task.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " meeting";
+            + "Example: " + COMMAND_WORD + " meeting\n"
+            + "Example: " + COMMAND_WORD + " completed";
 
     private final Set<String> keywords;
     public boolean isCompleteTracker = false;
