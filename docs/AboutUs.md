@@ -20,9 +20,11 @@ Role: Project Mentor<br>
 * Features implemented:
    * [Optional Command format](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#features)
    * [Natural Language Commands](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#features)
+   * [find completed/incomplete tasks](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#features)
+   * [Add end date as additional parameter](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#features)
 * Code written: [functional code][test code][docs]
 * Other major contributions:
-   * Helped resolve initial test failures when refactoring Addressbook to Scheduler
+   * resolved initial test failures when refactoring Addressbook to Scheduler
    
    
 -----
