@@ -64,8 +64,7 @@ Role: Project Mentor<br>
 #### Hendersen Lam [@takukou](http://github.com/takukou)
 <img src="images/hendersenlam.jpg" width="150"><br>
 
-* Components in charge of: [Logic](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#logic-component) [Testing](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#testing)
-* Aspects/tools in charge of: Features, Testing, Documentation, Git 
+* Components in charge of: [Logic](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#logic-component) * Aspects/tools in charge of: Features, Testing, Documentation, Git 
 * Features implemented:
     * [Edit] (https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#editing-an-item--edit) 
     * [Undo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#undo-recent-actions-(up-to-10)--undo)
