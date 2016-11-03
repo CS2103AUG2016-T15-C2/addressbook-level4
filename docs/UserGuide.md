@@ -15,7 +15,7 @@
 2. Copy the file to the folder you want to use as the home folder for your Scheduler.
 3. Double-click the file to start the app. The GUI should appear in a few seconds. 
 <!-- @@author A0126090N --> 
-   > <img src="images/Ui2.png" width="600">
+   > <img src="images/Ui.JPG" width="600">
 <!-- @@author --> 
 <!-- @@author -->
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
