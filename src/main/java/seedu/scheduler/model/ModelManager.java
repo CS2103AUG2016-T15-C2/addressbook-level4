@@ -105,7 +105,7 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredListToShowAll() {
         filteredEntrys.setPredicate(null);
     }
-    //@@author A061210A
+    //@@author A0161210A
     @Override
     /**
      * Updates the entry list by the given filter
