@@ -12,7 +12,7 @@ Role: Project Mentor<br>
 
 -----
 
-
+<!-- @@author A0161210A -->
 #### [Chankyu Oh](http://github.com/chankyuoh) <br>
 <img src="images/profilePicture.jpg" width="150"><br>
 * Components in charge of: [Logic](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#logic-component)
@@ -22,7 +22,7 @@ Role: Project Mentor<br>
    * [Natural Language Commands](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#features)
    * [find completed/incomplete tasks](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#features)
    * [Add end date as additional parameter](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#features)
-* Code written: [functional code][test code][docs]
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/main/A0161210A.md)][[test code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/test/A0161210A.md)][[docs](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/docs/A0161210A.md)]
 * Other major contributions:
    * resolved initial test failures when refactoring Addressbook to Scheduler
    
@@ -36,16 +36,16 @@ Role: Project Mentor<br>
 * Aspects/tools in charge of: Features, Testing, Documentation, Git 
 * Features implemented:
    * [Path filePath](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#changing-the-file-save-path--path)
-* Code written: [functional code][test code][docs]
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/main/A0139956L.md)][[test code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/test/A0139956L.md)][[docs](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/docs/A0139956L.md)]
 * Other major contributions:
    * Did the initial refactoring from AddressBook to Scheduler [[#37](https://github.com/CS2103AUG2016-T15-C2/main/pull/37)][[Merge base0.1 to master](https://github.com/CS2103AUG2016-T15-C2/main/commit/7eefac7edcd4b76712dfd52906980656fd9a6998)]
-   * Enhanced the UI such as adding colour indicator and hiding empty parameters [[#55](https://github.com/CS2103AUG2016-T15-C2/main/pull/55)]
+   * Enhanced the UI such as the theme [[#65](https://github.com/CS2103AUG2016-T15-C2/main/pull/65)], adding colour indicator and hiding empty parameters [[#55](https://github.com/CS2103AUG2016-T15-C2/main/pull/55)]
    * Helped to implement initial optional command and parameters format
-   * Set up Travis
-<!-- @@author -->   
+   * Set up Travis and Coveralls
+
 
 -----
-
+<!-- @@author A0126010N -->   
 #### [Niveetha](http://github.com/niveetha)
 <img src="images/PD1.jpg" width="150"><br>
 
@@ -54,7 +54,7 @@ Role: Project Mentor<br>
 * Features implemented:
     * [Clear Prompt](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/src/main/java/seedu/scheduler/logic/commands/ClearCommand.java)
     * [Marked](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/src/main/java/seedu/scheduler/logic/commands/MarkedCommand.java)
-* Code written: [functional code][test code][docs]
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/main/A0126090N.md)][[test code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/test/A0126090N.md)][[docs](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/docs/A0126090N.md)]
 * Other major contributions:
     * Helped resolve initial test failures when refactoring Addressbook to Scheduler
 
@@ -64,13 +64,13 @@ Role: Project Mentor<br>
 #### Hendersen Lam [@takukou](http://github.com/takukou)
 <img src="images/hendersenlam.jpg" width="150"><br>
 
-* Components in charge of: [Logic](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#logic-component) [Testing](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#testing)
+* Components in charge of: [Logic](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#logic-component) 
 * Aspects/tools in charge of: Features, Testing, Documentation, Git 
 * Features implemented:
     * [Edit] (https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#editing-an-item--edit) 
     * [Undo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#undo-recent-actions-(up-to-10)--undo)
     * [Redo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#redo-recent-undone-actions--redo)
-* Code written: [functional code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/main/A0152962B.md) [test code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/test/A0152962B.md) [docs]
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/main/A0152962B.md)][[test code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/test/A0152962B.md)][[docs](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/docs/A0152962B.md)]
 <!-- @@author -->
  
  -----

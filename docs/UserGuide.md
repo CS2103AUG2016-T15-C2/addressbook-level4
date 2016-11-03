@@ -202,8 +202,8 @@ Command | Format
 Help | `help`
 Add | `add NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
 Add | `a NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
-List | `list [by/SORT_CATEGORY]`
-List | `l [by/SORT_CATEGORY]`
+List | `list`
+List | `l`
 Edit | `edit INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
 Edit | `e INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
 Undo | `undo` 
