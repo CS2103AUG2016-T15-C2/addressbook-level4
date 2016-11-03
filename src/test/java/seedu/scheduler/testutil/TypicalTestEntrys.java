@@ -9,11 +9,10 @@ import seedu.scheduler.model.entry.*;
  */
 public class TypicalTestEntrys {
 
-    public static TestEntry chem, bio, dinner, date, groceries, concert, competition, hike, meeting, competitionUnmark, meetingCompleted, pickup;
+    public static TestEntry chem, bio, dinner, date, groceries, concert, hike, meeting, meetingCompleted, pickup, competition, competitionMarked;
 
     public TypicalTestEntrys() {
         try {
-        	competition = new EntryBuilder().withName("Competition").withStartTime("20:00").withEndTime("22:00").withEndDate("02-10-2017").withDate("04-10-2016").withTags("Completed").build();
         	chem =  new EntryBuilder().withName("Chemistry Test").withDate("01-10-2016").withEndDate("01-10-2017")
                     .withEndTime("12:00").withStartTime("10:30")
                     .withTags("chem","test").build();
@@ -28,9 +27,11 @@ public class TypicalTestEntrys {
 
             //Manually added
             meeting = new EntryBuilder().withName("Project meeting").withStartTime("14:00").withEndTime("16:00").withEndDate("01-10-2017").withDate("10-10-2016").build();
-            competitionUnmark = new EntryBuilder().withName("Competition").withStartTime("20:00").withEndTime("22:00").withEndDate("02-10-2017").withDate("04-10-2016").withTags("Completed").build();
             meetingCompleted = new EntryBuilder().withName("Project meeting").withStartTime("14:00").withEndTime("16:00").withEndDate("01-10-2017").withDate("10-10-2016").build();
             pickup = new EntryBuilder().withName("Pickup parents from airport").withStartTime("15:00").withEndDate("01-10-2017").withEndTime("16:00").withDate("11-10-2016").build();
+            competition = new EntryBuilder().withName("Competition").withStartTime("20:00").withEndTime("22:00").withEndDate("02-10-2017").withDate("04-10-2016").build();
+            competitionMarked = new EntryBuilder().withName("Competition").withStartTime("20:00").withEndTime("22:00").withEndDate("02-10-2017").withDate("04-10-2016").withTags("Completed").build();
+        
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";
