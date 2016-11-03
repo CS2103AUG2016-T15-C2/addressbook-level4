@@ -82,7 +82,7 @@ public class ModelManager extends ComponentManager implements Model {
     //@@author A0152962B
     public synchronized void addEntryAtIndex(int index, Entry entry) throws UniqueEntryList.DuplicateEntryException {
         scheduler.addEntryAtIndex(index, entry);
-        updateFilteredListToShowAll();
+        //updateFilteredListToShowAll();
         indicateSchedulerChanged();
     }
     

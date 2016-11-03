@@ -21,8 +21,9 @@ public class DeleteCommand extends UndoableCommand {
 
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
 
-    //@@author A0152962B
     private final int targetIndex;
+    //@@author A0152962B
+    private int indexInScheduler;
     private Entry prevEntry;
     //@@author 
 
@@ -41,7 +42,7 @@ public class DeleteCommand extends UndoableCommand {
         }
 
         ReadOnlyEntry entryToDelete = lastShownList.get(targetIndex - 1);
-
+        indexInScheduler = model.getScheduler().getEntryList().indexOf(entryToDelete) + 1;
         try {
             model.deleteEntry(entryToDelete);
         } catch (EntryNotFoundException pnfe) {
@@ -58,7 +59,7 @@ public class DeleteCommand extends UndoableCommand {
     @Override
     public void undo() {
         try {
-            model.addEntryAtIndex(targetIndex, prevEntry);
+            model.addEntryAtIndex(indexInScheduler, prevEntry);
         } catch (DuplicateEntryException e) { }
     }
 
