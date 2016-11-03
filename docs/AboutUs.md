@@ -36,12 +36,12 @@ Role: Project Mentor<br>
 * Aspects/tools in charge of: Features, Testing, Documentation, Git 
 * Features implemented:
    * [Path filePath](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#changing-the-file-save-path--path)
-* Code written: [functional code][test code][docs]
+* Code written: [functional code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/main/A0139956L.md)[test code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/test/A0139956L.md)[docs](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/docs/A0139956L.md)
 * Other major contributions:
    * Did the initial refactoring from AddressBook to Scheduler [[#37](https://github.com/CS2103AUG2016-T15-C2/main/pull/37)][[Merge base0.1 to master](https://github.com/CS2103AUG2016-T15-C2/main/commit/7eefac7edcd4b76712dfd52906980656fd9a6998)]
-   * Enhanced the UI such as adding colour indicator and hiding empty parameters [[#55](https://github.com/CS2103AUG2016-T15-C2/main/pull/55)]
+   * Enhanced the UI such as the theme [[#65](https://github.com/CS2103AUG2016-T15-C2/main/pull/65)], adding colour indicator and hiding empty parameters [[#55](https://github.com/CS2103AUG2016-T15-C2/main/pull/55)]
    * Helped to implement initial optional command and parameters format
-   * Set up Travis
+   * Set up Travis and Coveralls
 <!-- @@author -->   
 
 -----
@@ -64,13 +64,13 @@ Role: Project Mentor<br>
 #### Hendersen Lam [@takukou](http://github.com/takukou)
 <img src="images/hendersenlam.jpg" width="150"><br>
 
-* Components in charge of: [Logic](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#logic-component) 
+* Components in charge of: [Logic](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#logic-component) [Testing](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/DeveloperGuide.md#testing)
 * Aspects/tools in charge of: Features, Testing, Documentation, Git 
 * Features implemented:
     * [Edit] (https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#editing-an-item--edit) 
     * [Undo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#undo-recent-actions-(up-to-10)--undo)
     * [Redo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#redo-recent-undone-actions--redo)
-* Code written: [[functional code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/main/A0152962B.md)] [[test code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/test/A0152962B.md)] [[docs](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/docs/A0152962B.md)]
+* Code written: [functional code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/main/A0152962B.md) [test code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/test/A0152962B.md) [docs]
 <!-- @@author -->
  
  -----
