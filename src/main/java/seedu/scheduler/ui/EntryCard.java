@@ -184,7 +184,7 @@ public class EntryCard extends UiPart{
 		} catch (ParseException e) {
 		}
 		
-		//endDate is today and endTime is overdue
+/*		//endDate is today and endTime is overdue
 		try {
 			endDateObj = edf.parse(endDate);
 			if (endDateObj.equals(today)){
@@ -198,7 +198,7 @@ public class EntryCard extends UiPart{
 			}				
 		} catch (ParseException e) {
 		}
-		
+*/		
     	//if entry completed
         if (entry.tagsString().contains("Completed")) {
             cardPane.setStyle(COMPLETED_INDICATION);   
@@ -213,7 +213,7 @@ public class EntryCard extends UiPart{
 				&& entry.getDate().toString().contains("empty");
 	}
 
-	public static boolean checkEndTimeOverdueOrNot(String endTime) throws ParseException {
+/*	public static boolean checkEndTimeOverdueOrNot(String endTime) throws ParseException {
         boolean endTimeOverdueOrnot = false;
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endTime.substring(0, 2)));
@@ -228,7 +228,7 @@ public class EntryCard extends UiPart{
         }
         return endTimeOverdueOrnot;
     }
-	
+*/	
 	private boolean onlyStartDateInput(ReadOnlyEntry entry, Date today, Date startDateObj) {
 		return startDateObj.before(today) 
 				&& entry.getStartTime().toString().contains("empty") 
