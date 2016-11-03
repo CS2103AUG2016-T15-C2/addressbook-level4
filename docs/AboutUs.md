@@ -70,7 +70,7 @@ Role: Project Mentor<br>
     * [Edit] (https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#editing-an-item--edit) 
     * [Undo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#undo-recent-actions-(up-to-10)--undo)
     * [Redo](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/docs/UserGuide.md#redo-recent-undone-actions--redo)
-* Code written: [functional code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/main/A0152962B.md) [test code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/test/A0152962B.md) [docs]
+* Code written: [[functional code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/main/A0152962B.md)][[test code](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/test/A0152962B.md)][[docs](https://github.com/CS2103AUG2016-T15-C2/main/blob/master/collated/docs/A0152962B.md)]
 <!-- @@author -->
  
  -----
