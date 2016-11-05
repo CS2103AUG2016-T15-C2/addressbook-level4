@@ -69,6 +69,30 @@ public class Entry implements ReadOnlyEntry {
         return new UniqueTagList(tags);
     }
 
+    public void setName(Name name) {
+        this.name = name;
+    }
+    
+    public void setStartTime(StartTime startTime) {
+        this.startTime = startTime;
+    }
+    
+    public void setEndTime(EndTime endTime) {
+        this.endTime = endTime;
+    }
+    
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
+    public void setEndDate(EndDate endDate) {
+        this.endDate = endDate;
+    }
+    
+    public void updateTags(UniqueTagList updates) {
+        this.tags.mergeFrom(updates);
+    }
+    
     /**
      * Replaces this entry's tags with the tags in the argument tag list.
      */

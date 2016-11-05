@@ -39,18 +39,23 @@ public class Parser {
                     + "(?<isDatePrivate>p?)(?:(on/|sdate/|sd/|)(?<date>[^/]+))?"
                     + "(?<isEndDatePrivate>p?)(?:(ed/|by/|edate/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
-    //@@author 
     //@@author A0152962B
-
     private static final Pattern ENTRY_EDIT_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+)"
-                    + "(?<name>[^/]+)"
+                    + "(?<name>[^/]+)?"
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + "(?<isEndTimePrivate>p?)(?:(to/|et/)(?<endTime>[^/]+))?"
                     + "(?<isDatePrivate>p?)(?:(on/|date/|sd/|by/)(?<date>[^/]+))?"
                     + "(?<isEndDatePrivate>p?)(?:(edate/|ed/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     
+    private static final Pattern ENTRY_UPDATE_ARGS_FORMAT = 
+            Pattern.compile("(?<targetIndex>\\d+) "
+                    + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
+                    + "(?<isEndTimePrivate>p?)(?:(to/|et/)(?<endTime>[^/]+))?"
+                    + "(?<isDatePrivate>p?)(?:(on/|date/|sd/|by/)(?<date>[^/]+))?"
+                    + "(?<isEndDatePrivate>p?)(?:(edate/|ed/)(?<endDate>[^/]+))?"
+                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
     //@@author
 
     public Parser() {
@@ -87,12 +92,19 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD2:
             return prepareDelete(arguments);
 
+        //@@author A0152962B
         case EditCommand.COMMAND_WORD:
             return prepareEdit(arguments);
             
         case EditCommand.COMMAND_WORD2:
             return prepareEdit(arguments);
             
+        case UpdateCommand.COMMAND_WORD:
+            return prepareUpdate(arguments);
+            
+        case UpdateCommand.COMMAND_WORD2:
+            return prepareUpdate(arguments);
+        //@@author    
         case MarkedCommand.COMMAND_WORD:
             return prepareMarked(arguments);
             
@@ -226,6 +238,26 @@ public class Parser {
             return new IncorrectCommand(ive.getMessage());
         }
 
+    }
+    /**
+     * Parses arguments into the context of the update entry command.
+     * 
+     * @param args full command args string
+     * @return the newly prepared command
+     */
+    private Command prepareUpdate(String args) {
+        final Matcher matcher = ENTRY_UPDATE_ARGS_FORMAT.matcher(args.trim());
+        if(!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
+        }
+        
+        try {
+            return new UpdateCommand(Integer.parseInt(matcher.group("targetIndex")),
+                    matcher.group("startTime"), matcher.group("endTime"), matcher.group("date"), matcher.group("endDate"),
+                    getTagsFromArgs(matcher.group("tagArguments")));
+        } catch (IllegalValueException ive) {
+            return new IncorrectCommand(ive.getMessage());
+        }
     }
     
     //@@author A0126090N
