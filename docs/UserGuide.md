@@ -74,42 +74,54 @@ Examples:
 * `l`
 
 <!-- @@author A0152962B -->
+
 #### Editing an item : `edit`
 Edits a full event to the scheduler specified by the index. User can also type `e` instead of `edit` <br>
-Format: `edit INDEX NUMBER st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE t/TAG` 
-Format: `e INDEX NUMBER st/START_TIME et/END_TIME sd/DATE ed/END_DATE t/TAG` 
+Format: `edit INDEX NAME st/START_TIME et/END_TIME sd/START_DATE ed/END_DATE t/TAG` 
+Format: `e INDEX NAME st/START_TIME et/END_TIME sd/DATE ed/END_DATE t/TAG` 
 
 Edits a deadline task to the scheduler specified by the index <br>
-Format: `edit INDEX NUMBER ed/DATE` 
-Format: `e INDEX NUMBER ed/DATE` 
+Format: `edit INDEX NAME ed/DATE` 
+Format: `e INDEX NAME ed/DATE` 
 
 Edits a floating task to the scheduler specified by the index <br>
-Format: `edit INDEX NUMBER` 
-Format: `e INDEX NUMBER` <br>
+Format: `edit INDEX NAME` 
+Format: `e INDEX NAME` <br>
 Examples: 
 * `edit 1 Meeting st/12:00 et/17:00 ed/19-02-16 t/priority`
 * `edit 3 Do Homework1 ed/19-02-12`
 * `e 2 Do Homework2` <br><br>
 <!-- @@author A0161210A --> 
 Important Note: The Edit functionality works more like a Replace command. Consider these 2 cases. <br>
-* 1)if user has a fully filled out event, but only wants to edit the end time parameter, user will have to type out every paramter, and only change the end time parameter to the desired paramter.
+* 1)if user has a fully filled out event, but only wants to edit the end time parameter, user will have to type out every parameter, and only change the end time parameter to the desired parameter.
 * 2)If user has a fully filled out event, but wants to edit it to a deadline task, user should only type in the endDate and endTime parameter
 <!-- @@author A0152962B-->
+
+#### Updating an item : `update`
+Update the item selected by the user. User can also type `u` instead of `update`<br>
+Format: `update INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
+Format: `u INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`<br>
+Examples:
+* `update 1 st/13:00 et/15:00 sd/11-11-2016`
+* `u 5 ed/25-12-2016 t/christmas`<br><br>
+
+> * Update functionality does not allow updating the name of the event.
+> * Inputing tags will replace existing tags.
 
 #### Undo recent actions (up to 10): `undo`
 Reverts scheduler back to the state before the recent committed actions (up to 10 undoable commands).<br>
 Undoable commands include: `add` `delete` `edit` `mark` `clear`<br>
 Format: `undo`
 
->Undo stack holds up to 10 recent undoable comments.
->Does not display a text feedback to user.
+> * Undo stack holds up to 10 recent undoable comments.
+> * Does not display a text feedback to user.
 
 #### Redo recent undone actions: `redo`
 Reverts scheduler back to the state before the recent undone actions.<br>
 Format: `redo`
 
->Redo stacks clears upon a new valid commmand.
->Does not display a	text feedback to user.
+> * Redo stacks clears upon a new valid commmand.
+> * Does not display a	text feedback to user.
 <!-- @@author -->
 
 #### Deleting an item: `delete`
@@ -204,8 +216,10 @@ Add | `add NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/T
 Add | `a NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
 List | `list`
 List | `l`
-Edit | `edit INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
-Edit | `e INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
+Edit | `edit INDEX NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
+Edit | `e INDEX NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
+Update | `update INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
+Update | `u INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
 Undo | `undo` 
 Redo | `redo`
 Delete | `delete INDEX`
