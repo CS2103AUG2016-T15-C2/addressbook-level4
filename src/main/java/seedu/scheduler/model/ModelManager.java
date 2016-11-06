@@ -15,6 +15,9 @@ import seedu.scheduler.model.entry.UniqueEntryList.EntryNotFoundException;
 
 import java.util.Set;
 import java.util.logging.Logger;
+import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Represents the in-memory model of the scheduler data.
@@ -25,6 +28,9 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final Scheduler scheduler;
     private final FilteredList<Entry> filteredEntrys;
+    
+    private static final String LIST_ARG_SORT = "sort";
+    private static final String LIST_KEYWORD_DEC = "dc";
 
     /**
      * Initializes a ModelManager with the given Scheduler
@@ -105,6 +111,7 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredListToShowAll() {
         filteredEntrys.setPredicate(null);
     }
+    
     //@@author A0161210A
     @Override
     /**
@@ -131,7 +138,18 @@ public class ModelManager extends ComponentManager implements Model {
     private void updateFilteredEntryList(Expression expression) {
         filteredEntrys.setPredicate(expression::satisfies);
     }
-
+    
+    //@@author A0139956L
+	@Override
+    public void sortFilteredEntryList(Set<String> keyword) {
+		if(keyword.contains(LIST_ARG_SORT)) {
+			if(keyword.contains(LIST_KEYWORD_DEC))
+				scheduler.sortByDateTimeDecreasing();
+			else
+				scheduler.sortByDateTime();
+		}	
+	}
+	//@@author
     //========== Inner classes/interfaces used for filtering ==================================================
 
     interface Expression {
@@ -221,5 +239,4 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
     //@@author
-
 }

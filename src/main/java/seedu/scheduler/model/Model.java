@@ -40,6 +40,7 @@ public interface Model {
     //@@author A0161210A
     /** Updates the filter of the filtered entry list to filter by the given keywords*/
     void updateFilteredEntryList(Set<String> keywords, boolean completeTracker, boolean isIncompleteTracker);
-    //@@author
-
+    //@@author A0139956L
+    /** Sorts the filtered entry list by the given keyword */
+	void sortFilteredEntryList(Set<String> keyword);
 }
