@@ -4,7 +4,6 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -151,14 +150,11 @@ public class EntryCard extends UiPart{
     
     public void indicatingColourByCondition(ReadOnlyEntry entry) {
     	//get today date from system
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         Date today = new Date();
-        //System.out.println("System today: " + df.format(today));
     	
     	//put startDate and endDate into Date
     	String startDate = entry.getDate().toString();   	
     	String endDate = entry.getEndDate().toString();
-    	String endTime = entry.getEndTime().toString();
    	
         DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         DateFormat edf = new SimpleDateFormat("dd-MM-yyyy");
@@ -166,7 +162,7 @@ public class EntryCard extends UiPart{
         Date startDateObj;
         Date endDateObj;
 
-        //if only entry startDate overdue
+        //if only entry startDate before today
 		try {
 			startDateObj = sdf.parse(startDate);
 	        if (onlyStartDateInput(entry, today, startDateObj)) {
@@ -175,30 +171,15 @@ public class EntryCard extends UiPart{
 		} catch (ParseException e1) {
 		}
 		
-		//if only entry endDate overdue
+		//if entry endDate before today
 		try {
 	        endDateObj = edf.parse(endDate);  
-	        if (onlyEndDateInput(entry, today, endDateObj)) {
+	        if (endDateObj.before(today)) {
 	             cardPane.setStyle(OVERDUE_INDICATION);  
 	        }
 		} catch (ParseException e) {
 		}
 		
-/*		//endDate is today and endTime is overdue
-		try {
-			endDateObj = edf.parse(endDate);
-			if (endDateObj.equals(today)){
-				try {
-					if (checkEndTimeOverdueOrNot(endTime)) {
-						cardPane.setStyle(OVERDUE_INDICATION); 
-					}
-				}
-				catch (ParseException e) {
-				}
-			}				
-		} catch (ParseException e) {
-		}
-*/		
     	//if entry completed
         if (entry.tagsString().contains("Completed")) {
             cardPane.setStyle(COMPLETED_INDICATION);   
@@ -206,29 +187,6 @@ public class EntryCard extends UiPart{
 
     }
 
-	private boolean onlyEndDateInput(ReadOnlyEntry entry, Date today, Date endDateObj) {
-		return endDateObj.before(today)
-				&& entry.getStartTime().toString().contains("empty") 
-				&& entry.getEndTime().toString().contains("empty")
-				&& entry.getDate().toString().contains("empty");
-	}
-
-/*	public static boolean checkEndTimeOverdueOrNot(String endTime) throws ParseException {
-        boolean endTimeOverdueOrnot = false;
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(endTime.substring(0, 2)));
-        cal.set(Calendar.MINUTE, Integer.parseInt(endTime.substring(3)));
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        if (Calendar.getInstance().after(cal)) {
-            System.out.println("it's overdue");
-            endTimeOverdueOrnot = true;
-        } else {
-            System.out.println("it's not overdue");
-        }
-        return endTimeOverdueOrnot;
-    }
-*/	
 	private boolean onlyStartDateInput(ReadOnlyEntry entry, Date today, Date startDateObj) {
 		return startDateObj.before(today) 
 				&& entry.getStartTime().toString().contains("empty") 
