@@ -22,8 +22,8 @@ public class UpdateCommand extends UndoableCommand{
     public static final String COMMAND_WORD2 = "u";
     
     public static final String MESSAGE_USAGE = COMMAND_WORD + " or " + COMMAND_WORD2 + ": Updates an entry in the scheduler. "
-            + "Parameters: INDEX NAME st/START_TIME et/END_TIME d/DATE [t/TAG]...\n" + "Example: " + COMMAND_WORD
-            + " 2 John Wedding st/15:00 et/21:00 d/12-10-2016 t/undone";
+            + "Parameters: INDEX st/START_TIME et/END_TIME d/DATE [t/TAG]...\n" + "Example: " + COMMAND_WORD
+            + " 2 st/15:00 et/21:00 d/12-10-2016 t/undone";
     
     public final String MESSAGE_SUCCESS = "Entry updated to: %1$s";
     public static final String MESSAGE_ENTRY_MISSING = "The target entry cannot be missing";
