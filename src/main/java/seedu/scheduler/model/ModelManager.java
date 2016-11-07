@@ -20,6 +20,10 @@ import seedu.scheduler.model.tag.UniqueTagList;
 
 import java.util.Set;
 import java.util.logging.Logger;
+import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Represents the in-memory model of the scheduler data.
@@ -30,6 +34,8 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final Scheduler scheduler;
     private final FilteredList<Entry> filteredEntrys;
+    
+    private static final String LIST_ARG_SORT = "sort";
 
     /**
      * Initializes a ModelManager with the given Scheduler
@@ -119,6 +125,7 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredListToShowAll() {
         filteredEntrys.setPredicate(null);
     }
+    
     //@@author A0161210A
     @Override
     /**
@@ -145,7 +152,18 @@ public class ModelManager extends ComponentManager implements Model {
     private void updateFilteredEntryList(Expression expression) {
         filteredEntrys.setPredicate(expression::satisfies);
     }
-
+    
+    //@@author A0139956L-unused
+    //unused: Not enough time to do DateQualifier  
+/*	@Override
+    public void sortFilteredEntryList(String keyword) {
+		if(keyword.contains(LIST_ARG_SORT)) {
+				scheduler.sortByDateTime();
+		}	
+		indicateSchedulerChanged();
+	}
+*/
+    //@@author
     //========== Inner classes/interfaces used for filtering ==================================================
 
     interface Expression {
@@ -234,6 +252,21 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
-    //@@author
 
+    //@@author A0139956L-unused
+    //unused: Not enough time to do DateQualifier  
+/*    public class DateQualifier implements Qualifier {
+
+        private final LocalDateTime startDate;
+        private final LocalDateTime endDate;
+        private final Entry dateTimeQuery;
+
+        public DateQualifier(Entry dateTime) {
+            if (dateTime.getEndDate() != null) {
+                endDate = setLocalTime(dateTime.getEndDate());
+            }
+            else {
+                endDate = setLocalTime(dateTime.getEndDate());
+            }
+    } */
 }

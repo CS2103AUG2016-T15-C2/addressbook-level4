@@ -128,11 +128,15 @@ public class Parser {
             return prepareFind(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-            
+            //return new ListCommand();
+            //@@author A0139956L-unused
+        	return prepareList(arguments);
+            //@@author A0139956L
         case ListCommand.COMMAND_WORD2:
-            return new ListCommand();
-        
+        	//return new ListCommand();
+        	//@@author A0139956L-unused
+            return prepareList(arguments);
+
         //@@author A0139956L    
         case PathCommand.COMMAND_WORD:
             return preparePath(arguments);
@@ -324,7 +328,25 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
-    //@@author A0139956L
+    //@@author A0139956L-unused
+    //unused: Not enough time to do DateQualifier  
+/*    private Command prepareList(String args) {
+    	if(args.contains("sort") || args.equals("")) {
+    		return new ListCommand(args);
+    	}
+    	else {
+    		return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+    	}
+    }
+*/    
+    private Command prepareList(String args) {
+    	if(args.equals(""))
+    		return new ListCommand();
+    	else {
+    		return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+    	}    		
+    }
+    
     /**
      * Parses arguments in the context of the file path command.
      *

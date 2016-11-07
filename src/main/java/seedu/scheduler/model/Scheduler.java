@@ -141,8 +141,22 @@ public class Scheduler implements ReadOnlyScheduler {
         entrys.update(st, et, d, ed, utl, toUpdate);
     }
     */
-    //@@author
 
+    //@@author A0139956L-unused
+    //unused: Not enough time to do DateQualifier 
+    /** 
+	 * Sorts internal list by earliest end date first
+	 */
+/*	public void sortByDateTime() {
+		this.entrys.getInternalList().sort(new Comparator<Entry>() {
+			@Override
+			public int compare(Entry o1, Entry o2) {
+				return o1.getEndDate().compareTo(o2.getEndDate());
+			}
+		});
+	} */
+    //@@author
+    
 //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {
