@@ -192,6 +192,7 @@ Format: `ex`
 <!-- @@author A0139956L-->
 **Q**: What does the entry highlighted in red means?<br>
 **A**: The entry requires attention because it is either overdue or due today. <br>
+
 **Q**: What does the entry highlighted in green means?<br>
 **A**: The entry is marked completed. <br>
 
