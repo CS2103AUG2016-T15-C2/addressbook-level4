@@ -8,7 +8,7 @@
 5. Close the application.
 6. Relaunch `Scheduler.jar`, the data should now be loaded.<br>
 
-## Manual Testing
+## Command Tests
 
 #### Help
 * Input: `help`<br>
@@ -373,4 +373,77 @@ Entry at index `59` changed to `Gather Undo`. Entry at `60` deleted. Added new e
 Expected Output:<br>
 After adding 11 entries and typing 11 `undo`s, entry `1` should be left in the scheduler as the undo stack holds up to 10 recent actions.<br>
 
+* Inputs: `a 2`<br>
+`undo`<br>
+`a 3`<br>
+`redo`<br>
+Expected Output:<br>
+Executing a `new valid command` clears the redo stack. No change should happen to the scheduler when inputting `redo` after adding a new entry.<br>
 
+* Inputs: `a st/`<br>
+`undo`<br>
+Expected Output:<br>
+Executing an `invalid command` will not be registered in the undo stack. Inputting `undo` will undo the last valid command. Entry at `63` should be deleted.<br>
+
+* Inputs: `f homework`<br>
+`d 2`<br>
+`list`<br>
+`f homework`<br>
+`undo`<br>
+`redo` or `d 2`<br>
+`list`<br>
+`undo`<br>
+Expected Output:<br>
+Note that `CS3230 Homework 2` is at index `36` when all entries are being listed. `f homework` displays it at index `2`. `d 2` removes it from the list. Going back to all entries, the said entry is no longer at index `36`. Returning to the `filtered list`, `undo` returns it back to index `2`. Delete it again or redo. Inputting `undo` after `list`ing all will put the entry back at index `36`.<br>
+
+#### Path
+* Input: `path` or `p`<br>
+Expected Output:<br>
+Prompt: `Invalid command format! `<br>
+`path or p: Change a specific file path to save. Parameters: FILE_PATH`<br>
+`Example: path or p dropbox`<br>
+No change to scheduler.<br>
+
+* Input: `path data/new_path` or `p data/new_path`<br>
+Expected Output:<br>
+Prompt: `Invalid command format! `<br>
+`path or p: Change a specific file path to save. Parameters: FILE_PATH`<br>
+`Example: path or p dropbox`<br>
+No change to scheduler.<br>
+
+* Input: `path data/newpath` or `p data/newpath`<br>
+Expected Output:<br>
+Prompt: `File Path to save changed to: data/newpath.xml`<br>
+Saving file path changed. Does not autosave after execution. Requires a scheduler-modifying command to save to new location. Check `data` folder, there is no `newpath.xml`.<br>
+
+* Input: `a 2`<br>
+Expected Output:<br>
+`newpath.xml` file can not be found in `data` folder.<br>
+
+#### Clear
+* Input: `clear` or `c`<br>
+Click `Cancel`<br>
+Expected Output:<br>
+Prompt: *Clears, nothing*<br>
+No change to scheduler.<br>
+
+* Input: `clear` or `c`<br>
+Hit `Enter` or Click `OK`<br>
+Expected Output:<br>
+Prompt: `Scheduler has been cleared!`<br>
+Scheduler is cleared. No entries.<br>
+
+* Input: `undo`<br>
+Expected Output:<br>
+Prompt: *No new prompt, displaying previous*<br>
+Scheduler is reverted back to previous state, with all the entries inside.<br>
+
+* Input: `redo`<br>
+Expected Output:<br>
+Prompt: *No new prompt, displaying previous*<br>
+Scheduler reverts last undo. Scheduler is cleared of entries.<br>
+
+#### Exit
+* Input: `exit` or `ex`<br>
+Expected Output:<br>
+Application closes without prompt or messages.<br>
