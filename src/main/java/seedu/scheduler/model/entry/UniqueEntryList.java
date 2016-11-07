@@ -102,13 +102,16 @@ public class UniqueEntryList implements Iterable<Entry> {
     public void edit(Entry replacement, ReadOnlyEntry toEdit) throws EntryNotFoundException, DuplicateEntryException {
         assert toEdit != null;
         final boolean entryFound = internalList.contains(toEdit);
+        int index = internalList.indexOf(toEdit);
+        
         if(!entryFound) {
             throw new EntryNotFoundException();
         }
         if(contains(replacement)) {
-            throw new DuplicateEntryException();
+            if(replacement.getTags().equals(toEdit.getTags())) {
+                throw new DuplicateEntryException();
+            }
         }
-        int index = internalList.indexOf(toEdit);
         internalList.set(index, replacement);
     }
 
