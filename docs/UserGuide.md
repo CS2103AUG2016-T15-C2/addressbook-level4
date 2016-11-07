@@ -161,7 +161,7 @@ Format: `m INDEX`
 <!-- @@author A0139956L -->
 #### Specify a folder as data storage location: `path`
 Data storage location can be manually changed to a user-specified location. User can also type `p` instead of `path`<br>
-Format: `path FILE_PATH`
+Format: `path FILE_PATH`<br>
 Format: `p FILE_PATH`
 
 Examples:
@@ -188,12 +188,12 @@ Format: `ex`
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with 
-       the file that contains the data of your previous Scheduler folder.
+       the file that contains the data of your previous Scheduler folder. <br>
 <!-- @@author A0139956L-->
 **Q**: What does the entry highlighted in red means?<br>
-**A**: The entry requires attention because it is either overdue or due today.
+**A**: The entry requires attention because it is either overdue or due today. <br>
 **Q**: What does the entry highlighted in green means?<br>
-**A**: The entry is marked completed.
+**A**: The entry is marked completed. <br>
 
 <!-- @@author A0126090N --> 
 ## Command Summary
