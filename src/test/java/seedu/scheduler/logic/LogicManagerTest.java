@@ -155,6 +155,8 @@ public class LogicManagerTest {
         TestDataHelper helper = new TestDataHelper();
         List<Entry> threeEntrys = helper.generateEntryList(3);
         Scheduler expectedAB = helper.generateScheduler(threeEntrys);
+        
+        // prepare scheduler
         helper.addToModel(model, threeEntrys);
         //NEEDFIX 
         //assertCommandBehavior("clear", ClearCommand.MESSAGE_SUCCESS, new Scheduler(), Collections.emptyList());
@@ -229,6 +231,8 @@ public class LogicManagerTest {
         List<Entry> threeEntrys = helper.generateEntryList(3);
         Scheduler expectedAB = helper.generateScheduler(threeEntrys);
         expectedAB.addEntry(toBeAdded);
+        
+        // prepare scheduler
         helper.addToModel(model, threeEntrys);
         
         assertCommandBehavior(helper.generateAddCommand(toBeAdded),
@@ -236,13 +240,17 @@ public class LogicManagerTest {
                 expectedAB,
                 expectedAB.getEntryList());
         
+        // prepare expectedAB for undo
         expectedAB.removeEntry(toBeAdded);
+        
         assertCommandBehavior("undo",
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
                 expectedAB,
                 expectedAB.getEntryList());
         
+        // prepare expectedAB for redo
         expectedAB.addEntry(toBeAdded);
+        
         assertCommandBehavior("redo",
                 String.format(AddCommand.MESSAGE_SUCCESS, toBeAdded),
                 expectedAB,
@@ -368,24 +376,30 @@ public class LogicManagerTest {
         TestDataHelper helper = new TestDataHelper();
         
         List<Entry> threeEntrys = helper.generateEntryList(3);
-        Entry toBeAdded = threeEntrys.get(1);
+        Entry toBeAdded = threeEntrys.get(1); // get second entry
         Scheduler expectedAB = helper.generateScheduler(threeEntrys);
         expectedAB.removeEntry(toBeAdded);
+        
+        // prepare scheduler
         helper.addToModel(model, threeEntrys);
         
         
         assertCommandBehavior("d 2",
                 String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, toBeAdded),
                 expectedAB,
-                expectedAB.getEntryList());
+                expectedAB.getEntryList()); // delete second entry
         
+        // prepare expectedAB for undo
         expectedAB.addEntryAtIndex(2, toBeAdded);
+        
         assertCommandBehavior("undo",
                 String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, toBeAdded),
                 expectedAB,
                 expectedAB.getEntryList());
         
+        // prepare expectedAB for redo
         expectedAB.removeEntry(toBeAdded);
+        
         assertCommandBehavior("redo",
                 String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, toBeAdded),
                 expectedAB,
@@ -400,8 +414,10 @@ public class LogicManagerTest {
         Entry toEditTo = helper.adam();
         threeEntrys.add(toEditTo);
         
+        // prepare scheduler
         Scheduler expectedAB = helper.generateScheduler(threeEntrys);
         helper.addToModel(model, threeEntrys);
+        
         assertCommandBehavior(helper.generateEditCommand(toEditTo, 2),
                 String.format(EditCommand.MESSAGE_DUPLICATE_ENTRY, toEditTo), 
                 expectedAB,
@@ -421,14 +437,18 @@ public class LogicManagerTest {
     
     @Test
     public void execute_edit_editsCorrectEntry() throws Exception {
+        // setup expectations
         TestDataHelper helper = new TestDataHelper();
         List<Entry> threeEntrys = helper.generateEntryList(3);
         
         Scheduler expectedAB = helper.generateScheduler(threeEntrys);
         Entry toEditTo = helper.adam();
         expectedAB.editEntry(toEditTo, threeEntrys.get(1));
+        
+        // prepare scheduler
         helper.addToModel(model, threeEntrys);
-        assertCommandBehavior(helper.generateEditCommand(toEditTo, 2),//"edit 2 Adam Brown st/11:11 et/11:15 sd/01-02-2034 ed/01-02-2035 t/tag1 t/tag2",
+        
+        assertCommandBehavior(helper.generateEditCommand(toEditTo, 2), 
                 String.format(EditCommand.MESSAGE_SUCCESS, toEditTo), 
                 expectedAB,
                 expectedAB.getEntryList());
