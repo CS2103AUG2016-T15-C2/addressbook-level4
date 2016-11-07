@@ -219,8 +219,9 @@ List | `list`
 List | `l`
 Edit | `edit INDEX NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
 Edit | `e INDEX NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
-Update | `update INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
+<!--Update | `update INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
 Update | `u INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
+-->
 Undo | `undo` 
 Redo | `redo`
 Delete | `delete INDEX`
