@@ -138,18 +138,6 @@ public class Scheduler implements ReadOnlyScheduler {
 			}
 		});
 	}
-	
-	/** 
-	 * Sorts internal list by latest end date first
-	 */
-	public void sortByDateTimeDecreasing() {
-		this.entrys.getInternalList().sort(new Comparator<Entry>() {
-			@Override
-			public int compare(Entry o1, Entry o2) {
-				return o2.getEndDate().compareTo(o1.getEndDate());
-			}
-		});
-	}
     //@@author
     
 //// tag-level operations
