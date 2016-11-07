@@ -11,10 +11,15 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
     public static final String COMMAND_WORD2 = "l";
-    public static final String COMMAND_WORD3 = "list sort";
+    
+    //@@author A0139956L-unused
+    //unused: Not enough time to do DateQualifier  
+    //public static final String COMMAND_WORD3 = "list sort";
     		
     public static final String MESSAGE_SUCCESS = "Listed all entrys";
-    public static final String MESSAGE_SUCCESS_SORT = "Listed all entries sorted by date; earliest endDate first";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " or " + COMMAND_WORD2 + ": List all entries.\n"
+    		+ "No Parameters. " + "Example: " + COMMAND_WORD;
+/*    public static final String MESSAGE_SUCCESS_SORT = "Listed all entries sorted by date; earliest endDate first";
     public static final String MESSAGE_USAGE = COMMAND_WORD + "or" + COMMAND_WORD2 
     		+ ": Lists all entries with the specified keyword and display them as a list with index numbers.\n"
     		+ "Parameters: [KEYWORD]"
@@ -23,27 +28,30 @@ public class ListCommand extends Command {
     private static final String LIST_ARG_SORT = "sort";
     
     private String keyword;
-    
+*/    
     public ListCommand() {}
     
-    public ListCommand(String arguments) {
+    //@@author A0139956L-unused
+    //unused: Not enough time to do DateQualifier  
+/*    public ListCommand(String arguments) {
     	this.keyword = arguments;
     }
-
+*/
     @Override
     public CommandResult execute() {
-    	if(keyword.contains(LIST_ARG_SORT)) {
-    		return listByKeyword();
-    	}
-    	else {
+    	//if(keyword.contains(LIST_ARG_SORT)) {
+    		//return listByKeyword();
+    	//}
+    	//else {
     		model.updateFilteredListToShowAll();
     		return new CommandResult(MESSAGE_SUCCESS);
-    	}
+    	//}
     }
-    	
-    private CommandResult listByKeyword() {	
+	//@@author A0139956L-unused
+	//unused: Not enough time to do DateQualifier  	
+/*    private CommandResult listByKeyword() {	
     	System.out.println(keyword);
    		model.sortFilteredEntryList(keyword);
    		return new CommandResult(MESSAGE_SUCCESS_SORT);
-    }
+    } */
 }

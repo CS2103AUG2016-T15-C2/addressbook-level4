@@ -1,7 +1,7 @@
 package seedu.scheduler.model.entry;
 
 
-import java.time.LocalDate;
+// java.time.LocalDate;
 
 import seedu.scheduler.commons.exceptions.IllegalValueException;
 
@@ -10,13 +10,14 @@ import seedu.scheduler.commons.exceptions.IllegalValueException;
  * Represents a Entry's endDate in the scheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidEndDate(String)}
  */
-public class EndDate implements Comparable<EndDate> {
+public class EndDate { // implements Comparable<EndDate> {
     
     public static final String MESSAGE_DATE_CONSTRAINTS = "Item's endDate should be in the format dd-mm-yyyy in numbers separated by a '-'";
     public static final String DATE_VALIDATION_REGEX = "((0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((18|19|20|21)\\d\\d)|empty)"; 
-    //@@author A0139956L
-    private LocalDate endDate;
-    //@@author 
+    //@@author A0139956L-unused
+    //unused: Not enough time to do DateQualifier
+//    private LocalDate endDate;
+    //@@author A0161210A
     public final String value;
     /**
      * 
@@ -47,11 +48,12 @@ public class EndDate implements Comparable<EndDate> {
     public String toString() {
         return value;
     }
-    //@@author A0139956L
-    @Override
-    public int compareTo(EndDate o) {
-    	return this.endDate.compareTo(o.endDate);
-    }
+    //@@author A0139956L-unused
+    //unused: Not enough time to do DateQualifier
+//    @Override
+//    public int compareTo(EndDate o) {
+//    	return this.endDate.compareTo(o.endDate);
+//    }
     //@@author
     @Override
     public boolean equals(Object other) {

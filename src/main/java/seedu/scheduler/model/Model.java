@@ -40,7 +40,9 @@ public interface Model {
     //@@author A0161210A
     /** Updates the filter of the filtered entry list to filter by the given keywords*/
     void updateFilteredEntryList(Set<String> keywords, boolean completeTracker, boolean isIncompleteTracker);
-    //@@author A0139956L
+    //@@author A0139956L-unused
+    //unused: Not enough time to do DateQualifier  
     /** Sorts the filtered entry list by the given keyword */
-	void sortFilteredEntryList(String keyword);
+	//void sortFilteredEntryList(String keyword);
+    //@@author
 }

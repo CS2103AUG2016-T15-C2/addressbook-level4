@@ -7,6 +7,7 @@ import seedu.scheduler.commons.util.StringUtil;
 import seedu.scheduler.commons.events.model.SchedulerChangedEvent;
 import seedu.scheduler.commons.exceptions.IllegalValueException;
 import seedu.scheduler.commons.core.ComponentManager;
+import seedu.scheduler.model.entry.EndDate;
 import seedu.scheduler.model.entry.Entry;
 import seedu.scheduler.model.entry.ReadOnlyEntry;
 import seedu.scheduler.model.entry.UniqueEntryList;
@@ -16,6 +17,7 @@ import seedu.scheduler.model.entry.UniqueEntryList.EntryNotFoundException;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.List;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -138,15 +140,17 @@ public class ModelManager extends ComponentManager implements Model {
         filteredEntrys.setPredicate(expression::satisfies);
     }
     
-    //@@author A0139956L
-	@Override
+    //@@author A0139956L-unused
+    //unused: Not enough time to do DateQualifier  
+/*	@Override
     public void sortFilteredEntryList(String keyword) {
 		if(keyword.contains(LIST_ARG_SORT)) {
 				scheduler.sortByDateTime();
 		}	
 		indicateSchedulerChanged();
 	}
-	//@@author
+*/
+    //@@author
     //========== Inner classes/interfaces used for filtering ==================================================
 
     interface Expression {
@@ -235,5 +239,21 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
-    //@@author
+
+    //@@author A0139956L-unused
+    //unused: Not enough time to do DateQualifier  
+/*    public class DateQualifier implements Qualifier {
+
+        private final LocalDateTime startDate;
+        private final LocalDateTime endDate;
+        private final Entry dateTimeQuery;
+
+        public DateQualifier(Entry dateTime) {
+            if (dateTime.getEndDate() != null) {
+                endDate = setLocalTime(dateTime.getEndDate());
+            }
+            else {
+                endDate = setLocalTime(dateTime.getEndDate());
+            }
+    } */
 }

@@ -126,18 +126,19 @@ public class Scheduler implements ReadOnlyScheduler {
     public void editEntry(Entry e, ReadOnlyEntry toEdit) throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException {
         entrys.edit(e, toEdit);
     }
-    //@@author A0139956L
+    //@@author A0139956L-unused
+    //unused: Not enough time to do DateQualifier 
     /** 
 	 * Sorts internal list by earliest end date first
 	 */
-	public void sortByDateTime() {
+/*	public void sortByDateTime() {
 		this.entrys.getInternalList().sort(new Comparator<Entry>() {
 			@Override
 			public int compare(Entry o1, Entry o2) {
 				return o1.getEndDate().compareTo(o2.getEndDate());
 			}
 		});
-	}
+	} */
     //@@author
     
 //// tag-level operations
