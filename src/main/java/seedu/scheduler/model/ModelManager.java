@@ -30,7 +30,6 @@ public class ModelManager extends ComponentManager implements Model {
     private final FilteredList<Entry> filteredEntrys;
     
     private static final String LIST_ARG_SORT = "sort";
-    private static final String LIST_KEYWORD_DEC = "dc";
 
     /**
      * Initializes a ModelManager with the given Scheduler
@@ -141,13 +140,11 @@ public class ModelManager extends ComponentManager implements Model {
     
     //@@author A0139956L
 	@Override
-    public void sortFilteredEntryList(Set<String> keyword) {
+    public void sortFilteredEntryList(String keyword) {
 		if(keyword.contains(LIST_ARG_SORT)) {
-			if(keyword.contains(LIST_KEYWORD_DEC))
-				scheduler.sortByDateTimeDecreasing();
-			else
 				scheduler.sortByDateTime();
 		}	
+		indicateSchedulerChanged();
 	}
 	//@@author
     //========== Inner classes/interfaces used for filtering ==================================================
