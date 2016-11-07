@@ -42,5 +42,5 @@ public interface Model {
     void updateFilteredEntryList(Set<String> keywords, boolean completeTracker, boolean isIncompleteTracker);
     //@@author A0139956L
     /** Sorts the filtered entry list by the given keyword */
-	void sortFilteredEntryList(Set<String> keyword);
+	void sortFilteredEntryList(String keyword);
 }
