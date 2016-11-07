@@ -3,7 +3,9 @@ package seedu.scheduler.model;
 import seedu.scheduler.commons.core.UnmodifiableObservableList;
 import seedu.scheduler.model.entry.Entry;
 import seedu.scheduler.model.entry.ReadOnlyEntry;
+import seedu.scheduler.model.entry.*;
 import seedu.scheduler.model.entry.UniqueEntryList;
+import seedu.scheduler.model.tag.UniqueTagList;
 
 import java.util.Set;
 
@@ -30,6 +32,13 @@ public interface Model {
     /** Edits the given entry */
     void editEntry(Entry replacement, ReadOnlyEntry entryToEdit) 
             throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException;
+    
+    //@@author A0152962B-unused
+    /** Updates the given entry */
+    //Unused: update feature removed, no longer required
+    /*void updateEntry(StartTime startTime, EndTime endTime, Date date, EndDate endDate, UniqueTagList tagList, ReadOnlyEntry entryToUpdate)
+            throws UniqueEntryList.EntryNotFoundException;
+    */
     //@@author
     
     /** Returns the filtered entry list as an {@code UnmodifiableObservableList<ReadOnlyEntry>} */

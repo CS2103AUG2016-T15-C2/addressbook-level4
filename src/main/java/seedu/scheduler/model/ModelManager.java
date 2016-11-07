@@ -7,11 +7,16 @@ import seedu.scheduler.commons.util.StringUtil;
 import seedu.scheduler.commons.events.model.SchedulerChangedEvent;
 import seedu.scheduler.commons.exceptions.IllegalValueException;
 import seedu.scheduler.commons.core.ComponentManager;
+import seedu.scheduler.model.entry.Date;
+import seedu.scheduler.model.entry.EndDate;
+import seedu.scheduler.model.entry.EndTime;
 import seedu.scheduler.model.entry.Entry;
 import seedu.scheduler.model.entry.ReadOnlyEntry;
+import seedu.scheduler.model.entry.StartTime;
 import seedu.scheduler.model.entry.UniqueEntryList;
 import seedu.scheduler.model.entry.UniqueEntryList.DuplicateEntryException;
 import seedu.scheduler.model.entry.UniqueEntryList.EntryNotFoundException;
+import seedu.scheduler.model.tag.UniqueTagList;
 
 import java.util.Set;
 import java.util.logging.Logger;
@@ -92,6 +97,15 @@ public class ModelManager extends ComponentManager implements Model {
         scheduler.editEntry(replacement, toEdit);
         indicateSchedulerChanged();
     }
+    
+    //@@author A0152962B-unused
+    /*@Override
+    public synchronized void updateEntry(StartTime startTime, EndTime endTime, Date date, EndDate endDate, UniqueTagList tagList, ReadOnlyEntry toUpdate)
+            throws UniqueEntryList.EntryNotFoundException{
+        scheduler.updateEntry(startTime, endTime, date, endDate, tagList, toUpdate);
+        indicateSchedulerChanged();
+    }
+    */
     //@@author
 
     //=========== Filtered Entry List Accessors ===============================================================

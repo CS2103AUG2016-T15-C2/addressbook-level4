@@ -69,6 +69,68 @@ public class Entry implements ReadOnlyEntry {
         return new UniqueTagList(tags);
     }
 
+    //@@author A0152962B-unused
+    /**
+     * Replaces this entry's name with name in the argument.
+     * @param name to replace
+     */
+    //Unused: mutator no longer needed as update feature is removed.
+    /*public void setName(Name name) {
+        this.name = name;
+    }
+    */
+    
+    /**
+     * Replaces this entry's start time with startTime in the argument.
+     * @param startTime to replace
+     */
+    //Unused: mutator no longer needed as update feature is removed.
+    /*public void setStartTime(StartTime startTime) {
+        this.startTime = startTime;
+    }
+    */
+    
+    /**
+     * Replaces this entry's end time with endTime in the argument.
+     * @param endTime to replace
+     */
+    //Unused: mutator no longer needed as update feature is removed.
+    /*public void setEndTime(EndTime endTime) {
+        this.endTime = endTime;
+    }
+    */
+    
+    /**
+     * Replaces this entry's date/start date with date in the argument.
+     * @param date to replace
+     */
+    //Unused: mutator no longer needed as update feature is removed.
+    /*public void setDate(Date date) {
+        this.date = date;
+    }
+    */
+    
+    /**
+     * Replaces this entry's end date with endDate in the argument.
+     * @param endDate to replace
+     */
+    //Unused: mutator no longer needed as update feature is removed.
+    /*public void setEndDate(EndDate endDate) {
+        this.endDate = endDate;
+    }
+    */
+    
+    /**
+     * Adds tags to this entry's tags with the tags in the argument tag list that are do not already exist.
+     * @param updates to replace
+     */
+    //Unused: mutator no longer needed as update feature is removed.
+    /*public void updateTags(UniqueTagList updates) {
+        this.tags.mergeFrom(updates);
+    }
+    */
+    //@@author
+    
     /**
      * Replaces this entry's tags with the tags in the argument tag list.
      */

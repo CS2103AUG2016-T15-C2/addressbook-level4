@@ -3,6 +3,7 @@ package seedu.scheduler.model.entry;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.scheduler.commons.util.CollectionUtil;
+import seedu.scheduler.model.tag.UniqueTagList;
 import seedu.scheduler.commons.exceptions.DuplicateDataException;
 
 import java.util.*;
@@ -91,7 +92,7 @@ public class UniqueEntryList implements Iterable<Entry> {
     }
     
     /**
-     * Edits(replaces) the specified entry;
+     * Edits(replaces) the specified entry.
      * 
      * @param replacement  The entry to replace the to-be-edited entry with.
      * @param toEdit  The target entry to be replaced with.
@@ -110,6 +111,54 @@ public class UniqueEntryList implements Iterable<Entry> {
         int index = internalList.indexOf(toEdit);
         internalList.set(index, replacement);
     }
+
+    //@@author A0152962B-unused
+    /**
+     * Updates the specified entry with given fields if not empty.
+     * 
+     * @param startTime  New start time to update to.
+     * @param endTime  New end time to update to.
+     * @param date  New start date to update to.
+     * @param endDate  New end date to update to.
+     * @param tagList  New tags to add on to.
+     * @param toUpdate  The entry that is required to update.
+     * @throws EntryNotFoundException if no such entry could be found in the list.
+     */
+    /*public void update(StartTime startTime, EndTime endTime, Date date, EndDate endDate, UniqueTagList tagList, ReadOnlyEntry toUpdate) 
+            throws EntryNotFoundException {
+        assert toUpdate != null;
+        final boolean entryFound = internalList.contains(toUpdate);
+        if(!entryFound) {
+            throw new EntryNotFoundException();
+        }
+        int index = internalList.indexOf(toUpdate);
+        //if(!update.getName().fullName.equals(null) 
+        //        && !update.getName().fullName.equals(toUpdate.getName().fullName)) {
+        //    internalList.get(index).setName(update.getName());
+        //}
+        
+        if(!startTime.value.equals("empty")
+                && !startTime.equals(toUpdate.getStartTime())) {
+            internalList.get(index).setStartTime(startTime);
+        }
+        if(!endTime.value.equals("empty")
+                && !endTime.equals(toUpdate.getEndTime())) {
+            internalList.get(index).setEndTime(endTime);
+        }
+        if(!date.value.equals("empty")
+                && !date.equals(toUpdate.getDate())) {
+            internalList.get(index).setDate(date);
+        }
+        if(!endDate.value.equals("empty")
+                && !endDate.equals(toUpdate.getEndDate())) {
+            internalList.get(index).setEndDate(endDate);
+        }
+        if(!tagList.equals(null)
+                && !tagList.equals(toUpdate.getTags())) {
+            internalList.get(index).updateTags(tagList);
+        }
+    }
+    */
     //@@author
 
     public ObservableList<Entry> getInternalList() {

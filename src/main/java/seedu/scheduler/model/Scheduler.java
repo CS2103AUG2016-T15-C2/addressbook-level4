@@ -1,9 +1,8 @@
 package seedu.scheduler.model;
 
 import javafx.collections.ObservableList;
-import seedu.scheduler.model.entry.Entry;
-import seedu.scheduler.model.entry.ReadOnlyEntry;
-import seedu.scheduler.model.entry.UniqueEntryList;
+import seedu.scheduler.model.entry.*;
+import seedu.scheduler.model.entry.Date;
 import seedu.scheduler.model.tag.Tag;
 import seedu.scheduler.model.tag.UniqueTagList;
 
@@ -113,12 +112,17 @@ public class Scheduler implements ReadOnlyScheduler {
     }
     
     //@@author A0152962B
+    /**
+     * Adds an entry at a specified index of the list.
+     *
+     * @throws UniqueEntryList.DuplicateEntryException if an equivalent entry already exists.
+     */
     public void addEntryAtIndex(int index, Entry entry) throws UniqueEntryList.DuplicateEntryException {
         entrys.addAtIndex(index, entry);
     }
     
     /**
-     * Edits(replace) a specified entry in the list.
+     * Edits(replaces) a specified entry in the list.
      * 
      * @throws UniqueEntryList.DuplicateEntryException if an equivalent entry already exists.
      * @throws UniqueEntryList.EntryNotFoundException if no such entry could be found in the list.
@@ -126,6 +130,17 @@ public class Scheduler implements ReadOnlyScheduler {
     public void editEntry(Entry e, ReadOnlyEntry toEdit) throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException {
         entrys.edit(e, toEdit);
     }
+    
+    //@@author A0152962B-unused
+    /**
+     * Updates the fields of a specified entry in the list.
+     * 
+     * @throws UniqueEntryList.EntryNotFoundException if no such entry could be found in the list.
+     */
+    /*public void updateEntry(StartTime st, EndTime et, Date d, EndDate ed, UniqueTagList utl, ReadOnlyEntry toUpdate) throws UniqueEntryList.EntryNotFoundException{
+        entrys.update(st, et, d, ed, utl, toUpdate);
+    }
+    */
     //@@author
 
 //// tag-level operations
