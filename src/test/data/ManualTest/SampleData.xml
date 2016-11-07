@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<scheduler>
+    <entrys>
+        <name>CS2105 Midterm</name>
+        <startTime>09:00</startTime>
+        <endTime>12:00</endTime>
+        <date>01-10-2016</date>
+        <endDate>01-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS2106 Midterm</name>
+        <startTime>18:30</startTime>
+        <endTime>20:00</endTime>
+        <date>30-09-2016</date>
+        <endDate>30-09-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Watch Train to Busan</name>
+        <startTime>13:40</startTime>
+        <endTime>empty</endTime>
+        <date>02-10-2016</date>
+        <endDate>empty</endDate>
+    </entrys>
+    <entrys>
+        <name>CS3230 Midterm</name>
+        <startTime>13:00</startTime>
+        <endTime>14:30</endTime>
+        <date>01-10-2016</date>
+        <endDate>01-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>German Midterm</name>
+        <startTime>16:00</startTime>
+        <endTime>17:30</endTime>
+        <date>06-10-2016</date>
+        <endDate>06-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Laundries</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>empty</endDate>
+    </entrys>
+    <entrys>
+        <name>CS2106 Lab 3</name>
+        <startTime>empty</startTime>
+        <endTime>17:00</endTime>
+        <date>empty</date>
+        <endDate>07-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS3230 Homework 2</name>
+        <startTime>empty</startTime>
+        <endTime>23:59</endTime>
+        <date>empty</date>
+        <endDate>07-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Trip to Malaysia</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>07-10-2016</date>
+        <endDate>09-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS2105 Lab 3</name>
+        <startTime>empty</startTime>
+        <endTime>17:00</endTime>
+        <date>empty</date>
+        <endDate>14-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>German Homework L17</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>10-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>German Writing 2</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>14-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Beer with friends</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>12-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS2106 Lab 4</name>
+        <startTime>empty</startTime>
+        <endTime>17:00</endTime>
+        <date>empty</date>
+        <endDate>21-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS3230 Assignment 2</name>
+        <startTime>empty</startTime>
+        <endTime>23:59</endTime>
+        <date>empty</date>
+        <endDate>23-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>German Homework L18</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>17-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>German Homework L19</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>24-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS2105 Lab 4</name>
+        <startTime>empty</startTime>
+        <endTime>17:00</endTime>
+        <date>empty</date>
+        <endDate>28-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS3230 Homework 3</name>
+        <startTime>empty</startTime>
+        <endTime>23:59</endTime>
+        <date>empty</date>
+        <endDate>28-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Watch Doctor Strange</name>
+        <startTime>14:25</startTime>
+        <endTime>empty</endTime>
+        <date>01-11-2016</date>
+        <endDate>empty</endDate>
+    </entrys>
+    <entrys>
+        <name>Buy tickets to Malaysia</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>31-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>German Homework L20</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>31-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>German Writing 3</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>31-10-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS3230 Assignment 3</name>
+        <startTime>empty</startTime>
+        <endTime>23:59</endTime>
+        <date>empty</date>
+        <endDate>06-11-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS2105 Lab 4</name>
+        <startTime>empty</startTime>
+        <endTime>17:00</endTime>
+        <date>empty</date>
+        <endDate>04-11-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS3230 Homework 4</name>
+        <startTime>empty</startTime>
+        <endTime>23:59</endTime>
+        <date>empty</date>
+        <endDate>11-11-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS2103 Project Submission</name>
+        <startTime>empty</startTime>
+        <endTime>23:59</endTime>
+        <date>empty</date>
+        <endDate>07-11-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS2106 Lab 5</name>
+        <startTime>empty</startTime>
+        <endTime>17:00</endTime>
+        <date>empty</date>
+        <endDate>11-11-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>German Final Written Exam</name>
+        <startTime>16:00</startTime>
+        <endTime>17:30</endTime>
+        <date>10-11-2016</date>
+        <endDate>10-11-2016</endDate>
+        <tagged>finals</tagged>
+    </entrys>
+    <entrys>
+        <name>German Final Oral Exam</name>
+        <startTime>17:00</startTime>
+        <endTime>17:10</endTime>
+        <date>11-11-2016</date>
+        <endDate>11-11-2016</endDate>
+        <tagged>finals</tagged>
+    </entrys>
+    <entrys>
+        <name>Apply for vacation stay</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>02-11-2016</date>
+        <endDate>11-11-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Pay for vacation stay</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>11-11-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Watch Your Name</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>empty</endDate>
+    </entrys>
+    <entrys>
+        <name>Study for Finals</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>14-11-2016</date>
+        <endDate>empty</endDate>
+        <tagged>finals</tagged>
+    </entrys>
+    <entrys>
+        <name>CS2103 Presentation</name>
+        <startTime>15:00</startTime>
+        <endTime>16:00</endTime>
+        <date>10-11-2016</date>
+        <endDate>10-11-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Celebrate Father's Birthday</name>
+        <startTime>20:00</startTime>
+        <endTime>21:00</endTime>
+        <date>11-11-2016</date>
+        <endDate>11-11-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Send parents off to Airport</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>12-11-2016</date>
+        <endDate>12-11-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>CS2103 Final Exam</name>
+        <startTime>13:00</startTime>
+        <endTime>empty</endTime>
+        <date>26-11-2016</date>
+        <endDate>26-11-2016</endDate>
+        <tagged>finals</tagged>
+    </entrys>
+    <entrys>
+        <name>CS2105 Final Exam</name>
+        <startTime>13:00</startTime>
+        <endTime>empty</endTime>
+        <date>30-11-2016</date>
+        <endDate>30-11-2016</endDate>
+        <tagged>finals</tagged>
+    </entrys>
+    <entrys>
+        <name>CS2106 Final Exam</name>
+        <startTime>09:00</startTime>
+        <endTime>empty</endTime>
+        <date>25-11-2016</date>
+        <endDate>25-11-2016</endDate>
+        <tagged>finals</tagged>
+    </entrys>
+    <entrys>
+        <name>CS3230 Final Exam</name>
+        <startTime>17:00</startTime>
+        <endTime>empty</endTime>
+        <date>22-11-2016</date>
+        <endDate>22-11-2016</endDate>
+        <tagged>finals</tagged>
+    </entrys>
+    <entrys>
+        <name>Attend AFA Concert</name>
+        <startTime>19:00</startTime>
+        <endTime>empty</endTime>
+        <date>27-11-2016</date>
+        <endDate>27-11-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Pack belongings</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>27-11-2016</date>
+        <endDate>empty</endDate>
+    </entrys>
+    <entrys>
+        <name>Trip to Malaysia</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>07-12-2016</date>
+        <endDate>12-12-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Check out of hostel</name>
+        <startTime>empty</startTime>
+        <endTime>12:00</endTime>
+        <date>empty</date>
+        <endDate>13-12-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Meetup with friends</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>empty</endDate>
+    </entrys>
+    <entrys>
+        <name>Gather info on transcripts</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>06-12-2016</endDate>
+    </entrys>
+    <entrys>
+        <name>Flight back to Shanghai</name>
+        <startTime>16:00</startTime>
+        <endTime>empty</endTime>
+        <date>13-12-2016</date>
+        <endDate>empty</endDate>
+    </entrys>
+    <entrys>
+        <name>Apply for Credit Transfer</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>01-01-2017</endDate>
+    </entrys>
+    <entrys>
+        <name>Fix CV</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>15-12-2016</date>
+        <endDate>empty</endDate>
+    </entrys>
+    <entrys>
+        <name>Search and Apply for Summer Internships</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>20-12-2016</date>
+        <endDate>empty</endDate>
+    </entrys>
+    <entrys>
+        <name>Visit Shanghai Disneyland</name>
+        <startTime>empty</startTime>
+        <endTime>empty</endTime>
+        <date>empty</date>
+        <endDate>empty</endDate>
+    </entrys>
+    <tags>
+        <tagName>finals</tagName>
+    </tags>
+    <tags>
+        <tagName>Completed</tagName>
+    </tags>
+</scheduler>
