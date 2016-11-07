@@ -1,3 +1,5 @@
+package seedu.scheduler.logic.commands;
+
 //package seedu.scheduler.logic.commands;
 
 //import java.util.HashSet;
