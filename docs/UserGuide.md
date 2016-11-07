@@ -14,20 +14,18 @@
 1. Download the latest `scheduler.jar` from the [releases](../../../releases) tab.
 2. Copy the file to the folder you want to use as the home folder for your Scheduler.
 3. Double-click the file to start the app. The GUI should appear in a few seconds. 
-<!-- @@author A0126090N --> 
    > <img src="images/Ui.JPG" width="600">
-<!-- @@author --> 
-<!-- @@author -->
 4. Type the command in the command box and press <kbd>Enter</kbd> to execute it. <br>
    e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window. 
 5. Some example commands you can try:
    * **`list`** : lists all items
+   <!-- @@author A0126090N --> 
    * **`add`**: `add Meeting from/13:00 to/17:00 sd/19-02-2016 ed/20-02-2016 [t/priority]` : 
      adds an item named `Meeting` to the scheduler.
    * **`delete`**` 3` : deletes the 3rd item shown in the scheduler
    * **`exit`** : exits the app
    * **`add`**: `add Homework by/20-02-2016`: adds an item `Homework` with only 1 parameter
-   * **`add`**: `add Homework ed/20-02-2016`: adds an item `Homework` with only 1 parameter (notice that by/ and ed/ are interchangeable)
+   * **`add`**: `add Homework ed/20-02-2016`: adds an item `Homework` with only 1 parameter (notice that by/ and ed/ are interchangeable) <!-- @@author -->
 6. Refer to the [Features](#features) section below for details of each command.<br>
 
 
@@ -56,8 +54,6 @@ Format: `add NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t
 Format: `a NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]` 
 
 > * Current date is added by default when start/end time is added to scheduler without a date.
-<!-- @@author --> 
-
 <!-- @@author A0161210A --> 
 Examples: 
 * `add Meeting st/12:00 et/17:00 sd/19-02-16 ed/20-02-16 t/priority`
@@ -152,7 +148,6 @@ Examples:
 * `find completed`<br>
 * `f c` <br>
 * `f incomplete` 
-<!-- @@author A0161210A -->
   
 <!-- @@author A0126090N --> 
 #### Marking an entry as completed: `mark`
@@ -162,17 +157,18 @@ Format: `m INDEX`
 
 > * Marked entry will move to the end of the scheduler.
 > * If list was called before 'mark', the filtered list will exit and marked entry will be displayed on the unfiltered scheduler.
-<!-- @@author --> 
 
 <!-- @@author A0139956L -->
 #### Specify a folder as data storage location: `path`
 Data storage location can be manually changed to a user-specified location. User can also type `p` instead of `path`<br>
 Format: `path FILE_PATH`
+Format: `p FILE_PATH`
 
 Examples:
-* `path data/dropbox`
-* `p data/dropbox`
-<!-- @@author -->
+* `path data/week1`
+* `p data/week1`
+
+> * To create the file, add an entry to the scheduler after the path command.
 
 <!-- @@author A0126090N --> 
 #### Clear scheduler of all entries: `clear`
@@ -193,6 +189,11 @@ Format: `ex`
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with 
        the file that contains the data of your previous Scheduler folder.
+<!-- @@author A0139956L-->
+**Q**: What does the entry highlighted in red means?<br>
+**A**: The entry requires attention because it is either overdue or due today.
+**Q**: What does the entry highlighted in green means?<br>
+**A**: The entry is marked completed.
 
 <!-- @@author A0126090N --> 
 ## Command Summary
