@@ -56,8 +56,8 @@ Format: `a NAME [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/T
 > * Current date is added by default when start/end time is added to scheduler without a date.
 <!-- @@author A0161210A --> 
 Examples: 
-* `add Meeting st/12:00 et/17:00 sd/19-02-16 ed/20-02-16 t/priority`
-* `add Gathering from/19:00 to/23:00 d/24-05-16 t/priority`
+* `add Meeting st/12:00 et/17:00 sd/19-02-16 ed/20-02-2016 t/priority`
+* `add Gathering from/19:00 to/23:00 ed/24-05-2016 t/priority`
 * `add Do Homework1 ed/19-02-2016`
 * `a Do Homework2 by/20-02-2016`
 <!-- @@author -->
@@ -84,8 +84,8 @@ Edits a floating task to the scheduler specified by the index <br>
 Format: `edit INDEX NAME` 
 Format: `e INDEX NAME` <br>
 Examples: 
-* `edit 1 Meeting st/12:00 et/17:00 ed/19-02-16 t/priority`
-* `edit 3 Do Homework1 ed/19-02-12`
+* `edit 1 Meeting st/12:00 et/17:00 ed/19-02-2016 t/priority`
+* `edit 3 Do Homework1 ed/19-02-2012`
 * `e 2 Do Homework2` <br><br>
 <!-- @@author A0161210A --> 
 Important Note: The Edit functionality works more like a Replace command. Consider these 2 cases. <br>
