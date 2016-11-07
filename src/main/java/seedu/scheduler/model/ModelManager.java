@@ -98,12 +98,14 @@ public class ModelManager extends ComponentManager implements Model {
         indicateSchedulerChanged();
     }
     
-    @Override
+    //@@author A0152962B-unused
+    /*@Override
     public synchronized void updateEntry(StartTime startTime, EndTime endTime, Date date, EndDate endDate, UniqueTagList tagList, ReadOnlyEntry toUpdate)
             throws UniqueEntryList.EntryNotFoundException{
         scheduler.updateEntry(startTime, endTime, date, endDate, tagList, toUpdate);
         indicateSchedulerChanged();
     }
+    */
     //@@author
 
     //=========== Filtered Entry List Accessors ===============================================================

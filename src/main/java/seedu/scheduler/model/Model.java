@@ -33,9 +33,12 @@ public interface Model {
     void editEntry(Entry replacement, ReadOnlyEntry entryToEdit) 
             throws UniqueEntryList.DuplicateEntryException, UniqueEntryList.EntryNotFoundException;
     
+    //@@author A0152962B-unused
     /** Updates the given entry */
-    void updateEntry(StartTime startTime, EndTime endTime, Date date, EndDate endDate, UniqueTagList tagList, ReadOnlyEntry entryToUpdate)
+    //Unused: update feature removed, no longer required
+    /*void updateEntry(StartTime startTime, EndTime endTime, Date date, EndDate endDate, UniqueTagList tagList, ReadOnlyEntry entryToUpdate)
             throws UniqueEntryList.EntryNotFoundException;
+    */
     //@@author
     
     /** Returns the filtered entry list as an {@code UnmodifiableObservableList<ReadOnlyEntry>} */

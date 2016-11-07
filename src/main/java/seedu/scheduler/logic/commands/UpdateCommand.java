@@ -1,6 +1,6 @@
-package seedu.scheduler.logic.commands;
+//package seedu.scheduler.logic.commands;
 
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.Set;
 
 import seedu.scheduler.commons.core.Messages;
@@ -12,11 +12,12 @@ import seedu.scheduler.model.entry.UniqueEntryList.EntryNotFoundException;
 import seedu.scheduler.model.tag.Tag;
 import seedu.scheduler.model.tag.UniqueTagList;
 
-//@@author A1052962B
+//@@author A1052962B-unused
 /**
  * Updates an entry in the scheduler given an index and the fields to update.
+ * Unused: update feature not fully implemented.
  */
-public class UpdateCommand extends UndoableCommand{
+/*public class UpdateCommand extends UndoableCommand{
 
     public static final String COMMAND_WORD = "update";
     public static final String COMMAND_WORD2 = "u";
@@ -93,3 +94,4 @@ public class UpdateCommand extends UndoableCommand{
     
 
 }
+*/

@@ -95,9 +95,9 @@ Examples:
 Important Note: The Edit functionality works more like a Replace command. Consider these 2 cases. <br>
 * 1)if user has a fully filled out event, but only wants to edit the end time parameter, user will have to type out every parameter, and only change the end time parameter to the desired parameter.
 * 2)If user has a fully filled out event, but wants to edit it to a deadline task, user should only type in the endDate and endTime parameter
-<!-- @@author A0152962B-->
+<!-- @@author A0152962B-unused -->
 
-#### Updating an item : `update`
+<!--#### Updating an item : `update`
 Update the item selected by the user. User can also type `u` instead of `update`<br>
 Format: `update INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`
 Format: `u INDEX [st/START_TIME] [et/END_TIME] [sd/START_DATE] [ed/END_DATE] [t/TAG]`<br>
@@ -107,6 +107,7 @@ Examples:
 
 > * Update functionality does not allow updating the name of the event.
 > * Inputing tags will replace existing tags.
+-->
 
 #### Undo recent actions (up to 10): `undo`
 Reverts scheduler back to the state before the recent committed actions (up to 10 undoable commands).<br>

@@ -48,14 +48,16 @@ public class Parser {
                     + "(?<isDatePrivate>p?)(?:(on/|date/|sd/|by/)(?<date>[^/]+))?"
                     + "(?<isEndDatePrivate>p?)(?:(edate/|ed/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
-    
-    private static final Pattern ENTRY_UPDATE_ARGS_FORMAT = 
+    //@@author A0152962B-unused
+    //Unused: update feature removed, no longer require the regular expression
+    /*private static final Pattern ENTRY_UPDATE_ARGS_FORMAT = 
             Pattern.compile("(?<targetIndex>\\d+) "
                     + "(?<isStartTimePrivate>p?)(?:(from/|f/|st/)(?<startTime>[^/]+))?"
                     + "(?<isEndTimePrivate>p?)(?:(to/|et/)(?<endTime>[^/]+))?"
                     + "(?<isDatePrivate>p?)(?:(on/|date/|sd/|by/)(?<date>[^/]+))?"
                     + "(?<isEndDatePrivate>p?)(?:(edate/|ed/)(?<endDate>[^/]+))?"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
+    */
     //@@author
 
     public Parser() {
@@ -84,7 +86,7 @@ public class Parser {
         
         case AddCommand.COMMAND_WORD2:
             return prepareAdd(arguments);
-      //@@author
+        //@@author
 
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(arguments);
@@ -98,12 +100,14 @@ public class Parser {
             
         case EditCommand.COMMAND_WORD2:
             return prepareEdit(arguments);
-            
-        case UpdateCommand.COMMAND_WORD:
+        //@@author A0152962B-unused
+        //Unused: update feature removed, removed to prevent registering an unimplemented feature
+        /*case UpdateCommand.COMMAND_WORD:
             return prepareUpdate(arguments);
             
         case UpdateCommand.COMMAND_WORD2:
             return prepareUpdate(arguments);
+        */
         //@@author    
         case MarkedCommand.COMMAND_WORD:
             return prepareMarked(arguments);
@@ -239,13 +243,16 @@ public class Parser {
         }
 
     }
+    
+    //@@author A0152962B-unused
     /**
      * Parses arguments into the context of the update entry command.
      * 
      * @param args full command args string
      * @return the newly prepared command
      */
-    private Command prepareUpdate(String args) {
+    //Unused: update feature removed, no longer needed
+    /*private Command prepareUpdate(String args) {
         final Matcher matcher = ENTRY_UPDATE_ARGS_FORMAT.matcher(args.trim());
         if(!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
@@ -259,6 +266,7 @@ public class Parser {
             return new IncorrectCommand(ive.getMessage());
         }
     }
+    */
     
     //@@author A0126090N
     /**

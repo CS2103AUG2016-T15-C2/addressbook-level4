@@ -131,14 +131,16 @@ public class Scheduler implements ReadOnlyScheduler {
         entrys.edit(e, toEdit);
     }
     
+    //@@author A0152962B-unused
     /**
      * Updates the fields of a specified entry in the list.
      * 
      * @throws UniqueEntryList.EntryNotFoundException if no such entry could be found in the list.
      */
-    public void updateEntry(StartTime st, EndTime et, Date d, EndDate ed, UniqueTagList utl, ReadOnlyEntry toUpdate) throws UniqueEntryList.EntryNotFoundException{
+    /*public void updateEntry(StartTime st, EndTime et, Date d, EndDate ed, UniqueTagList utl, ReadOnlyEntry toUpdate) throws UniqueEntryList.EntryNotFoundException{
         entrys.update(st, et, d, ed, utl, toUpdate);
     }
+    */
     //@@author
 
 //// tag-level operations

@@ -112,6 +112,7 @@ public class UniqueEntryList implements Iterable<Entry> {
         internalList.set(index, replacement);
     }
 
+    //@@author A0152962B-unused
     /**
      * Updates the specified entry with given fields if not empty.
      * 
@@ -123,7 +124,7 @@ public class UniqueEntryList implements Iterable<Entry> {
      * @param toUpdate  The entry that is required to update.
      * @throws EntryNotFoundException if no such entry could be found in the list.
      */
-    public void update(StartTime startTime, EndTime endTime, Date date, EndDate endDate, UniqueTagList tagList, ReadOnlyEntry toUpdate) 
+    /*public void update(StartTime startTime, EndTime endTime, Date date, EndDate endDate, UniqueTagList tagList, ReadOnlyEntry toUpdate) 
             throws EntryNotFoundException {
         assert toUpdate != null;
         final boolean entryFound = internalList.contains(toUpdate);
@@ -157,6 +158,7 @@ public class UniqueEntryList implements Iterable<Entry> {
             internalList.get(index).updateTags(tagList);
         }
     }
+    */
     //@@author
 
     public ObservableList<Entry> getInternalList() {
