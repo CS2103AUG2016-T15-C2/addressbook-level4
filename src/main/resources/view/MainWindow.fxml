@@ -24,7 +24,7 @@
             </Menu>
          </menus>
       </MenuBar>
-       <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.55" VBox.vgrow="ALWAYS">
+       <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="0.8" VBox.vgrow="ALWAYS">
          <items>
             <VBox fx:id="entryList" minWidth="340" prefWidth="340">
                 <padding>
@@ -34,11 +34,11 @@
                   <AnchorPane fx:id="entryListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                </children>
             </VBox>
-            <AnchorPane fx:id="browserPlaceholder" prefWidth="340" >
+        <!--  <AnchorPane fx:id="browserPlaceholder" prefWidth="340" >
                 <padding>
                     <Insets top="10.0" bottom="10.0" left="5.0" right="10.0"/>
                 </padding>
-            </AnchorPane>
+            </AnchorPane> --> 
          </items>
       </SplitPane>
              <AnchorPane fx:id="resultDisplayPlaceholder" styleClass="anchor-pane-with-border" minHeight="80" prefHeight="100" maxHeight="100" VBox.vgrow="NEVER">
