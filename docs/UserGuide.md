@@ -190,10 +190,10 @@ Format: `ex`
 **A**: Install the app in the other computer and overwrite the empty data file it creates with 
        the file that contains the data of your previous Scheduler folder. <br>
 <!-- @@author A0139956L-->
-**Q**: What does the entry highlighted in red means?<br>
+**Q**: Why is the entry highlighted in red?<br>
 **A**: The entry requires attention because it is either overdue or due today. <br>
 
-**Q**: What does the entry highlighted in green means?<br>
+**Q**: Why is the entry highlighted in green?<br>
 **A**: The entry is marked completed. <br>
 
 <!-- @@author A0126090N --> 
