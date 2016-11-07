@@ -108,9 +108,7 @@ public class UniqueEntryList implements Iterable<Entry> {
             throw new EntryNotFoundException();
         }
         if(contains(replacement)) {
-            if(replacement.getTags().equals(toEdit.getTags())) {
-                throw new DuplicateEntryException();
-            }
+            throw new DuplicateEntryException();
         }
         internalList.set(index, replacement);
     }
