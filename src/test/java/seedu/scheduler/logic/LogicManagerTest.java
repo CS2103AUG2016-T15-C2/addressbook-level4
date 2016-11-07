@@ -432,7 +432,7 @@ public class LogicManagerTest {
     @Test
     public void execute_editInvalidArgsFormat_errorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
-        assertIncorrectIndexFormatBehaviorForCommand("edit", expectedMessage);
+        assertIncorrectIndexFormatBehaviorForCommand("edit asd", expectedMessage);
     }
     
     @Test
