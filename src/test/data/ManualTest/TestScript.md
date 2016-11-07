@@ -171,7 +171,7 @@ Prompt: `Invalid command format! `<br>
 `Example: delete 1`<br>
 No change to scheduler.<br>
 
-* Input: `d 41`<br>
+* Input: `delete 41`<br>
 Expected Output:<br>
 Prompt: `Deleted Entry: Beer with friends Start Time: empty End Time: empty Date: empty End Date: 12-10-2016 Tags: [Completed]`<br>
 Entry at index `41` is removed from the scheduler, all entries below are shifted up.<br>
@@ -186,6 +186,11 @@ Expected Output:<br>
 Prompt: *No new prompt, displaying previous*<br>
 Entry at index `41` is removed from the scheduler, all entries below are shifted up.<br>
 
+* Input: `d 62`<br>
+Expected Output:<br>
+Prompt: `The entry index provided is invalid`<br>
+No change to scheduler.<br>
+
 #### Edit
 * Input: `edit` or `e`<br>
 Expected Output:<br>
@@ -194,4 +199,178 @@ Prompt: `Invalid command format! `<br>
 `Example: edit 2 John Wedding st/15:00 et/21:00 d/12-10-2016 t/undone`<br>
 No change to scheduler.<br>
 
-* Input: `
+* Input: `edit 61 Gathering 1`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering 1 Start Time: empty End Time: empty Date: empty End Date: empty Tags: `<br>
+Entry at index `61` is now changed to just `Gathering` without another parameters shown. <br>
+
+* Input: `e 62 Gather`<br>
+Expected Output:<br>
+Prompt: `The entry index provided is invalid`<br>
+No change to scheduler.<br>
+
+* Input: `e 60 Gathering 1`<br>
+Expected Output:<br>
+Prompt: `This entry already exists in the scheduler`<br>
+No change to scheduler.<br>
+
+* Input: `e 60 Gathering 1 t/1`<br>
+Expected Output:<br>
+Prompt: `This entry already exists in the scheduler`<br>
+No change to scheduler.<br>
+
+* Input: `e 61 st/13:00`<br>
+Expected Output:<br>
+Prompt: `Entry names should be spaces or alphanumeric characters`<br>
+No change to scheduler.<br>
+
+* Input: `e 61 Gathering st/13:00`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: 13:00 End Time: empty Date: empty End Date: empty Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `Start Date` displaying as `empty` and `Start Time` being displayed.<br>
+
+* Input: `e 61 Gathering et/13:00`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: empty End Time: 13:00 Date: empty End Date: empty Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `End Date` displaying as `empty` and `End Time` being displayed.<br>
+
+* Input: `e 61 Gathering sd/11-11-2016`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: empty End Time: empty Date: 11-11-2016 End Date: empty Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `Start Date` displayed.<br>
+
+* Input: `e 61 Gathering ed/11-11-2016`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: empty End Time: empty Date: empty End Date: 11-11-2016 Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `End Date` displayed.<br>
+
+* Input: `e 61 Gathering st/11:00 et/13:00`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: 11:00 End Time: 13:00 Date: empty End Date: empty Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `Start Date` and `End Date` displaying `empty`, while `Start Time` and `End Time` displays their time.<br>
+
+* Input: `e 61 Gathering sd/11-11-2016 ed/12-11-2016`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: empty End Time: empty Date: 11-11-2016 End Date: 12-11-2016 Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `Start Date` and `End Date` being displayed. <br>
+
+* Input: `e 61 Gathering st/13:00 sd/11-11-2016`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: 13:00 End Time: empty Date: 11-11-2016 End Date: empty Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `Start Time` and `Start Date` being displayed. <br>
+
+* Input: `e 61 Gathering et/13:00 ed/11-11-2016`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: empty End Time: 13:00 Date: empty End Date: 11-11-2016 Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `End Time` and `End Date` being displayed. <br>
+
+* Input: `e 61 Gathering st/11:00 ed/11-11-2016`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: 13:00 End Time: empty Date: empty End Date: 11-11-2016 Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `Start Date` and `End Time` displaying `empty`, while `Start Time` and `End Date` displays.<br>
+
+* Input: `e 61 Gathering et/11:00 sd/11-11-2016`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: empty End Time: 11:00 Date: 11-11-2016 End Date: empty Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `Start Time` and `End Date` displaying `empty`, while `Start Date` and `End Time` displays.<br>
+
+* Input: `e 61 Gathering st/11:00 et/13:00 sd/11-11-2016`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: 11:00 End Time: 13:00 Date: 11-11-2016 End Date: empty Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `End Date` displaying `empty`, while `Start Time`, `Start Date` and `End Time` displays.<br>
+
+* Input: `e 61 Gathering st/11:00 et/13:00 ed/11-11-2016`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: 11:00 End Time: 13:00 Date: empty End Date: 11-11-2016 Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `Start Date` displaying `empty`, while `Start Time`, `End Date` and `End Time` displays.<br>
+
+* Input: `e 61 Gathering st/11:00 sd/05-11-2016 ed/06-11-2016`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: 11:00 End Time: empty Date: 05-11-2016 End Date: 06-11-2016 Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `End Time` displaying `empty`, while `Start Time`, `Start Date` and `End Date` displays. Entry is coloured `Red` for attention.<br>
+
+* Input: `e 61 Gathering et/11:00 sd/05-11-2016 ed/06-11-2016`<br>
+Expected Output:<br>
+Prompt: `Entry edited: Gathering Start Time: empty End Time: 11:00 Date: 05-11-2016 End Date: 06-11-2016 Tags: `<br>
+Entry at `61` is now changed to `Gathering` with `Start Time` displaying `empty`, while `End Time`, `Start Date` and `End Date` displays. Entry is coloured `Red` for attention.<br>
+
+* Input: `e 23 test`<br>
+Expected Output:<br>
+Prompt: `Entry edited: test Start Time: empty End Time: empty Date: empty End Date: empty Tags: `<br>
+Entry at `23` is now changed to `test` from `Check out of hostel`.<br>
+
+* Input: `undo`<br>
+Expected Output:<br>
+Prompt: *No new prompt, displaying previous*<br>
+Scheduler reverts previous action, entry at `23` is now back to `Check out of hostel`.<br>
+
+* Input: `redo`<br>
+Expected Output:<br>
+Prompt: *No new prompt, displaying previous*<br>
+Scheduler reverts previous undo action, entry at `23` is now back to `test`.<br>
+
+#### Mark
+* Input: `mark` or `m`<br>
+Expected Output:<br>
+Prompt: `Invalid command format! `<br>
+`mark: Marks the entry identified by the index number used in the last entry listing as completed.`<br>
+`Parameters: INDEX (must be a positive integer)`<br>
+`Example: mark 1`<br>
+No change to scheduler.<br>
+
+* Input: `mark 5`<br>
+Expected Output:<br>
+Prompt: `Marked Entry: CS2103 Project Submission Start Time: empty End Time: 23:59 Date: empty End Date: 07-11-2016 Tags: [`<br>
+Entry at index `5` is marked as `completed` with a `tag`, the entry is pushed to the bottom of the list, now at index `61`. It is also coloured `Green`.<br>
+
+* Input: `undo`<br>
+Expected Output:<br>
+Prompt: *No new prompt, displaying previous*<br>
+Scheduler reverts previous action, entry `61` now reverts back to coloured `Red` and back at index `5`, without the `completed` tag.<br>
+
+* Input: `redo`<br>
+Expected Output:<br>
+Prompt: *No new prompt, displaying previous*<br>
+Scheduler reverts previous undo action, entry `5` now reverts back to coloured `Green` and back at index `61`, with the `completed` tag.<br>
+
+* Input: `m 67`<br>
+Expected Output:<br>
+Prompt: `The entry index provided is invalid`<br>
+No change to scheduler.<br>
+
+#### Undo/Redo
+* Inputs: `e 59 Gather Undo`<br>
+`d 60`<br>
+`a undo`<br>
+`undo`<br>
+`undo`<br>
+`undo`<br>
+Expected Output:<br>
+Entry at index `59` changed to `Gather Undo`. Entry at `60` deleted. Added new entry at the bottom. Undo all mentioned 3 commands. Reverts back to original state.<br>
+
+* Inputs: `a 1`<br>
+`a 2`<br>
+`a 3`<br>
+`a 4`<br>
+`a 5`<br>
+`a 6`<br>
+`a 7`<br>
+`a 8`<br>
+`a 9`<br>
+`a 10`<br>
+`a 11`<br>
+`undo`<br>
+`undo`<br>
+`undo`<br>
+`undo`<br>
+`undo`<br>
+`undo`<br>
+`undo`<br>
+`undo`<br>
+`undo`<br>
+`undo`<br>
+`undo`<br>
+Expected Output:<br>
+After adding 11 entries and typing 11 `undo`s, entry `1` should be left in the scheduler as the undo stack holds up to 10 recent actions.<br>
+
+
