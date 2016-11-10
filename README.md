@@ -9,7 +9,7 @@
 * This is a desktop Scheduler application. It has a GUI but most of the user interactions happen using 
   a CLI (Command Line Interface).
 * This application is a CS2103 project and is still undergoing development.
-* Our latest release: [v0.4](https://github.com/CS2103AUG2016-T15-C2/main/releases/tag/v0.4)
+* Our latest release: [v0.5](https://github.com/CS2103AUG2016-T15-C2/main/releases/tag/v0.5)
 <!-- @@author -->
   
 #### Site Map
